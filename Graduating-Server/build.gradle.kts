@@ -20,6 +20,8 @@ repositories {
 }
 
 dependencies {
+    implementation("org.apache.commons:commons-csv:1.9.0")
+
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
