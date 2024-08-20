@@ -14,11 +14,10 @@ public enum UserDefaultsType: String {
 
 extension UserDefaultsType {
     var value: Any? {
-        get {
-            UserDefaults.standard.value(forKey: self.rawValue)
-        }
-        set {
-            UserDefaults.standard.setValue(newValue, forKey: self.rawValue)
-        }
+        UserDefaults.standard.value(forKey: self.rawValue)
+    }
+    
+    func set(_ value: Any?) {
+        UserDefaults.standard.setValue(value, forKey: self.rawValue)
     }
 }

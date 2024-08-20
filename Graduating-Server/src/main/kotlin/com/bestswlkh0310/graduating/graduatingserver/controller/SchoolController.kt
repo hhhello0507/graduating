@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 class SchoolController(
     private val schoolService: SchoolService
 ) {
-    @GetMapping("")
+    @GetMapping("", "/")
     fun getSchools() = schoolService.getSchools()
         .let { ResponseEntity.ok(it) }
 }

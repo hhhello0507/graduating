@@ -54,3 +54,11 @@ public extension Date {
         return calendar.range(of: .day, in: .month, for: self)?.count
     }
 }
+
+public extension DateFormatter {
+    convenience init(_ dateFormat: String, locale: Locale = Locale(identifier: "ko_KR")) {
+        self.init()
+        self.dateFormat = dateFormat
+        self.locale = locale
+    }
+}

@@ -15,6 +15,7 @@ struct GraduatingApp: App {
     @StateObject private var datePickerProvider = DatePickerProvider()
     @StateObject private var timePickerProvider = TimePickerProvider()
     @StateObject private var router = Router()
+    @StateObject private var appState = AppState()
     
     var body: some Scene {
         WindowGroup {
@@ -23,14 +24,15 @@ struct GraduatingApp: App {
                 datePickerProvider: datePickerProvider,
                 timePickerProvider: timePickerProvider
             ) {
-//                if let _ = UserDefaultsType.schoolName.value,
-//                   let _ = UserDefaultsType.grade.value {
+                if let _ = appState.grade,
+                   let _ = appState.schoolName {
                     MainCoordinator()
-//                } else {
-//                    OnboardingCoordinator()
-//                }
+                } else {
+                    OnboardingCoordinator()
+                }
             }
             .environmentObject(router)
+            .environmentObject(appState)
             .registerWanted()
         }
     }
