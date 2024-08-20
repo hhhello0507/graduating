@@ -1,0 +1,104 @@
+import SwiftUI
+import MyDesignSystem
+import Combine
+
+private var startAt: Date = {
+    var d = Date.now
+    let c = Calendar.current
+    return c.date(byAdding: .month, value: -7, to: d) ?? .now
+}()
+
+private var endAt: Date = {
+    var d = Date.now
+    let c = Calendar.current
+    return c.date(byAdding: .year, value: 1, to: d) ?? .now
+}()
+
+struct HomeView: View {
+    
+    @State private var remainTimePercent: Double = 0.0
+    @State private var remainTime: DateComponents?
+    @State private var cancellable: AnyCancellable? = nil
+    private let publisher = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    
+    var body: some View {
+        MyTopAppBar.default(title: "홈") {
+            ScrollView {
+                VStack(spacing: 10) {
+                    MyCardView(title: "내 정보") {
+                        VStack(spacing: 4) {
+                            HStack(spacing: 8) {
+                                Text("학교")
+                                    .myFont(.bodyM)
+                                    .foreground(Colors.Label.assistive)
+                                Text("대구소프트웨어마이스터고등학교") // Dummy
+                                    .myFont(.bodyB)
+                                    .foreground(Colors.Label.alternative)
+                                Spacer()
+                            }
+                            HStack(spacing: 8) {
+                                Text("학년")
+                                    .myFont(.bodyM)
+                                    .foreground(Colors.Label.assistive)
+                                Text("3학년") // Dummy
+                                    .myFont(.bodyB)
+                                    .foreground(Colors.Label.alternative)
+                                Spacer()
+                            }
+                        }
+                        .padding(6)
+                    }
+                    MyCardView(title: "남은 시간") {
+                        HStack {
+                            if let remainTime {
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text("\(remainTimePercent)%")
+                                        .myFont(.headlineM)
+                                        .foreground(Colors.Label.strong)
+                                    Text({
+                                        var text = ""
+                                        if let year = remainTime.year, year > 0 { let _ = text += "\(year)년 " }
+                                        if let month = remainTime.month, month > 0 { let _ = text += "\(month)개월 " }
+                                        if let day = remainTime.day, day > 0 { let _ = text += "\(day)일 " }
+                                        if let hour = remainTime.hour, hour > 0 { let _ = text += "\(hour)시간 " }
+                                        if let minute = remainTime.minute, minute > 0 { let _ = text += "\(minute)분 " }
+                                        if let second = remainTime.second, second > 0 {
+                                            let _ = text += "\(second)"
+                                            if let nanosecond = remainTime.nanosecond, nanosecond > 0 {
+                                                let _ = text += ".\(nanosecond / 1_000_000_00)"
+                                            }
+                                            text += "초"
+                                        }
+                                        return text
+                                    }())
+                                    .myFont(.labelR)
+                                    .foreground(Colors.Label.alternative)
+                                }
+                            }
+                            Spacer()
+                            MyCircularProgressView(progress: remainTimePercent)
+                        }
+                        .padding(6)
+                    }
+                }
+                .padding(.horizontal, 15)
+                .padding(.top, 10)
+            }
+        }
+        .onAppear {
+            cancellable = publisher.sink { _ in
+                let currentTime = Date.now
+                let dateDiff = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: currentTime, to: endAt)
+                self.remainTime = dateDiff
+                
+                let remainPercent = (currentTime.timeIntervalSince1970 - startAt.timeIntervalSince1970) / (endAt.timeIntervalSince1970 - startAt.timeIntervalSince1970)
+                self.remainTimePercent = remainPercent
+            }
+        }
+    }
+}
+
+#Preview {
+    HomeView()
+        .registerWanted()
+}

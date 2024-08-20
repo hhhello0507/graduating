@@ -1,0 +1,24 @@
+{
+  "originHash" : "7724443fae1c72c72486f1ae129c7723f591105f2d683d042aebb9189e0a6426",
+  "pins" : [
+    {
+      "identity" : "my-ios-designsystem",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hhhello0507/my-ios-designsystem",
+      "state" : {
+        "revision" : "bfa8ad3578377452cb33264302aa0a4d1a03de2d",
+        "version" : "1.2.2"
+      }
+    },
+    {
+      "identity" : "nuke",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/Nuke.git",
+      "state" : {
+        "revision" : "15fde63470d782c897816a74bdd516a907e33147",
+        "version" : "12.3.0"
+      }
+    }
+  ],
+  "version" : 3
+}
