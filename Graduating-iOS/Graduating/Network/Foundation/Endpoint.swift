@@ -22,7 +22,6 @@ public extension Endpoint {
     var baseURL: URL {
 //        let baseUrl = Bundle.main.object(forInfoDictionaryKey: "BaseUrl") as? String ?? ""
 //        let baseUrl = "http://10.80.161.179:1234"
-        let baseUrl = "http://localhost:1234"
         return URL(string: baseUrl)!
             .appendingPathComponent(host)
     }

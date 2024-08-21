@@ -18,7 +18,7 @@ class NeisService(
     private val schoolRepository: SchoolRepository,
     private val graduatingRepository: GraduatingRepository,
     private val neisApi: NeisApi,
-    @Value("secret.neis.apikey") private val apiKey: String
+    @Value("\${secret.neis.apikey}") private val apiKey: String
 ) {
 
     private fun getSchoolType(str: String): SchoolType? {
