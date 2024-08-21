@@ -22,7 +22,8 @@ struct ProfileView: View {
                     MyDivider()
                         .padding(.horizontal, 20)
                     MyRowView("개인정보 처리 방침") {
-                        openURL.callAsFunction(URL("")!)
+                        openURL.callAsFunction(
+                            URL(string: "https://github.com/hhhello0507/graduating/blob/main/privacy_policy.md")!)
                     }
                 }
                 .padding(.top, 10)

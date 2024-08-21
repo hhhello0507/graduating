@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Foundation
 
 final class AppState: ObservableObject {
     
@@ -47,7 +48,13 @@ final class AppState: ObservableObject {
     func fetchGraduating(id: Int) {
         SchoolService.shared.getGraduating(id: id)
             .sink { result in
-                print(result)
+                switch result {
+                case .failure:
+                    self.graduating = nil
+                    break
+                default:
+                    break
+                }
             } receiveValue: { response in
                 self.subject.send(.fetchedGraduating(response))
                 self.graduating = response

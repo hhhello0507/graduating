@@ -43,7 +43,7 @@ struct HomeView: View {
                         }
                         .padding(6)
                     }
-                    MyCardView(title: "남은 시간") {
+                    MyCardView(title: "졸업까지") {
                         HStack {
                             if let remainTime {
                                 VStack(alignment: .leading, spacing: 0) {
