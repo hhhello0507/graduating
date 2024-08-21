@@ -24,7 +24,7 @@
 		2560F1922C746EEC007009E2 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1912C746EEC007009E2 /* Router.swift */; };
 		2560F1952C74710B007009E2 /* UserDefaultsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1942C74710B007009E2 /* UserDefaultsType.swift */; };
 		2560F1982C747226007009E2 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1972C747226007009E2 /* MainCoordinator.swift */; };
-		2560F19A2C74722A007009E2 /* MainDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1992C74722A007009E2 /* MainDestination.swift */; };
+		2560F19A2C74722A007009E2 /* OnboardingInMainDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1992C74722A007009E2 /* OnboardingInMainDestination.swift */; };
 		2560F19D2C7473D3007009E2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F19C2C7473D3007009E2 /* HomeView.swift */; };
 		2560F1A02C747917007009E2 /* MyDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 2560F19F2C747917007009E2 /* MyDesignSystem */; };
 		2560F1A32C748475007009E2 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1A22C748475007009E2 /* DateUtil.swift */; };
@@ -35,6 +35,9 @@
 		25C4CCFF2C74B5DB00DB83B3 /* SchoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C4CCFE2C74B5DB00DB83B3 /* SchoolCell.swift */; };
 		25C4CD012C74B5FB00DB83B3 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C4CD002C74B5FB00DB83B3 /* OnboardingViewModel.swift */; };
 		25C4CD062C74E1BC00DB83B3 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C4CD052C74E1BC00DB83B3 /* AppState.swift */; };
+		25C4CD092C74E3B800DB83B3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C4CD082C74E3B800DB83B3 /* ProfileView.swift */; };
+		25F8456D2C75A26A00185A60 /* Graduating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8456C2C75A26A00185A60 /* Graduating.swift */; };
+		25F8456F2C75A32F00185A60 /* CodableExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8456E2C75A32F00185A60 /* CodableExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +57,7 @@
 		2560F1912C746EEC007009E2 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2560F1942C74710B007009E2 /* UserDefaultsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsType.swift; sourceTree = "<group>"; };
 		2560F1972C747226007009E2 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		2560F1992C74722A007009E2 /* MainDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDestination.swift; sourceTree = "<group>"; };
+		2560F1992C74722A007009E2 /* OnboardingInMainDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInMainDestination.swift; sourceTree = "<group>"; };
 		2560F19C2C7473D3007009E2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2560F1A22C748475007009E2 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		25C4CCF62C74B35F00DB83B3 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -64,6 +67,9 @@
 		25C4CD002C74B5FB00DB83B3 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		25C4CD022C74B78B00DB83B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		25C4CD052C74E1BC00DB83B3 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		25C4CD082C74E3B800DB83B3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		25F8456C2C75A26A00185A60 /* Graduating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graduating.swift; sourceTree = "<group>"; };
+		25F8456E2C75A32F00185A60 /* CodableExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,9 +191,10 @@
 		2560F1962C747222007009E2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				25C4CD072C74E3B200DB83B3 /* Profile */,
 				2560F19B2C7473CE007009E2 /* Home */,
 				2560F1972C747226007009E2 /* MainCoordinator.swift */,
-				2560F1992C74722A007009E2 /* MainDestination.swift */,
+				2560F1992C74722A007009E2 /* OnboardingInMainDestination.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -204,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				2560F1A22C748475007009E2 /* DateUtil.swift */,
+				25F8456E2C75A32F00185A60 /* CodableExt.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -213,6 +221,7 @@
 			children = (
 				25C4CCF82C74B44100DB83B3 /* SchoolService.swift */,
 				25C4CCFB2C74B47700DB83B3 /* School.swift */,
+				25F8456C2C75A26A00185A60 /* Graduating.swift */,
 			);
 			path = School;
 			sourceTree = "<group>";
@@ -231,6 +240,14 @@
 				25C4CD052C74E1BC00DB83B3 /* AppState.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		25C4CD072C74E3B200DB83B3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				25C4CD082C74E3B800DB83B3 /* ProfileView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,7 +334,7 @@
 				25C4CCFC2C74B47700DB83B3 /* School.swift in Sources */,
 				2560F1952C74710B007009E2 /* UserDefaultsType.swift in Sources */,
 				250FD0902C74AF190070503B /* AuthInterceptor.swift in Sources */,
-				2560F19A2C74722A007009E2 /* MainDestination.swift in Sources */,
+				2560F19A2C74722A007009E2 /* OnboardingInMainDestination.swift in Sources */,
 				25C4CCF72C74B35F00DB83B3 /* APIError.swift in Sources */,
 				250FD08F2C74AF190070503B /* APIEventLogger.swift in Sources */,
 				2560F1882C746C64007009E2 /* OnboardingFirstView.swift in Sources */,
@@ -331,6 +348,9 @@
 				250FD0932C74AF190070503B /* Service.swift in Sources */,
 				2560F1A32C748475007009E2 /* DateUtil.swift in Sources */,
 				250FD0912C74AF190070503B /* Encodable+.swift in Sources */,
+				25F8456D2C75A26A00185A60 /* Graduating.swift in Sources */,
+				25C4CD092C74E3B800DB83B3 /* ProfileView.swift in Sources */,
+				25F8456F2C75A32F00185A60 /* CodableExt.swift in Sources */,
 				25C4CD062C74E1BC00DB83B3 /* AppState.swift in Sources */,
 				250FD0942C74AF190070503B /* Endpoint.swift in Sources */,
 				2560F1982C747226007009E2 /* MainCoordinator.swift in Sources */,
@@ -473,6 +493,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Graduating/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "졸업이당";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -503,6 +524,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Graduating/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "졸업이당";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

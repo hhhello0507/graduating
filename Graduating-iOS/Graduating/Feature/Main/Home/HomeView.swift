@@ -2,23 +2,14 @@ import SwiftUI
 import MyDesignSystem
 import Combine
 
-private var startAt: Date = {
-    var d = Date.now
-    let c = Calendar.current
-    return c.date(byAdding: .month, value: -7, to: d) ?? .now
-}()
-
-private var endAt: Date = {
-    var d = Date.now
-    let c = Calendar.current
-    return c.date(byAdding: .year, value: 1, to: d) ?? .now
-}()
-
 struct HomeView: View {
     
+    @EnvironmentObject private var appState: AppState
     @State private var remainTimePercent: Double = 0.0
     @State private var remainTime: DateComponents?
     @State private var cancellable: AnyCancellable? = nil
+    @State private var startAt: Date?
+    
     private let publisher = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -29,20 +20,24 @@ struct HomeView: View {
                         VStack(spacing: 4) {
                             HStack(spacing: 8) {
                                 Text("학교")
-                                    .myFont(.bodyM)
-                                    .foreground(Colors.Label.assistive)
-                                Text("대구소프트웨어마이스터고등학교") // Dummy
                                     .myFont(.bodyB)
-                                    .foreground(Colors.Label.alternative)
+                                    .foreground(Colors.Label.assistive)
+                                if let school = appState.school {
+                                    Text(school.name)
+                                        .myFont(.bodyM)
+                                        .foreground(Colors.Label.alternative)
+                                }
                                 Spacer()
                             }
                             HStack(spacing: 8) {
                                 Text("학년")
-                                    .myFont(.bodyM)
-                                    .foreground(Colors.Label.assistive)
-                                Text("3학년") // Dummy
                                     .myFont(.bodyB)
-                                    .foreground(Colors.Label.alternative)
+                                    .foreground(Colors.Label.assistive)
+                                if let grade = appState.grade {
+                                    Text("\(grade)학년")
+                                        .myFont(.bodyM)
+                                        .foreground(Colors.Label.alternative)
+                                }
                                 Spacer()
                             }
                         }
@@ -52,7 +47,7 @@ struct HomeView: View {
                         HStack {
                             if let remainTime {
                                 VStack(alignment: .leading, spacing: 0) {
-                                    Text("\(remainTimePercent)%")
+                                    Text(String(format: "%.7f%%", remainTimePercent * 100))
                                         .myFont(.headlineM)
                                         .foreground(Colors.Label.strong)
                                     Text({
@@ -86,12 +81,23 @@ struct HomeView: View {
             }
         }
         .onAppear {
+            guard let grade = appState.grade else {
+                return
+            }
+            startAt = .getStartAt(for: grade)
+            
+            guard let startAt,
+                  let endAt = appState.graduating?.graduatingDay,
+                  let adjustedEndAt = endAt.adjustedEndAt(for: grade) else {
+                return
+            }
+            
             cancellable = publisher.sink { _ in
                 let currentTime = Date.now
-                let dateDiff = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: currentTime, to: endAt)
+                let dateDiff = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: currentTime, to: adjustedEndAt)
                 self.remainTime = dateDiff
                 
-                let remainPercent = (currentTime.timeIntervalSince1970 - startAt.timeIntervalSince1970) / (endAt.timeIntervalSince1970 - startAt.timeIntervalSince1970)
+                let remainPercent = (currentTime.timeIntervalSince1970 - startAt.timeIntervalSince1970) / (adjustedEndAt.timeIntervalSince1970 - startAt.timeIntervalSince1970)
                 self.remainTimePercent = remainPercent
             }
         }

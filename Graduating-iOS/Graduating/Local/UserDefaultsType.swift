@@ -8,8 +8,9 @@
 import Foundation
 
 public enum UserDefaultsType: String {
-    case schoolName
+    case school
     case grade
+    case graduating
 }
 
 extension UserDefaultsType {

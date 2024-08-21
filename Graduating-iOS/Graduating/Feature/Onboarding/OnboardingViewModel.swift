@@ -9,16 +9,17 @@ import Combine
 
 final class OnboardingViewModel: ObservableObject {
     @Published var schools: [School]?
-    @Published var schoolName = ""
+    @Published var searchSchoolName = ""
     @Published var grade = 1
+    
     var searchedSchools: [School]? {
         guard let schools else {
             return nil
         }
-        guard !schoolName.isEmpty else {
+        guard !searchSchoolName.isEmpty else {
             return schools
         }
-        return schools.filter { $0.name.contains(schoolName) }
+        return schools.filter { $0.name.contains(searchSchoolName) }
     }
 
     var subscriptions = Set<AnyCancellable>()

@@ -6,29 +6,6 @@ import Then
 
 class Service<Target: Endpoint> {
     
-    private lazy var decoder = JSONDecoder().then { decoder in
-        
-        let localDateTimeMSFormatter = DateFormatter("yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
-        let localDateTimeFormatter = DateFormatter("yyyy-MM-dd'T'HH:mm:ss")
-        let localDateFormatter = DateFormatter("yyyy-MM-dd")
-        
-        decoder.dateDecodingStrategy = .custom { decoder in
-            let container = try decoder.singleValueContainer()
-            let dateStr = try container.decode(String.self)
-            
-            return if let date = localDateTimeMSFormatter.date(from: dateStr) {
-                date
-            } else if let date = localDateTimeFormatter.date(from: dateStr) {
-                date
-            } else if let date = localDateFormatter.date(from: dateStr) {
-                date
-            } else {
-                let context = DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Invalid date format")
-                throw DecodingError.dataCorrupted(context)
-            }
-        }
-    }
-    
     func request<T: Decodable>(
         _ target: Target.Target,
         res: T.Type
@@ -47,7 +24,7 @@ class Service<Target: Endpoint> {
 //                self.responeLog(target: target, response: result) // TODO: asd
                 let value: T
                 do {
-                    value = try self.decoder.decode(T.self, from: result.data)
+                    value = try myDecoder.decode(T.self, from: result.data)
                 } catch {
                    print("❌ Decoding Error - cause: \(error)")
                    throw APIError.unknown

@@ -26,10 +26,9 @@ struct OnboardingSecondView: View {
                 Spacer()
                 MyButton("다음") {
                     dialogProvider.present(
-                        .init(title: "\(viewModel.schoolName) \(viewModel.grade)학년이 맞으신가요?")
+                        .init(title: "\(viewModel.grade)학년이 맞으신가요?")
                         .primaryButton("네, 맞아요") {
                             appState.grade = viewModel.grade
-                            appState.schoolName = viewModel.schoolName
                             router.toRoot()
                         }
                         .secondaryButton("닫기")
@@ -37,9 +36,14 @@ struct OnboardingSecondView: View {
                 }
                 .padding(.bottom, 10)
             }
-            .padding(.top, 15)
+            .padding(.top, 10)
             .padding(.horizontal, 15)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .onAppear {
+            if let grade = appState.grade {
+                viewModel.grade = grade
+            }
         }
     }
 }

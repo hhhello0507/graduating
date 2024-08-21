@@ -24,11 +24,13 @@ struct GraduatingApp: App {
                 datePickerProvider: datePickerProvider,
                 timePickerProvider: timePickerProvider
             ) {
-                if let _ = appState.grade,
-                   let _ = appState.schoolName {
-                    MainCoordinator()
-                } else {
-                    OnboardingCoordinator()
+                NavigationStack(path: $router.path) {
+                    if let _ = appState.grade,
+                       let _ = appState.school {
+                        MainCoordinator()
+                    } else {
+                        OnboardingCoordinator()
+                    }
                 }
             }
             .environmentObject(router)

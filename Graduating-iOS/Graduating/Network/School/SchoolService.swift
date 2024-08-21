@@ -3,6 +3,7 @@ import Moya
 
 enum SchoolEndpoint: Endpoint {
     case getSchools
+    case getGraduating(id: Int)
 }
 
 extension SchoolEndpoint {
@@ -14,6 +15,7 @@ extension SchoolEndpoint {
     var route: (Moya.Method, String, Moya.Task) {
         switch self {
         case .getSchools: .get - "" - .requestPlain
+        case .getGraduating(let id): .get - "graduating" - ["id": id].toURLParameters()
         }
     }
 }
@@ -24,5 +26,9 @@ final class SchoolService: Service<SchoolEndpoint> {
     
     func getSchools() -> AnyPublisher<[School], APIError> {
         performRequest(.getSchools, res: [School].self)
+    }
+    
+    func getGraduating(id: Int) -> AnyPublisher<Graduating, APIError> {
+        performRequest(.getGraduating(id: id), res: Graduating.self)
     }
 }

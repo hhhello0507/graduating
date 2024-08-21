@@ -1,4 +1,6 @@
-struct School: Codable {
+import Foundation
+
+struct School: Codable, Hashable {
     let id: Int
     let name: String
     let type: SchoolType?

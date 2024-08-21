@@ -1,6 +1,8 @@
 package com.bestswlkh0310.graduating.graduatingserver
 
+import com.bestswlkh0310.graduating.graduatingserver.service.NeisService
 import com.bestswlkh0310.graduating.graduatingserver.service.SchoolService
+import kotlinx.coroutines.runBlocking
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -15,9 +17,20 @@ fun main(args: Array<String>) {
 
 //@Component
 class DataLoader(
-    val schoolService: SchoolService
+    val neisService: NeisService
 ) : CommandLineRunner {
     override fun run(vararg args: String?) {
-        schoolService.importCsv("/Users/hhhello0507/Downloads/school.csv")
+        neisService.importCsv("/Users/hhhello0507/Downloads/school.csv")
+    }
+}
+
+//@Component
+class FetchSchool(
+    val neisService: NeisService
+) : CommandLineRunner {
+    override fun run(vararg args: String?) {
+        runBlocking {
+            neisService.getSchoolsDate()
+        }
     }
 }

@@ -38,5 +38,11 @@ class SchoolEntity(
     val createdAt: String,
 
     @Column(nullable = false)
-    val anniversary: String
+    val anniversary: String,
+
+    @Column(nullable = false)
+    val code: String,
+
+    @Column(nullable = false)
+    val officeCode: String
 )
