@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Graduating: Codable, Hashable {
+struct Graduating: ModelProtocol {
     let id: Int
     let graduatingDay: Date
     let schoolId: Int

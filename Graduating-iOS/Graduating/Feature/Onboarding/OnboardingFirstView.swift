@@ -46,27 +46,7 @@ struct OnboardingFirstView: View {
             }
             .padding(.top, 15)
             if let schools = viewModel.searchedSchools {
-                ScrollView {
-                    LazyVStack(spacing: 4) {
-                        ForEach(schools, id: \.id) { school in
-                            SchoolCell(school: school) {
-                                dialogProvider.present(
-                                    .init(title: "\(school.name) 학생이 맞으신가요?")
-                                    .primaryButton("네, 맞아요") {
-                                        appState.school = school
-                                        appState.fetchGraduating(id: school.id)
-                                        if appState.grade == nil {
-                                            router.push(OnboardingDestination.onboardingSecond)
-                                        } else {
-                                            router.toRoot()
-                                        }
-                                    }
-                                    .secondaryButton("닫기")
-                                )
-                            }
-                        }
-                    }
-                }
+                SchoolScrollView(for: schools)
             } else {
                 ProgressView()
             }

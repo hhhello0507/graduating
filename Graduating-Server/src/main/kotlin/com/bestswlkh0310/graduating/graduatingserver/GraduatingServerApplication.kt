@@ -24,7 +24,7 @@ class DataLoader(
     }
 }
 
-@Component
+//@Component
 class FetchSchool(
     val neisService: NeisService
 ) : CommandLineRunner {

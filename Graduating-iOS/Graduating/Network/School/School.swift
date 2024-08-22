@@ -1,6 +1,6 @@
 import Foundation
 
-struct School: Codable, Hashable {
+public struct School: ModelProtocol {
     let id: Int
     let name: String
     let type: SchoolType?
@@ -14,7 +14,7 @@ struct School: Codable, Hashable {
     let anniversary: String
 }
 
-enum SchoolType: String, Codable {
+enum SchoolType: String, ModelProtocol {
     case HIGH
     case MIDDLE
     case ELEMENTARY

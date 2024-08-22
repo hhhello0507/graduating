@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250364432C762B6700A93625 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250364422C762B6700A93625 /* Model.swift */; };
+		250364452C762BDC00A93625 /* SchoolScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250364442C762BDC00A93625 /* SchoolScrollView.swift */; };
 		250FD0852C74AF100070503B /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 250FD0842C74AF100070503B /* CombineMoya */; };
 		250FD0872C74AF100070503B /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 250FD0862C74AF100070503B /* Moya */; };
 		250FD08F2C74AF190070503B /* APIEventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250FD0882C74AF190070503B /* APIEventLogger.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		250364422C762B6700A93625 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		250364442C762BDC00A93625 /* SchoolScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolScrollView.swift; sourceTree = "<group>"; };
 		250FD0882C74AF190070503B /* APIEventLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEventLogger.swift; sourceTree = "<group>"; };
 		250FD0892C74AF190070503B /* AuthInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
 		250FD08A2C74AF190070503B /* Encodable+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+.swift"; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 				250FD08C2C74AF190070503B /* Service.swift */,
 				250FD08D2C74AF190070503B /* Endpoint.swift */,
 				25C4CCF62C74B35F00DB83B3 /* APIError.swift */,
+				250364422C762B6700A93625 /* Model.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				25C4CCFE2C74B5DB00DB83B3 /* SchoolCell.swift */,
+				250364442C762BDC00A93625 /* SchoolScrollView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -334,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				250364432C762B6700A93625 /* Model.swift in Sources */,
 				25C4CCFC2C74B47700DB83B3 /* School.swift in Sources */,
 				2560F1952C74710B007009E2 /* UserDefaultsType.swift in Sources */,
 				250FD0902C74AF190070503B /* AuthInterceptor.swift in Sources */,
@@ -360,6 +367,7 @@
 				2560F1982C747226007009E2 /* MainCoordinator.swift in Sources */,
 				25C4CD012C74B5FB00DB83B3 /* OnboardingViewModel.swift in Sources */,
 				2560F18D2C746E77007009E2 /* OnboardingDestination.swift in Sources */,
+				250364452C762BDC00A93625 /* SchoolScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
