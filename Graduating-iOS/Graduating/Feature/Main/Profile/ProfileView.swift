@@ -10,7 +10,7 @@ struct ProfileView: View {
         MyTopAppBar.default(
             title: "프로필",
             background: Colors.Background.normal
-        ) {
+        ) { _ in
             ScrollView {
                 LazyVStack(spacing: 12) {
                     MyRowView("학교 수정") {

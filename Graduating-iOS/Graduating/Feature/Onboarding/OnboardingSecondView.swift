@@ -10,7 +10,7 @@ struct OnboardingSecondView: View {
     @EnvironmentObject private var appState: AppState
     
     var body: some View {
-        MyTopAppBar.small(title: "") {
+        MyTopAppBar.small(title: "") { _ in
             VStack(spacing: 4) {
                 Text("학년을 알려주세요")
                     .myFont(.title1B)

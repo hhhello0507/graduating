@@ -4,25 +4,25 @@ import MyDesignSystem
 enum Item: BottomAppBarItem {
     
     case home
-    case setting
+    case profile
     
     var icon: Iconable {
         switch self {
         case .home: Icons.Feature.Home
-        case .setting: Icons.Feature.Setting
+        case .profile: Icons.Feature.Person
         }
     }
     var text: String {
         switch self {
         case .home: "홈"
-        case .setting: "설정"
+        case .profile: "프로필"
         }
     }
 }
 
 let data = [
     Item.home,
-    Item.setting
+    Item.profile
 ]
 
 struct MainCoordinator: View {
@@ -39,7 +39,7 @@ struct MainCoordinator: View {
         } content: {
             switch selectedTab {
             case .home: HomeView()
-            case .setting: ProfileView()
+            case .profile: ProfileView()
             }
         }
         .navigationDestination(for: OnboardingInMainDestination.self) { dest in

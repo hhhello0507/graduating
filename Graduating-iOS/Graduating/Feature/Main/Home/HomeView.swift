@@ -13,7 +13,7 @@ struct HomeView: View {
     private let publisher = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        MyTopAppBar.default(title: "홈") {
+        MyTopAppBar.default(title: "홈") { _ in
             ScrollView {
                 VStack(spacing: 10) {
                     MyCardView(title: "내 정보") {

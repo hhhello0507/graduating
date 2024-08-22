@@ -32,6 +32,6 @@ struct SchoolCell: View {
             .padding(.vertical, 12)
             .background(Colors.Background.neutral)
         }
-        .applyAnimation()
+        .scaledButton()
     }
 }

@@ -12,11 +12,11 @@ struct OnboardingFirstView: View {
     var body: some View {
         Group {
             if appState.grade == nil {
-                MyTopAppBar.default(title: "학교를 알려주세요 🤔") {
+                MyTopAppBar.default(title: "학교를 알려주세요 🤔") { _ in
                     content
                 }
             } else {
-                MyTopAppBar.small(title: "") {
+                MyTopAppBar.small(title: "") { _ in
                     content
                 }
             }

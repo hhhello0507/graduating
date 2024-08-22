@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/hhhello0507/my-ios-designsystem",
       "state" : {
-        "revision" : "d04cacc03c99ff5d5dfdd945f5db837517f183ae",
-        "version" : "1.2.3"
+        "revision" : "3049e3484785d0e82b69789af7cb483e828636ae",
+        "version" : "1.2.4"
       }
     },
     {
