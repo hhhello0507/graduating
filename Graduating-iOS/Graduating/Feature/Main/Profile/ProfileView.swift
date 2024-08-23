@@ -14,10 +14,10 @@ struct ProfileView: View {
             ScrollView {
                 LazyVStack(spacing: 12) {
                     MyRowView("학교 수정") {
-                        router.push(OnboardingInMainDestination.onboardingFirst)
+                        router.push(EditSchoolPath())
                     }
                     MyRowView("학년 수정") {
-                        router.push(OnboardingInMainDestination.onboardingSecond)
+                        router.push(EditGradePath())
                     }
                     MyDivider()
                         .padding(.horizontal, 20)

@@ -7,20 +7,9 @@
 
 import Combine
 
-final class OnboardingViewModel: ObservableObject {
-    @Published var schools: [School]?
-    @Published var searchSchoolName = ""
-    @Published var grade = 1
-    
-    var searchedSchools: [School]? {
-        guard let schools else {
-            return nil
-        }
-        guard !searchSchoolName.isEmpty else {
-            return schools
-        }
-        return schools.filter { $0.name.contains(searchSchoolName) }
-    }
+final class SearchSchoolViewModel: ObservableObject {
+    @Published private var schools: [School]?
+    @Published public var searchSchoolName = ""
 
     var subscriptions = Set<AnyCancellable>()
     
@@ -36,5 +25,14 @@ final class OnboardingViewModel: ObservableObject {
     
     deinit {
         subscriptions.forEach { $0.cancel() }
+    }
+}
+
+extension SearchSchoolViewModel {
+    public var searchedSchools: [School]? {
+        guard let schools, !searchSchoolName.isEmpty else {
+            return schools
+        }
+        return schools.filter { $0.name.contains(searchSchoolName) }
     }
 }

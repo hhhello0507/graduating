@@ -1,22 +1,26 @@
 import SwiftUI
 import MyDesignSystem
 
-struct OnboardingSecondView: View {
+struct EditGradePath: Hashable {}
+
+struct EditGradeView: View {
     
-    @FocusState private var field
     @EnvironmentObject private var router: Router
-    @EnvironmentObject private var viewModel: OnboardingViewModel
     @EnvironmentObject private var dialogProvider: DialogProvider
     @EnvironmentObject private var appState: AppState
+    @FocusState private var field
+    @State private var grade = 0
+    
+    public init(_ path: EditGradePath) {}
     
     var body: some View {
-        MyTopAppBar.small(title: "") { _ in
+        MyTopAppBar.small(title: "") { insets in
             VStack(spacing: 4) {
                 Text("학년을 알려주세요")
                     .myFont(.title1B)
                     .foreground(Colors.Label.normal)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Picker("Grade", selection: $viewModel.grade) {
+                Picker("Grade", selection: $grade) {
                     ForEach(1...3, id: \.self) { number in
                         Text("\(number)")
                             .myFont(.headling2M)
@@ -26,9 +30,9 @@ struct OnboardingSecondView: View {
                 Spacer()
                 MyButton("다음") {
                     dialogProvider.present(
-                        .init(title: "\(viewModel.grade)학년이 맞으신가요?")
+                        .init(title: "\(grade)학년이 맞으신가요?")
                         .primaryButton("네, 맞아요") {
-                            appState.grade = viewModel.grade
+                            appState.grade = grade
                             router.toRoot()
                         }
                         .secondaryButton("닫기")
@@ -36,18 +40,16 @@ struct OnboardingSecondView: View {
                 }
                 .padding(.bottom, 10)
             }
-            .padding(.top, 10)
-            .padding(.horizontal, 15)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(insets)
         }
         .onAppear {
             if let grade = appState.grade {
-                viewModel.grade = grade
+                self.grade = grade
             }
         }
     }
 }
 
 #Preview {
-    OnboardingSecondView()
+    EditGradeView(.init())
 }
