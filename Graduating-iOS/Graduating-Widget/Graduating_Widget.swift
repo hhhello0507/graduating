@@ -9,6 +9,7 @@ import WidgetKit
 import SwiftUI
 
 struct Graduating_WidgetEntryView: View {
+    
     var entry: GraduatingProvider.Entry
 
     var body: some View {

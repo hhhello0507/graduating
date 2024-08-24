@@ -1,3 +1,10 @@
+//
+//  DateExt.swift
+//  Shared
+//
+//  Created by hhhello0507 on 8/24/24.
+//
+
 import Foundation
 
 public extension Date {
@@ -89,26 +96,12 @@ public extension Date {
         components.year = admissionYear
         return calendar.date(from: components)
     }
-}
-
-public extension DateFormatter {
-    convenience init(_ dateFormat: String, locale: Locale = Locale(identifier: "ko_KR")) {
-        self.init()
-        self.dateFormat = dateFormat
-        self.locale = locale
-    }
-}
-
-func nextFebruaryFirst(from date: Date) -> Date? {
-    let calendar = Calendar.current
-    let currentYear = calendar.component(.year, from: date)
-    let currentMonth = calendar.component(.month, from: date)
     
-    var nextYear = currentYear
-    if currentMonth >= 2 {
-        nextYear += 1
+    func diff(_ components: Set<Calendar.Component>, other: Date) -> DateComponents {
+        Calendar.current.dateComponents(components, from: self, to: other)
     }
     
-    let februaryFirstComponents = DateComponents(year: nextYear, month: 2, day: 1)
-    return calendar.date(from: februaryFirstComponents)
+    func percent(from: Date, to: Date) -> Double {
+        (self.timeIntervalSince1970 - from.timeIntervalSince1970) / (to.timeIntervalSince1970 - from.timeIntervalSince1970)
+    }
 }

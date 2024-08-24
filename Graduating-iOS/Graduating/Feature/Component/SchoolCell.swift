@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MyDesignSystem
+import Model
 
 struct SchoolCell: View {
     

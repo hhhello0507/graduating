@@ -1,5 +1,6 @@
 import Combine
 import Moya
+import Model
 
 enum SchoolEndpoint: Endpoint {
     case getSchools

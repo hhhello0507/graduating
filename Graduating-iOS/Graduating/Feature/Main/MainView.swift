@@ -1,5 +1,6 @@
 import SwiftUI
 import MyDesignSystem
+import Model
 
 enum Item: BottomAppBarItem {
     
