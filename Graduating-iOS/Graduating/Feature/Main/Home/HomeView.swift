@@ -13,7 +13,7 @@ struct HomeView: View {
     private let publisher = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        MyTopAppBar.default(title: "홈") { _ in
+        MyTopAppBar.default(title: "홈") { insets in
             ScrollView {
                 VStack(spacing: 10) {
                     MyCardView(title: "내 정보") {
@@ -76,8 +76,7 @@ struct HomeView: View {
                         .padding(6)
                     }
                 }
-                .padding(.horizontal, 15)
-                .padding(.top, 10)
+                .padding(insets)
             }
         }
         .onAppear {

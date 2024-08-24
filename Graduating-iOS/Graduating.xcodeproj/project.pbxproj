@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		250364432C762B6700A93625 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250364422C762B6700A93625 /* Model.swift */; };
-		250364452C762BDC00A93625 /* SchoolScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250364442C762BDC00A93625 /* SchoolScrollView.swift */; };
+		250364452C762BDC00A93625 /* SearchSchoolContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250364442C762BDC00A93625 /* SearchSchoolContainer.swift */; };
 		250FD0852C74AF100070503B /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 250FD0842C74AF100070503B /* CombineMoya */; };
 		250FD0872C74AF100070503B /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 250FD0862C74AF100070503B /* Moya */; };
 		250FD08F2C74AF190070503B /* APIEventLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250FD0882C74AF190070503B /* APIEventLogger.swift */; };
@@ -20,22 +20,22 @@
 		2560F17B2C746C19007009E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2560F17A2C746C19007009E2 /* Assets.xcassets */; };
 		2560F17E2C746C19007009E2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2560F17D2C746C19007009E2 /* Preview Assets.xcassets */; };
 		2560F1882C746C64007009E2 /* OnboardingFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1872C746C64007009E2 /* OnboardingFirstView.swift */; };
-		2560F18B2C746E24007009E2 /* OnboardingSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F18A2C746E24007009E2 /* OnboardingSecondView.swift */; };
-		2560F18D2C746E77007009E2 /* OnboardingDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F18C2C746E77007009E2 /* OnboardingDestination.swift */; };
+		2560F18B2C746E24007009E2 /* EditGradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F18A2C746E24007009E2 /* EditGradeView.swift */; };
 		2560F18F2C746E91007009E2 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F18E2C746E91007009E2 /* OnboardingCoordinator.swift */; };
 		2560F1922C746EEC007009E2 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1912C746EEC007009E2 /* Router.swift */; };
 		2560F1952C74710B007009E2 /* UserDefaultsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1942C74710B007009E2 /* UserDefaultsType.swift */; };
-		2560F1982C747226007009E2 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1972C747226007009E2 /* MainCoordinator.swift */; };
-		2560F19A2C74722A007009E2 /* OnboardingInMainDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1992C74722A007009E2 /* OnboardingInMainDestination.swift */; };
+		2560F1982C747226007009E2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1972C747226007009E2 /* MainView.swift */; };
 		2560F19D2C7473D3007009E2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F19C2C7473D3007009E2 /* HomeView.swift */; };
 		2560F1A02C747917007009E2 /* MyDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 2560F19F2C747917007009E2 /* MyDesignSystem */; };
 		2560F1A32C748475007009E2 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1A22C748475007009E2 /* DateUtil.swift */; };
+		2581724C2C78009100D2691E /* EditSchoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581724B2C78009100D2691E /* EditSchoolView.swift */; };
+		258172522C78014D00D2691E /* SearchSchoolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258172512C78014D00D2691E /* SearchSchoolViewModel.swift */; };
+		2581725A2C78146000D2691E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258172592C78146000D2691E /* MainCoordinator.swift */; };
 		25C4CCF52C74B30600DB83B3 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 25C4CCF42C74B30600DB83B3 /* Then */; };
 		25C4CCF72C74B35F00DB83B3 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C4CCF62C74B35F00DB83B3 /* APIError.swift */; };
 		25C4CCF92C74B44100DB83B3 /* SchoolService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C4CCF82C74B44100DB83B3 /* SchoolService.swift */; };
 		25C4CCFC2C74B47700DB83B3 /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C4CCFB2C74B47700DB83B3 /* School.swift */; };
 		25C4CCFF2C74B5DB00DB83B3 /* SchoolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C4CCFE2C74B5DB00DB83B3 /* SchoolCell.swift */; };
-		25C4CD012C74B5FB00DB83B3 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C4CD002C74B5FB00DB83B3 /* OnboardingViewModel.swift */; };
 		25C4CD062C74E1BC00DB83B3 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C4CD052C74E1BC00DB83B3 /* AppState.swift */; };
 		25C4CD092C74E3B800DB83B3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C4CD082C74E3B800DB83B3 /* ProfileView.swift */; };
 		25F8456D2C75A26A00185A60 /* Graduating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F8456C2C75A26A00185A60 /* Graduating.swift */; };
@@ -45,7 +45,7 @@
 
 /* Begin PBXFileReference section */
 		250364422C762B6700A93625 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		250364442C762BDC00A93625 /* SchoolScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolScrollView.swift; sourceTree = "<group>"; };
+		250364442C762BDC00A93625 /* SearchSchoolContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSchoolContainer.swift; sourceTree = "<group>"; };
 		250FD0882C74AF190070503B /* APIEventLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEventLogger.swift; sourceTree = "<group>"; };
 		250FD0892C74AF190070503B /* AuthInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
 		250FD08A2C74AF190070503B /* Encodable+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+.swift"; sourceTree = "<group>"; };
@@ -56,20 +56,20 @@
 		2560F17A2C746C19007009E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2560F17D2C746C19007009E2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2560F1872C746C64007009E2 /* OnboardingFirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFirstView.swift; sourceTree = "<group>"; };
-		2560F18A2C746E24007009E2 /* OnboardingSecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSecondView.swift; sourceTree = "<group>"; };
-		2560F18C2C746E77007009E2 /* OnboardingDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDestination.swift; sourceTree = "<group>"; };
+		2560F18A2C746E24007009E2 /* EditGradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGradeView.swift; sourceTree = "<group>"; };
 		2560F18E2C746E91007009E2 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		2560F1912C746EEC007009E2 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2560F1942C74710B007009E2 /* UserDefaultsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsType.swift; sourceTree = "<group>"; };
-		2560F1972C747226007009E2 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		2560F1992C74722A007009E2 /* OnboardingInMainDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInMainDestination.swift; sourceTree = "<group>"; };
+		2560F1972C747226007009E2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2560F19C2C7473D3007009E2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2560F1A22C748475007009E2 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		2581724B2C78009100D2691E /* EditSchoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSchoolView.swift; sourceTree = "<group>"; };
+		258172512C78014D00D2691E /* SearchSchoolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSchoolViewModel.swift; sourceTree = "<group>"; };
+		258172592C78146000D2691E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		25C4CCF62C74B35F00DB83B3 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		25C4CCF82C74B44100DB83B3 /* SchoolService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolService.swift; sourceTree = "<group>"; };
 		25C4CCFB2C74B47700DB83B3 /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
 		25C4CCFE2C74B5DB00DB83B3 /* SchoolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolCell.swift; sourceTree = "<group>"; };
-		25C4CD002C74B5FB00DB83B3 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		25C4CD022C74B78B00DB83B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		25C4CD052C74E1BC00DB83B3 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		25C4CD082C74E3B800DB83B3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -96,11 +96,12 @@
 		250FD0812C74AEAE0070503B /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				25C4CD032C74E1AF00DB83B3 /* App */,
-				25C4CCFD2C74B5D400DB83B3 /* Component */,
 				2560F1962C747222007009E2 /* Main */,
-				2560F1902C746EE6007009E2 /* Nav */,
 				2560F1892C746E1C007009E2 /* Onboarding */,
+				2581724D2C7800F300D2691E /* EditSchool */,
+				2581725C2C7815DB00D2691E /* EditGrade */,
+				25C4CCFD2C74B5D400DB83B3 /* Component */,
+				258172502C78014400D2691E /* Observable */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -172,20 +173,9 @@
 			isa = PBXGroup;
 			children = (
 				2560F1872C746C64007009E2 /* OnboardingFirstView.swift */,
-				2560F18A2C746E24007009E2 /* OnboardingSecondView.swift */,
-				2560F18C2C746E77007009E2 /* OnboardingDestination.swift */,
 				2560F18E2C746E91007009E2 /* OnboardingCoordinator.swift */,
-				25C4CD002C74B5FB00DB83B3 /* OnboardingViewModel.swift */,
 			);
 			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		2560F1902C746EE6007009E2 /* Nav */ = {
-			isa = PBXGroup;
-			children = (
-				2560F1912C746EEC007009E2 /* Router.swift */,
-			);
-			path = Nav;
 			sourceTree = "<group>";
 		};
 		2560F1932C747106007009E2 /* Local */ = {
@@ -201,8 +191,8 @@
 			children = (
 				25C4CD072C74E3B200DB83B3 /* Profile */,
 				2560F19B2C7473CE007009E2 /* Home */,
-				2560F1972C747226007009E2 /* MainCoordinator.swift */,
-				2560F1992C74722A007009E2 /* OnboardingInMainDestination.swift */,
+				2560F1972C747226007009E2 /* MainView.swift */,
+				258172592C78146000D2691E /* MainCoordinator.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -224,6 +214,32 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		2581724D2C7800F300D2691E /* EditSchool */ = {
+			isa = PBXGroup;
+			children = (
+				2581724B2C78009100D2691E /* EditSchoolView.swift */,
+			);
+			path = EditSchool;
+			sourceTree = "<group>";
+		};
+		258172502C78014400D2691E /* Observable */ = {
+			isa = PBXGroup;
+			children = (
+				2560F1912C746EEC007009E2 /* Router.swift */,
+				25C4CD052C74E1BC00DB83B3 /* AppState.swift */,
+				258172512C78014D00D2691E /* SearchSchoolViewModel.swift */,
+			);
+			path = Observable;
+			sourceTree = "<group>";
+		};
+		2581725C2C7815DB00D2691E /* EditGrade */ = {
+			isa = PBXGroup;
+			children = (
+				2560F18A2C746E24007009E2 /* EditGradeView.swift */,
+			);
+			path = EditGrade;
+			sourceTree = "<group>";
+		};
 		25C4CCFA2C74B46C00DB83B3 /* School */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,17 +254,9 @@
 			isa = PBXGroup;
 			children = (
 				25C4CCFE2C74B5DB00DB83B3 /* SchoolCell.swift */,
-				250364442C762BDC00A93625 /* SchoolScrollView.swift */,
+				250364442C762BDC00A93625 /* SearchSchoolContainer.swift */,
 			);
 			path = Component;
-			sourceTree = "<group>";
-		};
-		25C4CD032C74E1AF00DB83B3 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				25C4CD052C74E1BC00DB83B3 /* AppState.swift */,
-			);
-			path = App;
 			sourceTree = "<group>";
 		};
 		25C4CD072C74E3B200DB83B3 /* Profile */ = {
@@ -344,18 +352,19 @@
 				25C4CCFC2C74B47700DB83B3 /* School.swift in Sources */,
 				2560F1952C74710B007009E2 /* UserDefaultsType.swift in Sources */,
 				250FD0902C74AF190070503B /* AuthInterceptor.swift in Sources */,
-				2560F19A2C74722A007009E2 /* OnboardingInMainDestination.swift in Sources */,
 				25C4CCF72C74B35F00DB83B3 /* APIError.swift in Sources */,
 				250FD08F2C74AF190070503B /* APIEventLogger.swift in Sources */,
 				2560F1882C746C64007009E2 /* OnboardingFirstView.swift in Sources */,
 				2560F18F2C746E91007009E2 /* OnboardingCoordinator.swift in Sources */,
 				2560F19D2C7473D3007009E2 /* HomeView.swift in Sources */,
+				258172522C78014D00D2691E /* SearchSchoolViewModel.swift in Sources */,
 				25F845712C760C1F00185A60 /* Secret.swift in Sources */,
+				2581725A2C78146000D2691E /* MainCoordinator.swift in Sources */,
 				2560F1922C746EEC007009E2 /* Router.swift in Sources */,
 				2560F1772C746C16007009E2 /* GraduatingApp.swift in Sources */,
 				25C4CCFF2C74B5DB00DB83B3 /* SchoolCell.swift in Sources */,
 				25C4CCF92C74B44100DB83B3 /* SchoolService.swift in Sources */,
-				2560F18B2C746E24007009E2 /* OnboardingSecondView.swift in Sources */,
+				2560F18B2C746E24007009E2 /* EditGradeView.swift in Sources */,
 				250FD0932C74AF190070503B /* Service.swift in Sources */,
 				2560F1A32C748475007009E2 /* DateUtil.swift in Sources */,
 				250FD0912C74AF190070503B /* Encodable+.swift in Sources */,
@@ -364,10 +373,9 @@
 				25F8456F2C75A32F00185A60 /* CodableExt.swift in Sources */,
 				25C4CD062C74E1BC00DB83B3 /* AppState.swift in Sources */,
 				250FD0942C74AF190070503B /* Endpoint.swift in Sources */,
-				2560F1982C747226007009E2 /* MainCoordinator.swift in Sources */,
-				25C4CD012C74B5FB00DB83B3 /* OnboardingViewModel.swift in Sources */,
-				2560F18D2C746E77007009E2 /* OnboardingDestination.swift in Sources */,
-				250364452C762BDC00A93625 /* SchoolScrollView.swift in Sources */,
+				2581724C2C78009100D2691E /* EditSchoolView.swift in Sources */,
+				2560F1982C747226007009E2 /* MainView.swift in Sources */,
+				250364452C762BDC00A93625 /* SearchSchoolContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,7 +524,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bestswlkh0310.graduating.Graduating;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -552,7 +560,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bestswlkh0310.graduating.Graduating;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
