@@ -18,9 +18,15 @@ struct SchoolCell: View {
             action()
         } label: {
             HStack {
-                Text(school.name)
-                    .myFont(.bodyM)
-                    .foreground(Colors.Label.normal)
+                HStack(spacing: 4) {
+                    Text(school.name)
+                        .myFont(.bodyM)
+                        .foreground(Colors.Label.normal)
+                        .lineLimit(1)
+                    Text(school.address.split(separator: " ").prefix(2).joined(separator: " "))
+                        .myFont(.labelM)
+                        .foreground(Colors.Label.alternative)
+                }
                 Spacer()
                 Image(icon: Icons.Arrow.ExpandArrow)
                     .resizable()
