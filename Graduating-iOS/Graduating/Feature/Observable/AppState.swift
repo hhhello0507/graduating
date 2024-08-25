@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 import Model
+import Data
 
 final class AppState: ObservableObject {
     

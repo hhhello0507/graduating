@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Then
 
 let localDateTimeMSFormatter = DateFormatter("yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
 let localDateTimeFormatter = DateFormatter("yyyy-MM-dd'T'HH:mm:ss")
@@ -36,15 +37,15 @@ let dateDecodingStrategy = JSONDecoder.DateDecodingStrategy.custom { decoder in
     }
 }
 
-let myDecoder = JSONDecoder().then { decoder in
+public let myDecoder = JSONDecoder().then { decoder in
     decoder.dateDecodingStrategy = dateDecodingStrategy
 }
 
-let myEncoder = JSONEncoder().then { encoder in
+public let myEncoder = JSONEncoder().then { encoder in
     encoder.dateEncodingStrategy = dateEncodingStrategy
 }
 
-extension Encodable {
+public extension Encodable {
     func encoded() -> String? {
         let encoder = JSONEncoder()
         let formatter = DateFormatter()
@@ -58,7 +59,7 @@ extension Encodable {
     }
 }
 
-extension Decodable {
+public extension Decodable {
     static func decode(_ str: String) -> Self? {
         guard let data = str.data(using: .utf8) else {
             return nil

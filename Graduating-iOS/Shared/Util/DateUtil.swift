@@ -1,6 +1,6 @@
 import Foundation
 
-func nextFebruaryFirst(from date: Date) -> Date? {
+public func nextFebruaryFirst(from date: Date) -> Date? {
     let calendar = Calendar.current
     let currentYear = calendar.component(.year, from: date)
     let currentMonth = calendar.component(.month, from: date)

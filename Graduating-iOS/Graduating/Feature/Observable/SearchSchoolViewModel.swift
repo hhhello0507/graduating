@@ -7,6 +7,7 @@
 
 import Combine
 import Model
+import Data
 
 final class SearchSchoolViewModel: ObservableObject {
     @Published private var schools: [School]?
