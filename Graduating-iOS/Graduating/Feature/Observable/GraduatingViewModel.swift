@@ -19,12 +19,16 @@ final class GraduatingViewModel: ObservableObject {
     
     private let publisher = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
-    func observe(grade: Int, graduating: Graduating) {
+    func observe(
+        grade: Int,
+        graduating: Graduating,
+        limit: Int
+    ) {
         cancellable?.cancel()
         startAt = .getStartAt(for: grade)
         
         guard let startAt,
-              let adjustedEndAt = graduating.graduatingDay.adjustedEndAt(for: grade) else {
+              let adjustedEndAt = graduating.graduatingDay.adjustedEndAt(for: grade, limit: limit) else {
             return
         }
         
@@ -36,7 +40,6 @@ final class GraduatingViewModel: ObservableObject {
     }
     
     deinit {
-        print("canceled")
         cancellable?.cancel()
     }
 }

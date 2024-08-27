@@ -58,6 +58,10 @@
 		25C962CF2C7B071800EB872E /* DateFormatterExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258172DB2C7A168F00D2691E /* DateFormatterExt.swift */; };
 		25C962D12C7B07C000EB872E /* libModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258172E32C7A16EA00D2691E /* libModel.a */; };
 		25C962D42C7B07C500EB872E /* libData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C962AF2C7B062900EB872E /* libData.a */; };
+		25C962D72C7B07F800EB872E /* libData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C962AF2C7B062900EB872E /* libData.a */; };
+		25C962DA2C7B07F800EB872E /* libModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258172E32C7A16EA00D2691E /* libModel.a */; };
+		25C962DE2C7B0CFF00EB872E /* MyDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 25C962DD2C7B0CFF00EB872E /* MyDesignSystem */; };
+		25C962E02C7B0D0300EB872E /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 25C962DF2C7B0D0300EB872E /* Then */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +134,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 25C962AE2C7B062900EB872E;
 			remoteInfo = Data;
+		};
+		25C962D82C7B07F800EB872E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2560F16B2C746C16007009E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 25C962AE2C7B062900EB872E;
+			remoteInfo = Data;
+		};
+		25C962DB2C7B07F800EB872E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2560F16B2C746C16007009E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 258172E22C7A16EA00D2691E;
+			remoteInfo = Model;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -246,6 +264,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				258172AE2C7A10CF00D2691E /* SwiftUI.framework in Frameworks */,
+				25C962DA2C7B07F800EB872E /* libModel.a in Frameworks */,
+				25C962D72C7B07F800EB872E /* libData.a in Frameworks */,
+				25C962E02C7B0D0300EB872E /* Then in Frameworks */,
+				25C962DE2C7B0CFF00EB872E /* MyDesignSystem in Frameworks */,
 				258172AC2C7A10CF00D2691E /* WidgetKit.framework in Frameworks */,
 				258172D32C7A12D300D2691E /* libShared.a in Frameworks */,
 			);
@@ -315,9 +337,9 @@
 			children = (
 				2560F1752C746C16007009E2 /* Graduating */,
 				258172AF2C7A10CF00D2691E /* Graduating-Widget */,
+				25C962B02C7B062A00EB872E /* Data */,
 				258172CA2C7A12B800D2691E /* Shared */,
 				258172E42C7A16EA00D2691E /* Model */,
-				25C962B02C7B062A00EB872E /* Data */,
 				258172AA2C7A10CF00D2691E /* Frameworks */,
 				2560F1742C746C16007009E2 /* Products */,
 			);
@@ -592,8 +614,14 @@
 			dependencies = (
 				258172F82C7A19C700D2691E /* PBXTargetDependency */,
 				258172D52C7A12D300D2691E /* PBXTargetDependency */,
+				25C962D92C7B07F800EB872E /* PBXTargetDependency */,
+				25C962DC2C7B07F800EB872E /* PBXTargetDependency */,
 			);
 			name = "Graduating-WidgetExtension";
+			packageProductDependencies = (
+				25C962DD2C7B0CFF00EB872E /* MyDesignSystem */,
+				25C962DF2C7B0D0300EB872E /* Then */,
+			);
 			productName = "Graduating-WidgetExtension";
 			productReference = 258172A92C7A10CF00D2691E /* Graduating-WidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -644,6 +672,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				25D927812C7DCFEB008DB5B8 /* PBXTargetDependency */,
+				25D927832C7DCFEB008DB5B8 /* PBXTargetDependency */,
 				25C962B72C7B063E00EB872E /* PBXTargetDependency */,
 			);
 			name = Data;
@@ -850,6 +880,24 @@
 			isa = PBXTargetDependency;
 			target = 25C962AE2C7B062900EB872E /* Data */;
 			targetProxy = 25C962D52C7B07C500EB872E /* PBXContainerItemProxy */;
+		};
+		25C962D92C7B07F800EB872E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 25C962AE2C7B062900EB872E /* Data */;
+			targetProxy = 25C962D82C7B07F800EB872E /* PBXContainerItemProxy */;
+		};
+		25C962DC2C7B07F800EB872E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 258172E22C7A16EA00D2691E /* Model */;
+			targetProxy = 25C962DB2C7B07F800EB872E /* PBXContainerItemProxy */;
+		};
+		25D927812C7DCFEB008DB5B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 25D927802C7DCFEB008DB5B8 /* CombineMoya */;
+		};
+		25D927832C7DCFEB008DB5B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 25D927822C7DCFEB008DB5B8 /* Moya */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1069,9 +1117,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bestswlkh0310.graduating.Graduating.Graduating-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1097,9 +1149,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bestswlkh0310.graduating.Graduating.Graduating-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1293,6 +1349,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 25C4CCF32C74B30600DB83B3 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		25C962DD2C7B0CFF00EB872E /* MyDesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2560F19E2C747917007009E2 /* XCRemoteSwiftPackageReference "my-ios-designsystem" */;
+			productName = MyDesignSystem;
+		};
+		25C962DF2C7B0D0300EB872E /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 25C4CCF32C74B30600DB83B3 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		25D927802C7DCFEB008DB5B8 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 250FD0832C74AF100070503B /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		25D927822C7DCFEB008DB5B8 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 250FD0832C74AF100070503B /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

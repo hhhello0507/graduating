@@ -6,8 +6,10 @@
 //
 
 import WidgetKit
+import Model
 
-struct SimpleEntry: TimelineEntry {
+struct GraduatingEntry: TimelineEntry {
     let date: Date
-    let emoji: String
+    let remainTime: DateComponents
+    let remainTimePercent: Double
 }

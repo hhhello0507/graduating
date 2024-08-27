@@ -6,29 +6,54 @@
 //
 
 import WidgetKit
+import Shared
+import Data
+import Model
 
 struct GraduatingProvider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+    func placeholder(in context: Context) -> GraduatingEntry {
+        GraduatingEntry(
+            date: .now,
+            remainTime: .init(),
+            remainTimePercent: 40
+        )
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
-        completion(entry)
+    func getSnapshot(in context: Context, completion: @escaping (Entry) -> ()) {
+//        let entry = GraduatingEntry(date: Date(), emoji: "😀")
+//        completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
-            entries.append(entry)
+        let currentTime = Date()
+        let entryDate = Calendar.current.date(byAdding: .hour, value: 1, to: currentTime)!
+        
+        guard let grade = UserDefaultsType.grade.value as? Int,
+              let graduatingJson = UserDefaultsType.graduating.value as? String,
+              let graduating = Graduating.decode(graduatingJson) else {
+            return
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        guard let schoolJson = UserDefaultsType.school.value as? String,
+              let school = School.decode(schoolJson) else {
+            return
+        }
+        
+        let limit = school.type?.limit ?? 3
+        
+        guard let startAt = Date.getStartAt(for: grade),
+              let adjustedEndAt = graduating.graduatingDay.adjustedEndAt(for: grade, limit: limit) else {
+            return
+        }
+        
+        let remainTime = currentTime.diff([.year, .month, .day, .hour, .minute, .second, .nanosecond], other: adjustedEndAt)
+        let remainTimePercent = currentTime.percent(from: startAt, to: adjustedEndAt)
+        
+        let entry = GraduatingEntry(
+            date: entryDate,
+            remainTime: remainTime,
+            remainTimePercent: remainTimePercent
+        )
+        let timeline = Timeline(entries: [entry], policy: .after(entryDate))
         completion(timeline)
     }
 }

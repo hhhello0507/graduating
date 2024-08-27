@@ -65,7 +65,8 @@ struct HomeView: View {
                   let graduating = appState.graduating else {
                 return
             }
-            graduatingViewModel.observe(grade: grade, graduating: graduating)
+            let limit = appState.school?.type?.limit ?? 3
+            graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
         }
     }
 }

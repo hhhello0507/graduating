@@ -7,18 +7,25 @@
 
 import WidgetKit
 import SwiftUI
+import MyDesignSystem
 
 struct Graduating_WidgetEntryView: View {
     
-    var entry: GraduatingProvider.Entry
+    private let entry: GraduatingProvider.Entry
+
+    
+    init(entry: GraduatingProvider.Entry) {
+        self.entry = entry
+    }
 
     var body: some View {
         VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Emoji:")
-            Text(entry.emoji)
+            Text("졸업까지")
+                .font(.caption)
+                .foreground(Colors.Label.assistive)
+            Text(String(format: "%.7f%%", entry.remainTimePercent * 100))
+                .font(.headline)
+                .foreground(Colors.Label.normal)
         }
     }
 }

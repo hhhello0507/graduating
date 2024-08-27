@@ -83,7 +83,7 @@ public extension Date {
         return calendar.date(from: components)
     }
     
-    func adjustedEndAt(for currentGrade: Int) -> Date? {
+    func adjustedEndAt(for currentGrade: Int, limit: Int) -> Date? {
         let calendar = Calendar.current
         
         var components = calendar.dateComponents([.year, .month, .day], from: self)
@@ -92,7 +92,7 @@ public extension Date {
             return nil
         }
 
-        let admissionYear = components.year! + 3 - currentGrade
+        let admissionYear = components.year! + limit - currentGrade
         components.year = admissionYear
         return calendar.date(from: components)
     }
