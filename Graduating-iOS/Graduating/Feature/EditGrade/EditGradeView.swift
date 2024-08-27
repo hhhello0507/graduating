@@ -9,7 +9,7 @@ struct EditGradeView: View {
     @EnvironmentObject private var dialogProvider: DialogProvider
     @EnvironmentObject private var appState: AppState
     @FocusState private var field
-    @State private var grade = 0
+    @State private var grade = 1
     
     public init(_ path: EditGradePath) {}
     
