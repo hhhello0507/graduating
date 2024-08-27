@@ -11,11 +11,20 @@ import MyDesignSystem
 
 struct Graduating_WidgetEntryView: View {
     
+    @Environment(\.widgetFamily) private var widgetFamily
+    
     private let entry: GraduatingProvider.Entry
-
     
     init(entry: GraduatingProvider.Entry) {
         self.entry = entry
+    }
+    
+    private var graduatingText: String {
+        if [.systemSmall].contains(widgetFamily) {
+            String(format: "%.3f%%", entry.remainTimePercent * 100)
+        } else {
+            String(format: "%.7f%%", entry.remainTimePercent * 100)
+        }
     }
 
     var body: some View {
@@ -23,28 +32,38 @@ struct Graduating_WidgetEntryView: View {
             Text("졸업까지")
                 .font(.caption)
                 .foreground(Colors.Label.assistive)
-            Text(String(format: "%.7f%%", entry.remainTimePercent * 100))
-                .font(.headline)
+            Text(graduatingText)
+                .font(.title)
                 .foreground(Colors.Label.normal)
         }
+        .background(Colors.Background.neutral)
+        .padding(15)
     }
 }
 
 struct Graduating_Widget: Widget {
+
+    private let widgetFamilyList: [WidgetFamily] = if #available(iOSApplicationExtension 16.0, *) {
+        [.systemSmall, .systemMedium, .accessoryRectangular, .accessoryCircular]
+    } else {
+        [.systemSmall, .systemMedium]
+    }
     let kind: String = "Graduating_Widget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: GraduatingProvider()) { entry in
-            if #available(iOS 17.0, *) {
+            if #available(iOSApplicationExtension 17.0, *) {
                 Graduating_WidgetEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget)
+                    .containerBackground(for: .widget) {
+                        Colors.Background.neutral.box.color
+                    }
             } else {
                 Graduating_WidgetEntryView(entry: entry)
-                    .padding()
-                    .background()
             }
         }
         .configurationDisplayName("졸업일")
         .description("졸업까지 얼마나 남았는지 알려줍니다")
+        .contentMarginsDisabled()
+        .supportedFamilies(widgetFamilyList)
     }
 }

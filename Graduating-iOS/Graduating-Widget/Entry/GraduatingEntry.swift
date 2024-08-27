@@ -13,3 +13,17 @@ struct GraduatingEntry: TimelineEntry {
     let remainTime: DateComponents
     let remainTimePercent: Double
 }
+
+extension GraduatingEntry {
+    static var empty: GraduatingEntry {
+        var components = DateComponents()
+        if let year = components.year {
+            components.setValue(year - 1, for: .year)
+        }
+        return GraduatingEntry(
+            date: .now,
+            remainTime: components,
+            remainTimePercent: 0.4
+        )
+    }
+}

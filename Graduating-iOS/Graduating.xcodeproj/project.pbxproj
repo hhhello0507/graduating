@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		250364452C762BDC00A93625 /* SearchSchoolContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250364442C762BDC00A93625 /* SearchSchoolContainer.swift */; };
+		250EAE242C7DE05500D9FF5E /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 250EAE232C7DE05500D9FF5E /* CombineMoya */; };
+		250EAE262C7DE05500D9FF5E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 250EAE252C7DE05500D9FF5E /* Moya */; };
 		250FD0852C74AF100070503B /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 250FD0842C74AF100070503B /* CombineMoya */; };
 		250FD0872C74AF100070503B /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 250FD0862C74AF100070503B /* Moya */; };
 		2560F1772C746C16007009E2 /* GraduatingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1762C746C16007009E2 /* GraduatingApp.swift */; };
@@ -121,33 +123,12 @@
 			remoteGlobalIDString = 25C962AE2C7B062900EB872E;
 			remoteInfo = Data;
 		};
-		25C962D22C7B07C000EB872E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2560F16B2C746C16007009E2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 258172E22C7A16EA00D2691E;
-			remoteInfo = Model;
-		};
-		25C962D52C7B07C500EB872E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2560F16B2C746C16007009E2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 25C962AE2C7B062900EB872E;
-			remoteInfo = Data;
-		};
 		25C962D82C7B07F800EB872E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2560F16B2C746C16007009E2 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 25C962AE2C7B062900EB872E;
 			remoteInfo = Data;
-		};
-		25C962DB2C7B07F800EB872E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2560F16B2C746C16007009E2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 258172E22C7A16EA00D2691E;
-			remoteInfo = Model;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -195,6 +176,8 @@
 /* Begin PBXFileReference section */
 		250364422C762B6700A93625 /* ModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelProtocol.swift; sourceTree = "<group>"; };
 		250364442C762BDC00A93625 /* SearchSchoolContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSchoolContainer.swift; sourceTree = "<group>"; };
+		250EAE212C7DDBEF00D9FF5E /* Graduating.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Graduating.entitlements; sourceTree = "<group>"; };
+		250EAE222C7DDC6500D9FF5E /* Graduating-WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Graduating-WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		250FD0882C74AF190070503B /* APIEventLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEventLogger.swift; sourceTree = "<group>"; };
 		250FD0892C74AF190070503B /* AuthInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
 		250FD08A2C74AF190070503B /* Encodable+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+.swift"; sourceTree = "<group>"; };
@@ -265,10 +248,12 @@
 			files = (
 				258172AE2C7A10CF00D2691E /* SwiftUI.framework in Frameworks */,
 				25C962DA2C7B07F800EB872E /* libModel.a in Frameworks */,
+				250EAE262C7DE05500D9FF5E /* Moya in Frameworks */,
 				25C962D72C7B07F800EB872E /* libData.a in Frameworks */,
 				25C962E02C7B0D0300EB872E /* Then in Frameworks */,
 				25C962DE2C7B0CFF00EB872E /* MyDesignSystem in Frameworks */,
 				258172AC2C7A10CF00D2691E /* WidgetKit.framework in Frameworks */,
+				250EAE242C7DE05500D9FF5E /* CombineMoya in Frameworks */,
 				258172D32C7A12D300D2691E /* libShared.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,6 +320,7 @@
 		2560F16A2C746C16007009E2 = {
 			isa = PBXGroup;
 			children = (
+				250EAE222C7DDC6500D9FF5E /* Graduating-WidgetExtension.entitlements */,
 				2560F1752C746C16007009E2 /* Graduating */,
 				258172AF2C7A10CF00D2691E /* Graduating-Widget */,
 				25C962B02C7B062A00EB872E /* Data */,
@@ -360,6 +346,7 @@
 		2560F1752C746C16007009E2 /* Graduating */ = {
 			isa = PBXGroup;
 			children = (
+				250EAE212C7DDBEF00D9FF5E /* Graduating.entitlements */,
 				25C4CD022C74B78B00DB83B3 /* Info.plist */,
 				2560F1762C746C16007009E2 /* GraduatingApp.swift */,
 				250FD0812C74AEAE0070503B /* Feature */,
@@ -587,8 +574,6 @@
 				258172F62C7A18D900D2691E /* PBXTargetDependency */,
 				258172D22C7A12CC00D2691E /* PBXTargetDependency */,
 				258172B82C7A10D100D2691E /* PBXTargetDependency */,
-				25C962D32C7B07C000EB872E /* PBXTargetDependency */,
-				25C962D62C7B07C500EB872E /* PBXTargetDependency */,
 			);
 			name = Graduating;
 			packageProductDependencies = (
@@ -615,12 +600,13 @@
 				258172F82C7A19C700D2691E /* PBXTargetDependency */,
 				258172D52C7A12D300D2691E /* PBXTargetDependency */,
 				25C962D92C7B07F800EB872E /* PBXTargetDependency */,
-				25C962DC2C7B07F800EB872E /* PBXTargetDependency */,
 			);
 			name = "Graduating-WidgetExtension";
 			packageProductDependencies = (
 				25C962DD2C7B0CFF00EB872E /* MyDesignSystem */,
 				25C962DF2C7B0D0300EB872E /* Then */,
+				250EAE232C7DE05500D9FF5E /* CombineMoya */,
+				250EAE252C7DE05500D9FF5E /* Moya */,
 			);
 			productName = "Graduating-WidgetExtension";
 			productReference = 258172A92C7A10CF00D2691E /* Graduating-WidgetExtension.appex */;
@@ -637,6 +623,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				25D927852C7DD19C008DB5B8 /* PBXTargetDependency */,
 				258172ED2C7A173E00D2691E /* PBXTargetDependency */,
 			);
 			name = Shared;
@@ -710,11 +697,12 @@
 			};
 			buildConfigurationList = 2560F16E2C746C16007009E2 /* Build configuration list for PBXProject "Graduating" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 2560F16A2C746C16007009E2;
 			packageReferences = (
@@ -871,25 +859,10 @@
 			target = 25C962AE2C7B062900EB872E /* Data */;
 			targetProxy = 25C962B82C7B064500EB872E /* PBXContainerItemProxy */;
 		};
-		25C962D32C7B07C000EB872E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 258172E22C7A16EA00D2691E /* Model */;
-			targetProxy = 25C962D22C7B07C000EB872E /* PBXContainerItemProxy */;
-		};
-		25C962D62C7B07C500EB872E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 25C962AE2C7B062900EB872E /* Data */;
-			targetProxy = 25C962D52C7B07C500EB872E /* PBXContainerItemProxy */;
-		};
 		25C962D92C7B07F800EB872E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 25C962AE2C7B062900EB872E /* Data */;
 			targetProxy = 25C962D82C7B07F800EB872E /* PBXContainerItemProxy */;
-		};
-		25C962DC2C7B07F800EB872E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 258172E22C7A16EA00D2691E /* Model */;
-			targetProxy = 25C962DB2C7B07F800EB872E /* PBXContainerItemProxy */;
 		};
 		25D927812C7DCFEB008DB5B8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -898,6 +871,10 @@
 		25D927832C7DCFEB008DB5B8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 25D927822C7DCFEB008DB5B8 /* Moya */;
+		};
+		25D927852C7DD19C008DB5B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 25D927842C7DD19C008DB5B8 /* Then */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1027,6 +1004,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Graduating/Graduating.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Graduating/Preview Content\"";
@@ -1045,7 +1023,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bestswlkh0310.graduating.Graduating;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1064,6 +1042,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Graduating/Graduating.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Graduating/Preview Content\"";
@@ -1082,7 +1061,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bestswlkh0310.graduating.Graduating;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1100,6 +1079,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Graduating-WidgetExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B42SPPS3PR;
@@ -1132,6 +1112,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Graduating-WidgetExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B42SPPS3PR;
@@ -1330,6 +1311,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		250EAE232C7DE05500D9FF5E /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 250FD0832C74AF100070503B /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		250EAE252C7DE05500D9FF5E /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 250FD0832C74AF100070503B /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
 		250FD0842C74AF100070503B /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 250FD0832C74AF100070503B /* XCRemoteSwiftPackageReference "Moya" */;
@@ -1369,6 +1360,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 250FD0832C74AF100070503B /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		25D927842C7DD19C008DB5B8 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 25C4CCF32C74B30600DB83B3 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -13,12 +13,19 @@ public enum UserDefaultsType: String {
     case graduating
 }
 
+public extension UserDefaults {
+    static var graduating: UserDefaults {
+        let appGroupId = "group.hhhello0507.graduating"
+        return UserDefaults(suiteName: appGroupId) ?? .standard
+    }
+}
+
 public extension UserDefaultsType {
     var value: Any? {
-        UserDefaults.standard.value(forKey: self.rawValue)
+        UserDefaults.graduating.value(forKey: self.rawValue)
     }
     
     func set(_ value: Any?) {
-        UserDefaults.standard.setValue(value, forKey: self.rawValue)
+        UserDefaults.graduating.setValue(value, forKey: self.rawValue)
     }
 }
