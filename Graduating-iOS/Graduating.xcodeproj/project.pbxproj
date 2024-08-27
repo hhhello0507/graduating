@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		250364452C762BDC00A93625 /* SearchSchoolContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250364442C762BDC00A93625 /* SearchSchoolContainer.swift */; };
+		250EAE242C7DE05500D9FF5E /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 250EAE232C7DE05500D9FF5E /* CombineMoya */; };
+		250EAE262C7DE05500D9FF5E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 250EAE252C7DE05500D9FF5E /* Moya */; };
 		250FD0852C74AF100070503B /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 250FD0842C74AF100070503B /* CombineMoya */; };
 		250FD0872C74AF100070503B /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 250FD0862C74AF100070503B /* Moya */; };
 		2560F1772C746C16007009E2 /* GraduatingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1762C746C16007009E2 /* GraduatingApp.swift */; };
@@ -246,10 +248,12 @@
 			files = (
 				258172AE2C7A10CF00D2691E /* SwiftUI.framework in Frameworks */,
 				25C962DA2C7B07F800EB872E /* libModel.a in Frameworks */,
+				250EAE262C7DE05500D9FF5E /* Moya in Frameworks */,
 				25C962D72C7B07F800EB872E /* libData.a in Frameworks */,
 				25C962E02C7B0D0300EB872E /* Then in Frameworks */,
 				25C962DE2C7B0CFF00EB872E /* MyDesignSystem in Frameworks */,
 				258172AC2C7A10CF00D2691E /* WidgetKit.framework in Frameworks */,
+				250EAE242C7DE05500D9FF5E /* CombineMoya in Frameworks */,
 				258172D32C7A12D300D2691E /* libShared.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -601,6 +605,8 @@
 			packageProductDependencies = (
 				25C962DD2C7B0CFF00EB872E /* MyDesignSystem */,
 				25C962DF2C7B0D0300EB872E /* Then */,
+				250EAE232C7DE05500D9FF5E /* CombineMoya */,
+				250EAE252C7DE05500D9FF5E /* Moya */,
 			);
 			productName = "Graduating-WidgetExtension";
 			productReference = 258172A92C7A10CF00D2691E /* Graduating-WidgetExtension.appex */;
@@ -1017,7 +1023,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bestswlkh0310.graduating.Graduating;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1055,7 +1061,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bestswlkh0310.graduating.Graduating;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1305,6 +1311,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		250EAE232C7DE05500D9FF5E /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 250FD0832C74AF100070503B /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		250EAE252C7DE05500D9FF5E /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 250FD0832C74AF100070503B /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
 		250FD0842C74AF100070503B /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 250FD0832C74AF100070503B /* XCRemoteSwiftPackageReference "Moya" */;
