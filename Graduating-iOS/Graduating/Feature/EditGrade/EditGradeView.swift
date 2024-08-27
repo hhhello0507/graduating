@@ -13,6 +13,10 @@ struct EditGradeView: View {
     
     public init(_ path: EditGradePath) {}
     
+    private var limit: Int {
+        appState.school?.type?.limit ?? 3
+    }
+    
     var body: some View {
         MyTopAppBar.small(title: "") { insets in
             VStack(spacing: 4) {
@@ -21,7 +25,7 @@ struct EditGradeView: View {
                     .foreground(Colors.Label.normal)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Picker("Grade", selection: $grade) {
-                    ForEach(1...3, id: \.self) { number in
+                    ForEach(1...limit, id: \.self) { number in
                         Text("\(number)")
                             .myFont(.headling2M)
                     }

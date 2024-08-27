@@ -3,8 +3,9 @@ import Moya
 import CombineMoya
 import Combine
 import Then
+import Shared
 
-class Service<Target: Endpoint> {
+public class Service<Target: Endpoint> {
     
     func request<T: Decodable>(
         _ target: Target.Target,

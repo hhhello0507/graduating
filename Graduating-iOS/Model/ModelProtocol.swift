@@ -7,4 +7,4 @@
 
 import Foundation
 
-typealias ModelProtocol = Codable & Hashable
+public typealias ModelProtocol = Codable & Hashable

@@ -13,7 +13,7 @@ public enum UserDefaultsType: String {
     case graduating
 }
 
-extension UserDefaultsType {
+public extension UserDefaultsType {
     var value: Any? {
         UserDefaults.standard.value(forKey: self.rawValue)
     }
