@@ -1,5 +1,6 @@
-package com.bestswlkh0310.graduating.graduatingserver.service
+package com.bestswlkh0310.graduating.graduatingserver.service.neis
 
+import com.bestswlkh0310.graduating.graduatingserver.config.Properties
 import com.bestswlkh0310.graduating.graduatingserver.entity.GraduatingEntity
 import com.bestswlkh0310.graduating.graduatingserver.entity.SchoolEntity
 import com.bestswlkh0310.graduating.graduatingserver.entity.SchoolType
@@ -13,12 +14,14 @@ import org.springframework.stereotype.Service
 import java.io.File
 import java.nio.charset.StandardCharsets
 
+// TODO: 코드 개선 (함수)
+// 다음 연도가 되면 개선할 듯.......
 @Service
-class NeisService(
+class NeisScheduleService(
     private val schoolRepository: SchoolRepository,
     private val graduatingRepository: GraduatingRepository,
     private val neisApi: NeisRepository,
-    @Value("\${secret.neis.apikey}") private val apiKey: String
+    private val properties: Properties
 ) {
 
     fun importCsv(filePath: String) {
@@ -50,8 +53,7 @@ class NeisService(
     suspend fun getSchoolDate(school: SchoolEntity) {
         try {
             val response = neisApi.getSchoolSchedule(
-                key = apiKey,
-                type = "json",
+                key = properties.neisApiKey,
                 code = school.officeCode,
                 schoolCode = school.code,
                 fromDate = "20241201",
@@ -59,8 +61,7 @@ class NeisService(
             )
             var includeGraduating = false
             response?.SchoolSchedule?.let { res ->
-                res
-                    .mapNotNull { it?.row }
+                res.mapNotNull { it?.row }
                     .forEach { rows ->
                         rows.forEach { row ->
                             if (row.EVENT_NM.contains("졸업")) {

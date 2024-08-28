@@ -6,13 +6,7 @@ enum class SchoolType {
     ELEMENTARY;
 
     companion object {
-        fun of(string: String) = entries.first {
-            it.name == string
-        }
-
-        fun ofKorean(string: String) = entries.first {
-            it.korean() == string
-        }
+        fun ofKorean(string: String) = entries.firstOrNull { it.korean() == string }
     }
 
     fun korean() = when(this) {

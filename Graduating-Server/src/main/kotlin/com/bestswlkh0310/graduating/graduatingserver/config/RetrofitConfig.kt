@@ -16,6 +16,5 @@ class RetrofitConfig {
             .build()
     }
 
-    @Bean
-    fun neisRepository() = retrofit.create(NeisRepository::class.java)
+    @Bean fun neisRepository() = retrofit.create(NeisRepository::class.java)
 }
