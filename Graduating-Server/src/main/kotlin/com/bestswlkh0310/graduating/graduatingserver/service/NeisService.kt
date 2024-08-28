@@ -58,17 +58,17 @@ class NeisService(
                 toDate = "20250301"
             )
             var includeGraduating = false
-            response?.schoolSchedule?.let { res ->
+            response?.SchoolSchedule?.let { res ->
                 res
                     .mapNotNull { it?.row }
                     .forEach { rows ->
                         rows.forEach { row ->
-                            if (row.eventNm.contains("졸업")) {
-                                println("✅ - ${school.name} - ${row.eventNm}")
+                            if (row.EVENT_NM.contains("졸업")) {
+                                println("✅ - ${school.name} - ${row.EVENT_NM}")
                                 includeGraduating = true
                                 val entity = GraduatingEntity(
                                     schoolId = school.id,
-                                    graduatingDay = row.aaYmd,
+                                    graduatingDay = row.AA_YMD,
                                 )
                                 graduatingRepository.save(entity)
                             }
@@ -77,7 +77,7 @@ class NeisService(
             }
 
             if (!includeGraduating) {
-                println("❌ - ${school.name} - 알 수 없음 ${response?.schoolSchedule}")
+                println("❌ - ${school.name} - 알 수 없음 ${response?.SchoolSchedule}")
             }
         } catch (e: Exception) {
             e.printStackTrace()
