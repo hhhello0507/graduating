@@ -9,6 +9,7 @@ import WidgetKit
 import Shared
 import Data
 import Model
+import MyShared
 
 struct GraduatingProvider: TimelineProvider {
     
@@ -46,7 +47,7 @@ struct GraduatingProvider: TimelineProvider {
             return
         }
         
-        let remainTime = currentTime.diff([.year, .month, .day, .hour, .minute, .second, .nanosecond], other: adjustedEndAt)
+        let remainTime: DateComponents = currentTime.diff([.year, .month, .day, .hour, .minute, .second, .nanosecond], other: adjustedEndAt)
         let remainTimePercent = currentTime.percent(from: startAt, to: adjustedEndAt)
         
         let entry = GraduatingEntry(
