@@ -1,21 +1,7 @@
 package com.bestswlkh0310.graduating.graduatingserver.dto
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.google.gson.annotations.SerializedName
 
-//
-//data class Head(
-//    @SerializedName("list_total_count") val listTotalCount: Int,
-//    val RESULT: Result
-//)
-
-// Define the data class for the result section
-data class Result(
-    val CODE: String,
-    val MESSAGE: String
-)
-
-// Define the data class for each event row
 data class EventRow(
     @SerializedName("ATPT_OFCDC_SC_CODE") val atptOfcdcScCode: String,
     @SerializedName("SD_SCHUL_CODE") val sdSchulCode: String,
@@ -37,7 +23,6 @@ data class EventRow(
     @SerializedName("LOAD_DTM") val loadDtm: String
 )
 
-// Define the data class for the main response object
 data class SchoolScheduleResponse(
     val row: List<EventRow>
 )

@@ -1,10 +1,10 @@
 package com.bestswlkh0310.graduating.graduatingserver.service
 
-import com.bestswlkh0310.graduating.graduatingserver.config.NeisApi
 import com.bestswlkh0310.graduating.graduatingserver.entity.GraduatingEntity
 import com.bestswlkh0310.graduating.graduatingserver.entity.SchoolEntity
 import com.bestswlkh0310.graduating.graduatingserver.entity.SchoolType
 import com.bestswlkh0310.graduating.graduatingserver.repository.GraduatingRepository
+import com.bestswlkh0310.graduating.graduatingserver.repository.NeisRepository
 import com.bestswlkh0310.graduating.graduatingserver.repository.SchoolRepository
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
@@ -17,18 +17,9 @@ import java.nio.charset.StandardCharsets
 class NeisService(
     private val schoolRepository: SchoolRepository,
     private val graduatingRepository: GraduatingRepository,
-    private val neisApi: NeisApi,
+    private val neisApi: NeisRepository,
     @Value("\${secret.neis.apikey}") private val apiKey: String
 ) {
-
-    private fun getSchoolType(str: String): SchoolType? {
-        return when (str) {
-            "초등학교" -> SchoolType.ELEMENTARY
-            "중학교" -> SchoolType.MIDDLE
-            "고등학교" -> SchoolType.HIGH
-            else -> null
-        }
-    }
 
     fun importCsv(filePath: String) {
         val file = File(filePath)
@@ -38,7 +29,7 @@ class NeisService(
             val v = record.toList()
             val school = SchoolEntity(
                 name = v[0],
-                type = getSchoolType(v[1]),
+                type = SchoolType.ofKorean(v[1]),
                 cityName = v[2],
                 postalCode = v[3],
                 address = v[4],
@@ -91,10 +82,6 @@ class NeisService(
         } catch (e: Exception) {
             e.printStackTrace()
         }
-//        val headers = HttpHeaders().apply {
-//            set("Accept", "*/*")
-//            set("User-Agent", "PostmanRuntime/7.41.1")
-//        }
     }
 
     suspend fun getSchoolsDate() {
