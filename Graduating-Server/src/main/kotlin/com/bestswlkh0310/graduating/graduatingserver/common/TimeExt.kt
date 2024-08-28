@@ -12,8 +12,7 @@ fun LocalTime.parse(format: String) = DateTimeFormatter.ofPattern(format)
 
 fun String.toTime(pattern: String = "yyyyMMdd") = try {
     val formatter = DateTimeFormatter.ofPattern(pattern)
-    val localDate = LocalDate.parse(this, formatter)
-    localDate.atStartOfDay()
+    LocalDate.parse(this, formatter)
 } catch (e: DateTimeParseException) {
     null
 }

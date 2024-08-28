@@ -3,12 +3,6 @@ import Moya
 import Model
 import MyMoya
 
-extension MyMoya.Endpoint {
-    public var baseUrlString: String {
-        baseUrl
-    }
-}
-
 public enum SchoolEndpoint: MyMoya.Endpoint {
     case getSchools
     case getGraduating(id: Int)
@@ -32,11 +26,11 @@ public final class SchoolService: Service<SchoolEndpoint> {
     
     public static let shared = SchoolService(allowLog: true)
     
-    public func getSchools() -> AnyPublisher<[School], APIError<EmptyErrorResponse>> {
+    public func getSchools() -> Result<[School]> {
         performRequest(.getSchools, res: [School].self)
     }
     
-    public func getGraduating(id: Int) -> AnyPublisher<Graduating, APIError<EmptyErrorResponse>> {
+    public func getGraduating(id: Int) -> Result<Graduating> {
         performRequest(.getGraduating(id: id), res: Graduating.self)
     }
 }
