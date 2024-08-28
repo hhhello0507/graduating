@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum MealType: ModelProtocol {
+public enum MealType: String, ModelProtocol {
     case BREAKFAST
     case LAUNCH
     case DINNER

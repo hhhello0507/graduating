@@ -16,10 +16,12 @@ public final class MealViewModel: ObservableObject {
     
     func fetchMeals(schoolId: Int) {
         MealService.shared.fetchMeals(
-            .init(schoolId: schoolId)
+            schoolId: schoolId
         )
         .sink { result in
-            
+            if case .failure = result {
+                self.meals = nil
+            }
         } receiveValue: { res in
             self.meals = res
         }

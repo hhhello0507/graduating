@@ -1,6 +1,7 @@
 package com.bestswlkh0310.graduating.graduatingserver.service
 
 import com.bestswlkh0310.graduating.graduatingserver.common.parse
+import com.bestswlkh0310.graduating.graduatingserver.dto.MealRes
 import com.bestswlkh0310.graduating.graduatingserver.entity.MealEntity
 import com.bestswlkh0310.graduating.graduatingserver.repository.MealRepository
 import com.bestswlkh0310.graduating.graduatingserver.repository.SchoolRepository
@@ -27,7 +28,7 @@ class MealService(
 //        }
 //    }
 
-    fun getMeals(schoolId: Long): List<MealEntity> {
+    fun getMeals(schoolId: Long): List<MealRes> {
         val school = schoolRepository.findByIdOrNull(schoolId) ?: throw Exception("No school with id $schoolId")
 
         val currentTime = LocalDate.now()
@@ -36,13 +37,14 @@ class MealService(
             it.mealDate == currentTime && it.school.id == schoolId
         }
         if (included) {
-            return schools
+            return schools.map { MealRes.of(it) }
         }
         return runBlocking {
             val meals = neisMealService.getMeals(
                 school = school,
             )
             mealRepository.saveAll(meals)
+                .map { MealRes.of(it) }
         }
     }
 }

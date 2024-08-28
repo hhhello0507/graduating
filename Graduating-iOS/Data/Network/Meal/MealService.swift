@@ -13,7 +13,7 @@ import Model
 
 public enum MealEndpoint: MyMoya.Endpoint {
     
-    case fetchMeals(FetchMealReq)
+    case fetchMeals(schoolId: Int)
 }
 
 extension MealEndpoint {
@@ -21,20 +21,20 @@ extension MealEndpoint {
     static public var provider = MoyaProvider<MealEndpoint>()
     
     public var host: String {
-        "meal"
+        "meals"
     }
     
     public var route: (Moya.Method, String, Moya.Task) {
         switch self {
-        case .fetchMeals(let req):
-                .get - "" - req.toURLParameters()
+        case .fetchMeals(let schoolId):
+                .get - "\(schoolId)" - .requestPlain
         }
     }
 }
 
 public final class MealService: Service<MealEndpoint> {
-    public func fetchMeals(_ req: FetchMealReq) -> Result<[Meal]> {
-        performRequest(.fetchMeals(req), res: [Meal].self)
+    public func fetchMeals(schoolId: Int) -> Result<[Meal]> {
+        performRequest(.fetchMeals(schoolId: schoolId), res: [Meal].self)
     }
     
     public static let shared = MealService(allowLog: true)
