@@ -1,6 +1,7 @@
 package com.bestswlkh0310.graduating.graduatingserver.entity
 
 import jakarta.persistence.*
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Entity
@@ -13,8 +14,10 @@ class MealEntity(
     @Column(nullable = false) val calorie: Double,
     @Column(nullable = false, columnDefinition = "TEXT") val menu: String,
     @Column(nullable = false, columnDefinition = "TEXT") val mealInfo: String,
-    @Column(nullable = false) val mealDate: LocalDateTime,
+    @Column(nullable = false) val mealDate: LocalDate,
 
     // foreign key
-    @Column(nullable = false) val schoolId: Long
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "school_id", nullable = false)
+    val school: SchoolEntity
 )
