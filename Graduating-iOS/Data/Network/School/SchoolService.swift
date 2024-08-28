@@ -1,8 +1,15 @@
 import Combine
 import Moya
 import Model
+import MyMoya
 
-public enum SchoolEndpoint: Endpoint {
+extension MyMoya.Endpoint {
+    public var baseUrlString: String {
+        baseUrl
+    }
+}
+
+public enum SchoolEndpoint: MyMoya.Endpoint {
     case getSchools
     case getGraduating(id: Int)
 }
@@ -23,13 +30,13 @@ public extension SchoolEndpoint {
 
 public final class SchoolService: Service<SchoolEndpoint> {
     
-    public static let shared = SchoolService()
+    public static let shared = SchoolService(allowLog: true)
     
-    public func getSchools() -> AnyPublisher<[School], APIError> {
+    public func getSchools() -> AnyPublisher<[School], APIError<EmptyErrorResponse>> {
         performRequest(.getSchools, res: [School].self)
     }
     
-    public func getGraduating(id: Int) -> AnyPublisher<Graduating, APIError> {
+    public func getGraduating(id: Int) -> AnyPublisher<Graduating, APIError<EmptyErrorResponse>> {
         performRequest(.getGraduating(id: id), res: Graduating.self)
     }
 }
