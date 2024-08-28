@@ -1,5 +1,5 @@
 {
-  "originHash" : "c94a38c0b21af2a9355acc3c9c7df3c628c63276195eaf61c68acc2a4dfc2756",
+  "originHash" : "809835623b93457091506cc3575358d02b8eb0375bfc0e2b7f06996cf058430c",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/hhhello0507/my-ios-kit",
       "state" : {
-        "revision" : "71851103a3218d9ce4bb5d6688909633629c021c",
-        "version" : "1.3.0"
+        "revision" : "bb9c9edcb2705c6ae1603361fa9f29446acbb756",
+        "version" : "1.5.5"
       }
     },
     {
