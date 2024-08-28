@@ -19,7 +19,7 @@ data class NeisMealRowRes(
 )
 
 data class NeisMealRes(
-    val row: List<NeisMealRowRes>
+    val row: List<NeisMealRowRes?>
 )
 
 data class NeisMealsRes(

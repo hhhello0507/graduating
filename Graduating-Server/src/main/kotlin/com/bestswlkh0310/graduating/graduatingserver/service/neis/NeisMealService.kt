@@ -36,12 +36,17 @@ class NeisMealService(
             res.mapNotNull { it?.row }
                 .forEach { rows ->
                     for (meal in rows) {
-                        val entity = meal.toMealEntity(schoolId = school.id)
-                        if (entity == null) {
-                            println(meal)
-                            continue
+                        try {
+                            if (meal == null) continue
+                            val entity = meal.toMealEntity(schoolId = school.id)
+                            if (entity == null) {
+                                println(meal)
+                                continue
+                            }
+                            result.add(entity)
+                        } catch (e: Exception) {
+                            e.printStackTrace()
                         }
-                        result.add(entity)
                     }
                 }
         }
@@ -52,7 +57,7 @@ class NeisMealService(
     suspend fun saveMeals() {
         val meals = schoolRepository.findAll().flatMapIndexed { idx, school ->
             val meals = getMeals(school)
-            println("$idx, ${meals.size}")
+            println("[$idx] school.id - ${school.id} , size - ${meals.size}")
             return@flatMapIndexed meals
         }
         println(meals.size)

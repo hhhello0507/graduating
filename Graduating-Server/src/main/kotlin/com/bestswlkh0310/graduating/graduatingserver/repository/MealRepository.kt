@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface MealRepository: JpaRepository<MealEntity, Long>
+interface MealRepository: JpaRepository<MealEntity, Long> {
+    fun findBySchoolId(schoolId: Long): List<MealEntity>
+}

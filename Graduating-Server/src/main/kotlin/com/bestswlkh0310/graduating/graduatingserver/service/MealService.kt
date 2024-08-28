@@ -1,5 +1,6 @@
 package com.bestswlkh0310.graduating.graduatingserver.service
 
+import com.bestswlkh0310.graduating.graduatingserver.entity.MealEntity
 import com.bestswlkh0310.graduating.graduatingserver.repository.MealRepository
 import com.bestswlkh0310.graduating.graduatingserver.service.neis.NeisMealService
 import kotlinx.coroutines.Dispatchers
@@ -18,5 +19,9 @@ class MealService(
         runBlocking {
             neisMealService.saveMeals()
         }
+    }
+
+    fun getMeals(schoolId: Long): List<MealEntity> {
+        return mealRepository.findBySchoolId(schoolId = schoolId)
     }
 }
