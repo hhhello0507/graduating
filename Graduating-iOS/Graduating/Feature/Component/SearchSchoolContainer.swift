@@ -52,7 +52,7 @@ public struct SearchSchoolContainer: View {
                                     .init(title: "\(school.name) 학생이 맞으신가요?")
                                     .primaryButton("네, 맞아요") {
                                         appState.school = school
-//                                        appState.fetchGraduating(id: school.id)
+                                        appState.fetchGraduating(id: school.id)
                                         selectAction()
                                     }.secondaryButton("닫기")
                                 )

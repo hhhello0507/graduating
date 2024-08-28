@@ -53,7 +53,7 @@ struct MainView: View {
     }
     
     func handleGraduating(_ graduating: Graduating?) {
-        if graduating == nil,
+        if appState.graduatingFetchFailure,
            let school = appState.school {
             appState.graduating = .init(id: -1, graduatingDay: nextFebruaryFirst(from: .now) ?? .now, schoolId: school.id)
             dialogProvider.present(
