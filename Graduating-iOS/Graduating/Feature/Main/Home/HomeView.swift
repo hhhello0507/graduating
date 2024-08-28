@@ -7,6 +7,7 @@ struct HomeView: View {
     
     @EnvironmentObject private var appState: AppState
     @StateObject private var graduatingViewModel = GraduatingViewModel()
+    @StateObject private var mealViewModel = MealViewModel()
     
     var body: some View {
         MyTopAppBar.default(title: "홈") { insets in
@@ -28,17 +29,31 @@ struct HomeView: View {
                             .padding(6)
                         }
                     }
+                    if let meals = mealViewModel.meals {
+                        MyCardView(title: "급식") {
+                            HomeMealContainer(meals: meals)
+                        }
+                    }
                 }
                 .padding(insets)
             }
         }
         .onAppear {
-            guard let grade = appState.grade,
-                  let graduating = appState.graduating else {
-                return
+            // 도대체 왜 R.U.S.T.를 쓰지 않는 것인가???????????????????? S.C..O.P.E..... 마렵다 정말
+            run {
+                guard let grade = appState.grade,
+                      let graduating = appState.graduating else {
+                    return
+                }
+                let limit = appState.school?.type?.limit ?? 3
+                graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
             }
-            let limit = appState.school?.type?.limit ?? 3
-            graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
+            run {
+                guard let school = appState.school else {
+                    return
+                }
+                mealViewModel.fetchMeals(schoolId: school.id)
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ import Data
 import Combine
 
 public final class MealViewModel: ObservableObject {
-    @Published var meals: [Meal] = []
+    @Published var meals: [Meal]?
     var subscriptions = Set<AnyCancellable>()
     
     func fetchMeals(schoolId: Int) {
