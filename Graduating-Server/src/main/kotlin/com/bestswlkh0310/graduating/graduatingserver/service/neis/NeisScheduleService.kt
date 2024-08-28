@@ -1,10 +1,11 @@
-package com.bestswlkh0310.graduating.graduatingserver.service
+package com.bestswlkh0310.graduating.graduatingserver.service.neis
 
-import com.bestswlkh0310.graduating.graduatingserver.config.NeisApi
+import com.bestswlkh0310.graduating.graduatingserver.config.Properties
 import com.bestswlkh0310.graduating.graduatingserver.entity.GraduatingEntity
 import com.bestswlkh0310.graduating.graduatingserver.entity.SchoolEntity
 import com.bestswlkh0310.graduating.graduatingserver.entity.SchoolType
 import com.bestswlkh0310.graduating.graduatingserver.repository.GraduatingRepository
+import com.bestswlkh0310.graduating.graduatingserver.repository.NeisRepository
 import com.bestswlkh0310.graduating.graduatingserver.repository.SchoolRepository
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
@@ -13,22 +14,15 @@ import org.springframework.stereotype.Service
 import java.io.File
 import java.nio.charset.StandardCharsets
 
+// TODO: 코드 개선 (함수)
+// 다음 연도가 되면 개선할 듯.......
 @Service
-class NeisService(
+class NeisScheduleService(
     private val schoolRepository: SchoolRepository,
     private val graduatingRepository: GraduatingRepository,
-    private val neisApi: NeisApi,
-    @Value("\${secret.neis.apikey}") private val apiKey: String
+    private val neisApi: NeisRepository,
+    private val properties: Properties
 ) {
-
-    private fun getSchoolType(str: String): SchoolType? {
-        return when (str) {
-            "초등학교" -> SchoolType.ELEMENTARY
-            "중학교" -> SchoolType.MIDDLE
-            "고등학교" -> SchoolType.HIGH
-            else -> null
-        }
-    }
 
     fun importCsv(filePath: String) {
         val file = File(filePath)
@@ -38,7 +32,7 @@ class NeisService(
             val v = record.toList()
             val school = SchoolEntity(
                 name = v[0],
-                type = getSchoolType(v[1]),
+                type = SchoolType.ofKorean(v[1]),
                 cityName = v[2],
                 postalCode = v[3],
                 address = v[4],
@@ -59,25 +53,23 @@ class NeisService(
     suspend fun getSchoolDate(school: SchoolEntity) {
         try {
             val response = neisApi.getSchoolSchedule(
-                key = apiKey,
-                type = "json",
+                key = properties.neisApiKey,
                 code = school.officeCode,
                 schoolCode = school.code,
                 fromDate = "20241201",
                 toDate = "20250301"
             )
             var includeGraduating = false
-            response?.schoolSchedule?.let { res ->
-                res
-                    .mapNotNull { it?.row }
+            response?.SchoolSchedule?.let { res ->
+                res.mapNotNull { it?.row }
                     .forEach { rows ->
                         rows.forEach { row ->
-                            if (row.eventNm.contains("졸업")) {
-                                println("✅ - ${school.name} - ${row.eventNm}")
+                            if (row.EVENT_NM.contains("졸업")) {
+                                println("✅ - ${school.name} - ${row.EVENT_NM}")
                                 includeGraduating = true
                                 val entity = GraduatingEntity(
                                     schoolId = school.id,
-                                    graduatingDay = row.aaYmd,
+                                    graduatingDay = row.AA_YMD,
                                 )
                                 graduatingRepository.save(entity)
                             }
@@ -86,15 +78,11 @@ class NeisService(
             }
 
             if (!includeGraduating) {
-                println("❌ - ${school.name} - 알 수 없음 ${response?.schoolSchedule}")
+                println("❌ - ${school.name} - 알 수 없음 ${response?.SchoolSchedule}")
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
-//        val headers = HttpHeaders().apply {
-//            set("Accept", "*/*")
-//            set("User-Agent", "PostmanRuntime/7.41.1")
-//        }
     }
 
     suspend fun getSchoolsDate() {
