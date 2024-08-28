@@ -16,6 +16,11 @@
 		250F33DA2C7F3E38001FCFCB /* HomeInfoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250F33D92C7F3E38001FCFCB /* HomeInfoContainer.swift */; };
 		250F33DC2C7F3EA0001FCFCB /* HomeGraduatingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250F33DB2C7F3EA0001FCFCB /* HomeGraduatingContainer.swift */; };
 		250F33DE2C7F3F3D001FCFCB /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250F33DD2C7F3F3D001FCFCB /* MealViewModel.swift */; };
+		250F33E12C7F3FFC001FCFCB /* MealService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250F33E02C7F3FFC001FCFCB /* MealService.swift */; };
+		250F33E72C7F401F001FCFCB /* EndpointExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250F33E62C7F401F001FCFCB /* EndpointExt.swift */; };
+		250F33E92C7F407D001FCFCB /* FetchMealReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250F33E82C7F407D001FCFCB /* FetchMealReq.swift */; };
+		250F33EB2C7F4089001FCFCB /* ReqProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250F33EA2C7F4089001FCFCB /* ReqProtocol.swift */; };
+		250F33EE2C7F414D001FCFCB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250F33ED2C7F414D001FCFCB /* Result.swift */; };
 		250FD0852C74AF100070503B /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 250FD0842C74AF100070503B /* CombineMoya */; };
 		250FD0872C74AF100070503B /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 250FD0862C74AF100070503B /* Moya */; };
 		253DC2992C7EAB3C0047C401 /* UserDefaultsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253DC2982C7EAB3C0047C401 /* UserDefaultsExt.swift */; };
@@ -185,6 +190,11 @@
 		250F33D92C7F3E38001FCFCB /* HomeInfoContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInfoContainer.swift; sourceTree = "<group>"; };
 		250F33DB2C7F3EA0001FCFCB /* HomeGraduatingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGraduatingContainer.swift; sourceTree = "<group>"; };
 		250F33DD2C7F3F3D001FCFCB /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
+		250F33E02C7F3FFC001FCFCB /* MealService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealService.swift; sourceTree = "<group>"; };
+		250F33E62C7F401F001FCFCB /* EndpointExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointExt.swift; sourceTree = "<group>"; };
+		250F33E82C7F407D001FCFCB /* FetchMealReq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMealReq.swift; sourceTree = "<group>"; };
+		250F33EA2C7F4089001FCFCB /* ReqProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqProtocol.swift; sourceTree = "<group>"; };
+		250F33ED2C7F414D001FCFCB /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		253DC2982C7EAB3C0047C401 /* UserDefaultsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExt.swift; sourceTree = "<group>"; };
 		253DC2BB2C7ED21C0047C401 /* SchoolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolType.swift; sourceTree = "<group>"; };
 		2560F1732C746C16007009E2 /* Graduating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graduating.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -289,6 +299,7 @@
 			children = (
 				250F33D42C7F3D34001FCFCB /* Meal.swift */,
 				250F33D62C7F3D5D001FCFCB /* MealType.swift */,
+				250F33E82C7F407D001FCFCB /* FetchMealReq.swift */,
 			);
 			path = Meal;
 			sourceTree = "<group>";
@@ -300,6 +311,32 @@
 				250F33DB2C7F3EA0001FCFCB /* HomeGraduatingContainer.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		250F33DF2C7F3FF9001FCFCB /* Meal */ = {
+			isa = PBXGroup;
+			children = (
+				250F33E02C7F3FFC001FCFCB /* MealService.swift */,
+			);
+			path = Meal;
+			sourceTree = "<group>";
+		};
+		250F33E42C7F4019001FCFCB /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				250F33E62C7F401F001FCFCB /* EndpointExt.swift */,
+				250F33ED2C7F414D001FCFCB /* Result.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		250F33EC2C7F408B001FCFCB /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				250F33EA2C7F4089001FCFCB /* ReqProtocol.swift */,
+				250364422C762B6700A93625 /* ModelProtocol.swift */,
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 		250FD0812C74AEAE0070503B /* Feature */ = {
@@ -318,6 +355,8 @@
 		250FD0822C74AEBA0070503B /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				250F33E42C7F4019001FCFCB /* Foundation */,
+				250F33DF2C7F3FF9001FCFCB /* Meal */,
 				25C4CCFA2C74B46C00DB83B3 /* School */,
 			);
 			path = Network;
@@ -511,7 +550,7 @@
 		258172E42C7A16EA00D2691E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				250364422C762B6700A93625 /* ModelProtocol.swift */,
+				250F33EC2C7F408B001FCFCB /* Foundation */,
 				258172EB2C7A16F600D2691E /* Graduating */,
 				258172EA2C7A16F400D2691E /* School */,
 				250F33D32C7F3D2F001FCFCB /* Meal */,
@@ -825,6 +864,8 @@
 				253DC2BC2C7ED21C0047C401 /* SchoolType.swift in Sources */,
 				258172EF2C7A175400D2691E /* School.swift in Sources */,
 				250F33D72C7F3D5D001FCFCB /* MealType.swift in Sources */,
+				250F33E92C7F407D001FCFCB /* FetchMealReq.swift in Sources */,
+				250F33EB2C7F4089001FCFCB /* ReqProtocol.swift in Sources */,
 				258172F42C7A18AB00D2691E /* Graduating.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -835,7 +876,10 @@
 			files = (
 				25C962BB2C7B068700EB872E /* SchoolService.swift in Sources */,
 				25C962BD2C7B068700EB872E /* UserDefaultsType.swift in Sources */,
+				250F33E72C7F401F001FCFCB /* EndpointExt.swift in Sources */,
 				25C962BE2C7B068700EB872E /* Secret.swift in Sources */,
+				250F33EE2C7F414D001FCFCB /* Result.swift in Sources */,
+				250F33E12C7F3FFC001FCFCB /* MealService.swift in Sources */,
 				253DC2992C7EAB3C0047C401 /* UserDefaultsExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
