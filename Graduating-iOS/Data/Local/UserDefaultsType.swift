@@ -7,25 +7,29 @@
 
 import Foundation
 
-public enum UserDefaultsType: String {
-    case school
-    case grade
-    case graduating
+public protocol UserDefaultsProtocol: RawRepresentable<Self.Key> {
+    
+    typealias Key = String
+
+    var userDefaults: UserDefaults { get }
 }
 
-public extension UserDefaults {
-    static var graduating: UserDefaults {
-        let appGroupId = "group.hhhello0507.graduating"
-        return UserDefaults(suiteName: appGroupId) ?? .standard
-    }
-}
-
-public extension UserDefaultsType {
+public extension UserDefaultsProtocol {
     var value: Any? {
-        UserDefaults.graduating.value(forKey: self.rawValue)
+        userDefaults.value(forKey: self.rawValue)
     }
     
     func set(_ value: Any?) {
-        UserDefaults.graduating.setValue(value, forKey: self.rawValue)
+        userDefaults.setValue(value, forKey: self.rawValue)
+    }
+}
+
+public enum UserDefaultsType: String, UserDefaultsProtocol {
+    case school
+    case grade
+    case graduating
+    
+    public var userDefaults: UserDefaults {
+        UserDefaults.graduating
     }
 }
