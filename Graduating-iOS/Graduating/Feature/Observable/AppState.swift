@@ -44,6 +44,7 @@ final class AppState: ObservableObject {
             UserDefaultsType.graduating.set(json)
         }
     }
+    @Published var graduatingFetchFailure = false
     var subject = PassthroughSubject<Subject, Never>()
     var subscriptions = Set<AnyCancellable>()
     
@@ -53,6 +54,8 @@ final class AppState: ObservableObject {
                 switch result {
                 case .failure:
                     self.graduating = nil
+                    self.graduatingFetchFailure = true
+                    print("Failure")
                     break
                 default:
                     break
@@ -60,6 +63,7 @@ final class AppState: ObservableObject {
             } receiveValue: { response in
                 self.subject.send(.fetchedGraduating(response))
                 self.graduating = response
+                print("Success")
             }
             .store(in: &subscriptions)
     }
