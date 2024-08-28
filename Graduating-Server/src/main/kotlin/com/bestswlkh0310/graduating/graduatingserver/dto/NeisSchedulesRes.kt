@@ -2,7 +2,7 @@ package com.bestswlkh0310.graduating.graduatingserver.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class EventRow(
+data class NeisScheduleRowRes(
     @SerializedName("ATPT_OFCDC_SC_CODE") val atptOfcdcScCode: String,
     @SerializedName("SD_SCHUL_CODE") val sdSchulCode: String,
     val AY: String,
@@ -23,10 +23,10 @@ data class EventRow(
     @SerializedName("LOAD_DTM") val loadDtm: String
 )
 
-data class SchoolScheduleResponse(
-    val row: List<EventRow>
+data class NeisScheduleRes(
+    val row: List<NeisScheduleRowRes>
 )
 
-data class SchoolSchedulesResponse(
-    @SerializedName("SchoolSchedule") val schoolSchedule: List<SchoolScheduleResponse?>?
+data class NeisSchedulesRes(
+    @SerializedName("SchoolSchedule") val schoolSchedule: List<NeisScheduleRes?>?
 )
