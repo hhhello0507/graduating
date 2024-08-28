@@ -1,5 +1,5 @@
 {
-  "originHash" : "bbebe81054a542303a8e4740c36059d68e330fab2c527be3e4af803a647898cf",
+  "originHash" : "c94a38c0b21af2a9355acc3c9c7df3c628c63276195eaf61c68acc2a4dfc2756",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -20,9 +20,9 @@
       }
     },
     {
-      "identity" : "my-ios-designsystem",
+      "identity" : "my-ios-kit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/hhhello0507/my-ios-designsystem",
+      "location" : "https://github.com/hhhello0507/my-ios-kit",
       "state" : {
         "revision" : "71851103a3218d9ce4bb5d6688909633629c021c",
         "version" : "1.3.0"
