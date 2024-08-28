@@ -17,6 +17,7 @@
 		253DC2B42C7EBEAC0047C401 /* MyMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 253DC2B32C7EBEAC0047C401 /* MyMoya */; };
 		253DC2B62C7EBEAC0047C401 /* MyShared in Frameworks */ = {isa = PBXBuildFile; productRef = 253DC2B52C7EBEAC0047C401 /* MyShared */; };
 		253DC2B82C7EBEB30047C401 /* MyDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 253DC2B72C7EBEB30047C401 /* MyDesignSystem */; };
+		253DC2BC2C7ED21C0047C401 /* SchoolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253DC2BB2C7ED21C0047C401 /* SchoolType.swift */; };
 		2560F1772C746C16007009E2 /* GraduatingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2560F1762C746C16007009E2 /* GraduatingApp.swift */; };
 		2560F17B2C746C19007009E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2560F17A2C746C19007009E2 /* Assets.xcassets */; };
 		2560F17E2C746C19007009E2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2560F17D2C746C19007009E2 /* Preview Assets.xcassets */; };
@@ -173,6 +174,7 @@
 		250EAE212C7DDBEF00D9FF5E /* Graduating.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Graduating.entitlements; sourceTree = "<group>"; };
 		250EAE222C7DDC6500D9FF5E /* Graduating-WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Graduating-WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		253DC2982C7EAB3C0047C401 /* UserDefaultsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExt.swift; sourceTree = "<group>"; };
+		253DC2BB2C7ED21C0047C401 /* SchoolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolType.swift; sourceTree = "<group>"; };
 		2560F1732C746C16007009E2 /* Graduating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graduating.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2560F1762C746C16007009E2 /* GraduatingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraduatingApp.swift; sourceTree = "<group>"; };
 		2560F17A2C746C19007009E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 			isa = PBXGroup;
 			children = (
 				25C4CCFB2C74B47700DB83B3 /* School.swift */,
+				253DC2BB2C7ED21C0047C401 /* SchoolType.swift */,
 			);
 			path = School;
 			sourceTree = "<group>";
@@ -780,6 +783,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				258172F02C7A177400D2691E /* ModelProtocol.swift in Sources */,
+				253DC2BC2C7ED21C0047C401 /* SchoolType.swift in Sources */,
 				258172EF2C7A175400D2691E /* School.swift in Sources */,
 				258172F42C7A18AB00D2691E /* Graduating.swift in Sources */,
 			);
