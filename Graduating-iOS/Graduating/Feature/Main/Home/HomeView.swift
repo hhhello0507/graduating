@@ -36,24 +36,30 @@ struct HomeView: View {
                     }
                 }
                 .padding(insets)
+                .padding(.bottom, 80)
+            }
+            .refreshable {
+                onAppear()
             }
         }
-        .onAppear {
-            // 도대체 왜 R.U.S.T.를 쓰지 않는 것인가???????????????????? S.C..O.P.E..... 마렵다 정말
-            run {
-                guard let grade = appState.grade,
-                      let graduating = appState.graduating else {
-                    return
-                }
-                let limit = appState.school?.type?.limit ?? 3
-                graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
+        .onAppear(perform: onAppear)
+    }
+    
+    func onAppear() {
+        // 도대체 왜 R.U.S.T.를 쓰지 않는 것인가???????????????????? S.C..O.P.E..... 마렵다 정말
+        run {
+            guard let grade = appState.grade,
+                  let graduating = appState.graduating else {
+                return
             }
-            run {
-                guard let school = appState.school else {
-                    return
-                }
-                mealViewModel.fetchMeals(schoolId: school.id)
+            let limit = appState.school?.type?.limit ?? 3
+            graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
+        }
+        run {
+            guard let school = appState.school else {
+                return
             }
+            mealViewModel.fetchMeals(schoolId: school.id)
         }
     }
 }

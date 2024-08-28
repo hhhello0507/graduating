@@ -18,25 +18,42 @@ public struct HomeMealContainer: View {
     }
     
     public var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 8) {
             ForEach(meals, id: \.id) { meal in
-                VStack(spacing: 12) {
+                VStack(alignment: .leading, spacing: 12) {
                     HStack(spacing: 0) {
-                        //                DodamTag(type.label, type: .primary)
+                        if let mealType = meal.mealType?.korean {
+                            Text(mealType)
+                                .myFont(.bodyM)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 4)
+                                .foreground(Colors.Static.white)
+                                .background(Colors.Primary.normal)
+                                .cornerRadius(12, corners: .allCorners)
+                        }
                         Spacer()
                         Text("\(Int(meal.calorie))Kcal")
                             .myFont(.labelM)
                             .foreground(Colors.Label.alternative)
                     }
-                    Text(meal.menu.split(separator: "<br/>").joined(separator: "\n"))
-                        .myFont(.bodyB)
-                        .foreground(Colors.Label.normal)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    VStack(alignment: .leading, spacing: 2) {
+                        let menus = meal.menu.split(separator: "<br/>")
+                        ForEach(meals.indices, id: \.self) { index in
+                            Text(menus[index])
+                                .myFont(.bodyR)
+                                .foreground(Colors.Label.normal)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }
                 }
+                .padding(12)
+                .background {
+                    Colors.Background.neutral.box.color
+                        .opacity(0.25)
+                }
+                .cornerRadius(18, corners: .allCorners)
             }
         }
-        .padding(16)
         .background(Colors.Background.normal)
-        .cornerRadius(28, corners: .allCorners)
     }
 }

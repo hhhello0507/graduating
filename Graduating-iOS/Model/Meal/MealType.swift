@@ -11,4 +11,12 @@ public enum MealType: String, ModelProtocol {
     case BREAKFAST
     case LAUNCH
     case DINNER
+    
+    public var korean: String {
+        switch self {
+        case .BREAKFAST: "조식"
+        case .LAUNCH: "중식"
+        case .DINNER: "석식"
+        }
+    }
 }
