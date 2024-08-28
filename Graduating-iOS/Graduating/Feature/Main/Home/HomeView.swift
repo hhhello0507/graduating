@@ -33,6 +33,9 @@ struct HomeView: View {
                         MyCardView(title: "급식") {
                             HomeMealContainer(meals: meals)
                         }
+                    } else if !mealViewModel.mealsFetchFailure {
+                        ProgressView()
+                            .padding(.top, 100)
                     }
                 }
                 .padding(insets)

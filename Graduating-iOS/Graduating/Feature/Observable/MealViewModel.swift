@@ -12,6 +12,7 @@ import Combine
 
 public final class MealViewModel: ObservableObject {
     @Published var meals: [Meal]?
+    @Published var mealsFetchFailure = false
     var subscriptions = Set<AnyCancellable>()
     
     func fetchMeals(schoolId: Int) {
@@ -21,6 +22,7 @@ public final class MealViewModel: ObservableObject {
         .sink { result in
             if case .failure = result {
                 self.meals = nil
+                self.mealsFetchFailure = true
             }
         } receiveValue: { res in
             self.meals = res
