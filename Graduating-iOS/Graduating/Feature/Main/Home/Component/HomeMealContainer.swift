@@ -20,7 +20,7 @@ public struct HomeMealContainer: View {
     public var body: some View {
         VStack(spacing: 8) {
             ForEach(meals, id: \.id) { meal in
-                VStack(alignment: .leading, spacing: 12) {
+                VStack(spacing: 12) {
                     HStack(spacing: 0) {
                         if let mealType = meal.mealType?.korean {
                             Text(mealType)
@@ -32,14 +32,14 @@ public struct HomeMealContainer: View {
                                 .cornerRadius(12, corners: .allCorners)
                         }
                         Spacer()
-                        Text("\(Int(meal.calorie))Kcal")
+                        Text("\(Int(meal.calorie)) Kcal")
                             .myFont(.labelM)
                             .foreground(Colors.Label.alternative)
                     }
-                    VStack(alignment: .leading, spacing: 2) {
+                    VStack(spacing: 2) {
                         let menus = meal.menu.split(separator: "<br/>")
-                        ForEach(meals.indices, id: \.self) { index in
-                            Text(menus[index])
+                        ForEach(Array(menus.enumerated()), id: \.offset) { index, menu in
+                            Text(menu)
                                 .myFont(.bodyR)
                                 .foreground(Colors.Label.normal)
                                 .frame(maxWidth: .infinity, alignment: .leading)
