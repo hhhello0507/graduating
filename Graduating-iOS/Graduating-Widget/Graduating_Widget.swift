@@ -19,22 +19,22 @@ struct Graduating_WidgetEntryView: View {
         self.entry = entry
     }
     
-    private var graduatingText: String {
-        if [.systemSmall].contains(widgetFamily) {
-            String(format: "%.3f%%", entry.remainTimePercent * 100)
-        } else {
-            String(format: "%.7f%%", entry.remainTimePercent * 100)
-        }
+    private var isSmall: Bool {
+        [.systemSmall].contains(widgetFamily)
     }
-
+    
     var body: some View {
         VStack {
             Text("졸업까지")
                 .font(.caption)
                 .foreground(Colors.Label.assistive)
-            Text(graduatingText)
+            Text(String(format: isSmall ? "%.3f%%" : "%.7f%%", entry.remainTimePercent * 100))
                 .font(.title)
                 .foreground(Colors.Label.normal)
+            Text(entry.remainTime.🎓)
+                .font(isSmall ? .caption2 : .caption)
+                .foreground(Colors.Label.alternative)
+                .multilineTextAlignment(.center)
         }
         .background(Colors.Background.neutral)
         .padding(15)
