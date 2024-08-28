@@ -12,49 +12,21 @@ struct HomeView: View {
         MyTopAppBar.default(title: "홈") { insets in
             ScrollView {
                 VStack(spacing: 10) {
-                    MyCardView(title: "내 정보") {
-                        VStack(spacing: 4) {
-                            HStack(spacing: 8) {
-                                Text("학교")
-                                    .myFont(.bodyB)
-                                    .foreground(Colors.Label.assistive)
-                                if let school = appState.school {
-                                    Text(school.name)
-                                        .myFont(.bodyM)
-                                        .foreground(Colors.Label.alternative)
-                                }
-                                Spacer()
-                            }
-                            HStack(spacing: 8) {
-                                Text("학년")
-                                    .myFont(.bodyB)
-                                    .foreground(Colors.Label.assistive)
-                                if let grade = appState.grade {
-                                    Text("\(grade)학년")
-                                        .myFont(.bodyM)
-                                        .foreground(Colors.Label.alternative)
-                                }
-                                Spacer()
-                            }
+                    if let grade = appState.grade,
+                       let school = appState.school {
+                        MyCardView(title: "내 정보") {
+                            HomeInfoContainer(school: school, grade: grade)
+                            .padding(6)
                         }
-                        .padding(6)
                     }
-                    MyCardView(title: "졸업까지") {
-                        HStack {
-                            if let remainTime = graduatingViewModel.remainTime {
-                                VStack(alignment: .leading, spacing: 0) {
-                                    Text(String(format: "%.7f%%", graduatingViewModel.remainTimePercent * 100))
-                                        .myFont(.headlineM)
-                                        .foreground(Colors.Label.strong)
-                                    Text(remainTime.🎓)
-                                    .myFont(.labelR)
-                                    .foreground(Colors.Label.alternative)
-                                }
-                            }
-                            Spacer()
-                            MyCircularProgressView(progress: graduatingViewModel.remainTimePercent)
+                    if let remainTime = graduatingViewModel.remainTime {
+                        MyCardView(title: "졸업까지") {
+                            HomeGraduatingContainer(
+                                remainTime: remainTime,
+                                remainTimePercent: graduatingViewModel.remainTimePercent
+                            )
+                            .padding(6)
                         }
-                        .padding(6)
                     }
                 }
                 .padding(insets)
