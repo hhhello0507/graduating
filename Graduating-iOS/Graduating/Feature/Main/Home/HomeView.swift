@@ -31,7 +31,14 @@ struct HomeView: View {
                     }
                     if let meals = mealViewModel.meals {
                         MyCardView(title: "급식") {
-                            HomeMealContainer(meals: meals)
+                            if meals.isEmpty {
+                                Text("급식이 없어요")
+                                    .myFont(.bodyM)
+                                    .foreground(Colors.Label.assistive)
+                                    .frame(height: 60)
+                            } else {
+                                HomeMealContainer(meals: meals)
+                            }
                         }
                     } else if !mealViewModel.mealsFetchFailure {
                         ProgressView()
