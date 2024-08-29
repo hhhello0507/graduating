@@ -21,12 +21,6 @@ class MealService(
     private val schoolRepository: SchoolRepository,
     private val neisMealService: NeisMealService
 ) {
-//    fun handleMeals() {
-//        mealRepository.deleteAll()
-//        runBlocking {
-//            neisMealService.saveMeals()
-//        }
-//    }
 
     fun getMeals(schoolId: Long): List<MealRes> {
         val school = schoolRepository.findByIdOrNull(schoolId) ?: throw Exception("No school with id $schoolId")
@@ -46,5 +40,9 @@ class MealService(
             mealRepository.saveAll(meals)
                 .map { MealRes.of(it) }
         }
+    }
+
+    fun deleteMealAll() {
+        mealRepository.deleteAll()
     }
 }
