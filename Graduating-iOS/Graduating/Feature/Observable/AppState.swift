@@ -10,7 +10,7 @@ import Foundation
 import Model
 import Data
 
-final class AppState: ObservableObject {
+final class AppState: BaseViewModel {
     
     enum Subject {
         case fetchedGraduating(Graduating)
@@ -46,25 +46,17 @@ final class AppState: ObservableObject {
     }
     @Published var graduatingFetchFailure = false
     var subject = PassthroughSubject<Subject, Never>()
-    var subscriptions = Set<AnyCancellable>()
     
     func fetchGraduating(id: Int) {
         SchoolService.shared.getGraduating(id: id)
-            .sink { result in
-                switch result {
-                case .failure:
-                    self.graduating = nil
-                    self.graduatingFetchFailure = true
-                    print("Failure")
-                    break
-                default:
-                    break
-                }
-            } receiveValue: { response in
-                self.subject.send(.fetchedGraduating(response))
-                self.graduating = response
-                print("Success")
+            .failure { error in
+                self.graduating = nil
+                self.graduatingFetchFailure = true
             }
-            .store(in: &subscriptions)
+            .success { res in
+                self.subject.send(.fetchedGraduating(res))
+                self.graduating = res
+            }
+            .observe(&subscriptions)
     }
 }

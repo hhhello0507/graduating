@@ -17,12 +17,10 @@ final class SearchSchoolViewModel: ObservableObject {
     
     func fetchSchools() {
         SchoolService.shared.getSchools()
-            .sink { result in
-                print(result)
-            } receiveValue: { response in
-                self.schools = response
+            .success { res in
+                self.schools = res
             }
-            .store(in: &subscriptions)
+            .observe(&subscriptions)
     }
     
     deinit {

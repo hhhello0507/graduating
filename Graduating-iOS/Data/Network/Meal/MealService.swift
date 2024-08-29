@@ -33,8 +33,8 @@ extension MealEndpoint {
 }
 
 public final class MealService: Service<MealEndpoint> {
-    public func fetchMeals(schoolId: Int) -> Result<[Meal]> {
-        performRequest(.fetchMeals(schoolId: schoolId), res: [Meal].self)
+    public func fetchMeals(schoolId: Int) -> ObservableResult<[Meal]> {
+        performRequest(.fetchMeals(schoolId: schoolId), res: [Meal].self).observe()
     }
     
     public static let shared = MealService(allowLog: true)

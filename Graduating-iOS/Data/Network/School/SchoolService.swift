@@ -26,11 +26,11 @@ public final class SchoolService: Service<SchoolEndpoint> {
     
     public static let shared = SchoolService(allowLog: true)
     
-    public func getSchools() -> Result<[School]> {
-        performRequest(.getSchools, res: [School].self)
+    public func getSchools() -> ObservableResult<[School]> {
+        performRequest(.getSchools, res: [School].self).observe()
     }
     
-    public func getGraduating(id: Int) -> Result<Graduating> {
-        performRequest(.getGraduating(id: id), res: Graduating.self)
+    public func getGraduating(id: Int) -> ObservableResult<Graduating> {
+        performRequest(.getGraduating(id: id), res: Graduating.self).observe()
     }
 }
