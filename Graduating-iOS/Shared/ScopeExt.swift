@@ -8,8 +8,8 @@
 import Foundation
 
 @inlinable
-public func run(
-    block: () -> Void
-) {
-    block()
+public func run<T>(
+    block: () -> T
+) -> T {
+    return block()
 }
