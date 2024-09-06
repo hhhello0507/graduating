@@ -14,11 +14,7 @@ class SchoolController(
 ) {
     @GetMapping("", "/")
     fun getSchools() = schoolService.getSchools()
-        .let { ResponseEntity.ok(it) }
 
     @GetMapping("graduating", "graduating/")
-    fun getGraduatingSchools(
-        @RequestParam("id") id: Long,
-    ) = schoolService.getGraduating(id)
-        .let { ResponseEntity.ok(it) }
+    fun getGraduatingSchools(@RequestParam("id") id: Long, ) = schoolService.getGraduating(id)
 }

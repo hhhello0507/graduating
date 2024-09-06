@@ -1,7 +1,6 @@
 package com.bestswlkh0310.graduating.graduatingserver.controller
 
 import com.bestswlkh0310.graduating.graduatingserver.service.MealService
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 
@@ -14,5 +13,4 @@ class MealController(
     fun getMeals(
         @PathVariable("schoolId") schoolId: Long,
     ) = mealService.getMeals(schoolId)
-        .let { ResponseEntity.ok(it) }
 }

@@ -1,19 +1,13 @@
 package com.bestswlkh0310.graduating.graduatingserver.service
 
-import com.bestswlkh0310.graduating.graduatingserver.common.parse
 import com.bestswlkh0310.graduating.graduatingserver.dto.MealRes
-import com.bestswlkh0310.graduating.graduatingserver.entity.MealEntity
 import com.bestswlkh0310.graduating.graduatingserver.repository.MealRepository
 import com.bestswlkh0310.graduating.graduatingserver.repository.SchoolRepository
+import com.bestswlkh0310.graduating.graduatingserver.repository.getBy
 import com.bestswlkh0310.graduating.graduatingserver.service.neis.NeisMealService
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
-import org.springframework.data.repository.findByIdOrNull
-import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import java.time.LocalDate
-import java.time.LocalDateTime
 
 @Service
 class MealService(
@@ -23,7 +17,7 @@ class MealService(
 ) {
 
     fun getMeals(schoolId: Long): List<MealRes> {
-        val school = schoolRepository.findByIdOrNull(schoolId) ?: throw Exception("No school with id $schoolId")
+        val school = schoolRepository.getBy(schoolId)
 
         val currentTime = LocalDate.now()
         val schools = mealRepository.findBySchoolIdAndMealDate(schoolId, currentTime)
