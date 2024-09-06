@@ -32,6 +32,7 @@ class MealService(
                 school = school,
             )
             mealRepository.saveAll(meals)
+                .filter { it.mealDate == currentTime }
                 .map { MealRes.of(it) }
         }
     }
