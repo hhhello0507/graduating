@@ -5,7 +5,12 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Entity
-@Table(name = "meal")
+@Table(
+    name = "meal",
+    uniqueConstraints = [
+        UniqueConstraint(name = "UniqueMealDateAndMealType", columnNames = ["mealDate", "mealType"])
+    ]
+)
 class MealEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

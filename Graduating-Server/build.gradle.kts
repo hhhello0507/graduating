@@ -33,7 +33,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-//    runtimeOnly("com.mysql:mysql-connector-j")
+    
+    runtimeOnly("com.mysql:mysql-connector-j")
 //    implementation("org.mariadb.jdbc:mariadb-java-client:3.1.0")
 
     implementation("org.postgresql:postgresql:42.7.2")
