@@ -6,17 +6,20 @@ import Shared
 enum Item: BottomAppBarItem {
     
     case home
+    case meal
     case profile
     
     var icon: Iconable {
         switch self {
         case .home: Icons.Feature.Home
+        case .meal: Icons.Feature.Utensils
         case .profile: Icons.Feature.Person
         }
     }
     var text: String {
         switch self {
         case .home: "홈"
+        case .meal: "급식"
         case .profile: "프로필"
         }
     }
@@ -24,6 +27,7 @@ enum Item: BottomAppBarItem {
 
 let data = [
     Item.home,
+    Item.meal,
     Item.profile
 ]
 
@@ -32,6 +36,9 @@ struct MainView: View {
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var appState: AppState
     @EnvironmentObject private var dialogProvider: DialogProvider
+    
+    @StateObject private var mealViewModel = MealViewModel()
+    
     @State private var selectedTab = data[0]
     
     var body: some View {
@@ -40,11 +47,14 @@ struct MainView: View {
         } content: {
             switch selectedTab {
             case .home: HomeView()
+            case .meal: MealView()
+                    .environmentObject(mealViewModel)
             case .profile: ProfileView()
             }
         }
         .onAppear {
             handleGraduating(appState.graduating)
+            fetchMeals()
         }
         .onChange(of: appState.graduating) {
             selectedTab = .home
@@ -61,5 +71,12 @@ struct MainView: View {
                 .message("대신 졸업 날짜가 2월 1일로 설정 되었습니다!")
             )
         }
+    }
+    
+    func fetchMeals() {
+        guard let school = appState.school else {
+            return
+        }
+        mealViewModel.fetchMeals(schoolId: school.id)
     }
 }

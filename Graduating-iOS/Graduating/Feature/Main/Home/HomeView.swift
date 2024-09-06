@@ -7,7 +7,6 @@ struct HomeView: View {
     
     @EnvironmentObject private var appState: AppState
     @StateObject private var graduatingViewModel = GraduatingViewModel()
-    @StateObject private var mealViewModel = MealViewModel()
     
     var body: some View {
         MyTopAppBar.default(title: "홈") { insets in
@@ -17,7 +16,7 @@ struct HomeView: View {
                        let school = appState.school {
                         MyCardView(title: "내 정보") {
                             HomeInfoContainer(school: school, grade: grade)
-                            .padding(6)
+                                .padding(6)
                         }
                     }
                     if let remainTime = graduatingViewModel.remainTime {
@@ -28,21 +27,6 @@ struct HomeView: View {
                             )
                             .padding(6)
                         }
-                    }
-                    if let meals = mealViewModel.meals {
-                        MyCardView(title: "급식") {
-                            if meals.isEmpty {
-                                Text("급식이 없어요")
-                                    .myFont(.bodyM)
-                                    .foreground(Colors.Label.assistive)
-                                    .frame(height: 60)
-                            } else {
-                                HomeMealContainer(meals: meals)
-                            }
-                        }
-                    } else if !mealViewModel.mealsFetchFailure {
-                        ProgressView()
-                            .padding(.top, 100)
                     }
                 }
                 .padding(insets)
@@ -56,21 +40,12 @@ struct HomeView: View {
     }
     
     func onAppear() {
-        // 도대체 왜 R.U.S.T.를 쓰지 않는 것인가???????????????????? S.C..O.P.E..... 마렵다 정말
-        run {
-            guard let grade = appState.grade,
-                  let graduating = appState.graduating else {
-                return
-            }
-            let limit = appState.school?.type?.limit ?? 3
-            graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
+        guard let grade = appState.grade,
+              let graduating = appState.graduating else {
+            return
         }
-        run {
-            guard let school = appState.school else {
-                return
-            }
-            mealViewModel.fetchMeals(schoolId: school.id)
-        }
+        let limit = appState.school?.type?.limit ?? 3
+        graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
     }
 }
 

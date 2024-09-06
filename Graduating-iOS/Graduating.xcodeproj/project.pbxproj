@@ -24,6 +24,7 @@
 		250F33F22C7F451C001FCFCB /* HomeMealContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250F33F12C7F451C001FCFCB /* HomeMealContainer.swift */; };
 		250FD0852C74AF100070503B /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 250FD0842C74AF100070503B /* CombineMoya */; };
 		250FD0872C74AF100070503B /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 250FD0862C74AF100070503B /* Moya */; };
+		253D06442C8ABB4F0095FBF3 /* MealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253D06422C8ABB430095FBF3 /* MealView.swift */; };
 		253DC2992C7EAB3C0047C401 /* UserDefaultsExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253DC2982C7EAB3C0047C401 /* UserDefaultsExt.swift */; };
 		253DC2B22C7EBEAC0047C401 /* MyDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 253DC2B12C7EBEAC0047C401 /* MyDesignSystem */; };
 		253DC2B42C7EBEAC0047C401 /* MyMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 253DC2B32C7EBEAC0047C401 /* MyMoya */; };
@@ -198,6 +199,7 @@
 		250F33ED2C7F414D001FCFCB /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		250F33EF2C7F447E001FCFCB /* ScopeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopeExt.swift; sourceTree = "<group>"; };
 		250F33F12C7F451C001FCFCB /* HomeMealContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMealContainer.swift; sourceTree = "<group>"; };
+		253D06422C8ABB430095FBF3 /* MealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealView.swift; sourceTree = "<group>"; };
 		253DC2982C7EAB3C0047C401 /* UserDefaultsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExt.swift; sourceTree = "<group>"; };
 		253DC2BB2C7ED21C0047C401 /* SchoolType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolType.swift; sourceTree = "<group>"; };
 		2560F1732C746C16007009E2 /* Graduating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graduating.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -367,6 +369,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		253D06412C8ABB3F0095FBF3 /* Meal */ = {
+			isa = PBXGroup;
+			children = (
+				253D06422C8ABB430095FBF3 /* MealView.swift */,
+			);
+			path = Meal;
+			sourceTree = "<group>";
+		};
 		253DC29A2C7EAB3D0047C401 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +453,7 @@
 		2560F1962C747222007009E2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				253D06412C8ABB3F0095FBF3 /* Meal */,
 				25C4CD072C74E3B200DB83B3 /* Profile */,
 				2560F19B2C7473CE007009E2 /* Home */,
 				2560F1972C747226007009E2 /* MainView.swift */,
@@ -835,6 +846,7 @@
 				25C4CD062C74E1BC00DB83B3 /* AppState.swift in Sources */,
 				2581724C2C78009100D2691E /* EditSchoolView.swift in Sources */,
 				250F33DC2C7F3EA0001FCFCB /* HomeGraduatingContainer.swift in Sources */,
+				253D06442C8ABB4F0095FBF3 /* MealView.swift in Sources */,
 				2560F1982C747226007009E2 /* MainView.swift in Sources */,
 				250F33DA2C7F3E38001FCFCB /* HomeInfoContainer.swift in Sources */,
 				250364452C762BDC00A93625 /* SearchSchoolContainer.swift in Sources */,

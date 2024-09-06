@@ -18,7 +18,7 @@ public struct HomeMealContainer: View {
     }
     
     public var body: some View {
-        VStack(spacing: 8) {
+        LazyVStack(spacing: 8) {
             ForEach(meals, id: \.id) { meal in
                 VStack(spacing: 12) {
                     HStack(spacing: 0) {
@@ -40,20 +40,16 @@ public struct HomeMealContainer: View {
                         let menus = meal.menu.split(separator: "<br/>")
                         ForEach(Array(menus.enumerated()), id: \.offset) { index, menu in
                             Text(menu)
-                                .myFont(.bodyR)
+                                .myFont(.labelR)
                                 .foreground(Colors.Label.normal)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
                 }
                 .padding(12)
-                .background {
-                    Colors.Background.neutral.box.color
-                        .opacity(0.25)
-                }
+                .background(Colors.Background.normal)
                 .cornerRadius(18, corners: .allCorners)
             }
         }
-        .background(Colors.Background.normal)
     }
 }
