@@ -6,7 +6,7 @@ import Shared
 struct HomeView: View {
     
     @EnvironmentObject private var appState: AppState
-    @StateObject private var graduatingViewModel = GraduatingViewModel()
+    @EnvironmentObject private var graduatingViewModel: GraduatingViewModel
     
     var body: some View {
         MyTopAppBar.default(title: "홈") { insets in
@@ -33,19 +33,14 @@ struct HomeView: View {
                 .padding(.bottom, 80)
             }
             .refreshable {
-                onAppear()
+                guard let grade = appState.grade,
+                      let graduating = appState.graduating else {
+                    return
+                }
+                let limit = appState.school?.type?.limit ?? 3
+                graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
             }
         }
-        .onAppear(perform: onAppear)
-    }
-    
-    func onAppear() {
-        guard let grade = appState.grade,
-              let graduating = appState.graduating else {
-            return
-        }
-        let limit = appState.school?.type?.limit ?? 3
-        graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
     }
 }
 

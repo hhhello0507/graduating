@@ -38,6 +38,7 @@ struct MainView: View {
     @EnvironmentObject private var dialogProvider: DialogProvider
     
     @StateObject private var mealViewModel = MealViewModel()
+    @StateObject private var graduatingViewModel = GraduatingViewModel()
     
     @State private var selectedTab = data[0]
     
@@ -47,6 +48,7 @@ struct MainView: View {
         } content: {
             switch selectedTab {
             case .home: HomeView()
+                    .environmentObject(graduatingViewModel)
             case .meal: MealView()
                     .environmentObject(mealViewModel)
             case .profile: ProfileView()
@@ -55,6 +57,7 @@ struct MainView: View {
         .onAppear {
             handleGraduating(appState.graduating)
             fetchMeals()
+            fetchGraduating()
         }
         .onChange(of: appState.graduating) {
             selectedTab = .home
@@ -78,5 +81,14 @@ struct MainView: View {
             return
         }
         mealViewModel.fetchMeals(schoolId: school.id)
+    }
+    
+    func fetchGraduating() {
+        guard let grade = appState.grade,
+              let graduating = appState.graduating else {
+            return
+        }
+        let limit = appState.school?.type?.limit ?? 3
+        graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
     }
 }
