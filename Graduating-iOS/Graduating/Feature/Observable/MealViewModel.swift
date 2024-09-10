@@ -22,14 +22,11 @@ public final class MealViewModel: BaseViewModel {
     func fetchMeals(schoolId: Int) {
         MealService.shared.fetchMeals(
             schoolId: schoolId
-        )
-        .success { res in
+        ).success { res in
             self.meals = res
-        }
-        .failure { error in
+        }.failure { error in
             self.meals = nil
             self.mealsFetchFailure = true
-        }
-        .observe(&subscriptions)
+        }.observe(&subscriptions)
     }
 }

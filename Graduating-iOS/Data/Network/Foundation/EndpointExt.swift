@@ -1,6 +1,6 @@
 import MyMoya
 
-extension MyMoya.Endpoint {
+extension MyMoya.MyTarget {
     public var baseUrlString: String {
         baseUrl
     }

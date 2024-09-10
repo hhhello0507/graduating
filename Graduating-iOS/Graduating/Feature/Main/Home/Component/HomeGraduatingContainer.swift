@@ -23,7 +23,6 @@ public struct HomeGraduatingContainer: View {
     }
     
     public var body: some View {
-        
         HStack {
             VStack(alignment: .leading, spacing: 0) {
                 Text(String(format: "%.7f%%", remainTimePercent * 100))
@@ -34,7 +33,7 @@ public struct HomeGraduatingContainer: View {
                     .foreground(Colors.Label.alternative)
             }
             Spacer()
-                MyCircularProgressView(progress: remainTimePercent)
-            }
+            MyCircularProgressView(progress: remainTimePercent)
+        }
     }
 }

@@ -11,7 +11,7 @@ import MyMoya
 import Moya
 import Model
 
-public enum MealEndpoint: MyMoya.Endpoint {
+public enum MealEndpoint: MyTarget {
     
     case fetchMeals(schoolId: Int)
 }
@@ -24,18 +24,18 @@ extension MealEndpoint {
         "meals"
     }
     
-    public var route: (Moya.Method, String, Moya.Task) {
+    public var route: Route {
         switch self {
-        case .fetchMeals(let schoolId):
-                .get - "\(schoolId)" - .requestPlain
+        case .fetchMeals(let schoolId): .get("\(schoolId)")
         }
     }
 }
 
-public final class MealService: Service<MealEndpoint> {
+public struct MealService {
+    public static let shared = Self()
+    private let requestManager = DefaultRequestManager<MealEndpoint>()
+
     public func fetchMeals(schoolId: Int) -> ObservableResult<[Meal]> {
-        performRequest(.fetchMeals(schoolId: schoolId), res: [Meal].self).observe()
+        requestManager.performRequest(.fetchMeals(schoolId: schoolId), res: [Meal].self).observe()
     }
-    
-    public static let shared = MealService(allowLog: true)
 }
