@@ -1,7 +1,9 @@
 package com.bestswlkh0310.graduating.graduatingserver.entity
 
 import jakarta.persistence.*
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 @Entity
 @Table(name = "school")
@@ -18,8 +20,8 @@ class SchoolEntity(
     @Column(nullable = false) val addressDetail: String,
     @Column(nullable = false) val phone: String,
     @Column(nullable = false) val website: String,
-    @Column(nullable = false) val createdAt: String,
-    @Column(nullable = false) val anniversary: String,
+    @Column(nullable = false) val createdAt: LocalDate,
+    @Column(nullable = false) val anniversary: LocalDate,
     @Column(nullable = false) val code: String,
     @Column(nullable = false) val officeCode: String
 )

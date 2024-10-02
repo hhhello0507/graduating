@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.io.File
 import java.nio.charset.StandardCharsets
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 // TODO: 코드 개선 (함수)
 // 다음 연도가 되면 개선할 듯.......
@@ -27,30 +30,37 @@ class NeisScheduleService(
     fun importCsv(filePath: String) {
         val file = File(filePath)
         val parser = CSVParser.parse(file, StandardCharsets.UTF_8, CSVFormat.DEFAULT.withFirstRecordAsHeader())
-
-        for (record in parser) {
+        
+        parser.mapNotNull { record ->
             val v = record.toList()
-            val school = SchoolEntity(
-                name = v[0],
-                type = SchoolType.ofKorean(v[1]),
-                cityName = v[2],
-                postalCode = v[3],
-                address = v[4],
-                addressDetail = v[5],
-                phone = v[6],
-                website = v[7],
-                createdAt = v[8],
-                anniversary = v[9],
-                code = v[10],
-                officeCode = v[11]
-            )
-            schoolRepository.save(school)
+            try {
+                SchoolEntity(
+                    officeCode = v[0],
+                    code = v[1],
+                    name = v[2],
+                    type = SchoolType.ofKorean(v[3]),
+                    cityName = v[4],
+                    postalCode = v[5],
+                    address = v[6],
+                    addressDetail = v[7],
+                    phone = v[8],
+                    website = v[9],
+                    createdAt = LocalDate.parse(v[10], DateTimeFormatter.ofPattern("yyyyMMdd")),
+                    anniversary = LocalDate.parse(v[11], DateTimeFormatter.ofPattern("yyyyMMdd")),
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+                null
+            }
+        }.let {
+            schoolRepository.saveAll(it)
         }
 
         parser.close()
     }
 
-    suspend fun getSchoolDate(school: SchoolEntity) {
+    private suspend fun getSchoolDate(school: SchoolEntity): List<GraduatingEntity> {
+        val result = arrayListOf<GraduatingEntity>()
         try {
             val response = neisApi.getSchoolSchedule(
                 key = properties.neisApiKey,
@@ -71,7 +81,7 @@ class NeisScheduleService(
                                     schoolId = school.id,
                                     graduatingDay = row.AA_YMD,
                                 )
-                                graduatingRepository.save(entity)
+                                result.add(entity)
                             }
                         }
                     }
@@ -83,12 +93,15 @@ class NeisScheduleService(
         } catch (e: Exception) {
             e.printStackTrace()
         }
+        return result
     }
 
     suspend fun getSchoolsDate() {
         val schools = schoolRepository.findAll()
-        schools.forEach {
+        schools.map {
             getSchoolDate(it)
+        }.flatMap {
+            graduatingRepository.saveAll(it)
         }
     }
 }

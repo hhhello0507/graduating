@@ -3,6 +3,7 @@ package com.bestswlkh0310.graduating.graduatingserver.loader
 import com.bestswlkh0310.graduating.graduatingserver.service.neis.NeisScheduleService
 import kotlinx.coroutines.runBlocking
 import org.springframework.boot.CommandLineRunner
+import org.springframework.stereotype.Component
 
 
 //@Component
