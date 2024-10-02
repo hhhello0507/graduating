@@ -2,11 +2,10 @@ spring:
   application:
     name: Graduating-Server
   datasource:
-    url: jdbc:postgresql://${DB_URL}/${DB_NAME:graduating}
-    #    url: jdbc:mysql://localhost:3306/graduating
-    username: ${DB_USERNAME:root}
+    url: jdbc:mysql://${DB_URL}/${DB_NAME:graduating}
+    username: ${DB_USERNAME:admin}
     password: ${DB_PASSWORD}
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
     hibernate:

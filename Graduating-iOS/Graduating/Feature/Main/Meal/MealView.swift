@@ -33,6 +33,12 @@ struct MealView: View {
                 }
                 .padding(insets)
             }
+            .refreshable {
+                guard let schoolId = appState.school?.id else {
+                    return
+                }
+                viewModel.fetchMeals(schoolId: schoolId)
+            }
         }
     }
 }
