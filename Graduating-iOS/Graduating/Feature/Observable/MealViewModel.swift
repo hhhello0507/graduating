@@ -14,11 +14,6 @@ public final class MealViewModel: BaseViewModel {
     @Published var meals: [Meal]?
     @Published var mealsFetchFailure = false
     
-    override init() {
-        super.init()
-        print("WOWOWOWO")
-    }
-    
     func fetchMeals(schoolId: Int) {
         MealService.shared.fetchMeals(
             schoolId: schoolId
