@@ -2,7 +2,7 @@ name: CD
 on:
   push:
     paths:
-    - '.github/workflows'
+    - '.github/workflows/**'
     - 'Graduating-Server/**'
     branches: [ "main" ]
 permissions:
