@@ -1,6 +1,8 @@
 # 졸업이당
 나는 .. 도대체 언제... 이 학교를 떠날 수 있을까?
 
+[**✅ App Store**](https://apps.apple.com/kr/app/%EC%A1%B8%EC%97%85%EC%9D%B4%EB%8B%B9/id6651834689?l=en-GB)
+
 ## Preview
 <div>
   <img width="25%" src="./image/large_1.png"/>
