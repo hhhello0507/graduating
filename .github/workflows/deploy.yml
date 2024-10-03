@@ -39,7 +39,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@4
       with:
-        graduatingServer
+        name: GraduatingServer
         path: Graduating-Server/build/libs/Graduating-Server-0.0.1-SNAPSHOT.jar
   deploy:
     runs-on: ubuntu-latest
