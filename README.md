@@ -7,3 +7,14 @@
   <img width="25%" src="./image/large_2.png"/>
   <img width="25%" src="./image/large_3.png"/>
 </div>
+
+### Stack
+#### iOS
+- SwiftUI
+- Combine
+- [MyIOSKit](https://github.com/hhhello0507/my-ios-kit/)
+
+#### Server
+- Spring
+- Github Action
+- OAuth2
