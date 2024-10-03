@@ -1,6 +1,6 @@
 package com.bestswlkh0310.graduating.graduatingserver.global.exception
 
-import com.bestswlkh0310.graduating.graduatingserver.global.BaseVoidRes
+import com.bestswlkh0310.graduating.graduatingserver.global.ErrorRes
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.HttpRequestMethodNotSupportedException
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException
 class CustomExceptionHandler {
 
     @ExceptionHandler(CustomException::class)
-    fun handleCustomException(exception: CustomException): ResponseEntity<BaseVoidRes> {
+    fun handleCustomException(exception: CustomException): ResponseEntity<ErrorRes> {
         exception.printStackTrace()
         return createErrorResponse(
             status = exception.status,
@@ -22,7 +22,7 @@ class CustomExceptionHandler {
     }
 
     @ExceptionHandler(NoResourceFoundException::class)
-    fun handleNoResourceFound(exception: NoResourceFoundException): ResponseEntity<BaseVoidRes> {
+    fun handleNoResourceFound(exception: NoResourceFoundException): ResponseEntity<ErrorRes> {
         exception.printStackTrace()
         return createErrorResponse(
             status = HttpStatus.NOT_FOUND,
@@ -31,7 +31,7 @@ class CustomExceptionHandler {
     }
     
     @ExceptionHandler(HttpRequestMethodNotSupportedException::class)
-    fun handleHttpRequestMethodNotSupported(exception: HttpRequestMethodNotSupportedException): ResponseEntity<BaseVoidRes> {
+    fun handleHttpRequestMethodNotSupported(exception: HttpRequestMethodNotSupportedException): ResponseEntity<ErrorRes> {
         exception.printStackTrace()
         return createErrorResponse(
             status = HttpStatus.METHOD_NOT_ALLOWED,
@@ -40,7 +40,7 @@ class CustomExceptionHandler {
     }
 
     @ExceptionHandler(Exception::class)
-    fun handleException(exception: Exception, webRequest: WebRequest): ResponseEntity<BaseVoidRes> {
+    fun handleException(exception: Exception, webRequest: WebRequest): ResponseEntity<ErrorRes> {
         exception.printStackTrace()
         return createErrorResponse(
             status = HttpStatus.INTERNAL_SERVER_ERROR,
@@ -52,7 +52,7 @@ class CustomExceptionHandler {
         status: HttpStatus,
         message: String,
     ) = ResponseEntity.status(status).body(
-        BaseVoidRes(
+        ErrorRes(
             status = status.value(),
             message = message
         )

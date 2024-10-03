@@ -13,7 +13,6 @@ import com.bestswlkh0310.graduating.graduatingserver.core.user.User
 import com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.google.GoogleOAuth2Helper
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserRepository
 import com.bestswlkh0310.graduating.graduatingserver.core.user.getByUsername
-import com.bestswlkh0310.graduating.graduatingserver.global.BaseRes
 import com.bestswlkh0310.graduating.graduatingserver.global.exception.CustomException
 import com.bestswlkh0310.graduating.graduatingserver.infra.token.JwtClient
 import com.bestswlkh0310.graduating.graduatingserver.infra.token.JwtPayloadKey
@@ -32,7 +31,7 @@ class AuthService(
     private val jwtUtils: JwtClient,
     private val googleOAuth2Helper: GoogleOAuth2Helper
 ) {
-    fun signUp(req: SignUpReq): BaseRes<TokenRes> {
+    fun signUp(req: SignUpReq): TokenRes {
 
         // validation
         if (req.password != req.passwordCheck) {
@@ -50,12 +49,10 @@ class AuthService(
             )
         )
 
-        return BaseRes.ok(
-            jwtUtils.generate(user)
-        )
+        return jwtUtils.generate(user)
     }
 
-    fun signIn(req: SignInReq): BaseRes<TokenRes> {
+    fun signIn(req: SignInReq): TokenRes {
         // validation
         val user = userRepository.getByUsername(req.username)
 
@@ -63,12 +60,10 @@ class AuthService(
             throw CustomException(HttpStatus.BAD_REQUEST, "Passwords do not match")
         }
 
-        return BaseRes.ok(
-            jwtUtils.generate(user)
-        )
+        return jwtUtils.generate(user)
     }
 
-    fun refresh(req: RefreshReq): BaseRes<TokenRes> {
+    fun refresh(req: RefreshReq): TokenRes {
         jwtUtils.parseToken(req.refreshToken)
 
         val user = run {
@@ -76,20 +71,16 @@ class AuthService(
             userRepository.getByUsername(username)
         }
 
-        return BaseRes.ok(
-            jwtUtils.generate(user)
-        )
+        return jwtUtils.generate(user)
     }
 
-    fun oAuth2SignIn(req: OAuth2SignInReq): BaseRes<TokenRes> {
+    fun oAuth2SignIn(req: OAuth2SignInReq): TokenRes {
         val token = when (req.platformType) {
             PlatformType.GOOGLE -> googleSignIn(req)
             PlatformType.APPLE -> appleSignIn(req)
             else -> throw CustomException(HttpStatus.BAD_REQUEST, "Invalid platform type")
         }
-        return BaseRes.ok(
-            jwtUtils.generate(token)
-        )
+        return jwtUtils.generate(token)
     }
 
     private fun googleSignIn(req: OAuth2SignInReq): User {

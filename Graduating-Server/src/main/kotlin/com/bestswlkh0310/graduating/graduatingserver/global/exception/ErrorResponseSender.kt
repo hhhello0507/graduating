@@ -1,6 +1,6 @@
 package com.bestswlkh0310.graduating.graduatingserver.global.exception
 
-import com.bestswlkh0310.graduating.graduatingserver.global.BaseVoidRes
+import com.bestswlkh0310.graduating.graduatingserver.global.ErrorRes
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.HttpStatus
@@ -25,7 +25,7 @@ class ErrorResponseSender(
             }
             response.writer.write(
                 objectMapper.writeValueAsString(
-                    BaseVoidRes(
+                    ErrorRes(
                         status = status.value(),
                         message = message ?: status.reasonPhrase
                     )
