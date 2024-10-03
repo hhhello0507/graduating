@@ -20,6 +20,8 @@ repositories {
 }
 
 dependencies {
+    implementation("io.github.microutils:kotlin-logging:3.0.5")
+
     implementation("org.apache.commons:commons-csv:1.9.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")

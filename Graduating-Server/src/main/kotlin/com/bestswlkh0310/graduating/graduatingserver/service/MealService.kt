@@ -13,7 +13,7 @@ import java.time.LocalDate
 class MealService(
     private val mealRepository: MealRepository,
     private val schoolRepository: SchoolRepository,
-    private val neisMealService: NeisMealService
+    private val neisMealService: NeisMealService,
 ) {
 
     fun getMeals(schoolId: Long): List<MealRes> {
