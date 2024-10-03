@@ -9,7 +9,19 @@ import org.springframework.web.client.RestClient
 class RestClientConfig {
     @Bean
     @Qualifier("neis")
-    fun restClient() = RestClient.builder()
+    fun neisRestClient() = RestClient.builder()
         .baseUrl("https://open.neis.go.kr")
+        .build()
+
+    @Bean
+    @Qualifier("google")
+    fun googleOAuth2RestClient() = RestClient.builder()
+        .baseUrl("https://oauth2.googleapis.com")
+        .build()
+
+    @Bean
+    @Qualifier("apple")
+    fun appleOAuth2RestClient() = RestClient.builder()
+        .baseUrl("https://appleid.apple.com")
         .build()
 }

@@ -1,0 +1,9 @@
+package com.bestswlkh0310.graduating.graduatingserver.api.auth.req
+
+import com.bestswlkh0310.graduating.graduatingserver.core.user.PlatformType
+
+data class OAuth2SignInReq(
+    val platformType: PlatformType,
+    val code: String,
+    val nickname: String?
+)

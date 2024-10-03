@@ -20,22 +20,36 @@ repositories {
 }
 
 dependencies {
+    // Pem file
+    implementation("org.bouncycastle:bcprov-jdk18on:1.75")
+    implementation("org.bouncycastle:bcpkix-jdk18on:1.75")
+    
+    // JWT
+    val jwtVersion = "0.12.5"
+    implementation("io.jsonwebtoken:jjwt-api:$jwtVersion")
+    implementation("io.jsonwebtoken:jjwt-impl:$jwtVersion")
+    implementation("io.jsonwebtoken:jjwt-jackson:$jwtVersion")
+
+    implementation("com.google.api-client:google-api-client:1.33.0")
+    
     implementation("io.github.microutils:kotlin-logging:3.0.5")
 
     implementation("org.apache.commons:commons-csv:1.9.0")
 
+    // Coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.8.0") // For JDK 8 compatibility
-
-//    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-//    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-//    implementation("com.google.code.gson:gson:2.10.1")
-
+    
+    // Spring boot
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
+    // DB
     runtimeOnly("com.mysql:mysql-connector-j")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
