@@ -8,7 +8,10 @@ import java.time.LocalDateTime
 @Table(
     name = "meal",
     uniqueConstraints = [
-        UniqueConstraint(name = "UniqueMealDateAndMealType", columnNames = ["mealDate", "mealType"])
+        UniqueConstraint(
+            name = "UniqueMealDateAndMealTypeAndSchoolId",
+            columnNames = ["mealDate", "mealType", "school_id"]
+        )
     ]
 )
 class MealEntity(
@@ -24,5 +27,5 @@ class MealEntity(
     // foreign key
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "school_id", nullable = false)
-    val school: SchoolEntity
+    val school: SchoolEntity,
 )
