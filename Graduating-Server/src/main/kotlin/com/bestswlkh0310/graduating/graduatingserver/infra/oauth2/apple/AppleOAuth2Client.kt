@@ -1,7 +1,6 @@
 package com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.apple
 
-import com.bestswlkh0310.authtemplate.internal.oauth2.apple.AppleOAuth2Properties
-import com.bestswlkh0310.authtemplate.internal.oauth2.apple.data.res.AppleTokenRes
+import com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.apple.data.res.AppleTokenRes
 import com.bestswlkh0310.graduating.graduatingserver.global.exception.CustomException
 import com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.apple.data.res.AppleJWKSet
 import io.jsonwebtoken.Jwts

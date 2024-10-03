@@ -38,11 +38,11 @@ class JwtClient(
     fun generate(user: User) = TokenRes(
         accessToken = createToken(
             user = user,
-            tokenExpired = jwtProperties.accessExpired,
+            tokenExpired = jwtProperties.expired.access,
         ),
         refreshToken = createToken(
             user = user,
-            tokenExpired = jwtProperties.refreshExpired,
+            tokenExpired = jwtProperties.expired.refresh,
         )
     )
 

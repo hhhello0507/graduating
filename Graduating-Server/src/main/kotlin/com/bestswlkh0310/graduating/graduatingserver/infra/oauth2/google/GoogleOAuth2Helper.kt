@@ -17,7 +17,7 @@ class GoogleOAuth2Helper(
         val verifier = GoogleIdTokenVerifier
             .Builder(NetHttpTransport(), GsonFactory())
             .setAudience(
-                listOf(properties.iOSClientId, properties.webClientId)
+                listOf(properties.clientIdIos, properties.clientIdWeb)
             )
             .build()
 

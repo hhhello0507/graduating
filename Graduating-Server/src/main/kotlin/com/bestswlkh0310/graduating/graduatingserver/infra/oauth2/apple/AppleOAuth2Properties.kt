@@ -1,14 +1,14 @@
-package com.bestswlkh0310.authtemplate.internal.oauth2.apple
+package com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.apple
 
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.stereotype.Component
+import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.context.properties.bind.ConstructorBinding
 
-@Component
-class AppleOAuth2Properties(
-    @Value("\${oauth2.apple.grant-type}") val grantType: String,
-    @Value("\${oauth2.apple.bundle-id}") val bundleId: String,
-    @Value("\${oauth2.apple.key-id}") val keyId: String,
-    @Value("\${oauth2.apple.team-id}") val teamId: String,
-    @Value("\${oauth2.apple.audience}") val audience: String,
-    @Value("\${oauth2.apple.private-key}") val privateKey: String,
+@ConfigurationProperties(prefix = "oauth2.apple")
+data class AppleOAuth2Properties @ConstructorBinding constructor(
+    val grantType: String,
+    val bundleId: String,
+    val keyId: String,
+    val teamId: String,
+    val audience: String,
+    val privateKey: String,
 )

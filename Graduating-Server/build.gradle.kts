@@ -49,6 +49,8 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    
     // DB
     runtimeOnly("com.mysql:mysql-connector-j")
 

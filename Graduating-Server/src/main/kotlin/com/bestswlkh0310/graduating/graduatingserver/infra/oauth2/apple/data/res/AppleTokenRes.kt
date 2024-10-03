@@ -1,4 +1,4 @@
-package com.bestswlkh0310.authtemplate.internal.oauth2.apple.data.res
+package com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.apple.data.res
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty

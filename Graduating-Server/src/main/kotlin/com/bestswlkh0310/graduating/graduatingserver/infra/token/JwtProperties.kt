@@ -1,11 +1,15 @@
 package com.bestswlkh0310.graduating.graduatingserver.infra.token
 
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.stereotype.Component
+import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.context.properties.bind.ConstructorBinding
 
-@Component
-data class JwtProperties(
-    @Value("\${jwt.secret}") val secretKey: String,
-    @Value("\${jwt.expired.access}") val accessExpired: Long,
-    @Value("\${jwt.expired.refresh}") val refreshExpired: Long
-)
+@ConfigurationProperties(prefix = "jwt")
+data class JwtProperties @ConstructorBinding constructor(
+    val expired: ExpiredProperties,
+    val secretKey: String,
+) {
+    data class ExpiredProperties(
+        val access: Long,
+        val refresh: Long
+    )
+}

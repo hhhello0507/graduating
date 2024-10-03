@@ -1,8 +1,7 @@
 package com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.google
 
-import com.bestswlkh0310.authtemplate.internal.oauth2.google.data.res.GoogleOAuth2TokenRes
+import com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.google.data.res.GoogleOAuth2TokenRes
 import com.bestswlkh0310.graduating.graduatingserver.global.exception.CustomException
-import com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.google.GoogleOAuth2Properties
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
@@ -19,7 +18,7 @@ class GoogleOAuth2Client(
     fun getToken(code: String) = restClient.post()
         .uri {
             it.path("token")
-                .queryParam("client_id", properties.webClientId)
+                .queryParam("client_id", properties.clientIdWeb)
                 .queryParam("client_secret", properties.clientSecret)
                 .queryParam("code", code)
                 .queryParam("grant_type", properties.grantType)

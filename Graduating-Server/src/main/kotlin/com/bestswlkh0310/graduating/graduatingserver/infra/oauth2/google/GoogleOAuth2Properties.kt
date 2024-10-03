@@ -1,15 +1,15 @@
 package com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.google
 
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.stereotype.Component
+import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.context.properties.bind.ConstructorBinding
 
-@Component
-class GoogleOAuth2Properties(
-    @Value("\${oauth2.google.client-id.ios}") val iOSClientId: String,
-    @Value("\${oauth2.google.client-id.web}") val webClientId: String,
-    @Value("\${oauth2.google.client-secret}") val clientSecret: String,
-    @Value("\${oauth2.google.redirect-uri}") val redirectUri: String,
-    @Value("\${oauth2.google.token-uri}") val tokenUri: String,
-    @Value("\${oauth2.google.resource-uri}") val resourceUri: String,
-    @Value("\${oauth2.google.grant-type}") val grantType: String,
+@ConfigurationProperties(prefix = "oauth2.google")
+class GoogleOAuth2Properties @ConstructorBinding constructor(
+    val clientIdIos: String,
+    val clientIdWeb: String,
+    val clientSecret: String,
+    val redirectUri: String,
+    val tokenUri: String,
+    val resourceUri: String,
+    val grantType: String,
 )

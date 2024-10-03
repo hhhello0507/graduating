@@ -18,3 +18,25 @@ server:
 secret:
   neis:
     apikey: ${NEIS_APIKEY}
+jwt:
+  expired:
+    access: 3600
+    refresh: 300000
+  secret-key: ${JWT_SECRET}
+oauth2:
+  google:
+    client-id:
+      ios: ${GOOGLE_CLIENT_ID_IOS} # Put your google client id for ios 
+      web: ${GOOGLE_CLIENT_ID_WEB} # Put your google client id for web
+    client-secret: ${GOOGLE_CLIENT_SECRET} # Put your google client secret
+    redirect-uri: http://localhost:8080/oauth2/code/google # Put your google redirect uri
+    token-uri: https://oauth2.googleapis.com/token
+    resource-uri: https://www.googleapis.com/oauth2/v2/userinfo
+    grant-type: authorization_code
+  apple:
+    bundle-id: ${APPLE_BUNDLE_ID} # ClientId, Put your apple bundle id
+    key-id: ${APPLE_KEY_ID}
+    team-id: ${APPLE_TEAM_ID}
+    audience: https://appleid.apple.com
+    private-key: ${APPLE_P8_KEY}
+    grant-type: authorization_code
