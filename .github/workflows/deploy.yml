@@ -41,7 +41,7 @@ jobs:
       with:
         name: GraduatingServer
         path: Graduating-Server/build/libs/Graduating-Server-0.0.1-SNAPSHOT.jar
-  deploy:
+  distribute:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -49,7 +49,23 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: GraduatingServer
-          path: ./product
+          path: dist
+      - name: Show downloaded files
+        run: ls -alh dist # TODO: -alh이 뭔지 검색 ㄱ
+      - name: EC2 Upload
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.REMOTE_IP }}
+          username: ${{ secrets.REMOTE_SSH_ID }}
+          key: ${{ secrets.REMOTE_SSH_KEY }}
+          port: ${{ secrets.REMOTE_SSH_PORT }}
+          source: "dist/*.jar"
+          target: /home/ubuntu/product
+          rm: true # TODO: 이거 왜 검색해도 안 나옴? 좀 찾아봐야 할 듯
+service_restart:
+    needs: distribute
+    runs-on: ubuntu-latest
+    steps:
       - name: EC2 Run
         uses: appleboy/ssh-action@master
         with:
@@ -58,5 +74,5 @@ jobs:
           key: ${{ secrets.REMOTE_SSH_KEY }}
           port: ${{ secrets.REMOTE_SSH_PORT }}
           script: |
-            cd ./product
+            cd /home/ubuntu/product
             sh start.sh
