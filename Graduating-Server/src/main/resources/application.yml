@@ -15,9 +15,8 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
 server:
   port: 1234
-secret:
-  neis:
-    apikey: ${NEIS_APIKEY}
+neis:
+  apikey: ${NEIS_APIKEY}
 jwt:
   expired:
     access: 3600
