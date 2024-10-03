@@ -27,6 +27,12 @@ jobs:
         spring.datasource.username: ${{ secrets.DB_USERNAME }}
         spring.datasource.password: ${{ secrets.DB_PASSWORD }}
         secret.neis.apikey: ${{ secrets.NEIS_APIKEY }}
+        jwt.secret-key: ${{ secrets.JWT_SECRET }}
+        oauth2.google.client-id.ios: ${{ secrets.GOOGLE_CLIENT_ID_IOS }}
+        oauth2.google.client-id.web: ${{ secrets.GOOGLE_CLIENT_ID_WEB }}
+        oauth2.google.client-secret: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+        oauth2.google.client-secret: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+        oauth2.google.redirect-uri: ${{ secrets.GOOGLE_REDIRECT_URI }}
     - name: Build with Gradle
       run: |
         cd ./Graduating-Server

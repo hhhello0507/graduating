@@ -5,11 +5,15 @@ import org.springframework.boot.context.properties.bind.ConstructorBinding
 
 @ConfigurationProperties(prefix = "oauth2.google")
 class GoogleOAuth2Properties @ConstructorBinding constructor(
-    val clientIdIos: String,
-    val clientIdWeb: String,
+    val clientId: ClientIdProperties,
     val clientSecret: String,
     val redirectUri: String,
     val tokenUri: String,
     val resourceUri: String,
     val grantType: String,
-)
+) {
+    data class ClientIdProperties(
+        val ios: String,
+        val web: String,
+    )
+}

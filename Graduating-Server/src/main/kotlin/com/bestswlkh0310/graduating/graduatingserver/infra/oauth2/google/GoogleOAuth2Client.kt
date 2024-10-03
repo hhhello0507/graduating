@@ -18,7 +18,7 @@ class GoogleOAuth2Client(
     fun getToken(code: String) = restClient.post()
         .uri {
             it.path("token")
-                .queryParam("client_id", properties.clientIdWeb)
+                .queryParam("client_id", properties.clientId.web)
                 .queryParam("client_secret", properties.clientSecret)
                 .queryParam("code", code)
                 .queryParam("grant_type", properties.grantType)
