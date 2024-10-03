@@ -8,7 +8,8 @@ import org.springframework.context.annotation.Configuration
 class PropertiesConfig(
     @Value("\${secret.neis.apikey}") val neisApiKey: String,
 ) {
-    @Bean fun propertyConfig() = Properties(
+    @Bean
+    fun propertyConfig() = Properties(
         neisApiKey = neisApiKey
     )
 }

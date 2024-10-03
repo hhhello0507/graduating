@@ -6,27 +6,39 @@ import com.bestswlkh0310.graduating.graduatingserver.core.meal.MealEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.meal.MealRepository
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolRepository
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Component
+import org.springframework.web.client.RestClient
 import java.time.LocalDateTime
 
 @Component
 class NeisMealHelper(
-    private val neisRepository: NeisApi,
     private val schoolRepository: SchoolRepository,
     private val properties: Properties,
-    private val mealRepository: MealRepository
+    private val mealRepository: MealRepository,
+    @Qualifier("neis")
+    private val restClient: RestClient
 ) {
 
     suspend fun getMeals(school: SchoolEntity): List<MealEntity> {
         val currentDate = LocalDateTime.now()
         val nextDate = currentDate.plusDays(6) // A week
-        val response = neisRepository.getMeals(
-            key = properties.neisApiKey,
-            code = school.officeCode,
-            schoolCode = school.code,
-            fromDate = currentDate.parse("yyyyMMdd"),
-            toDate = nextDate.parse("yyyyMMdd")
-        )
+
+        val response = restClient.get()
+            .uri { uriBuilder ->
+                uriBuilder
+                    .path("hub/mealServiceDietInfo")
+                    .queryParam("KEY", properties.neisApiKey)
+                    .queryParam("Type", "json")
+                    .queryParam("ATPT_OFCDC_SC_CODE", school.officeCode)
+                    .queryParam("SD_SCHUL_CODE", school.code)
+                    .queryParam("MLSV_FROM_YMD", currentDate.parse("yyyyMMdd"))
+                    .queryParam("MLSV_TO_YMD", nextDate.parse("yyyyMMdd"))
+                    .build()
+            }
+            .retrieve()
+            .toEntity(NeisMealsRes::class.java)
+            .body
 
         val result = arrayListOf<MealEntity>()
 

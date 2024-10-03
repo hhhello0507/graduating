@@ -8,7 +8,9 @@ import com.bestswlkh0310.graduating.graduatingserver.core.graduating.GraduatingR
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolRepository
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Component
+import org.springframework.web.client.RestClient
 import java.io.File
 import java.nio.charset.StandardCharsets
 import java.time.LocalDate
@@ -20,7 +22,8 @@ import java.time.format.DateTimeFormatter
 class NeisScheduleHelper(
     private val schoolRepository: SchoolRepository,
     private val graduatingRepository: GraduatingRepository,
-    private val neisApi: NeisApi,
+    @Qualifier("neis")
+    private val restClient: RestClient,
     private val properties: Properties
 ) {
 
@@ -59,13 +62,22 @@ class NeisScheduleHelper(
     private suspend fun getSchoolDate(school: SchoolEntity): List<GraduatingEntity> {
         val result = arrayListOf<GraduatingEntity>()
         try {
-            val response = neisApi.getSchoolSchedule(
-                key = properties.neisApiKey,
-                code = school.officeCode,
-                schoolCode = school.code,
-                fromDate = "20241201",
-                toDate = "20250301"
-            )
+            val response = restClient.get()
+                .uri { uriBuilder -> 
+                    uriBuilder
+                        .path("hub/SchoolSchedule")
+                        .queryParam("KEY", properties.neisApiKey)
+                        .queryParam("Type", "json")
+                        .queryParam("ATPT_OFCDC_SC_CODE", school.officeCode)
+                        .queryParam("SD_SCHUL_CODE", school.code)
+                        .queryParam("AA_FROM_YMD", "20241201")
+                        .queryParam("AA_TO_YMD", "20250301")
+                        .build()
+                }
+                .retrieve()
+                .toEntity(NeisSchedulesRes::class.java)
+                .body
+            
             var includeGraduating = false
             response?.SchoolSchedule?.let { res ->
                 res.mapNotNull { it?.row }
