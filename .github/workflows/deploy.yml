@@ -1,0 +1,22 @@
+name: CD
+on:
+  push:
+    paths:
+    - 'Graduating-Server/**'
+    branches: [ "main" ]
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: EC2 Run
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.LINUX_HOST }}
+          username: ${{ secrets.LINUX_USERNAME }}
+          password: ${{ secrets.LINUX_PASSWORD }}
+          port: ${{ secrets.LINUX_SSH_PORT }}
+          script: |
+            cd product
+            sh start.sh
