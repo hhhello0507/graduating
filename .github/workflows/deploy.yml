@@ -8,6 +8,39 @@ on:
 permissions:
   contents: read
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+#    - name: Set yml file
+#      uses: microsoft/variable-substitution@v1
+#      with:
+# 히히 도담
+#        files: dodam-application/dodam-rest-api/src/main/resources/application.yml
+#      env:
+#        spring.datasource.url: ${{ secrets.DB_URL }}
+#        spring.datasource.username: ${{ secrets.DB_USERNAME }}
+#        spring.datasource.password: ${{ secrets.DB_PASSWORD }}
+#        redis.master.host: ${{ secrets.REDIS_MASTER_HOST }}
+#        redis.master.port: ${{ secrets.REDIS_MASTER_PORT }}
+#        redis.slaves.0.host: ${{ secrets.REDIS_SLAVE_1_HOST }}
+#        redis.slaves.0.port: ${{ secrets.REDIS_SLAVE_1_PORT }}
+#        redis.slaves.1.host: ${{ secrets.REDIS_SLAVE_2_HOST }}
+#        redis.slaves.1.port: ${{ secrets.REDIS_SLAVE_2_PORT }}
+    - name: Build with Gradle
+      run: |
+        cd ./Graduating-Server
+        ./gradlew bootJar -x test
+    - name: Upload build artifact
+      uses: actions/upload-artifact@4
+      with:
+        graduatingServer
+        path: Graduating-Server/build/libs/Graduating-Server-0.0.1-SNAPSHOT.jar
   deploy:
     runs-on: ubuntu-latest
     steps:
@@ -19,5 +52,5 @@ jobs:
           key: ${{ secrets.REMOTE_SSH_KEY }}
           port: ${{ secrets.REMOTE_SSH_PORT }}
           script: |
-            cd product
+            cd /home/ubuntu/product
             sh start.sh
