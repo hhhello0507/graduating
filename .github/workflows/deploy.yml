@@ -17,21 +17,16 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17'
-#    - name: Set yml file
-#      uses: microsoft/variable-substitution@v1
-#      with:
-# 히히 도담
-#        files: dodam-application/dodam-rest-api/src/main/resources/application.yml
-#      env:
-#        spring.datasource.url: ${{ secrets.DB_URL }}
-#        spring.datasource.username: ${{ secrets.DB_USERNAME }}
-#        spring.datasource.password: ${{ secrets.DB_PASSWORD }}
-#        redis.master.host: ${{ secrets.REDIS_MASTER_HOST }}
-#        redis.master.port: ${{ secrets.REDIS_MASTER_PORT }}
-#        redis.slaves.0.host: ${{ secrets.REDIS_SLAVE_1_HOST }}
-#        redis.slaves.0.port: ${{ secrets.REDIS_SLAVE_1_PORT }}
-#        redis.slaves.1.host: ${{ secrets.REDIS_SLAVE_2_HOST }}
-#        redis.slaves.1.port: ${{ secrets.REDIS_SLAVE_2_PORT }}
+    - name: Setting yaml file
+    # TODO: microsoft/variable-substitution is deprecated
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: Graduating-Server/src/main/resources/application.yml
+      env:
+        spring.datasource.url: ${{ secrets.DB_URL }}
+        spring.datasource.username: ${{ secrets.DB_USERNAME }}
+        spring.datasource.password: ${{ secrets.DB_PASSWORD }}
+        secret.neis.apikey: ${{ secrets.NEIS_APIKEY }}
     - name: Build with Gradle
       run: |
         cd ./Graduating-Server

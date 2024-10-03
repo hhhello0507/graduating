@@ -2,8 +2,8 @@ spring:
   application:
     name: Graduating-Server
   datasource:
-    url: jdbc:mysql://${DB_URL}/${DB_NAME:graduating}
-    username: ${DB_USERNAME:admin}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
