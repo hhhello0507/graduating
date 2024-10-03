@@ -35,7 +35,9 @@ class WebSecurityConfig(
                 "/auth/sign-up",
                 "/auth/sign-in",
                 "/auth/sign-in/oauth2",
-                "/auth/refresh"
+                "/auth/refresh",
+                "/school/**",
+                "/meals/**"
             ).permitAll()
                 .anyRequest().authenticated()
         }
