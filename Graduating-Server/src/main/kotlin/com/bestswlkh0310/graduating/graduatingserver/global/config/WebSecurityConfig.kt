@@ -2,6 +2,8 @@ package com.bestswlkh0310.graduating.graduatingserver.global.config
 
 import com.bestswlkh0310.graduating.graduatingserver.global.exception.ErrorResponseSender
 import com.bestswlkh0310.graduating.graduatingserver.global.exception.HttpExceptionFilter
+import com.bestswlkh0310.graduating.graduatingserver.global.jwt.JwtAuthenticationFilter
+import com.bestswlkh0310.graduating.graduatingserver.global.jwt.JwtExceptionFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpStatus

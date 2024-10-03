@@ -1,4 +1,4 @@
-package com.bestswlkh0310.graduating.graduatingserver.global.config
+package com.bestswlkh0310.graduating.graduatingserver.global.jwt
 
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserRepository
 import com.bestswlkh0310.graduating.graduatingserver.core.user.getByUsername

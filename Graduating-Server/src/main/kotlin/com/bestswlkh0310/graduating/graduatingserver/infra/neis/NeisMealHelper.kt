@@ -1,7 +1,6 @@
 package com.bestswlkh0310.graduating.graduatingserver.infra.neis
 
 import com.bestswlkh0310.graduating.graduatingserver.common.parse
-import com.bestswlkh0310.graduating.graduatingserver.global.config.Properties
 import com.bestswlkh0310.graduating.graduatingserver.core.meal.MealEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.meal.MealRepository
@@ -14,7 +13,7 @@ import java.time.LocalDateTime
 @Component
 class NeisMealHelper(
     private val schoolRepository: SchoolRepository,
-    private val properties: Properties,
+    private val neisProperties: NeisProperties,
     private val mealRepository: MealRepository,
     @Qualifier("neis")
     private val restClient: RestClient
@@ -28,7 +27,7 @@ class NeisMealHelper(
             .uri { uriBuilder ->
                 uriBuilder
                     .path("hub/mealServiceDietInfo")
-                    .queryParam("KEY", properties.neisApiKey)
+                    .queryParam("KEY", neisProperties.apiKey)
                     .queryParam("Type", "json")
                     .queryParam("ATPT_OFCDC_SC_CODE", school.officeCode)
                     .queryParam("SD_SCHUL_CODE", school.code)

@@ -1,6 +1,5 @@
 package com.bestswlkh0310.graduating.graduatingserver.infra.neis
 
-import com.bestswlkh0310.graduating.graduatingserver.global.config.Properties
 import com.bestswlkh0310.graduating.graduatingserver.core.graduating.GraduatingEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolType
@@ -24,13 +23,13 @@ class NeisScheduleHelper(
     private val graduatingRepository: GraduatingRepository,
     @Qualifier("neis")
     private val restClient: RestClient,
-    private val properties: Properties
+    private val neisProperties: NeisProperties
 ) {
 
     fun importCsv(filePath: String) {
         val file = File(filePath)
         val parser = CSVParser.parse(file, StandardCharsets.UTF_8, CSVFormat.DEFAULT.withFirstRecordAsHeader())
-        
+
         parser.mapNotNull { record ->
             val v = record.toList()
             try {
@@ -63,10 +62,10 @@ class NeisScheduleHelper(
         val result = arrayListOf<GraduatingEntity>()
         try {
             val response = restClient.get()
-                .uri { uriBuilder -> 
+                .uri { uriBuilder ->
                     uriBuilder
                         .path("hub/SchoolSchedule")
-                        .queryParam("KEY", properties.neisApiKey)
+                        .queryParam("KEY", neisProperties.apiKey)
                         .queryParam("Type", "json")
                         .queryParam("ATPT_OFCDC_SC_CODE", school.officeCode)
                         .queryParam("SD_SCHUL_CODE", school.code)
@@ -77,7 +76,7 @@ class NeisScheduleHelper(
                 .retrieve()
                 .toEntity(NeisSchedulesRes::class.java)
                 .body
-            
+
             var includeGraduating = false
             response?.SchoolSchedule?.let { res ->
                 res.mapNotNull { it?.row }

@@ -5,6 +5,7 @@ struct ProfileView: View {
     
     @EnvironmentObject private var router: Router
     @Environment(\.openURL) private var openURL
+    @State private var isSheetPresent: Bool = false
     
     var body: some View {
         MyTopAppBar.default(
@@ -14,9 +15,13 @@ struct ProfileView: View {
             VStack(spacing: 0) {
                 VStack(spacing: 8) {
                     MyAvatar(nil, type: .larger)
-                    Text("이름")
-                        .foreground(Colors.Label.alternative)
-                        .myFont(.bodyR)
+                    Button {
+                        isSheetPresent = true
+                    } label: {
+                        Text("로그인 하기")
+                            .foreground(Colors.Label.alternative)
+                            .myFont(.bodyR)
+                    }
                 }
                 .padding(.top, 16)
                 HStack(spacing: 12) {
@@ -47,6 +52,19 @@ struct ProfileView: View {
             }
             .padding(insets)
 //            .background(Colors.Background.normal)
+        }
+        .sheet(isPresented: $isSheetPresent) {
+            VStack(spacing: 10) {
+                AppleSignInButton {
+                    
+                }
+                GoogleSignInButton {
+                    
+                }
+            }
+            .padding(20)
+            .background(Colors.Background.normal)
+            .adjustedHeightSheet()
         }
     }
 }
