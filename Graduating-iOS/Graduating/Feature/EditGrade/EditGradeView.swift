@@ -32,7 +32,7 @@ struct EditGradeView: View {
                 }
                 .pickerStyle(.wheel)
                 Spacer()
-                MyButton("다음") {
+                MyButton("다음", expanded: true) {
                     dialogProvider.present(
                         .init(title: "\(grade)학년이 맞으신가요?")
                         .primaryButton("네, 맞아요") {
