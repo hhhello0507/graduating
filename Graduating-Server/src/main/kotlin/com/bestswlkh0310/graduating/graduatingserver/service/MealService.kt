@@ -6,6 +6,7 @@ import com.bestswlkh0310.graduating.graduatingserver.repository.MealRepository
 import com.bestswlkh0310.graduating.graduatingserver.repository.SchoolRepository
 import com.bestswlkh0310.graduating.graduatingserver.repository.getBy
 import com.bestswlkh0310.graduating.graduatingserver.service.neis.NeisMealService
+import jakarta.persistence.PersistenceException
 import kotlinx.coroutines.runBlocking
 import mu.KLogger
 import org.springframework.stereotype.Service
@@ -41,7 +42,7 @@ class MealService(
                     result.add(
                         mealRepository.save(it)
                     )
-                } catch (e: SQLException) {
+                } catch (e: PersistenceException) {
                     logger.error("duplicate mealEntity.")
                 }
             }
