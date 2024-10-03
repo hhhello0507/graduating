@@ -45,6 +45,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Download build artifact
+        uses: actions/download-actifact@v4
+        with:
+          name: GraduatingServer
+          path: /home/ubuntu/product
       - name: EC2 Run
         uses: appleboy/ssh-action@master
         with:
