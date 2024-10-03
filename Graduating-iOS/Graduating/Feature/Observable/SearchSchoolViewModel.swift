@@ -17,10 +17,9 @@ final class SearchSchoolViewModel: ObservableObject {
     
     func fetchSchools() {
         SchoolService.shared.getSchools()
-            .success { res in
-                self.schools = res
-            }
-            .observe(&subscriptions)
+            .ignoreError()
+            .assign(to: \.schools, on: self)
+            .store(in: &subscriptions)
     }
     
     deinit {

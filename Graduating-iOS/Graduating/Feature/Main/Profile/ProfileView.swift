@@ -13,11 +13,22 @@ struct ProfileView: View {
         ) { _ in
             ScrollView {
                 LazyVStack(spacing: 12) {
-                    MyRowView("학교 수정") {
-                        router.push(EditSchoolPath())
+                    VStack(spacing: 4) {
+                        MyAvatar(nil, type: .larger)
+                            .padding(.vertical, 16)
+                        Text("이름")
+                            .foreground(Colors.Label.alternative)
+                            .myFont(.bodyR)
                     }
-                    MyRowView("학년 수정") {
-                        router.push(EditGradePath())
+                    HStack(spacing: 12) {
+                        MyButton("학교 수정", role: .assistive) {
+                            router.push(EditSchoolPath())
+                        }.size(.medium)
+                            .frame(maxWidth: .infinity)
+                        MyButton("학년 수정", role: .assistive) {
+                            router.push(EditGradePath())
+                        }.size(.medium)
+                            .frame(maxWidth: .infinity)
                     }
                     MyDivider()
                         .padding(.horizontal, 20)

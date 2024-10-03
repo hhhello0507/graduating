@@ -1,8 +1,8 @@
 //
-//  UserDefault.swift
-//  Graduating
+//  UserDefaultsProtocol.swift
 //
-//  Created by hhhello0507 on 8/20/24.
+//
+//  Created by hhhello0507 on 8/28/24.
 //
 
 import Foundation
@@ -21,15 +21,5 @@ public extension UserDefaultsProtocol {
     
     func set(_ value: Any?) {
         userDefaults.setValue(value, forKey: self.rawValue)
-    }
-}
-
-public enum UserDefaultsType: String, UserDefaultsProtocol {
-    case school
-    case grade
-    case graduating
-    
-    public var userDefaults: UserDefaults {
-        UserDefaults.graduating
     }
 }

@@ -11,17 +11,14 @@ import Data
 import Combine
 
 public final class MealViewModel: BaseViewModel {
-    @Published var meals: [Meal]?
-    @Published var mealsFetchFailure = false
+    @Published var meals: [Meal] = []
     
     func fetchMeals(schoolId: Int) {
         MealService.shared.fetchMeals(
             schoolId: schoolId
-        ).success { res in
-            self.meals = res
-        }.failure { error in
-            self.meals = nil
-            self.mealsFetchFailure = true
-        }.observe(&subscriptions)
+        )
+        .ignoreError()
+        .assign(to: \.meals, on: self)
+        .store(in: &subscriptions)
     }
 }

@@ -16,19 +16,12 @@ struct MealView: View {
         MyTopAppBar.default(title: "급식") { insets in
             ScrollView {
                 Group {
-                    if let meals = viewModel.meals {
-                        if meals.isEmpty {
-                            Text("급식이 없어요")
-                                .myFont(.bodyM)
-                                .foreground(Colors.Label.assistive)
-                                .frame(height: 60)
-                        } else {
-                            HomeMealContainer(meals: meals)
-                                .padding(.bottom, 72) // for ScrollView
-                        }
-                    } else if !viewModel.mealsFetchFailure {
+                    if viewModel.meals.isEmpty {
                         ProgressView()
                             .padding(.top, 100)
+                    } else {
+                        HomeMealContainer(meals: viewModel.meals)
+                            .padding(.bottom, 72) // for ScrollView
                     }
                 }
                 .padding(insets)

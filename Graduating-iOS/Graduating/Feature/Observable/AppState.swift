@@ -49,14 +49,17 @@ final class AppState: BaseViewModel {
     
     func fetchGraduating(id: Int) {
         SchoolService.shared.getGraduating(id: id)
-            .failure { error in
-                self.graduating = nil
-                self.graduatingFetchFailure = true
-            }
-            .success { res in
+            .sink {
+                switch $0 {
+                case .failure:
+                    self.graduating = nil
+                    self.graduatingFetchFailure = true
+                default: break
+                }
+            } receiveValue: { res in
                 self.subject.send(.fetchedGraduating(res))
                 self.graduating = res
             }
-            .observe(&subscriptions)
+            .store(in: &subscriptions)
     }
 }

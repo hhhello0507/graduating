@@ -10,6 +10,7 @@ import Combine
 import MyMoya
 import Moya
 import Model
+import Shared
 
 public enum MealEndpoint: MyTarget {
     
@@ -33,9 +34,9 @@ extension MealEndpoint {
 
 public struct MealService {
     public static let shared = Self()
-    private let requestManager = DefaultRequestManager<MealEndpoint>()
+    private let runner = DefaultNetRunner<MealEndpoint>()
 
-    public func fetchMeals(schoolId: Int) -> ObservableResult<[Meal]> {
-        requestManager.performRequest(.fetchMeals(schoolId: schoolId), res: [Meal].self).observe()
+    public func fetchMeals(schoolId: Int) -> AnyPublisher<[Meal], MoyaError> {
+        runner.deepDive(.fetchMeals(schoolId: schoolId), res: [Meal].self)
     }
 }

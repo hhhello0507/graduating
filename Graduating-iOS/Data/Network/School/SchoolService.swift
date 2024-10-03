@@ -10,9 +10,9 @@ public enum SchoolEndpoint: MyTarget {
 
 public extension SchoolEndpoint {
     
-    static let provider = MoyaProvider<Self>(session: session)
+    static let provider = MoyaProvider<Self>()
     
-    var host: String { 
+    var host: String {
         "school"
     }
     
@@ -30,13 +30,13 @@ public struct SchoolService {
     
     public static let shared = Self()
     
-    private let requestManager = DefaultRequestManager<SchoolEndpoint>()
+    private let runner = DefaultNetRunner<SchoolEndpoint>()
     
-    public func getSchools() -> ObservableResult<[School]> {
-        requestManager.performRequest(.getSchools, res: [School].self).observe()
+    public func getSchools() -> AnyPublisher<[School], MoyaError> {
+        runner.deepDive(.getSchools, res: [School].self)
     }
     
-    public func getGraduating(id: Int) -> ObservableResult<Graduating> {
-        requestManager.performRequest(.getGraduating(id: id), res: Graduating.self).observe()
+    public func getGraduating(id: Int) -> AnyPublisher<Graduating, MoyaError> {
+        runner.deepDive(.getGraduating(id: id), res: Graduating.self)
     }
 }
