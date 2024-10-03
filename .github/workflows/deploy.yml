@@ -61,7 +61,7 @@ jobs:
           port: ${{ secrets.REMOTE_SSH_PORT }}
           source: "dist/*.jar"
           target: /home/ubuntu/product
-          rm: true # TODO: 이거 왜 검색해도 안 나옴? 좀 찾아봐야 할 듯
+          strip_components: 1 # Remove dist path
   service_restart:
     needs: distribute
     runs-on: ubuntu-latest
