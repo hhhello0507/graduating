@@ -7,7 +7,7 @@ import com.bestswlkh0310.graduating.graduatingserver.core.user.PlatformType
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserRepository
 import com.bestswlkh0310.graduating.graduatingserver.infra.token.JwtClient
-import com.bestswlkh0310.graduating.graduatingserver.util.fromJson
+import com.bestswlkh0310.graduating.graduatingserver.util.TestUtil
 import com.bestswlkh0310.graduating.graduatingserver.util.toJson
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -16,8 +16,6 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
-import org.springframework.util.Assert
-import kotlin.test.assertNotNull
 import kotlin.test.junit5.JUnit5Asserter.fail
 
 @TestAnnotation
@@ -27,7 +25,6 @@ class AuthControllerTest {
     lateinit var mvc: MockMvc
 
     companion object {
-        private var token: TokenRes? = null
 
         @BeforeAll
         @JvmStatic
@@ -35,15 +32,7 @@ class AuthControllerTest {
             @Autowired userRepository: UserRepository,
             @Autowired jwtClient: JwtClient
         ) {
-            val user = userRepository.save(
-                UserEntity(
-                    id = 0,
-                    username = "hhhello0507@gmail.com",
-                    nickname = "testuser",
-                    platformType = PlatformType.GOOGLE
-                )
-            )
-            token = jwtClient.generate(user)
+            TestUtil.initializeToken(userRepository, jwtClient)
         }
     }
 
@@ -51,7 +40,7 @@ class AuthControllerTest {
     fun `refresh test`(
         @Autowired userRepository: UserRepository,
     ) {
-        val token = token ?: fail("token is null")
+        val token = TestUtil.token ?: fail("token is null")
         mvc.perform(
             MockMvcRequestBuilders.post("/auth/refresh")
                 .contentType(MediaType.APPLICATION_JSON)
