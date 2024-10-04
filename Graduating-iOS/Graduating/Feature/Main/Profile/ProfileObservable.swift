@@ -27,8 +27,8 @@ final class ProfileObservable: ObservableObject {
                 self.subject.send(.signInFailure)
             }
         } receiveValue: {
-            self.subject.send(.signInSuccess)
             Sign.me.login(id: "", password: "", accessToken: $0.accessToken, refreshToken: $0.refreshToken)
+            self.subject.send(.signInSuccess)
         }
         .store(in: &subscription)
     }

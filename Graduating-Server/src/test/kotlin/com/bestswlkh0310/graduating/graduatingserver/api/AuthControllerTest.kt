@@ -2,9 +2,6 @@ package com.bestswlkh0310.graduating.graduatingserver.api
 
 import com.bestswlkh0310.graduating.graduatingserver.TestAnnotation
 import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.RefreshReq
-import com.bestswlkh0310.graduating.graduatingserver.api.auth.res.TokenRes
-import com.bestswlkh0310.graduating.graduatingserver.core.user.PlatformType
-import com.bestswlkh0310.graduating.graduatingserver.core.user.UserEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserRepository
 import com.bestswlkh0310.graduating.graduatingserver.infra.token.JwtClient
 import com.bestswlkh0310.graduating.graduatingserver.util.TestUtil

@@ -9,23 +9,18 @@ import Foundation
 import Combine
 
 import Data
+import Shared
 
 final class EditProfileObservable: BaseViewModel {
-    enum Subject {
-        case editProfileFailure
-        case editProfileSuccess
-    }
+    @Published var editProfileFlow = Flow.idle
     @Published var nickname = ""
-    let subject = PassthroughSubject<Subject, Never>()
+    
     func editProfile() {
         UserService.shared.editUser(
             .init(nickname: nickname)
-        ).sink {
-            if case .failure = $0 {
-                self.subject.send(.editProfileFailure)
-            }
-        } receiveValue: { _ in
-            self.subject.send(.editProfileSuccess)
-        }.store(in: &subscriptions)
+        )
+        .flow(\.editProfileFlow, on: self)
+        .silentSink()
+        .store(in: &subscriptions)
     }
 }

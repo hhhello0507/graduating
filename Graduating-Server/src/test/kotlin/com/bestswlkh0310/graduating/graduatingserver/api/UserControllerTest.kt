@@ -16,7 +16,6 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
-import java.net.http.HttpHeaders
 import java.util.*
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals

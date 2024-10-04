@@ -32,9 +32,20 @@ struct ProfileView: View {
                     MyAvatar(nil, type: .larger)
                     if let user = appState.currentUser {
                         if let nickname = user.nickname {
-                            Text(nickname)
-                                .foreground(Colors.Label.alternative)
-                                .myFont(.bodyR)
+                            HStack(spacing: 8) {
+                                Text(nickname)
+                                    .foreground(Colors.Label.alternative)
+                                    .myFont(.bodyR)
+                                Button {
+                                    router.push(EditProfilePath())
+                                } label: {
+                                    Image(icon: Icons.Feature.Pen)
+                                        .resizable()
+                                        .renderingMode(.template)
+                                        .foreground(Colors.Label.assistive)
+                                        .frame(size: 18)
+                                }
+                            }
                         } else {
                             Button {
                                 router.push(EditProfilePath())

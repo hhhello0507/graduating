@@ -37,8 +37,8 @@ class AuthInterceptor: RequestInterceptor {
             return
         }
         
-        guard request.retryCount <= 3 else {
-            print("❌ AuthInterceptor - RetryCount가 3보다 큽니다")
+        guard request.retryCount <= 2 else {
+            print("❌ AuthInterceptor - RetryCount가 2보다 큽니다")
             return
         }
         

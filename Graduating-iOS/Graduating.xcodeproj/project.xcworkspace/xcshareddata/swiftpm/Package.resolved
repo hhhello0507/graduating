@@ -78,8 +78,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/hhhello0507/my-ios-kit",
       "state" : {
-        "revision" : "f7c1351e86d0282361ab616532586f1d1a26b8c7",
-        "version" : "2.0.4"
+        "revision" : "ab9c2df1a26ac236f95ef49cc748108974b637fa",
+        "version" : "2.0.5"
       }
     },
     {

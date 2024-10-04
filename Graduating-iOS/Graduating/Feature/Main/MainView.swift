@@ -72,7 +72,10 @@ struct MainView: View {
             handleGraduating($0)
         }
     }
-    
+}
+
+// MARK: - Method
+extension MainView {
     func handleGraduating(_ graduating: Graduating?) {
         if appState.graduatingFetchFailure,
            let school = appState.school {
@@ -85,9 +88,7 @@ struct MainView: View {
     }
     
     func fetchMeals() {
-        guard let school = appState.school else {
-            return
-        }
+        guard let school = appState.school else { return }
         mealViewModel.fetchMeals(schoolId: school.id)
     }
     

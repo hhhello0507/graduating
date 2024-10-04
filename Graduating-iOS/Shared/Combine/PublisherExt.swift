@@ -1,4 +1,5 @@
 import Combine
+import SwiftUI
 
 public extension Publisher {
     func ignoreError() -> AnyPublisher<Output, Never> {
@@ -6,6 +7,10 @@ public extension Publisher {
             Empty<Output, Never>()
         }
         .eraseToAnyPublisher()
+    }
+    
+    func silentSink() -> AnyCancellable {
+        return self.sink { _ in } receiveValue: { _ in }
     }
 }
 
