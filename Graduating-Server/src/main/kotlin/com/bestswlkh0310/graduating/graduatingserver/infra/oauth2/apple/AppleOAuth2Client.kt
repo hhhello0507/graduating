@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestClient
+import org.springframework.web.client.body
 import org.springframework.web.client.toEntity
 import java.security.PrivateKey
 import java.security.Security
@@ -24,7 +25,7 @@ class AppleOAuth2Client(
     private val restClient: RestClient,
     private val properties: AppleOAuth2Properties,
 ) {
-    
+
     fun getToken(code: String) = restClient.post()
         .uri {
             it.path("/auth/token")
@@ -35,14 +36,14 @@ class AppleOAuth2Client(
                 .build()
         }
         .retrieve()
-        .toEntity<AppleTokenRes>()
-        .body ?: throw CustomException(HttpStatus.BAD_REQUEST, "Apple client error")
+        .body<AppleTokenRes>()
+        ?: throw CustomException(HttpStatus.BAD_REQUEST, "Apple client error")
 
     fun getPublicKeys() = restClient.get()
         .uri("/auth/keys")
         .retrieve()
-        .toEntity(AppleJWKSet::class.java)
-        .body ?: throw CustomException(HttpStatus.INTERNAL_SERVER_ERROR, "Apple client error")
+        .body(AppleJWKSet::class.java)
+        ?: throw CustomException(HttpStatus.INTERNAL_SERVER_ERROR, "Apple client error")
 
 
     private fun generateClientSecret(): String {

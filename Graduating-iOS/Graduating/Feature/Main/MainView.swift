@@ -34,8 +34,7 @@ let data = [
 
 struct MainPath: Hashable {}
 
-struct MainView: View {
-    
+struct MainView {
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var appState: AppState
     @EnvironmentObject private var dialogProvider: DialogProvider
@@ -50,7 +49,9 @@ struct MainView: View {
     init(_ path: MainPath) {
         self.path = path
     }
-    
+}
+
+extension MainView: View {
     var body: some View {
         MyBottomAppBar(data, selection: selectedTab) {
             selectedTab = $0
