@@ -5,7 +5,7 @@ import com.bestswlkh0310.graduating.graduatingserver.core.user.PlatformType
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserRepository
 import com.bestswlkh0310.graduating.graduatingserver.infra.token.JwtClient
-import com.bestswlkh0310.graduating.graduatingserver.util.TestAnnotation
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,25 +15,27 @@ import org.springframework.test.web.servlet.MockMvc
 class AuthControllerTest {
 
     @Autowired
-    lateinit var userRepository: UserRepository
-    @Autowired
-    lateinit var jwtClient: JwtClient
-    @Autowired
     lateinit var mvc: MockMvc
+    
+    companion object {
+        private var token: TokenRes? = null
 
-    private var token: TokenRes? = null
-
-    @BeforeEach
-    fun beforeEach() {
-        val user = userRepository.save(
-            UserEntity(
-                id = 0,
-                username = "hhhello0507@gmail.com",
-                nickname = "testuser",
-                platformType = PlatformType.GOOGLE
+        @BeforeAll
+        @JvmStatic
+        fun beforeAll(
+            @Autowired userRepository: UserRepository,
+            @Autowired jwtClient: JwtClient
+        ) {
+            val user = userRepository.save(
+                UserEntity(
+                    id = 0,
+                    username = "hhhello0507@gmail.com",
+                    nickname = "testuser",
+                    platformType = PlatformType.GOOGLE
+                )
             )
-        )
-        token = jwtClient.generate(user)
+            token = jwtClient.generate(user)
+        }
     }
 
     @Test

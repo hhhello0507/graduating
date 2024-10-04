@@ -1,4 +1,4 @@
-package com.bestswlkh0310.graduating.graduatingserver.util
+package com.bestswlkh0310.graduating.graduatingserver
 
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
