@@ -4,21 +4,37 @@ import jakarta.persistence.*
 
 @Entity(name = "`user`")
 class User(
+    id: Long = 0,
+    username: String,
+    nickname: String,
+    role: UserRole = UserRole.USER,
+    platformType: PlatformType
+) {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    val id: Long = 0,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = id
+        private set
 
     @Column(nullable = false)
-    val username: String,
-    
+    var username = username
+        private set
+
     @Column
-    val nickname: String?,
+    var nickname = nickname
+        private set
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    val role: UserRole = UserRole.USER,
+    var role: UserRole = role
+        private set
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    val platformType: PlatformType
-)
+    var platformType = platformType
+        private set
+
+    fun updateNickname(nickname: String) {
+        this.nickname = nickname
+    }
+}
