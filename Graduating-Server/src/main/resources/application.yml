@@ -19,8 +19,8 @@ neis:
   apikey: ${NEIS_APIKEY}
 jwt:
   expired:
-    access: 3600
-    refresh: 300000
+    access: 3600_000
+    refresh: 300_000_000
   secret-key: ${JWT_SECRET}
 oauth2:
   google:

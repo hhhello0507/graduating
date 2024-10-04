@@ -18,9 +18,6 @@ public enum MealEndpoint: MyTarget {
 }
 
 extension MealEndpoint {
-    
-    static public var provider = MoyaProvider<MealEndpoint>()
-    
     public var host: String {
         "meals"
     }
@@ -34,7 +31,12 @@ extension MealEndpoint {
 
 public struct MealService {
     public static let shared = Self()
-    private let runner = DefaultNetRunner<MealEndpoint>()
+    private let runner = DefaultNetRunner<MealEndpoint>(
+        provider: .init(
+            session: MoyaProviderUtil.mySession,
+            plugins: MoyaProviderUtil.myPlugins
+        )
+    )
 
     public func fetchMeals(schoolId: Int) -> AnyPublisher<[Meal], MoyaError> {
         runner.deepDive(.fetchMeals(schoolId: schoolId), res: [Meal].self)

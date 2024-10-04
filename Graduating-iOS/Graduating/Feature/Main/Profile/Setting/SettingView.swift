@@ -15,6 +15,7 @@ struct SettingView: View {
     
     @Environment(\.openURL) private var openURL
     @EnvironmentObject private var dialog: DialogProvider
+    @EnvironmentObject private var appState: AppState
     @EnvironmentObject private var router: Router
     
     var body: some View {
@@ -29,6 +30,7 @@ struct SettingView: View {
                         .primaryButton("로그아웃") {
                             Sign.me.logout()
                             router.replace([MainPath()])
+                            appState.currentUser = nil
                         }.secondaryButton("취소")
                     )
                 }

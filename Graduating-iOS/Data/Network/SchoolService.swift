@@ -9,9 +9,6 @@ public enum SchoolEndpoint: MyTarget {
 }
 
 public extension SchoolEndpoint {
-    
-    static let provider = MoyaProvider<Self>()
-    
     var host: String {
         "school"
     }
@@ -29,8 +26,12 @@ public extension SchoolEndpoint {
 public struct SchoolService {
     
     public static let shared = Self()
-    
-    private let runner = DefaultNetRunner<SchoolEndpoint>()
+    private let runner = DefaultNetRunner<SchoolEndpoint>(
+        provider: .init(
+            session: MoyaProviderUtil.mySession,
+            plugins: MoyaProviderUtil.myPlugins
+        )
+    )
     
     public func getSchools() -> AnyPublisher<[School], MoyaError> {
         runner.deepDive(.getSchools, res: [School].self)

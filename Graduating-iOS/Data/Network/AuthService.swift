@@ -31,7 +31,12 @@ extension AuthEndpoint: MyTarget {
 
 public class AuthService {
     public static let shared = AuthService()
-    let netRunner = DefaultNetRunner<AuthEndpoint>()
+    let netRunner = DefaultNetRunner<AuthEndpoint>(
+        provider: .init(
+            session: MoyaProviderUtil.mySession,
+            plugins: MoyaProviderUtil.myPlugins
+        )
+    )
     
     public func oauth2SignIn(_ req: OAuth2SignInReq) -> AnyPublisher<Token, MoyaError> {
         netRunner.deepDive(.oauth2SignIn(req), res: Token.self)

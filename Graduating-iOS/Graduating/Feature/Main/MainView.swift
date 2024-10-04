@@ -44,6 +44,12 @@ struct MainView: View {
     
     @State private var selectedTab = data[0]
     
+    private let path: MainPath
+    
+    init(_ path: MainPath) {
+        self.path = path
+    }
+    
     var body: some View {
         MyBottomAppBar(data, selection: selectedTab) {
             selectedTab = $0
@@ -60,8 +66,6 @@ struct MainView: View {
             handleGraduating(appState.graduating)
             fetchMeals()
             fetchGraduating()
-            selectedTab = data[0]
-            appState.fetchCurrentUser()
         }
         .onChange(of: appState.graduating) {
             selectedTab = .home

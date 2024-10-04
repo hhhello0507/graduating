@@ -30,10 +30,20 @@ struct ProfileView: View {
             VStack(spacing: 0) {
                 VStack(spacing: 8) {
                     MyAvatar(nil, type: .larger)
-                    if Sign.me.isLoggedIn {
-                        Text("-")
-                            .foreground(Colors.Label.alternative)
-                            .myFont(.bodyR)
+                    if let user = appState.currentUser {
+                        if let nickname = user.nickname {
+                            Text(nickname)
+                                .foreground(Colors.Label.alternative)
+                                .myFont(.bodyR)
+                        } else {
+                            Button {
+                                router.push(EditProfilePath())
+                            } label: {
+                                Text("닉네임 설정")
+                                    .foreground(Colors.Label.alternative)
+                                    .myFont(.bodyR)
+                            }
+                        }
                     } else {
                         Button {
                             isSheetPresent = true
@@ -91,6 +101,7 @@ struct ProfileView: View {
                 switch $0 {
                 case .signInSuccess:
                     router.replace([MainPath()])
+                    appState.fetchCurrentUser()
                 case .signInFailure:
                     dialog.present(
                         .init(title: "로그인 실패")

@@ -51,6 +51,7 @@ final class AppState: BaseViewModel {
     private var observer: NSKeyValueObservation?
     override init() {
         super.init()
+        fetchCurrentUser()
     }
     
     func fetchGraduating(id: Int) {
