@@ -20,5 +20,5 @@ class User(
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    val platformType: PlatformType = PlatformType.DEFAULT
+    val platformType: PlatformType
 )
