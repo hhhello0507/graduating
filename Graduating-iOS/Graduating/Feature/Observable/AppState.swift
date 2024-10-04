@@ -46,6 +46,7 @@ final class AppState: BaseViewModel {
         }
     }
     @Published var graduatingFetchFailure = false
+    @Published var currentUser: User?
     
     private var observer: NSKeyValueObservation?
     override init() {
@@ -65,6 +66,13 @@ final class AppState: BaseViewModel {
                 self.subject.send(.fetchedGraduating(res))
                 self.graduating = res
             }
+            .store(in: &subscriptions)
+    }
+    
+    func fetchCurrentUser() {
+        UserService.shared.getMe()
+            .ignoreError()
+            .assign(to: \.currentUser, on: self)
             .store(in: &subscriptions)
     }
 }

@@ -34,11 +34,11 @@ public class UserService {
     public static let shared = UserService()
     let netRunnner = DefaultNetRunner<UserEndpoint>()
     
-    func getMe() -> AnyPublisher<User, MoyaError> {
+    public func getMe() -> AnyPublisher<User, MoyaError> {
         netRunnner.deepDive(.getMe, res: User.self)
     }
     
-    func editUser(_ req: EditUserReq) -> AnyPublisher<VoidDTO, MoyaError> {
+    public func editUser(_ req: EditUserReq) -> AnyPublisher<VoidDTO, MoyaError> {
         netRunnner.deepDive(.editUser(req), res: VoidDTO.self)
     }
 }

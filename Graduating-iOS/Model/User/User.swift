@@ -9,9 +9,9 @@ import Foundation
 
 public struct User: ModelProtocol {
     public let username: String
-    public let nickname: String
+    public let nickname: String?
     
-    public init(username: String, nickname: String) {
+    public init(username: String, nickname: String?) {
         self.username = username
         self.nickname = nickname
     }

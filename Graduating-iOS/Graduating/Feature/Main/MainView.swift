@@ -61,6 +61,7 @@ struct MainView: View {
             fetchMeals()
             fetchGraduating()
             selectedTab = data[0]
+            appState.fetchCurrentUser()
         }
         .onChange(of: appState.graduating) {
             selectedTab = .home

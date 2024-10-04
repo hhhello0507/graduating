@@ -6,7 +6,7 @@ import jakarta.persistence.*
 class User(
     id: Long = 0,
     username: String,
-    nickname: String,
+    nickname: String?,
     role: UserRole = UserRole.USER,
     platformType: PlatformType
 ) {
