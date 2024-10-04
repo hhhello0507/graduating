@@ -9,7 +9,7 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto:
-        update
+        create-drop
     show-sql: true
 neis:
   apikey: wow

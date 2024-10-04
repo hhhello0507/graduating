@@ -10,7 +10,7 @@ import org.springframework.test.context.TestPropertySource
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @SpringBootTest
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD) // reset DB
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD) // reset DB
 @AutoConfigureTestDatabase(
     connection = EmbeddedDatabaseConnection.H2,
     replace = AutoConfigureTestDatabase.Replace.ANY
