@@ -6,36 +6,27 @@
 //
 
 import Combine
+import Foundation
+
 import Model
 import Data
-import Foundation
+import Shared
+
 import SignKit
 
-final class ProfileObservable: ObservableObject {
-    enum Subject {
-        case signInSuccess
-        case signInFailure
-    }
-    var subscription = Set<AnyCancellable>()
-    var subject = PassthroughSubject<Subject, Never>()
+final class ProfileObservable: BaseViewModel {
+    
+    @Published var signInFlow = Flow.idle
+    
     func signIn(code: String, platformType: PlatformType) {
         AuthService.shared.oauth2SignIn(
             .init(platformType: platformType, code: code)
         )
+        .flow(\.signInFlow, on: self)
+        .ignoreError()
         .sink {
-            if case .failure = $0 {
-                self.subject.send(.signInFailure)
-            }
-        } receiveValue: {
             Sign.me.login(id: "", password: "", accessToken: $0.accessToken, refreshToken: $0.refreshToken)
-            self.subject.send(.signInSuccess)
         }
-        .store(in: &subscription)
-    }
-    
-    deinit {
-        subscription.forEach {
-            $0.cancel()
-        }
+        .store(in: &subscriptions)
     }
 }

@@ -11,9 +11,9 @@ import MyDesignSystem
 struct EditSchoolPath: Hashable {}
 
 struct EditSchoolView: View {
+    @EnvironmentObject private var router: Router
     
     @StateObject private var viewModel = SearchSchoolViewModel()
-    @EnvironmentObject private var router: Router
     
     init(_ path: EditSchoolPath) {}
     

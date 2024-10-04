@@ -3,6 +3,7 @@ import Combine
 
 import Model
 import Data
+import Shared
 
 import MyDesignSystem
 import GoogleSignIn
@@ -10,11 +11,13 @@ import MyUIKitExt
 import SignKit
 
 struct ProfileView: View {
-    @StateObject private var appleObservable = AppleObservable()
-    @StateObject private var observable = ProfileObservable()
     @EnvironmentObject private var dialog: DialogProvider
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var appState: AppState
+    
+    @StateObject private var appleObservable = AppleObservable()
+    @StateObject private var observable = ProfileObservable()
+    
     @State private var isSheetPresent: Bool = false
     
     var body: some View {
@@ -83,42 +86,50 @@ struct ProfileView: View {
             }
             .padding(insets)
         }
-        .sheet(isPresented: $isSheetPresent) {
-            VStack(spacing: 10) {
-                AppleSignInButton {
-                    appleObservable.signIn { code in
-                        observable.signIn(code: code, platformType: .apple)
-                    } failureCompletion: {
-                        dialog.present(
-                            .init(title: "로그인 실패")
-                        )
-                    }
-                }
-                GoogleSignInButton {
-                    guard let rootViewController = UIApplicationUtil.window?.rootViewController else { return }
-                    Task {
-                        let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
-                        guard let code = result.serverAuthCode else { return }
-                    }
-                }
-            }
-            .padding(20)
-            .background(Colors.Background.normal)
-            .adjustedHeightSheet()
+        .sheet(isPresented: $isSheetPresent, content: sheetContent)
+        .onReceive(observable.$signInFlow, perform: receiveSubject)
+    }
+}
+
+// MARK: - Method
+extension ProfileView {
+    func receiveSubject(flow: Flow) {
+        isSheetPresent = false
+        switch flow {
+        case .success:
+            router.replace([MainPath()])
+            appState.fetchCurrentUser()
+        case .failure:
+            dialog.present(
+                .init(title: "로그인 실패")
+            )
+        default:
+            break
         }
-        .onAppear {
-            observable.subject.sink {
-                isSheetPresent = false
-                switch $0 {
-                case .signInSuccess:
-                    router.replace([MainPath()])
-                    appState.fetchCurrentUser()
-                case .signInFailure:
+    }
+    
+    @ViewBuilder
+    func sheetContent() -> some View {
+        VStack(spacing: 10) {
+            AppleSignInButton {
+                appleObservable.signIn { code in
+                    observable.signIn(code: code, platformType: .apple)
+                } failureCompletion: {
                     dialog.present(
                         .init(title: "로그인 실패")
                     )
                 }
-            }.store(in: &observable.subscription)
+            }
+            GoogleSignInButton {
+                guard let rootViewController = UIApplicationUtil.window?.rootViewController else { return }
+                Task {
+                    let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
+                    guard let code = result.serverAuthCode else { return }
+                }
+            }
         }
+        .padding(20)
+        .background(Colors.Background.normal)
+        .adjustedHeightSheet()
     }
 }

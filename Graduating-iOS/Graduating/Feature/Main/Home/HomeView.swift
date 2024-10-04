@@ -4,7 +4,6 @@ import Combine
 import Shared
 
 struct HomeView: View {
-    
     @EnvironmentObject private var appState: AppState
     @EnvironmentObject private var graduatingViewModel: GraduatingViewModel
     
@@ -32,15 +31,21 @@ struct HomeView: View {
                 .padding(insets)
                 .padding(.bottom, 80)
             }
-            .refreshable {
-                guard let grade = appState.grade,
-                      let graduating = appState.graduating else {
-                    return
-                }
-                let limit = appState.school?.type?.limit ?? 3
-                graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
-            }
+            .refreshable(action: handleRefresh)
         }
+    }
+}
+
+// MARK: - Method
+extension HomeView {
+    @Sendable
+    func handleRefresh() async {
+        guard let grade = appState.grade,
+              let graduating = appState.graduating else {
+            return
+        }
+        let limit = appState.school?.type?.limit ?? 3
+        graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
     }
 }
 
