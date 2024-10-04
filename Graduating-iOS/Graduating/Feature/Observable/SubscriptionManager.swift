@@ -1,7 +1,7 @@
 import Combine
 
-open class BaseViewModel: ObservableObject {
-    public var subscriptions = Set<AnyCancellable>()
+final class SubscriptionManager {
+    var subscriptions = Set<AnyCancellable>()
     
     deinit {
         subscriptions.forEach {

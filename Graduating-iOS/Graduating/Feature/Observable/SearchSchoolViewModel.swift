@@ -3,9 +3,11 @@ import Combine
 import Model
 import Data
 
-final class SearchSchoolViewModel: BaseViewModel {
+final class SearchSchoolViewModel: ObservableObject {
     @Published private var schools: [School]?
     @Published public var searchSchoolName = ""
+    
+    let subscriptionManager = SubscriptionManager()
 }
 
 extension SearchSchoolViewModel {
@@ -22,6 +24,6 @@ extension SearchSchoolViewModel {
         SchoolService.shared.getSchools()
             .ignoreError()
             .assign(to: \.schools, on: self)
-            .store(in: &subscriptions)
+            .store(in: &subscriptionManager.subscriptions)
     }
 }

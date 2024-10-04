@@ -4,12 +4,13 @@ import Foundation
 import Model
 import Shared
 
-final class GraduatingViewModel: BaseViewModel {
+final class GraduatingViewModel: ObservableObject {
     @Published var remainTimePercent: Double = 0.0
     @Published var remainTime: DateComponents?
     @Published private var startAt: Date?
     
     private let publisher = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    let subscriptionManager = SubscriptionManager()
 }
 
 extension GraduatingViewModel {
@@ -18,7 +19,7 @@ extension GraduatingViewModel {
         graduating: Graduating,
         limit: Int
     ) {
-        subscriptions.forEach { $0.cancel() }
+        subscriptionManager.subscriptions.forEach { $0.cancel() }
         startAt = .getStartAt(for: grade)
         
         guard let startAt,
@@ -30,6 +31,6 @@ extension GraduatingViewModel {
             let currentTime = Date.now
             self.remainTime = currentTime.diff([.year, .month, .day, .hour, .minute, .second, .nanosecond], other: adjustedEndAt)
             self.remainTimePercent = currentTime.percent(from: startAt, to: adjustedEndAt)
-        }.store(in: &subscriptions)
+        }.store(in: &subscriptionManager.subscriptions)
     }
 }

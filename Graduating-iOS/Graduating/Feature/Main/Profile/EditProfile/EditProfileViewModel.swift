@@ -4,9 +4,10 @@ import Foundation
 import Data
 import Shared
 
-final class EditProfileViewModel: BaseViewModel {
+final class EditProfileViewModel: ObservableObject {
     @Published var editProfileFlow = Flow.idle
     @Published var nickname = ""
+    let subscriptionManager = SubscriptionManager()
 }
 
 extension EditProfileViewModel {
@@ -16,6 +17,6 @@ extension EditProfileViewModel {
         )
         .flow(\.editProfileFlow, on: self)
         .silentSink()
-        .store(in: &subscriptions)
+        .store(in: &subscriptionManager.subscriptions)
     }
 }

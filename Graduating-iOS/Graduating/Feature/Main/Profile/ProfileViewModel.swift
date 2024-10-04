@@ -7,8 +7,9 @@ import Shared
 
 import SignKit
 
-final class ProfileViewModel: BaseViewModel {
+final class ProfileViewModel: ObservableObject {
     @Published var signInFlow = Flow.idle
+    let subscriptionManager = SubscriptionManager()
 }
 
 extension ProfileViewModel {
@@ -21,6 +22,6 @@ extension ProfileViewModel {
         .sink {
             Sign.me.login(id: "", password: "", accessToken: $0.accessToken, refreshToken: $0.refreshToken)
         }
-        .store(in: &subscriptions)
+        .store(in: &subscriptionManager.subscriptions)
     }
 }

@@ -6,7 +6,7 @@ import Model
 
 import SignKit
 
-final class AppState: BaseViewModel {
+final class AppState: ObservableObject {
     enum Subject {
         case fetchedGraduating(Graduating)
     }
@@ -41,10 +41,10 @@ final class AppState: BaseViewModel {
     }
     @Published var graduatingFetchFailure = false
     @Published var currentUser: User?
+    let subscriptionManager = SubscriptionManager()
     
     private var observer: NSKeyValueObservation?
-    override init() {
-        super.init()
+    init() {
         fetchCurrentUser()
     }
 }
@@ -63,13 +63,13 @@ extension AppState {
                 self.subject.send(.fetchedGraduating(res))
                 self.graduating = res
             }
-            .store(in: &subscriptions)
+            .store(in: &subscriptionManager.subscriptions)
     }
     
     func fetchCurrentUser() {
         UserService.shared.getMe()
             .ignoreError()
             .assign(to: \.currentUser, on: self)
-            .store(in: &subscriptions)
+            .store(in: &subscriptionManager.subscriptions)
     }
 }

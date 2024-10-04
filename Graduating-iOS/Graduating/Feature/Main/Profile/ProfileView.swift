@@ -10,7 +10,7 @@ import MyDesignSystem
 import MyUIKitExt
 import SignKit
 
-struct ProfileView: View {
+struct ProfileView {
     @EnvironmentObject private var dialog: DialogProvider
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var appState: AppState
@@ -21,7 +21,7 @@ struct ProfileView: View {
     @State private var isSheetPresent: Bool = false
 }
 
-extension ProfileView {
+extension ProfileView: View {
     var body: some View {
         MyTopAppBar.default(
             title: "프로필",
@@ -90,6 +90,7 @@ extension ProfileView {
         }
         .sheet(isPresented: $isSheetPresent, content: sheetContent)
         .onReceive(viewModel.$signInFlow, perform: receiveSubject)
+        .onReceive(appleViewModel.subject, perform: receiveAppleSubject)
     }
 }
 
@@ -109,17 +110,24 @@ extension ProfileView {
         }
     }
     
+    func receiveAppleSubject(subject: AppleViewModel.Subject) {
+        switch subject {
+        case .signInSuccess(let code):
+            viewModel.signIn(code: code, platformType: .apple)
+        case .signInFailure:
+            dialog.present(
+                .init(title: "로그인 실패")
+            )
+        }
+    }
+}
+
+extension ProfileView {
     @ViewBuilder
     func sheetContent() -> some View {
         VStack(spacing: 10) {
             AppleSignInButton {
-                appleViewModel.signIn { code in
-                    viewModel.signIn(code: code, platformType: .apple)
-                } failureCompletion: {
-                    dialog.present(
-                        .init(title: "로그인 실패")
-                    )
-                }
+                appleViewModel.signIn()
             }
             GoogleSignInButton {
                 guard let rootViewController = UIApplicationUtil.window?.rootViewController else { return }
