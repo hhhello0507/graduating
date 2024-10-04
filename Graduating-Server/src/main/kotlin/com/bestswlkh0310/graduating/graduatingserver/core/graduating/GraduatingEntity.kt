@@ -3,7 +3,7 @@ package com.bestswlkh0310.graduating.graduatingserver.core.graduating
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "graduating")
+@Table(name = "tbl_graduating")
 class GraduatingEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

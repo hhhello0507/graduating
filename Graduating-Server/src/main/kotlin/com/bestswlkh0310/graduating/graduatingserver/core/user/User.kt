@@ -2,7 +2,7 @@ package com.bestswlkh0310.graduating.graduatingserver.core.user
 
 import jakarta.persistence.*
 
-@Entity(name = "`user`")
+@Entity(name = "tbl_user")
 class User(
     id: Long = 0,
     username: String,

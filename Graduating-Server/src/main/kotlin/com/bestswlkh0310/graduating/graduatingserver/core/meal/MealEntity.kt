@@ -6,7 +6,7 @@ import java.time.LocalDate
 
 @Entity
 @Table(
-    name = "meal",
+    name = "tbl_meal",
     uniqueConstraints = [
         UniqueConstraint(
             name = "UniqueMealDateAndMealTypeAndSchoolId",

@@ -24,29 +24,29 @@ class AuthService(
     private val googleOAuth2Client: GoogleOAuth2Client,
     private val appleOAuth2Client: AppleOAuth2Client,
     private val appleOAuth2Helper: AppleOAuth2Helper,
-    private val jwtUtils: JwtClient,
+    private val jwtClient: JwtClient,
     private val googleOAuth2Helper: GoogleOAuth2Helper
 ) {
 
     fun refresh(req: RefreshReq): TokenRes {
-        jwtUtils.parseToken(req.refreshToken)
+        jwtClient.parseToken(req.refreshToken)
 
         val user = run {
-            val username = jwtUtils.payload(JwtPayloadKey.USERNAME, req.refreshToken)
+            val username = jwtClient.payload(JwtPayloadKey.USERNAME, req.refreshToken)
             userRepository.getByUsername(username)
         }
 
-        return jwtUtils.generate(user)
+        return jwtClient.generate(user)
     }
 
     fun oAuth2SignIn(req: OAuth2SignInReq): TokenRes {
-        val token = when (req.platformType) {
+        val user = when (req.platformType) {
             PlatformType.GOOGLE -> googleSignIn(req)
             PlatformType.APPLE -> appleSignIn(req)
             else -> throw CustomException(HttpStatus.BAD_REQUEST, "Invalid platform type")
         }
         
-        return jwtUtils.generate(token)
+        return jwtClient.generate(user)
     }
 
     private fun googleSignIn(req: OAuth2SignInReq): User {
