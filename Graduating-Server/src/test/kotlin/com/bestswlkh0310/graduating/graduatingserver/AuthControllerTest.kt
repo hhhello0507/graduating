@@ -6,7 +6,6 @@ import com.bestswlkh0310.graduating.graduatingserver.core.user.UserEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserRepository
 import com.bestswlkh0310.graduating.graduatingserver.infra.token.JwtClient
 import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.web.servlet.MockMvc

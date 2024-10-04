@@ -15,6 +15,6 @@ import org.springframework.test.context.TestPropertySource
     connection = EmbeddedDatabaseConnection.H2,
     replace = AutoConfigureTestDatabase.Replace.ANY
 )
-@TestPropertySource("classpath:application-test.yml")
+@TestPropertySource(properties = ["spring.config.location = classpath:application-test.yml"])
 @AutoConfigureMockMvc
 annotation class TestAnnotation

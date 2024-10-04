@@ -11,3 +11,27 @@ spring:
       ddl-auto:
         update
     show-sql: true
+neis:
+  apikey: wow
+jwt:
+  expired:
+    access: 3_600_000
+    refresh: 300_000_000
+  secret-key: 907345e202e27d59d11c02a7736d37a845464a4588edc4132a35062b6a592b65
+oauth2:
+  google:
+    client-id:
+      ios: wow
+      web: wow
+    client-secret: wow
+    redirect-uri: wow
+    token-uri: https://oauth2.googleapis.com/token
+    resource-uri: https://www.googleapis.com/oauth2/v2/userinfo
+    grant-type: authorization_code
+  apple:
+    bundle-id: wow
+    key-id: wow
+    team-id: wow
+    audience: https://appleid.apple.com
+    private-key: wow
+    grant-type: authorization_code
