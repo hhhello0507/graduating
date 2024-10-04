@@ -1,23 +1,17 @@
-//
-//  ProfileViewModel.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 10/4/24.
-//
-
 import Combine
 import Foundation
 
-import Model
 import Data
+import Model
 import Shared
 
 import SignKit
 
-final class ProfileObservable: BaseViewModel {
-    
+final class ProfileViewModel: BaseViewModel {
     @Published var signInFlow = Flow.idle
-    
+}
+
+extension ProfileViewModel {
     func signIn(code: String, platformType: PlatformType) {
         AuthService.shared.oauth2SignIn(
             .init(platformType: platformType, code: code)

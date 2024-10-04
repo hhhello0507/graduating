@@ -1,16 +1,10 @@
-//
-//  HomeGraduatingContainer.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 8/28/24.
-//
-
 import SwiftUI
+
 import Model
+
 import MyDesignSystem
 
-public struct HomeGraduatingContainer: View {
-    
+public struct HomeGraduatingContainer {
     private let remainTime: DateComponents
     private let remainTimePercent: Double
     
@@ -21,7 +15,9 @@ public struct HomeGraduatingContainer: View {
         self.remainTime = remainTime
         self.remainTimePercent = remainTimePercent
     }
-    
+}
+
+extension HomeGraduatingContainer: View {
     public var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 0) {

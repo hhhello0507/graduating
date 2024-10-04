@@ -1,19 +1,15 @@
-//
-//  SchoolCell.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 8/20/24.
-//
-
 import SwiftUI
-import MyDesignSystem
+
 import Model
 
-struct SchoolCell: View {
-    
+import MyDesignSystem
+
+struct SchoolCell {
     let school: School
     let action: () -> Void
-    
+}
+
+extension SchoolCell: View {
     var body: some View {
         Button {
             action()

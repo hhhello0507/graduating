@@ -1,25 +1,20 @@
-//
-//  SchoolList.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 8/21/24.
-//
-
 import SwiftUI
-import MyDesignSystem
+
 import Model
 
-public struct SearchSchoolContainer: View {
-    
-    @FocusState private var field: Bool
+import MyDesignSystem
+
+public struct SearchSchoolContainer {
     @EnvironmentObject private var dialogProvider: DialogProvider
     @EnvironmentObject private var appState: AppState
     @EnvironmentObject private var router: Router
     
-    private let schools: [School]?
+    @FocusState private var field: Bool
     @Binding private var searchText: String
+    
+    private let schools: [School]?
     private let selectAction: () -> Void
-
+    
     public init(
         for schools: [School]?,
         searchText: Binding<String>,
@@ -29,7 +24,9 @@ public struct SearchSchoolContainer: View {
         self._searchText = searchText
         self.selectAction = selectAction
     }
-    
+}
+
+extension SearchSchoolContainer: View {
     public var body: some View {
         VStack(spacing: 12) {
             HStack(spacing: 2) {

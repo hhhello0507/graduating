@@ -1,12 +1,15 @@
 import SwiftUI
 import MyDesignSystem
 import Combine
+
 import Shared
 
-struct HomeView: View {
+struct HomeView {
     @EnvironmentObject private var appState: AppState
     @EnvironmentObject private var graduatingViewModel: GraduatingViewModel
-    
+}
+
+extension HomeView: View {
     var body: some View {
         MyTopAppBar.default(title: "홈") { insets in
             ScrollView {

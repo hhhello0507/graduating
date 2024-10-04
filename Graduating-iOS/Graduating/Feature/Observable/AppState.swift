@@ -1,18 +1,12 @@
-//
-//  AppState.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 8/20/24.
-//
-
 import Combine
 import Foundation
-import Model
+
 import Data
+import Model
+
 import SignKit
 
 final class AppState: BaseViewModel {
-    
     enum Subject {
         case fetchedGraduating(Graduating)
     }
@@ -53,7 +47,9 @@ final class AppState: BaseViewModel {
         super.init()
         fetchCurrentUser()
     }
-    
+}
+
+extension AppState {
     func fetchGraduating(id: Int) {
         SchoolService.shared.getGraduating(id: id)
             .sink {

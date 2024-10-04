@@ -1,10 +1,3 @@
-//
-//  ViewExt.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 10/4/24.
-//
-
 import SwiftUI
 
 public extension View {
@@ -31,7 +24,6 @@ struct SizePreferenceKey: PreferenceKey {
 }
 
 struct AdjustedHeightSheetViewModifier: ViewModifier {
-    
     @State private var size: CGSize = .zero
     
     func body(content: Content) -> some View {

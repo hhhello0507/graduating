@@ -1,22 +1,18 @@
-//
-//  HomeMealContainer.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 8/28/24.
-//
-
 import SwiftUI
+
 import Model
+
 import MyDesignSystem
 
-public struct HomeMealContainer: View {
-    
+public struct HomeMealContainer {
     private let meals: [Meal]
     
     init(meals: [Meal]) {
         self.meals = meals
     }
-    
+}
+
+extension HomeMealContainer: View {
     public var body: some View {
         LazyVStack(spacing: 8) {
             ForEach(meals, id: \.id) { meal in

@@ -1,20 +1,15 @@
-//
-//  EditProfileObservable.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 10/4/24.
-//
-
-import Foundation
 import Combine
+import Foundation
 
 import Data
 import Shared
 
-final class EditProfileObservable: BaseViewModel {
+final class EditProfileViewModel: BaseViewModel {
     @Published var editProfileFlow = Flow.idle
     @Published var nickname = ""
-    
+}
+
+extension EditProfileViewModel {
     func editProfile() {
         UserService.shared.editUser(
             .init(nickname: nickname)

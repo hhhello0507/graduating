@@ -1,13 +1,14 @@
 import SwiftUI
+
 import MyDesignSystem
 
 struct EditGradePath: Hashable {}
 
 struct EditGradeView: View {
-    
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var dialogProvider: DialogProvider
     @EnvironmentObject private var appState: AppState
+    
     @FocusState private var field
     @State private var grade = 1
     
@@ -16,7 +17,9 @@ struct EditGradeView: View {
     private var limit: Int {
         appState.school?.type?.limit ?? 3
     }
-    
+}
+
+extension EditGradeView {
     var body: some View {
         MyTopAppBar.small(title: "") { insets in
             VStack(spacing: 4) {

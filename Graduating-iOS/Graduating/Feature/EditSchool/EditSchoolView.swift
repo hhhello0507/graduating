@@ -1,11 +1,5 @@
-//
-//  EditSchoolView.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 8/23/24.
-//
-
 import SwiftUI
+
 import MyDesignSystem
 
 struct EditSchoolPath: Hashable {}
@@ -16,7 +10,9 @@ struct EditSchoolView: View {
     @StateObject private var viewModel = SearchSchoolViewModel()
     
     init(_ path: EditSchoolPath) {}
-    
+}
+
+extension EditSchoolView {
     var body: some View {
         MyTopAppBar.small(title: "") { insets in
             VStack(spacing: 12) {

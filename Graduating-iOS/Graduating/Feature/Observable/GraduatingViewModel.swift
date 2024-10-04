@@ -1,23 +1,18 @@
-//
-//  GraduatingViewModel.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 8/24/24.
-//
-
-import Foundation
 import Combine
+import Foundation
+
 import Model
 import Shared
 
 final class GraduatingViewModel: BaseViewModel {
-    
     @Published var remainTimePercent: Double = 0.0
     @Published var remainTime: DateComponents?
     @Published private var startAt: Date?
     
     private let publisher = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-    
+}
+
+extension GraduatingViewModel {
     func observe(
         grade: Int,
         graduating: Graduating,

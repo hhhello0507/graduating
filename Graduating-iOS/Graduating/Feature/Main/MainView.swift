@@ -1,10 +1,11 @@
 import SwiftUI
-import MyDesignSystem
+
 import Model
 import Shared
 
+import MyDesignSystem
+
 enum Item: BottomAppBarItem {
-    
     case home
     case meal
     case profile
@@ -74,7 +75,6 @@ struct MainView: View {
     }
 }
 
-// MARK: - Method
 extension MainView {
     func handleGraduating(_ graduating: Graduating?) {
         if appState.graduatingFetchFailure,

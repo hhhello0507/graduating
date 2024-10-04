@@ -1,16 +1,10 @@
-//
-//  HomeInfoContainer.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 8/28/24.
-//
-
 import SwiftUI
+
 import Model
+
 import MyDesignSystem
 
-public struct HomeInfoContainer: View {
-    
+public struct HomeInfoContainer {
     private let school: School
     private let grade: Int
     
@@ -18,7 +12,9 @@ public struct HomeInfoContainer: View {
         self.school = school
         self.grade = grade
     }
-    
+}
+
+extension HomeInfoContainer: View {
     public var body: some View {
         VStack(spacing: 4) {
             HStack(spacing: 8) {

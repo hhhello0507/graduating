@@ -1,10 +1,3 @@
-//
-//  MainCoordinator.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 8/23/24.
-//
-
 import SwiftUI
 
 struct MainCoordinator: View {

@@ -1,14 +1,8 @@
-//
-//  MealViewModel.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 8/28/24.
-//
-
+import Combine
 import Foundation
+
 import Model
 import Data
-import Combine
 
 public final class MealViewModel: BaseViewModel {
     @Published var meals: [Meal] = []

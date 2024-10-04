@@ -1,11 +1,13 @@
 import SwiftUI
 import MyDesignSystem
 
-struct OnboardingFirstView: View {
-    
-    @StateObject private var viewModel = SearchSchoolViewModel()
+struct OnboardingFirstView {
     @EnvironmentObject private var router: Router
     
+    @StateObject private var viewModel = SearchSchoolViewModel()
+}
+
+extension OnboardingFirstView: View {
     var body: some View {
         MyTopAppBar.default(
             title: "학교를 알려주세요 🤔"

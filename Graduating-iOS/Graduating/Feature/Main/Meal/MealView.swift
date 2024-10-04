@@ -1,17 +1,13 @@
-//
-//  MealView.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 9/6/24.
-//
-
 import SwiftUI
+
 import MyDesignSystem
 
-struct MealView: View {
+struct MealView {
     @EnvironmentObject private var appState: AppState
     @EnvironmentObject private var viewModel: MealViewModel
-    
+}
+
+extension MealView: View {
     var body: some View {
         MyTopAppBar.default(title: "급식") { insets in
             ScrollView {

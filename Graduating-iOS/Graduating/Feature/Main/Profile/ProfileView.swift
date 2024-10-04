@@ -1,12 +1,12 @@
 import SwiftUI
 import Combine
 
-import Model
 import Data
+import Model
 import Shared
 
-import MyDesignSystem
 import GoogleSignIn
+import MyDesignSystem
 import MyUIKitExt
 import SignKit
 
@@ -15,11 +15,13 @@ struct ProfileView: View {
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var appState: AppState
     
-    @StateObject private var appleObservable = AppleObservable()
-    @StateObject private var observable = ProfileObservable()
+    @StateObject private var appleViewModel = AppleViewModel()
+    @StateObject private var viewModel = ProfileViewModel()
     
     @State private var isSheetPresent: Bool = false
-    
+}
+
+extension ProfileView {
     var body: some View {
         MyTopAppBar.default(
             title: "프로필",
@@ -87,11 +89,10 @@ struct ProfileView: View {
             .padding(insets)
         }
         .sheet(isPresented: $isSheetPresent, content: sheetContent)
-        .onReceive(observable.$signInFlow, perform: receiveSubject)
+        .onReceive(viewModel.$signInFlow, perform: receiveSubject)
     }
 }
 
-// MARK: - Method
 extension ProfileView {
     func receiveSubject(flow: Flow) {
         isSheetPresent = false
@@ -112,8 +113,8 @@ extension ProfileView {
     func sheetContent() -> some View {
         VStack(spacing: 10) {
             AppleSignInButton {
-                appleObservable.signIn { code in
-                    observable.signIn(code: code, platformType: .apple)
+                appleViewModel.signIn { code in
+                    viewModel.signIn(code: code, platformType: .apple)
                 } failureCompletion: {
                     dialog.present(
                         .init(title: "로그인 실패")

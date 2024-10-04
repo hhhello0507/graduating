@@ -1,20 +1,14 @@
-//
-//  AppleObservable.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 10/4/24.
-//
-
-import Foundation
 import AuthenticationServices
+import Foundation
 
-final class AppleObservable: NSObject, ObservableObject {
-    
+final class AppleViewModel: NSObject, ObservableObject {
     @Published var error: Error?
     
     private var successCompletion: ((_ code: String) -> Void)?
     private var failureCompletion: (() -> Void)?
-    
+}
+
+extension AppleViewModel {
     func signIn(
         successCompletion: @escaping (_ code: String) -> Void,
         failureCompletion: @escaping () -> Void
@@ -32,8 +26,7 @@ final class AppleObservable: NSObject, ObservableObject {
     }
 }
 
-extension AppleObservable: ASAuthorizationControllerDelegate {
-    
+extension AppleViewModel: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {
             print("AppleSignInObservable - credential not found")
@@ -56,7 +49,7 @@ extension AppleObservable: ASAuthorizationControllerDelegate {
     }
 }
 
-extension AppleObservable: ASAuthorizationControllerPresentationContextProviding {
+extension AppleViewModel: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         guard let window = UIApplication.shared.connectedScenes
             .filter({ $0.activationState == .foregroundActive })

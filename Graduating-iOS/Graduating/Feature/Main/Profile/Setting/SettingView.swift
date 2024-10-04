@@ -1,23 +1,19 @@
-//
-//  SettingView.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 10/4/24.
-//
-
 import SwiftUI
+
 import MyDesignSystem
 import SignKit
 
 struct SettingPath: Hashable {}
 
-struct SettingView: View {
-    
+struct SettingView {
     @Environment(\.openURL) private var openURL
+    
     @EnvironmentObject private var dialog: DialogProvider
     @EnvironmentObject private var appState: AppState
     @EnvironmentObject private var router: Router
-    
+}
+
+extension SettingView: View {
     var body: some View {
         MyTopAppBar.small(
             title: "설정",
