@@ -11,7 +11,7 @@ class User(
     @Column(nullable = false)
     val username: String,
     
-    @Column(nullable = false)
+    @Column
     val nickname: String?,
 
     @Column(nullable = false)

@@ -73,7 +73,7 @@ class AppleOAuth2Client(
             val privateKeyInfo = PrivateKeyInfo.getInstance(privateKeyBytes)
             return converter.getPrivateKey(privateKeyInfo)
         } catch (e: Exception) {
-            throw java.lang.RuntimeException("Error converting private key from String", e)
+            throw CustomException(HttpStatus.INTERNAL_SERVER_ERROR, "Error converting private key from String")
         }
     }
 }

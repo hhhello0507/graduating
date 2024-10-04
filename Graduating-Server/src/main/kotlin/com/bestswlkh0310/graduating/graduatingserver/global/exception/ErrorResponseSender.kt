@@ -3,6 +3,7 @@ package com.bestswlkh0310.graduating.graduatingserver.global.exception
 import com.bestswlkh0310.graduating.graduatingserver.global.ErrorRes
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.http.HttpServletResponse
+import mu.KLogger
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
@@ -10,7 +11,8 @@ import java.io.IOException
 
 @Component
 class ErrorResponseSender(
-    private val objectMapper: ObjectMapper
+    private val objectMapper: ObjectMapper,
+    private val logger: KLogger
 ) {
 
     fun send(response: HttpServletResponse, customException: CustomException) =
@@ -32,7 +34,7 @@ class ErrorResponseSender(
                 )
             )
         } catch (e: IOException) {
-            e.printStackTrace()
+            logger.error("ErrorResponseSender.send", e)
         }
     }
 }

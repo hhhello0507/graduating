@@ -5,6 +5,7 @@ import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolType
 import com.bestswlkh0310.graduating.graduatingserver.core.graduating.GraduatingRepository
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolRepository
+import mu.KLogger
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.springframework.beans.factory.annotation.Qualifier
@@ -23,7 +24,8 @@ class NeisScheduleHelper(
     private val graduatingRepository: GraduatingRepository,
     @Qualifier("neis")
     private val restClient: RestClient,
-    private val neisProperties: NeisProperties
+    private val neisProperties: NeisProperties,
+    private val logger: KLogger
 ) {
 
     fun importCsv(filePath: String) {
@@ -48,7 +50,7 @@ class NeisScheduleHelper(
                     anniversary = LocalDate.parse(v[11], DateTimeFormatter.ofPattern("yyyyMMdd")),
                 )
             } catch (e: Exception) {
-                e.printStackTrace()
+                logger.error("Neis Error", e)
                 null
             }
         }.let {
@@ -99,7 +101,7 @@ class NeisScheduleHelper(
                 println("❌ - ${school.name} - 알 수 없음 ${response?.SchoolSchedule}")
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            logger.error("Neis Error", e)
         }
         return result
     }

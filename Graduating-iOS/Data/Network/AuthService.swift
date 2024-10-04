@@ -7,18 +7,20 @@
 
 import MyMoya
 import Model
+import Moya
+import Combine
 
-public enum AuthEndpoint {
+enum AuthEndpoint {
     case oauth2SignIn(OAuth2SignInReq)
     case refresh(RefreshReq)
 }
 
 extension AuthEndpoint: MyTarget {
-    public var host: String { "auth" }
-    public var route: Route {
+    var host: String { "auth" }
+    var route: Route {
         switch self {
         case .oauth2SignIn(let req):
-                .post("sign-in/auth2")
+                .post("sign-in/oauth2")
                 .task(req.toJSONParameters())
         case .refresh(let req):
                 .post("refresh")
@@ -27,4 +29,15 @@ extension AuthEndpoint: MyTarget {
     }
 }
 
-//public e
+public class AuthService {
+    public static let shared = AuthService()
+    let netRunner = DefaultNetRunner<AuthEndpoint>()
+    
+    public func oauth2SignIn(_ req: OAuth2SignInReq) -> AnyPublisher<Token, MoyaError> {
+        netRunner.deepDive(.oauth2SignIn(req), res: Token.self)
+    }
+    
+    public func refresh(_ req: RefreshReq) -> AnyPublisher<Token, MoyaError> {
+        netRunner.deepDive(.refresh(req), res: Token.self)
+    }
+}

@@ -5,6 +5,7 @@ import com.bestswlkh0310.graduating.graduatingserver.core.meal.MealEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.meal.MealRepository
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolRepository
+import mu.KLogger
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestClient
@@ -16,7 +17,8 @@ class NeisMealHelper(
     private val neisProperties: NeisProperties,
     private val mealRepository: MealRepository,
     @Qualifier("neis")
-    private val restClient: RestClient
+    private val restClient: RestClient,
+    private val logger: KLogger,
 ) {
 
     suspend fun getMeals(school: SchoolEntity): List<MealEntity> {
@@ -54,7 +56,7 @@ class NeisMealHelper(
                             }
                             result.add(entity)
                         } catch (e: Exception) {
-                            e.printStackTrace()
+                            logger.error("Neis Error")
                         }
                     }
                 }

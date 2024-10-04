@@ -9,6 +9,7 @@ import Combine
 import Foundation
 import Model
 import Data
+import SignKit
 
 final class AppState: BaseViewModel {
     
@@ -16,12 +17,12 @@ final class AppState: BaseViewModel {
         case fetchedGraduating(Graduating)
     }
     
+    var subject = PassthroughSubject<Subject, Never>()
     @Published var grade: Int? = UserDefaultsType.grade.value as? Int {
         didSet {
             UserDefaultsType.grade.set(grade)
         }
     }
-    // json
     @Published var school: School? = {
         guard let json = UserDefaultsType.school.value as? String else {
             return nil
@@ -45,7 +46,6 @@ final class AppState: BaseViewModel {
         }
     }
     @Published var graduatingFetchFailure = false
-    var subject = PassthroughSubject<Subject, Never>()
     
     func fetchGraduating(id: Int) {
         SchoolService.shared.getGraduating(id: id)

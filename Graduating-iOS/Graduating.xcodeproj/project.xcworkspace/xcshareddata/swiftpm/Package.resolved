@@ -1,5 +1,5 @@
 {
-  "originHash" : "e3c1180a8e38a74c7306c05087a0cb19db9d112d93d960a6d4f87d4ab491fe93",
+  "originHash" : "86ee7362d835b2c48d70dbdbd539e71a20eddc693570324381092defd335f7d8",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -116,6 +116,15 @@
       "state" : {
         "revision" : "b06a8c8596e4c3e8e7788e08e720e3248563ce6a",
         "version" : "6.7.1"
+      }
+    },
+    {
+      "identity" : "signkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hhhello0507/SignKit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "9f1560813ea00a57462ae16074eaee3a67adc233"
       }
     },
     {

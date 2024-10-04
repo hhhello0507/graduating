@@ -3,14 +3,18 @@ import MyDesignSystem
 import GoogleSignIn
 import MyUIKitExt
 import Model
+import Data
 
 struct ProfileView: View {
     
     @StateObject private var appleObservable = AppleObservable()
+    @StateObject private var observable = ProfileObservable()
     @EnvironmentObject private var dialog: DialogProvider
     @EnvironmentObject private var router: Router
+    @EnvironmentObject private var appState: AppState
     @Environment(\.openURL) private var openURL
     @State private var isSheetPresent: Bool = false
+    @AppStorage("accessToken") private var accessToken: String?
     
     var body: some View {
         MyTopAppBar.default(
@@ -20,10 +24,16 @@ struct ProfileView: View {
             VStack(spacing: 0) {
                 VStack(spacing: 8) {
                     MyAvatar(nil, type: .larger)
-                    Button {
-                        isSheetPresent = true
-                    } label: {
-                        Text("로그인 하기")
+                    if accessToken == nil {
+                        Button {
+                            isSheetPresent = true
+                        } label: {
+                            Text("로그인 하기")
+                                .foreground(Colors.Label.alternative)
+                                .myFont(.bodyR)
+                        }
+                    } else {
+                        Text("-")
                             .foreground(Colors.Label.alternative)
                             .myFont(.bodyR)
                     }
@@ -61,7 +71,7 @@ struct ProfileView: View {
             VStack(spacing: 10) {
                 AppleSignInButton {
                     appleObservable.signIn { code in
-                        signIn(code: code, platformType: .apple)
+                        observable.signIn(code: code, platformType: .apple)
                     } failureCompletion: {
                         dialog.present(
                             .init(title: "로그인 실패")
@@ -72,6 +82,7 @@ struct ProfileView: View {
                     guard let rootViewController = UIApplicationUtil.window?.rootViewController else { return }
                     Task {
                         let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
+                        guard let code = result.serverAuthCode else { return }
                         
                     }
                 }
@@ -80,12 +91,5 @@ struct ProfileView: View {
             .background(Colors.Background.normal)
             .adjustedHeightSheet()
         }
-    }
-}
-
-// MARK: - Presenter
-extension ProfileView {
-    func signIn(code: String, platformType: PlatformType) {
-        
     }
 }
