@@ -7,7 +7,7 @@ import Shared
 final class EditProfileViewModel: ObservableObject {
     @Published var editProfileFlow = Flow.idle
     @Published var nickname = ""
-    let subscriptionManager = SubscriptionManager()
+    var subscriptions = Set<AnyCancellable>()
 }
 
 extension EditProfileViewModel {
@@ -17,6 +17,6 @@ extension EditProfileViewModel {
         )
         .flow(\.editProfileFlow, on: self)
         .silentSink()
-        .store(in: &subscriptionManager.subscriptions)
+        .store(in: &subscriptions)
     }
 }

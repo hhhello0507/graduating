@@ -6,7 +6,7 @@ import Data
 
 public final class MealViewModel: ObservableObject {
     @Published var meals: [Meal] = []
-    let subscriptionManager = SubscriptionManager()
+    var subscriptions = Set<AnyCancellable>()
 }
 
 extension MealViewModel {
@@ -16,6 +16,6 @@ extension MealViewModel {
         )
         .ignoreError()
         .assign(to: \.meals, on: self)
-        .store(in: &subscriptionManager.subscriptions)
+        .store(in: &subscriptions)
     }
 }

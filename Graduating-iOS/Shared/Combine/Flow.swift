@@ -17,6 +17,8 @@ public enum Flow {
 }
 
 public extension Publisher {
+    
+    @inlinable
     func flow<Object: AnyObject>(
         _ keyPath: ReferenceWritableKeyPath<Object, Flow>,
         on object: Object

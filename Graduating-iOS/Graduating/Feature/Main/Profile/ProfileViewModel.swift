@@ -9,7 +9,7 @@ import SignKit
 
 final class ProfileViewModel: ObservableObject {
     @Published var signInFlow = Flow.idle
-    let subscriptionManager = SubscriptionManager()
+    var subscriptions = Set<AnyCancellable>()
 }
 
 extension ProfileViewModel {
@@ -22,6 +22,6 @@ extension ProfileViewModel {
         .sink {
             Sign.me.login(id: "", password: "", accessToken: $0.accessToken, refreshToken: $0.refreshToken)
         }
-        .store(in: &subscriptionManager.subscriptions)
+        .store(in: &subscriptions)
     }
 }

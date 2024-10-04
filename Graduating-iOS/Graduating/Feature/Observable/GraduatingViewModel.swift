@@ -10,7 +10,7 @@ final class GraduatingViewModel: ObservableObject {
     @Published private var startAt: Date?
     
     private let publisher = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-    let subscriptionManager = SubscriptionManager()
+    var cancellable: Cancellable?
 }
 
 extension GraduatingViewModel {
@@ -19,7 +19,7 @@ extension GraduatingViewModel {
         graduating: Graduating,
         limit: Int
     ) {
-        subscriptionManager.subscriptions.forEach { $0.cancel() }
+        cancellable?.cancel()
         startAt = .getStartAt(for: grade)
         
         guard let startAt,
@@ -27,10 +27,10 @@ extension GraduatingViewModel {
             return
         }
         
-        publisher.sink { _ in
+        cancellable = publisher.sink { _ in
             let currentTime = Date.now
             self.remainTime = currentTime.diff([.year, .month, .day, .hour, .minute, .second, .nanosecond], other: adjustedEndAt)
             self.remainTimePercent = currentTime.percent(from: startAt, to: adjustedEndAt)
-        }.store(in: &subscriptionManager.subscriptions)
+        }
     }
 }

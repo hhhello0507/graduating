@@ -7,7 +7,7 @@ final class SearchSchoolViewModel: ObservableObject {
     @Published private var schools: [School]?
     @Published public var searchSchoolName = ""
     
-    let subscriptionManager = SubscriptionManager()
+    var subscriptions = Set<AnyCancellable>()
 }
 
 extension SearchSchoolViewModel {
@@ -24,6 +24,6 @@ extension SearchSchoolViewModel {
         SchoolService.shared.getSchools()
             .ignoreError()
             .assign(to: \.schools, on: self)
-            .store(in: &subscriptionManager.subscriptions)
+            .store(in: &subscriptions)
     }
 }

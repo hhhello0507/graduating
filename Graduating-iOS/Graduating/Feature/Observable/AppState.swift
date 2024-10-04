@@ -37,7 +37,7 @@ final class AppState: ObservableObject {
     }
     @Published var fetchGraduatingFlow = Flow.idle
     @Published var currentUser: User?
-    let subscriptionManager = SubscriptionManager()
+    var subscriptions = Set<AnyCancellable>()
     
     init() {
         fetchCurrentUser()
@@ -55,13 +55,13 @@ extension AppState {
             } receiveValue: { res in
                 self.graduating = res
             }
-            .store(in: &subscriptionManager.subscriptions)
+            .store(in: &subscriptions)
     }
     
     func fetchCurrentUser() {
         UserService.shared.getMe()
             .ignoreError()
             .assign(to: \.currentUser, on: self)
-            .store(in: &subscriptionManager.subscriptions)
+            .store(in: &subscriptions)
     }
 }
