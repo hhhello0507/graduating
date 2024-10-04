@@ -1,8 +1,13 @@
 import SwiftUI
 import MyDesignSystem
+import GoogleSignIn
+import MyUIKitExt
+import Model
 
 struct ProfileView: View {
     
+    @StateObject private var appleObservable = AppleObservable()
+    @EnvironmentObject private var dialog: DialogProvider
     @EnvironmentObject private var router: Router
     @Environment(\.openURL) private var openURL
     @State private var isSheetPresent: Bool = false
@@ -51,20 +56,36 @@ struct ProfileView: View {
                 .padding(.bottom, 92)
             }
             .padding(insets)
-//            .background(Colors.Background.normal)
         }
         .sheet(isPresented: $isSheetPresent) {
             VStack(spacing: 10) {
                 AppleSignInButton {
-                    
+                    appleObservable.signIn { code in
+                        signIn(code: code, platformType: .apple)
+                    } failureCompletion: {
+                        dialog.present(
+                            .init(title: "로그인 실패")
+                        )
+                    }
                 }
                 GoogleSignInButton {
-                    
+                    guard let rootViewController = UIApplicationUtil.window?.rootViewController else { return }
+                    Task {
+                        let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
+                        
+                    }
                 }
             }
             .padding(20)
             .background(Colors.Background.normal)
             .adjustedHeightSheet()
         }
+    }
+}
+
+// MARK: - Presenter
+extension ProfileView {
+    func signIn(code: String, platformType: PlatformType) {
+        
     }
 }

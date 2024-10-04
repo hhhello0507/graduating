@@ -9,7 +9,7 @@ class JwtUserDetails(
     private val user: User
 ) : UserDetails {
     override fun getAuthorities() = listOf(GrantedAuthority { user.role.name })
-    override fun getPassword() = user.password
+    override fun getPassword() = null
     override fun getUsername() = user.username
     override fun isAccountNonExpired() = true // 계정이 만료 되었는지 (true: 만료X)
     override fun isAccountNonLocked() = true // 계정이 잠겼는지 (true: 잠기지 않음)

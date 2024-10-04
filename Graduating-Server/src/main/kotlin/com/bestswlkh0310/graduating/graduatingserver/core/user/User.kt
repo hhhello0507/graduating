@@ -10,11 +10,9 @@ class User(
 
     @Column(nullable = false)
     val username: String,
-
-    val password: String?,
-
+    
     @Column(nullable = false)
-    val nickname: String,
+    val nickname: String?,
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
