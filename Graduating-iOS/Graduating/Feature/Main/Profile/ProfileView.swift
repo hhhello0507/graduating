@@ -1,30 +1,40 @@
 import SwiftUI
-import MyDesignSystem
-import GoogleSignIn
-import MyUIKitExt
+import Combine
+
 import Model
 import Data
 
+import MyDesignSystem
+import GoogleSignIn
+import MyUIKitExt
+import SignKit
+
 struct ProfileView: View {
-    
     @StateObject private var appleObservable = AppleObservable()
     @StateObject private var observable = ProfileObservable()
     @EnvironmentObject private var dialog: DialogProvider
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var appState: AppState
-    @Environment(\.openURL) private var openURL
     @State private var isSheetPresent: Bool = false
-    @AppStorage("accessToken") private var accessToken: String?
     
     var body: some View {
         MyTopAppBar.default(
             title: "프로필",
-            background: Colors.Background.normal
+            background: Colors.Background.normal,
+            buttons: [
+                .init(icon: Icons.Feature.Setting) {
+                    router.push(SettingPath())
+                }
+            ]
         ) { insets in
             VStack(spacing: 0) {
                 VStack(spacing: 8) {
                     MyAvatar(nil, type: .larger)
-                    if accessToken == nil {
+                    if Sign.me.isLoggedIn {
+                        Text("-")
+                            .foreground(Colors.Label.alternative)
+                            .myFont(.bodyR)
+                    } else {
                         Button {
                             isSheetPresent = true
                         } label: {
@@ -32,10 +42,6 @@ struct ProfileView: View {
                                 .foreground(Colors.Label.alternative)
                                 .myFont(.bodyR)
                         }
-                    } else {
-                        Text("-")
-                            .foreground(Colors.Label.alternative)
-                            .myFont(.bodyR)
                     }
                 }
                 .padding(.top, 16)
@@ -53,17 +59,6 @@ struct ProfileView: View {
                 }
                 .padding(.top, 24)
                 Spacer()
-                Button {
-                    openURL.callAsFunction(
-                        URL(string: "https://github.com/hhhello0507/graduating/blob/main/privacy_policy.md")!
-                    )
-                } label: {
-                    Text("개인정보 처리 방침")
-                        .myFont(.labelR)
-                        .foreground(Colors.Label.alternative)
-                        .opacity(0.5)
-                }
-                .padding(.bottom, 92)
             }
             .padding(insets)
         }
@@ -83,13 +78,25 @@ struct ProfileView: View {
                     Task {
                         let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
                         guard let code = result.serverAuthCode else { return }
-                        
                     }
                 }
             }
             .padding(20)
             .background(Colors.Background.normal)
             .adjustedHeightSheet()
+        }
+        .onAppear {
+            observable.subject.sink {
+                isSheetPresent = false
+                switch $0 {
+                case .signInSuccess:
+                    router.replace([MainPath()])
+                case .signInFailure:
+                    dialog.present(
+                        .init(title: "로그인 실패")
+                    )
+                }
+            }.store(in: &observable.subscription)
         }
     }
 }

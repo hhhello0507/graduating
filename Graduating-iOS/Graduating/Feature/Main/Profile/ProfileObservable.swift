@@ -13,6 +13,7 @@ import SignKit
 
 final class ProfileObservable: ObservableObject {
     enum Subject {
+        case signInSuccess
         case signInFailure
     }
     var subscription = Set<AnyCancellable>()
@@ -22,8 +23,11 @@ final class ProfileObservable: ObservableObject {
             .init(platformType: platformType, code: code)
         )
         .sink {
-            print($0)
+            if case .failure = $0 {
+                self.subject.send(.signInFailure)
+            }
         } receiveValue: {
+            self.subject.send(.signInSuccess)
             Sign.me.login(id: "", password: "", accessToken: $0.accessToken, refreshToken: $0.refreshToken)
         }
         .store(in: &subscription)

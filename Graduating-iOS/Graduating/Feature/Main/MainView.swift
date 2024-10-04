@@ -31,6 +31,8 @@ let data = [
     Item.profile
 ]
 
+struct MainPath: Hashable {}
+
 struct MainView: View {
     
     @EnvironmentObject private var router: Router
@@ -58,6 +60,7 @@ struct MainView: View {
             handleGraduating(appState.graduating)
             fetchMeals()
             fetchGraduating()
+            selectedTab = data[0]
         }
         .onChange(of: appState.graduating) {
             selectedTab = .home

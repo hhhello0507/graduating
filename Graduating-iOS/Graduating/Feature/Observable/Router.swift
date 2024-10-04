@@ -21,4 +21,11 @@ public final class Router: ObservableObject {
     public func toRoot() {
         path.removeLast(path.count)
     }
+    
+    public func replace(_ views: [any Hashable]) {
+        toRoot()
+        views.forEach {
+            push($0)
+        }
+    }
 }

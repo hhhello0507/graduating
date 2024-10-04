@@ -36,6 +36,9 @@ struct GraduatingApp: App {
             .environmentObject(router)
             .environmentObject(appState)
             .registerWanted()
+            .onAppear {
+                router.push(MainPath())
+            }
         }
     }
 }

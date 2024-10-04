@@ -47,6 +47,11 @@ final class AppState: BaseViewModel {
     }
     @Published var graduatingFetchFailure = false
     
+    private var observer: NSKeyValueObservation?
+    override init() {
+        super.init()
+    }
+    
     func fetchGraduating(id: Int) {
         SchoolService.shared.getGraduating(id: id)
             .sink {
