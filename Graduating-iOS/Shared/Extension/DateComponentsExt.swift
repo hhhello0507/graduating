@@ -8,7 +8,7 @@
 import Foundation
 
 public extension DateComponents {
-    var 🎓: String {
+    var prettyText: String {
         var text = ""
         if let year = self.year, year > 0 { let _ = text += "\(year)년 " }
         if let month = self.month, month > 0 { let _ = text += "\(month)개월 " }

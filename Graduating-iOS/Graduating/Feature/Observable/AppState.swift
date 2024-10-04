@@ -3,15 +3,11 @@ import Foundation
 
 import Data
 import Model
+import Shared
 
 import SignKit
 
 final class AppState: ObservableObject {
-    enum Subject {
-        case fetchedGraduating(Graduating)
-    }
-    
-    var subject = PassthroughSubject<Subject, Never>()
     @Published var grade: Int? = UserDefaultsType.grade.value as? Int {
         didSet {
             UserDefaultsType.grade.set(grade)
@@ -39,11 +35,10 @@ final class AppState: ObservableObject {
             UserDefaultsType.graduating.set(json)
         }
     }
-    @Published var graduatingFetchFailure = false
+    @Published var fetchGraduatingFlow = Flow.idle
     @Published var currentUser: User?
     let subscriptionManager = SubscriptionManager()
     
-    private var observer: NSKeyValueObservation?
     init() {
         fetchCurrentUser()
     }
@@ -52,15 +47,12 @@ final class AppState: ObservableObject {
 extension AppState {
     func fetchGraduating(id: Int) {
         SchoolService.shared.getGraduating(id: id)
+            .flow(\.fetchGraduatingFlow, on: self)
             .sink {
-                switch $0 {
-                case .failure:
+                if case .failure = $0 {
                     self.graduating = nil
-                    self.graduatingFetchFailure = true
-                default: break
                 }
             } receiveValue: { res in
-                self.subject.send(.fetchedGraduating(res))
                 self.graduating = res
             }
             .store(in: &subscriptionManager.subscriptions)

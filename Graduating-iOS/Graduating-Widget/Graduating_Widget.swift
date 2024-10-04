@@ -31,7 +31,7 @@ struct Graduating_WidgetEntryView: View {
             Text(String(format: isSmall ? "%.3f%%" : "%.7f%%", entry.remainTimePercent * 100))
                 .font(.title)
                 .foreground(Colors.Label.normal)
-            Text(entry.remainTime.🎓)
+            Text(entry.remainTime.prettyText)
                 .font(isSmall ? .caption2 : .caption)
                 .foreground(Colors.Label.alternative)
                 .multilineTextAlignment(.center)

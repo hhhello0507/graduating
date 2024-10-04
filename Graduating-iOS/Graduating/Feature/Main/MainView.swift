@@ -77,7 +77,7 @@ struct MainView: View {
 
 extension MainView {
     func handleGraduating(_ graduating: Graduating?) {
-        if appState.graduatingFetchFailure,
+        if case .failure = appState.fetchGraduatingFlow,
            let school = appState.school {
             appState.graduating = .init(id: -1, graduatingDay: nextFebruaryFirst(from: .now) ?? .now, schoolId: school.id)
             dialogProvider.present(

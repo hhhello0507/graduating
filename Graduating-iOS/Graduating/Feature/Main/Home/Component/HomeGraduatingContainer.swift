@@ -24,7 +24,7 @@ extension HomeGraduatingContainer: View {
                 Text(String(format: "%.7f%%", remainTimePercent * 100))
                     .myFont(.headlineM)
                     .foreground(Colors.Label.strong)
-                Text(remainTime.🎓)
+                Text(remainTime.prettyText)
                     .myFont(.labelR)
                     .foreground(Colors.Label.alternative)
             }
