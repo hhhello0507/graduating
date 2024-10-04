@@ -2,7 +2,7 @@ package com.bestswlkh0310.graduating.graduatingserver
 
 import com.bestswlkh0310.graduating.graduatingserver.api.auth.res.TokenRes
 import com.bestswlkh0310.graduating.graduatingserver.core.user.PlatformType
-import com.bestswlkh0310.graduating.graduatingserver.core.user.User
+import com.bestswlkh0310.graduating.graduatingserver.core.user.UserEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserRepository
 import com.bestswlkh0310.graduating.graduatingserver.infra.token.JwtClient
 import com.bestswlkh0310.graduating.graduatingserver.util.TestAnnotation
@@ -26,7 +26,7 @@ class AuthControllerTest {
     @BeforeEach
     fun beforeEach() {
         val user = userRepository.save(
-            User(
+            UserEntity(
                 id = 0,
                 username = "hhhello0507@gmail.com",
                 nickname = "testuser",

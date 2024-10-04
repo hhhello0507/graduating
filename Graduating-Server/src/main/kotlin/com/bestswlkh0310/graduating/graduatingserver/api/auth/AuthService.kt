@@ -4,7 +4,7 @@ import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.OAuth2SignInRe
 import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.RefreshReq
 import com.bestswlkh0310.graduating.graduatingserver.api.auth.res.TokenRes
 import com.bestswlkh0310.graduating.graduatingserver.core.user.PlatformType
-import com.bestswlkh0310.graduating.graduatingserver.core.user.User
+import com.bestswlkh0310.graduating.graduatingserver.core.user.UserEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserRepository
 import com.bestswlkh0310.graduating.graduatingserver.core.user.getByUsername
 import com.bestswlkh0310.graduating.graduatingserver.global.exception.CustomException
@@ -43,20 +43,19 @@ class AuthService(
         val user = when (req.platformType) {
             PlatformType.GOOGLE -> googleSignIn(req)
             PlatformType.APPLE -> appleSignIn(req)
-            else -> throw CustomException(HttpStatus.BAD_REQUEST, "Invalid platform type")
         }
         
         return jwtClient.generate(user)
     }
 
-    private fun googleSignIn(req: OAuth2SignInReq): User {
+    private fun googleSignIn(req: OAuth2SignInReq): UserEntity {
         val token = googleOAuth2Client.getToken(code = req.code)
         val idToken = googleOAuth2Helper.verifyIdToken(idToken = token.idToken)
         
         val username = idToken.payload.email
         val users = userRepository.findByUsername(username)
         val user = users.firstOrNull() ?: userRepository.save(
-            User(
+            UserEntity(
                 username = username,
                 nickname = idToken.payload["name"] as? String ?: "유저",
                 platformType = req.platformType
@@ -66,7 +65,7 @@ class AuthService(
         return user
     }
 
-    private fun appleSignIn(req: OAuth2SignInReq): User {
+    private fun appleSignIn(req: OAuth2SignInReq): UserEntity {
         val token = appleOAuth2Client.getToken(code = req.code)
         val headers = appleOAuth2Helper.parseHeader(idToken = token.idToken)
         val keys = appleOAuth2Client.getPublicKeys()
@@ -75,7 +74,7 @@ class AuthService(
         val username = claims["email"] as? String ?: throw CustomException(HttpStatus.BAD_REQUEST, "Invalid email")
         val users = userRepository.findByUsername(username)
         val user = users.firstOrNull() ?: userRepository.save(
-            User(
+            UserEntity(
                 username = username,
                 nickname = null,
                 platformType = req.platformType

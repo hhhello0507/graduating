@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class UserAuthenticationHolder {
-    fun current(): User {
+    fun current(): UserEntity {
         return (SecurityContextHolder.getContext().authentication.principal as? JwtUserDetails)?.user
             ?: throw CustomException(HttpStatus.NOT_FOUND, "Not found user")
     }

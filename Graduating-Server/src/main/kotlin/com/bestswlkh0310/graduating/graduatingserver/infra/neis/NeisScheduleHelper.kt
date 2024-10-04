@@ -88,7 +88,7 @@ class NeisScheduleHelper(
                                 println("✅ - ${school.name} - ${row.EVENT_NM}")
                                 includeGraduating = true
                                 val entity = GraduatingEntity(
-                                    schoolId = school.id,
+                                    school = school,
                                     graduatingDay = row.AA_YMD,
                                 )
                                 result.add(entity)

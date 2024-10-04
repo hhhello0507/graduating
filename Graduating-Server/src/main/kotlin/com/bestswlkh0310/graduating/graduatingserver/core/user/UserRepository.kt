@@ -6,10 +6,10 @@ import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Repository
 
 @Repository
-interface UserRepository : JpaRepository<User, Long> {
+interface UserRepository : JpaRepository<UserEntity, Long> {
     fun existsByUsername(username: String): Boolean
-    fun findByUsername(username: String): List<User>
+    fun findByUsername(username: String): List<UserEntity>
 }
 
-fun UserRepository.getByUsername(username: String): User =
+fun UserRepository.getByUsername(username: String): UserEntity =
     findByUsername(username).firstOrNull() ?: throw CustomException(HttpStatus.NOT_FOUND, "User not found")

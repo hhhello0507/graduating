@@ -1,12 +1,12 @@
 package com.bestswlkh0310.graduating.graduatingserver.global.jwt
 
 
-import com.bestswlkh0310.graduating.graduatingserver.core.user.User
+import com.bestswlkh0310.graduating.graduatingserver.core.user.UserEntity
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
 class JwtUserDetails(
-    val user: User
+    val user: UserEntity
 ) : UserDetails {
     override fun getAuthorities() = listOf(GrantedAuthority { user.role.name })
     override fun getPassword() = null

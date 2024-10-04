@@ -2,18 +2,19 @@ package com.bestswlkh0310.graduating.graduatingserver.core.user
 
 import jakarta.persistence.*
 
-@Entity(name = "tbl_user")
-class User(
+@Entity
+@Table(name = "tbl_user")
+class UserEntity(
     id: Long = 0,
     username: String,
     nickname: String?,
     role: UserRole = UserRole.USER,
-    platformType: PlatformType
+    platformType: PlatformType,
 ) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long = id
+    var id = id
         private set
 
     @Column(nullable = false)
@@ -26,7 +27,7 @@ class User(
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    var role: UserRole = role
+    var role = role
         private set
 
     @Column(nullable = false)

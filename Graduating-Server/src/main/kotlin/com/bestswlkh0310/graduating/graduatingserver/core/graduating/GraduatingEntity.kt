@@ -1,5 +1,6 @@
 package com.bestswlkh0310.graduating.graduatingserver.core.graduating
 
+import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolEntity
 import jakarta.persistence.*
 
 @Entity
@@ -8,8 +9,11 @@ class GraduatingEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
-    @Column(nullable = false) val graduatingDay: String,
+    
+    @Column(nullable = false)
+    val graduatingDay: String,
 
-    // foreign key
-    @Column(nullable = false) val schoolId: Long
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false,  name = "school_id")
+    val school: SchoolEntity,
 )

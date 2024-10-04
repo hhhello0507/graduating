@@ -1,7 +1,7 @@
 package com.bestswlkh0310.graduating.graduatingserver.infra.token
 
 import com.bestswlkh0310.graduating.graduatingserver.api.auth.res.TokenRes
-import com.bestswlkh0310.graduating.graduatingserver.core.user.User
+import com.bestswlkh0310.graduating.graduatingserver.core.user.UserEntity
 import com.bestswlkh0310.graduating.graduatingserver.global.exception.CustomException
 import io.jsonwebtoken.*
 import org.springframework.http.HttpStatus
@@ -35,7 +35,7 @@ class JwtClient(
             throw CustomException(HttpStatus.UNAUTHORIZED, "invalid token")
         }
 
-    fun generate(user: User) = TokenRes(
+    fun generate(user: UserEntity) = TokenRes(
         accessToken = createToken(
             user = user,
             tokenExpired = jwtProperties.expired.access,
@@ -54,7 +54,7 @@ class JwtClient(
     private fun parser() =
         Jwts.parser().verifyWith(secretKey()).build()
 
-    private fun createToken(user: User, tokenExpired: Long) =
+    private fun createToken(user: UserEntity, tokenExpired: Long) =
         Jwts.builder()
             .claim(JwtPayloadKey.ID.key, user.id)
             .claim(JwtPayloadKey.USERNAME.key, user.username)

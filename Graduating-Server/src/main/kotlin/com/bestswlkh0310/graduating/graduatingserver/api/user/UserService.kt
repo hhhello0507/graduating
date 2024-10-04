@@ -3,7 +3,6 @@ package com.bestswlkh0310.graduating.graduatingserver.api.user
 import com.bestswlkh0310.graduating.graduatingserver.api.core.VoidRes
 import com.bestswlkh0310.graduating.graduatingserver.api.user.dto.EditUserReq
 import com.bestswlkh0310.graduating.graduatingserver.api.user.dto.UserRes
-import com.bestswlkh0310.graduating.graduatingserver.core.user.User
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserAuthenticationHolder
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserRepository
 import org.springframework.stereotype.Service
