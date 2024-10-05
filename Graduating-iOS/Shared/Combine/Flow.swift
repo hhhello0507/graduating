@@ -1,11 +1,5 @@
-//
-//  FetchFlo.swift
-//  Shared
-//
-//  Created by hhhello0507 on 10/4/24.
-//
-
 import Foundation
+import SwiftUI
 import Combine
 
 public enum Flow {

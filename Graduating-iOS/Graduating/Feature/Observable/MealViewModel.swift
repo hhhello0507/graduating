@@ -3,9 +3,10 @@ import Foundation
 
 import Model
 import Data
+import Shared
 
 public final class MealViewModel: ObservableObject {
-    @Published var meals: [Meal] = []
+    @Published var meals: Resource<[Meal]> = .idle
     var subscriptions = Set<AnyCancellable>()
 }
 
@@ -14,8 +15,9 @@ extension MealViewModel {
         MealService.shared.fetchMeals(
             schoolId: schoolId
         )
+        .resource(\.meals, on: self)
         .ignoreError()
-        .assign(to: \.meals, on: self)
+        .silentSink()
         .store(in: &subscriptions)
     }
 }

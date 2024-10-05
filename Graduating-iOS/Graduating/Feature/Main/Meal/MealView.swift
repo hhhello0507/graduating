@@ -1,5 +1,5 @@
 import SwiftUI
-
+import Shared
 import MyDesignSystem
 
 struct MealView {
@@ -10,18 +10,27 @@ struct MealView {
 extension MealView: View {
     var body: some View {
         MyTopAppBar.default(title: "급식") { insets in
-            ScrollView {
-                Group {
-                    if viewModel.meals.isEmpty {
-                        ProgressView()
-                            .padding(.top, 100)
-                    } else {
-                        HomeMealContainer(meals: viewModel.meals)
+            viewModel.meals.makeView {
+                ProgressView()
+            } success: { meals in
+                if meals.isEmpty {
+                    Text("급식이 없어요 😰")
+                        .foreground(Colors.Label.assistive)
+                        .myFont(.bodyM)
+                        .padding(.bottom, 108)
+                } else {
+                    ScrollView {
+                        HomeMealContainer(meals: meals)
                             .padding(.bottom, 72) // for ScrollView
                     }
                 }
-                .padding(insets)
+            } failure: { _ in
+                Text("급식을 불러올 수 없어요 🫠")
+                    .foreground(Colors.Label.assistive)
+                    .myFont(.bodyM)
+                    .padding(.bottom, 108)
             }
+            .padding(insets)
             .refreshable {
                 guard let schoolId = appState.school?.id else {
                     return
