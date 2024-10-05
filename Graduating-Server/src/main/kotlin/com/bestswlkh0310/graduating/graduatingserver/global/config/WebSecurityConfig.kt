@@ -34,6 +34,7 @@ class WebSecurityConfig(
         }
         .authorizeHttpRequests {
             it.requestMatchers(
+                "/management/**",
                 "/auth/**",
                 "/school/**",
                 "/meals/**"
