@@ -134,6 +134,7 @@ extension ProfileView {
                 Task {
                     let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
                     guard let code = result.serverAuthCode else { return }
+                    viewModel.signIn(code: code, platformType: .google)
                 }
             }
         }
