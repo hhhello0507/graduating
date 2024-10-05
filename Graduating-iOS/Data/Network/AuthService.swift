@@ -22,6 +22,15 @@ extension AuthEndpoint: MyTarget {
                 .task(req.toJSONParameters())
         }
     }
+    
+    var authorization: Authorization {
+        switch self {
+        case .oauth2SignIn:
+                .none
+        case .refresh:
+                .none
+        }
+    }
 }
 
 public class AuthService {
