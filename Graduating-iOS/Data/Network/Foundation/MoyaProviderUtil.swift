@@ -1,10 +1,3 @@
-//
-//  MoyaProviderUtil.swift
-//  Data
-//
-//  Created by hhhello0507 on 10/4/24.
-//
-
 import Moya
 
 enum MoyaProviderUtil {

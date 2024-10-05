@@ -32,18 +32,12 @@ extension UserEndpoint: MyTarget {
 
 public class UserService {
     public static let shared = UserService()
-    let netRunnner = DefaultNetRunner<UserEndpoint>(
-        provider: .init(
-            session: MoyaProviderUtil.myAuthSession,
-            plugins: MoyaProviderUtil.myPlugins
-        )
-    )
     
     public func getMe() -> AnyPublisher<User, MoyaError> {
-        return netRunnner.deepDive(.getMe, res: User.self)
+        runner.deepDive(UserEndpoint.getMe, res: User.self)
     }
     
     public func editUser(_ req: EditUserReq) -> AnyPublisher<VoidDTO, MoyaError> {
-        netRunnner.deepDive(.editUser(req), res: VoidDTO.self)
+        runner.deepDive(UserEndpoint.editUser(req), res: VoidDTO.self)
     }
 }

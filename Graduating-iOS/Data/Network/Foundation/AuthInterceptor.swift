@@ -1,10 +1,3 @@
-//
-//  RemoteInterceptor.swift
-//  DodamDodam
-//
-//  Created by Mercen on 3/31/24.
-//
-
 import Foundation
 import Combine
 
@@ -12,7 +5,6 @@ import Alamofire
 import SignKit
 
 class AuthInterceptor: RequestInterceptor {
-    
     var subscription = Set<AnyCancellable>()
     
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, any Error>) -> Void) {

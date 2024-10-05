@@ -24,20 +24,13 @@ public extension SchoolEndpoint {
 }
 
 public struct SchoolService {
-    
     public static let shared = Self()
-    private let runner = DefaultNetRunner<SchoolEndpoint>(
-        provider: .init(
-            session: MoyaProviderUtil.mySession,
-            plugins: MoyaProviderUtil.myPlugins
-        )
-    )
     
     public func getSchools() -> AnyPublisher<[School], MoyaError> {
-        runner.deepDive(.getSchools, res: [School].self)
+        runner.deepDive(SchoolEndpoint.getSchools, res: [School].self)
     }
     
     public func getGraduating(id: Int) -> AnyPublisher<Graduating, MoyaError> {
-        runner.deepDive(.getGraduating(id: id), res: Graduating.self)
+        runner.deepDive(SchoolEndpoint.getGraduating(id: id), res: Graduating.self)
     }
 }

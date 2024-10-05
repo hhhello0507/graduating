@@ -1,7 +1,8 @@
 import MyMoya
+import Foundation
 
 extension MyMoya.MyTarget {
-    public var baseUrlString: String {
-        baseUrl
+    public var baseURL: URL {
+        URL(string: baseUrl)!
     }
 }
