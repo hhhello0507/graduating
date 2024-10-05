@@ -1,6 +1,7 @@
 import SwiftUI
+import MyDesignSystem
 
-public extension View {
+extension View {
     @ViewBuilder
     func onReadSize(_ perform: @escaping (CGSize) -> Void) -> some View {
         self.customBackground {
@@ -35,8 +36,17 @@ struct AdjustedHeightSheetViewModifier: ViewModifier {
     }
 }
 
-public extension View {
-    func adjustedHeightSheet() -> some View {
+extension View {
+    func adjustHeightSheet() -> some View {
         self.modifier(AdjustedHeightSheetViewModifier())
+    }
+    
+    @ViewBuilder
+    func presentationBackground(_ color: Colorable) -> some View {
+        if #available(iOS 16.4, *) {
+            self.presentationBackground(color.box.color)
+        } else {
+            self
+        }
     }
 }
