@@ -35,8 +35,12 @@ class WebSecurityConfig(
         .authorizeHttpRequests {
             it.requestMatchers(
                 "/management/**",
-                "/auth/**",
+                
+                "/auth/refresh",
+                "/auth/sign-in",
+                
                 "/school/**",
+                
                 "/meals/**"
             ).permitAll()
                 .anyRequest().authenticated()

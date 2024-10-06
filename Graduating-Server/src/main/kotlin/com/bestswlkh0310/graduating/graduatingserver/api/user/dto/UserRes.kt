@@ -14,9 +14,9 @@ data class UserRes(
         fun of(user: UserEntity) = UserRes(
             id = user.id, 
             email = user.email,
-            nickname = user.nickname,
-            graduatingYear = user.graduatingYear,
-            school = user.school
+            nickname = user.nickname!!,
+            graduatingYear = user.graduatingYear!!,
+            school = user.school!!
         )
     }
 }

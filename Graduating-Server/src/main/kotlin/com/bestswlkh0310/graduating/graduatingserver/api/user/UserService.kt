@@ -18,7 +18,7 @@ class UserService(
 
     fun editUser(req: EditUserReq): VoidRes {
         val user = userAuthenticationHolder.current()
-        user.updateNickname(req.nickname)
+        user.update(req.nickname)
         userRepository.save(user)
         return VoidRes()
     }

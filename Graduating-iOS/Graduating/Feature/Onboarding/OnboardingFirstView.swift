@@ -49,7 +49,7 @@ extension OnboardingFirstView: View {
             receiveSignInFlow($0, platformType: .google)
         }
         .onReceive(viewModel.$signInFlow) {
-            if case .success = $0 {
+            if case .success(let token) = $0 {
                 
             }
         }

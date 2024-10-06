@@ -6,10 +6,7 @@ import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.SignInReq
 import com.bestswlkh0310.graduating.graduatingserver.api.auth.res.TokenRes
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolRepository
 import com.bestswlkh0310.graduating.graduatingserver.core.school.getBy
-import com.bestswlkh0310.graduating.graduatingserver.core.user.PlatformType
-import com.bestswlkh0310.graduating.graduatingserver.core.user.UserEntity
-import com.bestswlkh0310.graduating.graduatingserver.core.user.UserRepository
-import com.bestswlkh0310.graduating.graduatingserver.core.user.getByEmail
+import com.bestswlkh0310.graduating.graduatingserver.core.user.*
 import com.bestswlkh0310.graduating.graduatingserver.global.exception.CustomException
 import com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.apple.AppleOAuth2Client
 import com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.apple.AppleOAuth2Helper
@@ -30,43 +27,41 @@ class AuthService(
     private val appleOAuth2Helper: AppleOAuth2Helper,
     private val googleOAuth2Helper: GoogleOAuth2Helper,
     private val jwtClient: JwtClient,
+    private val sessionHolder: UserAuthenticationHolder
 ) {
     fun signIn(req: SignInReq): TokenRes {
-        val email = this.getEmail(
-            code = req.code,
-            platformType = req.platformType
-        )
+        val email = when (req.platformType) {
+            PlatformType.GOOGLE -> googleSignIn(req.code)
+            PlatformType.APPLE -> appleSignIn(req.code)
+        }
         val user = userRepository.getByEmail(email)
         
-        return jwtClient.generate(user)
+        return TokenRes.of(
+            token = jwtClient.generate(user),
+            state = user.state
+        )
     }
 
     fun signUp(req: SignUpReq): TokenRes {
-        val email = this.getEmail(
-            code = req.code, 
-            platformType = req.platformType
-        )
-
         val school = schoolRepository.getBy(req.schoolId)
-        val user = userRepository.findByEmail(email).firstOrNull()
-            ?: userRepository.save(
-                UserEntity(
-                    email = email,
-                    nickname = req.nickname,
-                    platformType = req.platformType,
-                    graduatingYear = req.graduatingYear,
-                    school = school
-                )
-            )
-
-        return jwtClient.generate(user)
-    }
-
-    private fun getEmail(code: String, platformType: PlatformType) =
-        when (platformType) {
-            PlatformType.GOOGLE -> googleSignIn(code)
-            PlatformType.APPLE -> appleSignIn(code)
+        val user = sessionHolder.current()
+        
+        if (user.isActive) {
+            throw CustomException(HttpStatus.BAD_REQUEST, "User already sign in")
         }
+        
+        user.active(
+            nickname = req.nickname,
+            graduatingYear = req.graduatingYear,
+            school = school,
+        )
+        userRepository.save(user)
+
+        return TokenRes.of(
+            token = jwtClient.generate(user),
+            state = user.state
+        )
+    }
 
     // return email
     private fun googleSignIn(code: String): String {
@@ -95,6 +90,9 @@ class AuthService(
             userRepository.getByEmail(email)
         }
 
-        return jwtClient.generate(user)
+        return TokenRes.of(
+            token = jwtClient.generate(user),
+            state = user.state
+        )
     }
 }

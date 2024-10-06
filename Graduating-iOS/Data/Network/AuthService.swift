@@ -30,7 +30,7 @@ extension AuthEndpoint: MyTarget {
         case .signIn:
                 .none
         case .signUp:
-                .none
+                .refresh
         case .refresh:
                 .none
         }

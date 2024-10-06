@@ -12,6 +12,7 @@ import SignKit
 final class OnboardingViewModel: ObservableObject {
     @Published var code: String?
     @Published var platformType: PlatformType?
+    @Published var email: String?
     @Published var school: School?
     @Published var graduatingYear = Date.now[.year] ?? 1900
     @Published var nickname: String = ""
@@ -32,8 +33,6 @@ extension OnboardingViewModel {
         }
         AuthService.shared.signUp(
             .init(
-                platformType: platformType,
-                code: code,
                 nickname: nickname,
                 graduatingYear: graduatingYear,
                 schoolId: school.id
@@ -45,7 +44,8 @@ extension OnboardingViewModel {
     }
     
     func signIn() {
-        guard let platformType, let code else {
+        guard let platformType,
+              let code else {
             return
         }
         AuthService.shared.signIn(

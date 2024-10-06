@@ -31,6 +31,7 @@ extension OAuth2ViewModel {
         controller.performRequests()
     }
     
+    @MainActor
     func googleSignIn() {
         guard let rootViewController = UIApplicationUtil.window?.rootViewController else {
             self.googleSignInFlow = .failure(GoogleSignInError.notFoundRootViewController)
@@ -55,7 +56,6 @@ extension OAuth2ViewModel: ASAuthorizationControllerDelegate {
             self.appleSignInFlow = .failure(AppleSignInError.credentialNotFound)
             return
         }
-        
         guard let code = credential.authorizationCode,
               let codeString = String(data: code, encoding: .utf8) else {
             print("\(#file) - Can't decode code")

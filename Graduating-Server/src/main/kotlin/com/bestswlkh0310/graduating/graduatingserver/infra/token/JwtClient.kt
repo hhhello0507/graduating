@@ -35,7 +35,7 @@ class JwtClient(
             throw CustomException(HttpStatus.UNAUTHORIZED, "invalid token")
         }
 
-    fun generate(user: UserEntity) = TokenRes(
+    fun generate(user: UserEntity) = Token(
         accessToken = createToken(
             user = user,
             tokenExpired = jwtProperties.expired.access,
