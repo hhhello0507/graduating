@@ -1,22 +1,16 @@
 import SwiftUI
-
 import Model
-
+import Shared
 import MyDesignSystem
 
 public struct SearchSchoolContainer {
-    @EnvironmentObject private var dialogProvider: DialogProvider
-    @EnvironmentObject private var appState: AppState
-    @EnvironmentObject private var router: Router
-    
-    @FocusState private var field: Bool
     @Binding private var searchText: String
     
-    private let schools: [School]?
+    private let schools: Resource<[School]>
     private let selectAction: () -> Void
     
     public init(
-        for schools: [School]?,
+        for schools: Resource<[School]>,
         searchText: Binding<String>,
         selectAction: @escaping () -> Void
     ) {
@@ -31,7 +25,6 @@ extension SearchSchoolContainer: View {
         VStack(spacing: 12) {
             HStack(spacing: 2) {
                 MyTextField("학교 검색", text: $searchText)
-                    .focused($field)
                 Image(icon: Icons.ETC.Search)
                     .resizable()
                     .renderingMode(.template)
@@ -40,26 +33,21 @@ extension SearchSchoolContainer: View {
                     .opacity(0.5)
             }
             .padding(.top, 15)
-            if let schools {
+            schools.makeView {
+                ProgressView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } success: { schools in
                 ScrollView {
                     LazyVStack(spacing: 4) {
                         ForEach(schools, id: \.id) { school in
                             SchoolCell(school: school) {
-                                dialogProvider.present(
-                                    .init(title: "\(school.name) 학생이 맞으신가요?")
-                                    .primaryButton("네, 맞아요") {
-//                                        appState.school = school
-//                                        appState.fetchGraduating(id: school.id)
-//                                        selectAction()
-                                    }.secondaryButton("닫기")
-                                )
+                                selectAction()
                             }
                         }
                     }
                 }
-            } else {
-                ProgressView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } failure: { _ in
+                Text("에러") // TODO: Handle this for ux
             }
         }
     }

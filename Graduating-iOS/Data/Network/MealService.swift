@@ -13,26 +13,26 @@ import Model
 import Shared
 
 public enum MealEndpoint: MyTarget {
-    
     case fetchMeals(schoolId: Int)
 }
 
 extension MealEndpoint {
-    public var host: String {
-        "meals"
-    }
-    
+    public var host: String { "meals" }
     public var route: Route {
         switch self {
         case .fetchMeals(let schoolId): .get("\(schoolId)")
         }
+    }
+    
+    public var authorization: Authorization {
+        .none
     }
 }
 
 public struct MealService {
     public static let shared = Self()
 
-    public func fetchMeals(schoolId: Int) -> AnyPublisher<[Meal], MoyaError> {
+    public func fetchMeals(schoolId: Int) -> AnyPublisher<[Meal], APIError> {
         runner.deepDive(MealEndpoint.fetchMeals(schoolId: schoolId), res: [Meal].self)
     }
 }

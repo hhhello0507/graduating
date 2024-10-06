@@ -30,6 +30,7 @@ extension Router {
     
     public func registerRootView(_ rootView: any Hashable) {
         self.rootView = rootView
+        path.removeLast(path.count)
         self.push(rootView)
     }
 }

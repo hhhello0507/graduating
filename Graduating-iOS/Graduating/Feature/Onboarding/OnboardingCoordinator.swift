@@ -1,14 +1,29 @@
 import SwiftUI
 
 public struct OnboardingCoordinator: View {
-    @EnvironmentObject var router: Router
+    @EnvironmentObject private var router: Router
+    
+    @StateObject private var viewModel = OnboardingViewModel()
 }
 
 extension OnboardingCoordinator {
     public var body: some View {
-        OnboardingFirstView()
-            .navigationDestination(for: EditGradePath.self) {
-                EditGradeView($0)
+        EmptyView()
+            .navigationDestination(for: OnboardingFirstView.Path.self) {
+                OnboardingFirstView(path: $0)
+                    .environmentObject(viewModel)
+            }
+            .navigationDestination(for: OnboardingSecondView.Path.self) {
+                OnboardingSecondView(path: $0)
+                    .environmentObject(viewModel)
+            }
+            .navigationDestination(for: OnboardingThirdView.Path.self) {
+                OnboardingThirdView($0)
+                    .environmentObject(viewModel)
+            }
+            .navigationDestination(for: OnboardingFourthView.Path.self) {
+                OnboardingFourthView($0)
+                    .environmentObject(viewModel)
             }
     }
 }

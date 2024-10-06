@@ -18,10 +18,8 @@ struct ProfileView {
     @EnvironmentObject private var appState: AppState
     @EnvironmentObject private var customPalette: CustomPalette.Provider
     
-    @StateObject private var appleViewModel = AppleViewModel()
     @StateObject private var viewModel = ProfileViewModel()
     
-    @State private var isSignInSheetPresent: Bool = false
     @State private var isColorPickerSheetPresent: Bool = false
     @State private var selectedColor: Color = .white
     
@@ -59,13 +57,7 @@ extension ProfileView: View {
                             }
                         }
                     } failure: { _ in
-                        Button {
-                            isSignInSheetPresent = true
-                        } label: {
-                            Text("로그인 하기")
-                                .foreground(Colors.Label.alternative)
-                                .myFont(.bodyR)
-                        }
+                        Text("_") // TODO: handle this
                     }
                 }
                 .padding(.top, 16)
@@ -108,34 +100,11 @@ extension ProfileView: View {
             }
             .padding(insets)
         }
-        .sheet(isPresented: $isSignInSheetPresent, content: signInSheetContent)
         .sheet(isPresented: $isColorPickerSheetPresent, content: colorPickerSheetContent)
-        .onReceive(viewModel.$signInFlow, perform: receiveSubject)
-        .onReceive(appleViewModel.subject, perform: receiveAppleSubject)
     }
 }
 
 extension ProfileView {
-    @ViewBuilder
-    func signInSheetContent() -> some View {
-        VStack(spacing: 10) {
-            AppleSignInButton {
-                appleViewModel.signIn()
-            }
-            GoogleSignInButton {
-                guard let rootViewController = UIApplicationUtil.window?.rootViewController else { return }
-                Task {
-                    let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
-                    guard let code = result.serverAuthCode else { return }
-                    viewModel.signIn(code: code, platformType: .google)
-                }
-            }
-        }
-        .padding(20)
-        .adjustHeightSheet()
-        .background(Colors.Background.normal)
-    }
-    
     @ViewBuilder
     func colorPickerSheetContent() -> some View {
         HStack(spacing: 10) {
@@ -158,34 +127,23 @@ extension ProfileView {
 }
 
 extension ProfileView {
-    func receiveSubject(flow: Flow) {
-        isSignInSheetPresent = false
-        switch flow {
-        case .success:
-            router.replace([MainPath()])
-            Task {
-                try? await Task.sleep(for: .seconds(1)) // 새 AccessToken을 넣어주는 코드보다 이 코드가 먼저 실행되서 로직이 꼬임
-                appState.fetchCurrentUser()
-            }
-        case .failure:
-            dialog.present(
-                .init(title: "로그인 실패")
-            )
-        default:
-            break
-        }
-    }
-    
-    func receiveAppleSubject(subject: AppleViewModel.Subject) {
-        switch subject {
-        case .signInSuccess(let code):
-            viewModel.signIn(code: code, platformType: .apple)
-        case .signInFailure:
-            dialog.present(
-                .init(title: "로그인 실패")
-            )
-        }
-    }
+//    func receiveSubject(flow: Flow) {
+//        isSignInSheetPresent = false
+//        switch flow {
+//        case .success:
+//            router.replace([MainPath()])
+//            Task {
+//                try? await Task.sleep(for: .seconds(1)) // 새 AccessToken을 넣어주는 코드보다 이 코드가 먼저 실행되서 로직이 꼬임
+//                appState.fetchCurrentUser()
+//            }
+//        case .failure:
+//            dialog.present(
+//                .init(title: "로그인 실패")
+//            )
+//        default:
+//            break
+//        }
+//    }
 }
 
 private let saturationPalletes = Palette.allCases.filter(\.hasSaturation)

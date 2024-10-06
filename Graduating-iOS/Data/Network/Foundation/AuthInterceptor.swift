@@ -31,11 +31,7 @@ class AuthInterceptor: RequestInterceptor {
         
         guard request.retryCount <= 2 else {
             print("❌ AuthInterceptor - RetryCount가 2보다 큽니다")
-            return
-        }
-        
-        if response.statusCode == 200 {
-            completion(.doNotRetry)
+            completion(.doNotRetryWithError(APIError.refreshFailure))
             return
         }
         
@@ -49,15 +45,15 @@ class AuthInterceptor: RequestInterceptor {
         }
         guard let refreshToken = Sign.me.refreshToken else {
             print("❌ AuthInterceptor - refreshToken is nil")
-            completion(.doNotRetryWithError(error))
+            completion(.doNotRetryWithError(APIError.refreshFailure))
             return
         }
         
         AuthService.shared.refresh(
             .init(refreshToken: refreshToken)
         ).sink {
-            if case .failure(let error) = $0 {
-                completion(.doNotRetryWithError(error))
+            if case .failure = $0 {
+                completion(.doNotRetryWithError(APIError.refreshFailure))
             }
         } receiveValue: { token in
             Sign.me.reissue(token.accessToken)

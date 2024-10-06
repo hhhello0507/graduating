@@ -24,7 +24,7 @@ extension EditGradeView {
                     .foreground(Colors.Label.normal)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Picker("Year", selection: $year) {
-                    ForEach(1...2100, id: \.self) { number in
+                    ForEach(1900...2100, id: \.self) { number in
                         Text("\(number)")
                             .myFont(.headling2M)
                     }

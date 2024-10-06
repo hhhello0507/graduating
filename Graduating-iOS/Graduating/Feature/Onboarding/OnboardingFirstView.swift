@@ -1,31 +1,69 @@
+//  Author: hhhello0507
+//  Created: 10/6/24
+
+
 import SwiftUI
 import MyDesignSystem
+import MyUIKitExt
+import GoogleSignIn
+import Shared
+import Model
 
 struct OnboardingFirstView {
+    struct Path: Hashable {}
+    
+    @EnvironmentObject private var viewModel: OnboardingViewModel
+    @EnvironmentObject private var dialog: DialogProvider
     @EnvironmentObject private var router: Router
     
-    @StateObject private var viewModel = SearchSchoolViewModel()
+    @StateObject private var oauth2ViewModel = OAuth2ViewModel()
+    
+    private let path: Path
+    
+    init(path: Path) {
+        self.path = path
+    }
 }
 
 extension OnboardingFirstView: View {
     var body: some View {
-        MyTopAppBar.default(
-            title: "학교를 알려주세요 🤔"
-        ) { insets in
-            SearchSchoolContainer(for: viewModel.searchedSchools, searchText: $viewModel.searchSchoolName) {
-                router.push(EditGradePath())
+        MyTopAppBar.default(title: "로그인") { insets in
+            VStack(spacing: 8) {
+                Text("로그인 뷰 만들어라") // TODO: Just
+                Spacer()
+                AppleSignInButton {
+                    oauth2ViewModel.appleSignIn()
+                }
+                GoogleSignInButton {
+                    oauth2ViewModel.googleSignIn()
+                }
             }
-            .padding(insets)
+            .padding(.horizontal, 20)
+            .padding(.bottom, 8)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .background(Colors.Background.neutral)
-        .onAppear {
-            viewModel.fetchSchools()
+        .onReceive(oauth2ViewModel.$appleSignInFlow) {
+            receiveSignInFlow($0, platformType: .apple)
+        }
+        .onReceive(oauth2ViewModel.$googleSignInFlow) {
+            receiveSignInFlow($0, platformType: .google)
         }
     }
 }
 
-#Preview {
-    OnboardingFirstView()
-        .registerWanted()
+extension OnboardingFirstView {
+    func receiveSignInFlow(_ flow: Resource<String>, platformType: PlatformType) {
+        switch flow {
+        case .success(let code):
+            viewModel.code = code
+            viewModel.platformType = platformType
+            router.push(OnboardingSecondView.Path())
+        case .failure:
+            dialog.present(
+                .init(title: "로그인 실패")
+                .message("잠시 후 다시 시도해 주세요")
+            )
+        default:
+            break
+        }
+    }
 }

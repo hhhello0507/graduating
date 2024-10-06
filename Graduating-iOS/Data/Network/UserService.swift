@@ -33,11 +33,11 @@ extension UserEndpoint: MyTarget {
 public class UserService {
     public static let shared = UserService()
     
-    public func getMe() -> AnyPublisher<User, MoyaError> {
+    public func getMe() -> AnyPublisher<User, APIError> {
         runner.deepDive(UserEndpoint.getMe, res: User.self)
     }
     
-    public func editUser(_ req: EditUserReq) -> AnyPublisher<VoidDTO, MoyaError> {
+    public func editUser(_ req: EditUserReq) -> AnyPublisher<VoidDTO, APIError> {
         runner.deepDive(UserEndpoint.editUser(req), res: VoidDTO.self)
     }
 }

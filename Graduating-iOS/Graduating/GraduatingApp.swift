@@ -25,7 +25,7 @@ extension GraduatingApp {
                     timePickerProvider: timePickerProvider
                 ) {
                     NavigationStack(path: $router.path) {
-                        if Sign.me.isLoggedIn {
+                        if appState.isLoggedIn {
                             MainCoordinator()
                         } else {
                             OnboardingCoordinator()
@@ -38,12 +38,18 @@ extension GraduatingApp {
             .registerWanted()
             .id(theme)
             .onAppear {
-                // Setting root view
-                router.registerRootView(MainPath())
-
                 // Setting theme
                 if let palette = Palette(rawValue: theme) {
                     customPaletteProvider.updateColor(pallete: palette)
+                }
+                
+                UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+            }
+            .onReceive(appState.$isLoggedIn) { isLoggedIn in
+                if isLoggedIn {
+                    router.registerRootView(MainPath())
+                } else {
+                    router.registerRootView(OnboardingFirstView.Path())
                 }
             }
         }
