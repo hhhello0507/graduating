@@ -2,6 +2,7 @@ package com.bestswlkh0310.graduating.graduatingserver.api.auth
 
 import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.SignInReq
 import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.RefreshReq
+import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.SignUpReq
 import com.bestswlkh0310.graduating.graduatingserver.api.auth.res.TokenRes
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolRepository
 import com.bestswlkh0310.graduating.graduatingserver.core.school.getBy
@@ -30,13 +31,23 @@ class AuthService(
     private val googleOAuth2Helper: GoogleOAuth2Helper,
     private val jwtClient: JwtClient,
 ) {
-    fun signIn(req: SignInReq): TokenRes {
-        val school = schoolRepository.getBy(req.schoolId)
-        val email = when (req.platformType) {
-            PlatformType.GOOGLE -> googleSignIn(req)
-            PlatformType.APPLE -> appleSignIn(req)
-        }
+    fun signUp(req: SignUpReq): TokenRes {
+        val email = this.getEmail(
+            code = req.code,
+            platformType = req.platformType
+        )
+        val user = userRepository.getByEmail(email)
+        
+        return jwtClient.generate(user)
+    }
 
+    fun signIn(req: SignInReq): TokenRes {
+        val email = this.getEmail(
+            code = req.code, 
+            platformType = req.platformType
+        )
+
+        val school = schoolRepository.getBy(req.schoolId)
         val user = userRepository.findByEmail(email).firstOrNull()
             ?: userRepository.save(
                 UserEntity(
@@ -51,17 +62,23 @@ class AuthService(
         return jwtClient.generate(user)
     }
 
+    private fun getEmail(code: String, platformType: PlatformType) =
+        when (platformType) {
+            PlatformType.GOOGLE -> googleSignIn(code)
+            PlatformType.APPLE -> appleSignIn(code)
+        }
+
     // return email
-    private fun googleSignIn(req: SignInReq): String {
-        val token = googleOAuth2Client.getToken(code = req.code)
+    private fun googleSignIn(code: String): String {
+        val token = googleOAuth2Client.getToken(code = code)
         val idToken = googleOAuth2Helper.verifyIdToken(idToken = token.idToken)
         val email = idToken.payload.email
         return email
     }
 
     // return email
-    private fun appleSignIn(req: SignInReq): String {
-        val token = appleOAuth2Client.getToken(code = req.code)
+    private fun appleSignIn(code: String): String {
+        val token = appleOAuth2Client.getToken(code = code)
         val headers = appleOAuth2Helper.parseHeader(idToken = token.idToken)
         val keys = appleOAuth2Client.getPublicKeys()
         val publicKey = appleOAuth2Helper.generate(headers = headers, keys = keys)

@@ -11,7 +11,7 @@ struct OnboardingFourthView {
     
     private let path: Path
     
-    public init(_ path: Path) {
+    public init(path: Path) {
         self.path = path
     }
 }

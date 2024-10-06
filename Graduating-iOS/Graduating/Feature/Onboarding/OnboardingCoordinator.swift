@@ -18,11 +18,11 @@ extension OnboardingCoordinator {
                     .environmentObject(viewModel)
             }
             .navigationDestination(for: OnboardingThirdView.Path.self) {
-                OnboardingThirdView($0)
+                OnboardingThirdView(path: $0)
                     .environmentObject(viewModel)
             }
             .navigationDestination(for: OnboardingFourthView.Path.self) {
-                OnboardingFourthView($0)
+                OnboardingFourthView(path: $0)
                     .environmentObject(viewModel)
             }
     }
