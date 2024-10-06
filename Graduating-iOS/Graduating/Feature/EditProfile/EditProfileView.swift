@@ -42,7 +42,7 @@ extension EditProfileView {
                 .init(title: "프로필 수정 성공")
                 .primaryButton("닫기") {
                     router.pop()
-                    appState.fetchCurrentUser()
+//                    appState.fetchCurrentUser() // TODO: Handle
                 }
             )
         case .failure:

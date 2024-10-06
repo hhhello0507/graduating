@@ -15,16 +15,22 @@ final class AppState: ObservableObject {
     init() {
         fetchCurrentUser()
     }
-    
-    func logout() {
-        Sign.me.logout()
-        currentUser = .idle
-        isLoggedIn = false
-    }
 }
 
 extension AppState {
-    func fetchCurrentUser() {
+    func logout() {
+        Sign.me.logout()
+        currentUser = .idle
+        isLoggedIn = Sign.me.isLoggedIn
+    }
+    
+    func signIn(token: Token) {
+        Sign.me.login(id: "", password: "", accessToken: token.accessToken, refreshToken: token.refreshToken)
+        fetchCurrentUser()
+        isLoggedIn = Sign.me.isLoggedIn
+    }
+    
+    private func fetchCurrentUser() {
         UserService.shared.getMe()
             .resource(\.currentUser, on: self)
             .sink {

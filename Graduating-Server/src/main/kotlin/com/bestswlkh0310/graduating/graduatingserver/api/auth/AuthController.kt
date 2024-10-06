@@ -1,10 +1,9 @@
 package com.bestswlkh0310.graduating.graduatingserver.api.auth
 
-import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.SignInReq
-import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.RefreshReq
 import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.SignUpReq
+import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.RefreshReq
+import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.SignInReq
 import jakarta.validation.Valid
-import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping

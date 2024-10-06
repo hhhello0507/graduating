@@ -15,7 +15,8 @@ final class OnboardingViewModel: ObservableObject {
     @Published var school: School?
     @Published var graduatingYear = Date.now[.year] ?? 1900
     @Published var nickname: String = ""
-    @Published var signInFlow = Flow.idle
+    @Published var signUpFlow: Resource<Token> = .idle
+    @Published var signInFlow: Resource<Token> = .idle
     
     var subscriptions = Set<AnyCancellable>()
     
@@ -25,11 +26,11 @@ final class OnboardingViewModel: ObservableObject {
 }
 
 extension OnboardingViewModel {
-    func signIn() {
+    func signUp() {
         guard let platformType, let code, let school, isValidInput else {
             return
         }
-        AuthService.shared.signIn(
+        AuthService.shared.signUp(
             .init(
                 platformType: platformType,
                 code: code,
@@ -38,11 +39,20 @@ extension OnboardingViewModel {
                 schoolId: school.id
             )
         )
-        .flow(\.signInFlow, on: self)
-        .ignoreError()
-        .sink {
-            Sign.me.login(id: "", password: "", accessToken: $0.accessToken, refreshToken: $0.refreshToken)
+        .resource(\.signInFlow, on: self)
+        .silentSink()
+        .store(in: &subscriptions)
+    }
+    
+    func signIn() {
+        guard let platformType, let code else {
+            return
         }
+        AuthService.shared.signIn(
+            .init(platformType: platformType, code: code)
+        )
+        .resource(\.signUpFlow, on: self)
+        .silentSink()
         .store(in: &subscriptions)
     }
 }

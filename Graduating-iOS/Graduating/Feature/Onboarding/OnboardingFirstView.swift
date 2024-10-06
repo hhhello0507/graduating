@@ -15,6 +15,7 @@ struct OnboardingFirstView {
     @EnvironmentObject private var viewModel: OnboardingViewModel
     @EnvironmentObject private var dialog: DialogProvider
     @EnvironmentObject private var router: Router
+    @EnvironmentObject private var appState: AppState
     
     @StateObject private var oauth2ViewModel = OAuth2ViewModel()
     
@@ -47,6 +48,11 @@ extension OnboardingFirstView: View {
         .onReceive(oauth2ViewModel.$googleSignInFlow) {
             receiveSignInFlow($0, platformType: .google)
         }
+        .onReceive(viewModel.$signInFlow) {
+            if case .success = $0 {
+                
+            }
+        }
     }
 }
 
@@ -56,6 +62,7 @@ extension OnboardingFirstView {
         case .success(let code):
             viewModel.code = code
             viewModel.platformType = platformType
+            viewModel.signIn()
             router.push(OnboardingSecondView.Path())
         case .failure:
             dialog.present(

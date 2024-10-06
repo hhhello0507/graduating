@@ -1,8 +1,8 @@
 package com.bestswlkh0310.graduating.graduatingserver.api.auth
 
-import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.SignInReq
-import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.RefreshReq
 import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.SignUpReq
+import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.RefreshReq
+import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.SignInReq
 import com.bestswlkh0310.graduating.graduatingserver.api.auth.res.TokenRes
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolRepository
 import com.bestswlkh0310.graduating.graduatingserver.core.school.getBy
@@ -31,7 +31,7 @@ class AuthService(
     private val googleOAuth2Helper: GoogleOAuth2Helper,
     private val jwtClient: JwtClient,
 ) {
-    fun signUp(req: SignUpReq): TokenRes {
+    fun signIn(req: SignInReq): TokenRes {
         val email = this.getEmail(
             code = req.code,
             platformType = req.platformType
@@ -41,7 +41,7 @@ class AuthService(
         return jwtClient.generate(user)
     }
 
-    fun signIn(req: SignInReq): TokenRes {
+    fun signUp(req: SignUpReq): TokenRes {
         val email = this.getEmail(
             code = req.code, 
             platformType = req.platformType

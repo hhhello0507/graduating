@@ -1,4 +1,4 @@
-public struct SignUpReq: ReqProtocol {
+public struct SignInReq: ReqProtocol {
     public let platformType: PlatformType
     public let code: String
     
@@ -11,7 +11,7 @@ public struct SignUpReq: ReqProtocol {
     }
 }
 
-public struct SignInReq: ReqProtocol {
+public struct SignUpReq: ReqProtocol {
     public let platformType: PlatformType
     public let code: String
     public let nickname: String
