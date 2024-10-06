@@ -1,6 +1,6 @@
 package com.bestswlkh0310.graduating.graduatingserver.api.auth
 
-import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.OAuth2SignInReq
+import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.SignInReq
 import com.bestswlkh0310.graduating.graduatingserver.api.auth.req.RefreshReq
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.PostMapping
@@ -17,7 +17,7 @@ class AuthController(
     fun refresh(@RequestBody @Valid req: RefreshReq) =
         authService.refresh(req)
 
-    @PostMapping("/sign-in/oauth2")
-    fun oAuth2SignIn(@RequestBody @Valid req: OAuth2SignInReq) =
-        authService.oAuth2SignIn(req)
+    @PostMapping("/sign-in")
+    fun signIn(@RequestBody @Valid req: SignInReq) =
+        authService.signIn(req)
 }

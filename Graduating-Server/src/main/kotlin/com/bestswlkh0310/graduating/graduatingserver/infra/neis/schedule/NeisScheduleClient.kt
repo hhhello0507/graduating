@@ -1,9 +1,6 @@
 package com.bestswlkh0310.graduating.graduatingserver.infra.neis.schedule
 
-import com.bestswlkh0310.graduating.graduatingserver.core.graduating.GraduatingEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolEntity
-import com.bestswlkh0310.graduating.graduatingserver.core.graduating.GraduatingRepository
-import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolRepository
 import com.bestswlkh0310.graduating.graduatingserver.global.exception.CustomException
 import com.bestswlkh0310.graduating.graduatingserver.infra.neis.NeisProperties
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
@@ -22,8 +19,8 @@ class NeisScheduleClient(
     private val logger: KLogger
 ) {
 
-    suspend fun getSchoolGraduatingDays(school: SchoolEntity): List<GraduatingEntity> {
-        val response = restClient.get()
+    suspend fun getSchoolGraduatingDays(school: SchoolEntity) {
+        restClient.get()
             .uri { uriBuilder ->
                 uriBuilder
                     .path("hub/SchoolSchedule")
@@ -39,20 +36,5 @@ class NeisScheduleClient(
             .body<String>()
             .let { it ?: throw CustomException(HttpStatus.INTERNAL_SERVER_ERROR, "Neis Error") }
             .let { jacksonObjectMapper().readValue(it, NeisSchedulesRes::class.java) }
-
-        val result = response.schoolSchedule
-            .mapNotNull { it.row }
-            .flatten()
-            .filter { it.eventNm.contains("졸업") }
-            .map { GraduatingEntity(school = school, graduatingDay = it.aaYmd) }
-
-        if (result.isEmpty()) {
-            logger.info("❌ - ${school.name} - 알 수 없음 ${response.schoolSchedule}")
-        } else {
-            result.forEach {
-                logger.info("✅ - ${school.name}: ${it.graduatingDay}")
-            }
-        }
-        return result
     }
 }
