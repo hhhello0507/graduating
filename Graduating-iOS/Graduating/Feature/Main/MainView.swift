@@ -58,6 +58,9 @@ extension MainView: View {
             case .profile: ProfileView()
             }
         }
+        .onAppear {
+            fetchMeals()
+        }
 //        .onAppear {
 //            handleGraduating(appState.graduating)
 //            fetchMeals()

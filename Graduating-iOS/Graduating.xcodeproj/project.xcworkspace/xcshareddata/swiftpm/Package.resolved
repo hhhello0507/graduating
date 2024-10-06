@@ -1,5 +1,5 @@
 {
-  "originHash" : "bf9d58df5a08a11ffe46f53a9ad2b9ad2ff4f0b6d23aa63ef7c0f14f0b91ef24",
+  "originHash" : "e3735f1b43c937252fa1cb0deffdab8ef12721940985c627a7156303dae9c988",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -119,21 +119,21 @@
       }
     },
     {
+      "identity" : "scopekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hhhello0507/ScopeKit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "f33e66b19f1cb71ef277cf92fb34833ceeee976a"
+      }
+    },
+    {
       "identity" : "signkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/hhhello0507/SignKit",
       "state" : {
         "branch" : "main",
         "revision" : "9f1560813ea00a57462ae16074eaee3a67adc233"
-      }
-    },
-    {
-      "identity" : "then",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/devxoul/Then",
-      "state" : {
-        "revision" : "d41ef523faef0f911369f79c0b96815d9dbb6d7a",
-        "version" : "3.0.0"
       }
     }
   ],

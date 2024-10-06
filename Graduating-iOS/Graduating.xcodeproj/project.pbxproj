@@ -23,12 +23,11 @@
 		258172B92C7A10D100D2691E /* Graduating-WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 258172A92C7A10CF00D2691E /* Graduating-WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		258172D02C7A12CC00D2691E /* libShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258172C92C7A12B800D2691E /* libShared.a */; };
 		258172D32C7A12D300D2691E /* libShared.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258172C92C7A12B800D2691E /* libShared.a */; };
-		25C4CCF52C74B30600DB83B3 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 25C4CCF42C74B30600DB83B3 /* Then */; };
+		25A649902CB351410015AADB /* ScopeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 25A6498F2CB351410015AADB /* ScopeKit */; };
 		25C962D12C7B07C000EB872E /* libModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258172E32C7A16EA00D2691E /* libModel.a */; };
 		25C962D42C7B07C500EB872E /* libData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C962AF2C7B062900EB872E /* libData.a */; };
 		25C962D72C7B07F800EB872E /* libData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C962AF2C7B062900EB872E /* libData.a */; };
 		25C962DA2C7B07F800EB872E /* libModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258172E32C7A16EA00D2691E /* libModel.a */; };
-		25C962E02C7B0D0300EB872E /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 25C962DF2C7B0D0300EB872E /* Then */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,13 +194,13 @@
 			files = (
 				25064D3B2CAEFEFF00181796 /* GoogleSignInSwift in Frameworks */,
 				250FD0852C74AF100070503B /* CombineMoya in Frameworks */,
+				25A649902CB351410015AADB /* ScopeKit in Frameworks */,
 				25064D392CAEFEFF00181796 /* GoogleSignIn in Frameworks */,
 				25C962D42C7B07C500EB872E /* libData.a in Frameworks */,
 				25064DDB2CAF862D00181796 /* SignKit in Frameworks */,
 				25C962D12C7B07C000EB872E /* libModel.a in Frameworks */,
 				253DC2B22C7EBEAC0047C401 /* MyDesignSystem in Frameworks */,
 				250FD0872C74AF100070503B /* Moya in Frameworks */,
-				25C4CCF52C74B30600DB83B3 /* Then in Frameworks */,
 				258172D02C7A12CC00D2691E /* libShared.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,7 +214,6 @@
 				250EAE262C7DE05500D9FF5E /* Moya in Frameworks */,
 				253DC2B82C7EBEB30047C401 /* MyDesignSystem in Frameworks */,
 				25C962D72C7B07F800EB872E /* libData.a in Frameworks */,
-				25C962E02C7B0D0300EB872E /* Then in Frameworks */,
 				258172AC2C7A10CF00D2691E /* WidgetKit.framework in Frameworks */,
 				250EAE242C7DE05500D9FF5E /* CombineMoya in Frameworks */,
 				258172D32C7A12D300D2691E /* libShared.a in Frameworks */,
@@ -310,11 +308,11 @@
 			packageProductDependencies = (
 				250FD0842C74AF100070503B /* CombineMoya */,
 				250FD0862C74AF100070503B /* Moya */,
-				25C4CCF42C74B30600DB83B3 /* Then */,
 				253DC2B12C7EBEAC0047C401 /* MyDesignSystem */,
 				25064D382CAEFEFF00181796 /* GoogleSignIn */,
 				25064D3A2CAEFEFF00181796 /* GoogleSignInSwift */,
 				25064DDA2CAF862D00181796 /* SignKit */,
+				25A6498F2CB351410015AADB /* ScopeKit */,
 			);
 			productName = Graduating;
 			productReference = 2560F1732C746C16007009E2 /* Graduating.app */;
@@ -341,7 +339,6 @@
 			);
 			name = "Graduating-WidgetExtension";
 			packageProductDependencies = (
-				25C962DF2C7B0D0300EB872E /* Then */,
 				250EAE232C7DE05500D9FF5E /* CombineMoya */,
 				250EAE252C7DE05500D9FF5E /* Moya */,
 				253DC2B72C7EBEB30047C401 /* MyDesignSystem */,
@@ -361,7 +358,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				25D927852C7DD19C008DB5B8 /* PBXTargetDependency */,
 				258172ED2C7A173E00D2691E /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -461,10 +457,10 @@
 			mainGroup = 2560F16A2C746C16007009E2;
 			packageReferences = (
 				250FD0832C74AF100070503B /* XCRemoteSwiftPackageReference "Moya" */,
-				25C4CCF32C74B30600DB83B3 /* XCRemoteSwiftPackageReference "Then" */,
 				253DC2B02C7EBEAC0047C401 /* XCRemoteSwiftPackageReference "my-ios-kit" */,
 				25064D372CAEFEFF00181796 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				25064DD92CAF862D00181796 /* XCRemoteSwiftPackageReference "SignKit" */,
+				25A6498E2CB351400015AADB /* XCRemoteSwiftPackageReference "ScopeKit" */,
 			);
 			productRefGroup = 2560F1742C746C16007009E2 /* Products */;
 			projectDirPath = "";
@@ -595,10 +591,6 @@
 		25D927832C7DCFEB008DB5B8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 25D927822C7DCFEB008DB5B8 /* Moya */;
-		};
-		25D927852C7DD19C008DB5B8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 25D927842C7DD19C008DB5B8 /* Then */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1070,12 +1062,12 @@
 				kind = branch;
 			};
 		};
-		25C4CCF32C74B30600DB83B3 /* XCRemoteSwiftPackageReference "Then" */ = {
+		25A6498E2CB351400015AADB /* XCRemoteSwiftPackageReference "ScopeKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/devxoul/Then";
+			repositoryURL = "https://github.com/hhhello0507/ScopeKit";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1146,15 +1138,10 @@
 			package = 253DC2B02C7EBEAC0047C401 /* XCRemoteSwiftPackageReference "my-ios-kit" */;
 			productName = MyDesignSystem;
 		};
-		25C4CCF42C74B30600DB83B3 /* Then */ = {
+		25A6498F2CB351410015AADB /* ScopeKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 25C4CCF32C74B30600DB83B3 /* XCRemoteSwiftPackageReference "Then" */;
-			productName = Then;
-		};
-		25C962DF2C7B0D0300EB872E /* Then */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 25C4CCF32C74B30600DB83B3 /* XCRemoteSwiftPackageReference "Then" */;
-			productName = Then;
+			package = 25A6498E2CB351400015AADB /* XCRemoteSwiftPackageReference "ScopeKit" */;
+			productName = ScopeKit;
 		};
 		25D927802C7DCFEB008DB5B8 /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1165,11 +1152,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 250FD0832C74AF100070503B /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
-		};
-		25D927842C7DD19C008DB5B8 /* Then */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 25C4CCF32C74B30600DB83B3 /* XCRemoteSwiftPackageReference "Then" */;
-			productName = Then;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
