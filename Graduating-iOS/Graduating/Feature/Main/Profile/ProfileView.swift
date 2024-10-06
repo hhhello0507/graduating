@@ -16,6 +16,7 @@ struct ProfileView {
     @EnvironmentObject private var dialog: DialogProvider
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var appState: AppState
+    @EnvironmentObject private var customPalette: CustomPalette.Provider
     
     @StateObject private var appleViewModel = AppleViewModel()
     @StateObject private var viewModel = ProfileViewModel()
@@ -24,7 +25,7 @@ struct ProfileView {
     @State private var isColorPickerSheetPresent: Bool = false
     @State private var selectedColor: Color = .white
     
-    @AppStorage("theme color hex") private var themeColor: Color = CustomPalette.primary50
+    @AppStorage("theme", store: .graduating) private var theme: Int = Palette.blue.rawValue
 }
 
 extension ProfileView: View {
@@ -103,7 +104,7 @@ extension ProfileView: View {
                             .foreground(Colors.Label.normal)
                             .myFont(.bodyM)
                         Spacer()
-                        themeColor.frame(size: 48)
+                        CustomPalette.primary50.frame(size: 48)
                             .cornerRadius(16, corners: .allCorners)
                             .stroke(16, color: Colors.Line.normal, lineWidth: 1)
                     }
@@ -148,14 +149,15 @@ extension ProfileView {
     @ViewBuilder
     func colorPickerSheetContent() -> some View {
         HStack(spacing: 10) {
-            ForEach([Color(0xF6381A), Color(0xF6AB21), Color(0xF6D11A), Color(0x5DEB64), Color(0x0083F0), Color(0x9852EE)], id: \.self) { color in
+            ForEach(saturationPalletes, id: \.self) { pallete in
                 Button {
-                    self.themeColor = color
+                    customPalette.updateColor(pallete: pallete)
+                    theme = pallete.rawValue
                 } label: {
-                    color
+                    pallete.allCases[6].color
                         .frame(height: 128)
                         .cornerRadius(8, corners: .allCorners)
-                        .stroke(8, color: Colors.Label.normal, lineWidth: self.themeColor.isEqual(color) ? 2 : 0)
+                        .stroke(8, color: Colors.Label.normal, lineWidth: self.theme == pallete.rawValue ? 2 : 0)
                 }
             }
         }
@@ -195,3 +197,5 @@ extension ProfileView {
         }
     }
 }
+
+private let saturationPalletes = Palette.allCases.filter(\.hasSaturation)

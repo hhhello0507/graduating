@@ -1052,8 +1052,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hhhello0507/my-ios-kit";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 		25C4CCF32C74B30600DB83B3 /* XCRemoteSwiftPackageReference "Then" */ = {
