@@ -9,11 +9,8 @@ public struct OnboardingCoordinator: View {
 
 extension OnboardingCoordinator {
     public var body: some View {
-        EmptyView()
-            .navigationDestination(for: OnboardingFirstView.Path.self) {
-                OnboardingFirstView(path: $0)
-                    .environmentObject(viewModel)
-            }
+        OnboardingFirstView()
+            .environmentObject(viewModel)
             .navigationDestination(for: OnboardingSecondView.Path.self) {
                 OnboardingSecondView(path: $0)
                     .environmentObject(viewModel)

@@ -32,8 +32,6 @@ let data = [
     Item.profile
 ]
 
-struct MainPath: Hashable {}
-
 struct MainView {
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var appState: AppState
@@ -44,11 +42,7 @@ struct MainView {
     
     @State private var selectedTab = data[0]
     
-    private let path: MainPath
-    
-    init(_ path: MainPath) {
-        self.path = path
-    }
+    init() {}
 }
 
 extension MainView: View {

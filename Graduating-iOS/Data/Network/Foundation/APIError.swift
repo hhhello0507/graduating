@@ -6,7 +6,5 @@ public enum APIError: Error, Equatable {
 
 public struct ErrorRes: Codable, Hashable {
     public let status: Int
-    public let success: Bool
-    public let state: String
     public let message: String
 }

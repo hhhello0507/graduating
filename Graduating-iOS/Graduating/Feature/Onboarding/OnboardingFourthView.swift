@@ -36,7 +36,9 @@ extension OnboardingFourthView: View {
         .onReceive(viewModel.$signUpFlow) { flow in
             switch flow {
             case .success(let token):
+                router.toRoot()
                 appState.signIn(token: token)
+                print(appState.shouldSignUp)
             case .failure:
                 dialogProvider.present(
                     .init(title: "회원가입 실패")

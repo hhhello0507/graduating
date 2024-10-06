@@ -10,7 +10,6 @@ import Shared
 import Model
 
 struct OnboardingFirstView {
-    struct Path: Hashable {}
     
     @EnvironmentObject private var viewModel: OnboardingViewModel
     @EnvironmentObject private var dialog: DialogProvider
@@ -19,11 +18,7 @@ struct OnboardingFirstView {
     
     @StateObject private var oauth2ViewModel = OAuth2ViewModel()
     
-    private let path: Path
-    
-    init(path: Path) {
-        self.path = path
-    }
+    init() {}
 }
 
 extension OnboardingFirstView: View {

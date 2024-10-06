@@ -44,18 +44,10 @@ extension GraduatingApp {
                 }
                 
                 UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
-                
-                navigateRootView(shouldSignUp: appState.shouldSignUp)
             }
-            .onChange(of: appState.shouldSignUp, perform: navigateRootView)
-        }
-    }
-    
-    func navigateRootView(shouldSignUp: Bool) {
-        if shouldSignUp {
-            router.registerRootView(OnboardingFirstView.Path())
-        } else {
-            router.registerRootView(MainPath())
+            .onChange(of: appState.shouldSignUp) { _ in
+                router.toRoot()
+            }
         }
     }
 }

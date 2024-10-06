@@ -2,23 +2,19 @@ import SwiftUI
 
 public final class Router: ObservableObject {
     @Published public var path = NavigationPath()
-    var rootView: (any Hashable)?
 }
 
 extension Router {
     public func push(_ view: any Hashable) {
-        path.append(view)
+        self.path.append(view)
     }
     
     public func pop() {
-        path.removeLast()
+        self.path.removeLast()
     }
     
     public func toRoot() {
-        self.path = NavigationPath()
-        if let rootView {
-            path.append(rootView)
-        }
+        self.path.removeLast(self.path.count)
     }
     
     public func replace(_ views: [any Hashable]) {
@@ -26,11 +22,5 @@ extension Router {
         views.forEach {
             push($0)
         }
-    }
-    
-    public func registerRootView(_ rootView: any Hashable) {
-        self.rootView = rootView
-        self.path = NavigationPath()
-        self.path.append(rootView)
     }
 }

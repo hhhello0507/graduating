@@ -17,6 +17,11 @@ final class AppState: ObservableObject {
     
     init() {
         fetchCurrentUser()
+        userState = UserDefaults.graduating.bool(forKey: "userStateIsPending") ? .pending : .none
+        $userState.sink {
+            UserDefaults.graduating.set($0 == .pending, forKey: "userStateIsPending")
+        }
+        .store(in: &subscriptions)
     }
 }
 
@@ -34,13 +39,17 @@ extension AppState {
     }
     
     private func fetchCurrentUser() {
-        guard case .idle  = currentUser else { return }
+        guard currentUser.data == nil else { return }
         UserService.shared.getMe()
             .resource(\.currentUser, on: self)
             .sink {
-                if case .failure(let error) = $0,
-                   case .refreshFailure = error {
-                    self.logout()
+                if case .failure(let error) = $0 {
+                    if case .refreshFailure = error {
+                        self.logout()
+                    }
+                    if case .http(let err) = error, err.status == 404 {
+                        self.logout()
+                    }
                 }
             } receiveValue: { _ in }
             .store(in: &subscriptions)
