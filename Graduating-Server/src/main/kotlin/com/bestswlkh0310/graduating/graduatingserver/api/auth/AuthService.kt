@@ -8,7 +8,7 @@ import com.bestswlkh0310.graduating.graduatingserver.core.school.getBy
 import com.bestswlkh0310.graduating.graduatingserver.core.user.PlatformType
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserEntity
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserRepository
-import com.bestswlkh0310.graduating.graduatingserver.core.user.getByUsername
+import com.bestswlkh0310.graduating.graduatingserver.core.user.getByEmail
 import com.bestswlkh0310.graduating.graduatingserver.global.exception.CustomException
 import com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.apple.AppleOAuth2Client
 import com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.apple.AppleOAuth2Helper
@@ -16,7 +16,6 @@ import com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.google.GoogleO
 import com.bestswlkh0310.graduating.graduatingserver.infra.oauth2.google.GoogleOAuth2Helper
 import com.bestswlkh0310.graduating.graduatingserver.infra.token.JwtClient
 import com.bestswlkh0310.graduating.graduatingserver.infra.token.JwtPayloadKey
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 
@@ -33,15 +32,15 @@ class AuthService(
 ) {
     fun signIn(req: SignInReq): TokenRes {
         val school = schoolRepository.getBy(req.schoolId)
-        val username = when (req.platformType) {
+        val email = when (req.platformType) {
             PlatformType.GOOGLE -> googleSignIn(req)
             PlatformType.APPLE -> appleSignIn(req)
         }
 
-        val user = userRepository.findByUsername(username).firstOrNull()
+        val user = userRepository.findByEmail(email).firstOrNull()
             ?: userRepository.save(
                 UserEntity(
-                    username = username,
+                    email = email,
                     nickname = req.nickname,
                     platformType = req.platformType,
                     graduatingYear = req.graduatingYear,
@@ -52,31 +51,31 @@ class AuthService(
         return jwtClient.generate(user)
     }
 
-    // return username
+    // return email
     private fun googleSignIn(req: SignInReq): String {
         val token = googleOAuth2Client.getToken(code = req.code)
         val idToken = googleOAuth2Helper.verifyIdToken(idToken = token.idToken)
-        val username = idToken.payload.email
-        return username
+        val email = idToken.payload.email
+        return email
     }
 
-    // return username
+    // return email
     private fun appleSignIn(req: SignInReq): String {
         val token = appleOAuth2Client.getToken(code = req.code)
         val headers = appleOAuth2Helper.parseHeader(idToken = token.idToken)
         val keys = appleOAuth2Client.getPublicKeys()
         val publicKey = appleOAuth2Helper.generate(headers = headers, keys = keys)
         val claims = appleOAuth2Helper.extractClaims(idToken = token.idToken, publicKey = publicKey)
-        val username = claims["email"] as? String ?: throw CustomException(HttpStatus.BAD_REQUEST, "Invalid email")
-        return username
+        val email = claims["email"] as? String ?: throw CustomException(HttpStatus.BAD_REQUEST, "Invalid email")
+        return email
     }
 
     fun refresh(req: RefreshReq): TokenRes {
         jwtClient.parseToken(req.refreshToken)
 
         val user = run {
-            val username = jwtClient.payload(JwtPayloadKey.USERNAME, req.refreshToken)
-            userRepository.getByUsername(username)
+            val email = jwtClient.payload(JwtPayloadKey.EMAIL, req.refreshToken)
+            userRepository.getByEmail(email)
         }
 
         return jwtClient.generate(user)

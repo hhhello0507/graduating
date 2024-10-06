@@ -7,9 +7,8 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface UserRepository : JpaRepository<UserEntity, Long> {
-    fun existsByUsername(username: String): Boolean
-    fun findByUsername(username: String): List<UserEntity>
+    fun findByEmail(email: String): List<UserEntity>
 }
 
-fun UserRepository.getByUsername(username: String): UserEntity =
-    findByUsername(username).firstOrNull() ?: throw CustomException(HttpStatus.NOT_FOUND, "User not found")
+fun UserRepository.getByEmail(email: String): UserEntity =
+    findByEmail(email).firstOrNull() ?: throw CustomException(HttpStatus.NOT_FOUND, "User not found")

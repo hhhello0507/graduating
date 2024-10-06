@@ -18,7 +18,7 @@ object TestUtil {
         val user = userRepository.save(
             UserEntity(
                 id = 0,
-                username = "hhhello0507@gmail.com",
+                email = "hhhello0507@gmail.com",
                 nickname = "testuser",
                 platformType = PlatformType.GOOGLE
             )

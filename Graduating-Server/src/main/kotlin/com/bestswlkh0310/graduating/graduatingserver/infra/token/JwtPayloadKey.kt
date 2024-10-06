@@ -4,6 +4,6 @@ enum class JwtPayloadKey(
     val key: String
 ) {
     ID("id"),
-    USERNAME("username"),
+    EMAIL("email"),
     ROLE("role");
 }

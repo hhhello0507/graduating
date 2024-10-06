@@ -5,7 +5,7 @@ import com.bestswlkh0310.graduating.graduatingserver.core.user.UserEntity
 
 data class UserRes(
     val id: Long,
-    val username: String,
+    val email: String,
     val nickname: String,
     val graduatingYear: Int,
     val school: SchoolEntity
@@ -13,7 +13,7 @@ data class UserRes(
     companion object {
         fun of(user: UserEntity) = UserRes(
             id = user.id, 
-            username = user.username,
+            email = user.email,
             nickname = user.nickname,
             graduatingYear = user.graduatingYear,
             school = user.school

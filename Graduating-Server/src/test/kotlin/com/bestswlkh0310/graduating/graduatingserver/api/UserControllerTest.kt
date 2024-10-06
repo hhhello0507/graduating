@@ -51,7 +51,7 @@ class UserControllerTest {
             .andReturn().response.contentAsString
             .fromJson<UserRes>()
         
-        assertEquals(user.username, res.username)
+        assertEquals(user.email, res.email)
         assertEquals(user.nickname, res.nickname)
     }
     
@@ -83,7 +83,7 @@ class UserControllerTest {
             .andReturn().response.contentAsString
             .fromJson<UserRes>()
 
-        assertEquals(user.username, res.username)
+        assertEquals(user.email, res.email)
         assertEquals(editNickname, res.nickname)
         assertNotEquals(user.nickname, res.nickname)
     }
