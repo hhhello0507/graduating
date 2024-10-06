@@ -1,5 +1,7 @@
 import SwiftUI
 import MyDesignSystem
+import SignKit
+import Shared
 
 @main
 struct GraduatingApp: App {
@@ -23,8 +25,7 @@ extension GraduatingApp {
                     timePickerProvider: timePickerProvider
                 ) {
                     NavigationStack(path: $router.path) {
-                        if let _ = appState.grade,
-                           let _ = appState.school {
+                        if Sign.me.isLoggedIn {
                             MainCoordinator()
                         } else {
                             OnboardingCoordinator()

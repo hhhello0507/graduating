@@ -24,9 +24,8 @@ extension SettingView: View {
                     dialog.present(
                         .init(title: "로그아웃 하시겠습니까?")
                         .primaryButton("로그아웃") {
-                            Sign.me.logout()
                             router.replace([MainPath()])
-                            appState.currentUser = nil
+                            appState.logout()
                         }.secondaryButton("취소")
                     )
                 }

@@ -10,13 +10,9 @@ struct EditGradeView: View {
     @EnvironmentObject private var appState: AppState
     
     @FocusState private var field
-    @State private var grade = 1
+    @State private var year = 20 // TODO: Set current year
     
     public init(_ path: EditGradePath) {}
-    
-    private var limit: Int {
-        appState.school?.type?.limit ?? 3
-    }
 }
 
 extension EditGradeView {
@@ -27,8 +23,8 @@ extension EditGradeView {
                     .myFont(.title1B)
                     .foreground(Colors.Label.normal)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Picker("Grade", selection: $grade) {
-                    ForEach(1...limit, id: \.self) { number in
+                Picker("Year", selection: $year) {
+                    ForEach(1...2100, id: \.self) { number in
                         Text("\(number)")
                             .myFont(.headling2M)
                     }
@@ -37,9 +33,9 @@ extension EditGradeView {
                 Spacer()
                 MyButton("다음", expanded: true) {
                     dialogProvider.present(
-                        .init(title: "\(grade)학년이 맞으신가요?")
+                        .init(title: "\(year)졸업이 맞으신가요?")
                         .primaryButton("네, 맞아요") {
-                            appState.grade = grade
+//                            appState.grade = grade
                             router.toRoot()
                         }
                         .secondaryButton("닫기")
@@ -50,9 +46,9 @@ extension EditGradeView {
             .padding(insets)
         }
         .onAppear {
-            if let grade = appState.grade {
-                self.grade = grade
-            }
+//            if let grade = appState.grade {
+//                self.grade = grade
+//            }
         }
     }
 }

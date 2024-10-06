@@ -14,10 +14,9 @@ extension HomeView: View {
         MyTopAppBar.default(title: "홈") { insets in
             ScrollView {
                 VStack(spacing: 10) {
-                    if let grade = appState.grade,
-                       let school = appState.school {
+                    if let user = appState.currentUser.data {
                         MyCardView(title: "내 정보") {
-                            HomeInfoContainer(school: school, grade: grade)
+                            HomeInfoContainer(for: user)
                                 .padding(6)
                         }
                     }
@@ -34,22 +33,22 @@ extension HomeView: View {
                 .padding(insets)
                 .padding(.bottom, 80)
             }
-            .refreshable(action: handleRefresh)
+//            .refreshable(action: handleRefresh)
         }
     }
 }
 
 // MARK: - Method
 extension HomeView {
-    @Sendable
-    func handleRefresh() async {
-        guard let grade = appState.grade,
-              let graduating = appState.graduating else {
-            return
-        }
-        let limit = appState.school?.type?.limit ?? 3
-        graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
-    }
+//    @Sendable
+//    func handleRefresh() async {
+//        guard let grade = appState.grade,
+//              let graduating = appState.graduating else {
+//            return
+//        }
+//        let limit = appState.school?.type?.limit ?? 3
+//        graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
+//    }
 }
 
 #Preview {

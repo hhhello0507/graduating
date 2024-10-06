@@ -31,8 +31,8 @@ extension EditProfileView: View {
 
 extension EditProfileView {
     func initNickname() {
-        guard let nickname = appState.currentUser?.nickname else { return }
-        viewModel.nickname = nickname
+        guard let user = appState.currentUser.data else { return }
+        viewModel.nickname = user.nickname
     }
     
     func receiveEditProfileFlow(flow: Flow) {

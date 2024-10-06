@@ -64,41 +64,41 @@ extension MainView: View {
             case .profile: ProfileView()
             }
         }
-        .onAppear {
-            handleGraduating(appState.graduating)
-            fetchMeals()
-            fetchGraduating()
-        }
-        .onChange(of: appState.graduating) {
-            selectedTab = .home
-            handleGraduating($0)
-        }
+//        .onAppear {
+//            handleGraduating(appState.graduating)
+//            fetchMeals()
+//            fetchGraduating()
+//        }
+//        .onChange(of: appState.graduating) {
+//            selectedTab = .home
+//            handleGraduating($0)
+//        }
     }
 }
 
 extension MainView {
-    func handleGraduating(_ graduating: Graduating?) {
-        if case .failure = appState.fetchGraduatingFlow,
-           let school = appState.school {
-            appState.graduating = .init(id: -1, graduatingDay: nextFebruaryFirst(from: .now) ?? .now, schoolId: school.id)
-            dialogProvider.present(
-                .init(title: "등록하신 학교의 졸업 날짜를\n찾을 수 없습니다")
-                .message("대신 졸업 날짜가 2월 1일로 설정 되었습니다!")
-            )
-        }
-    }
+//    func handleGraduating(_ graduating: Graduating?) {
+//        if case .failure = appState.fetchGraduatingFlow,
+//           let school = appState.school {
+//            appState.graduating = .init(id: -1, graduatingDay: nextFebruaryFirst(from: .now) ?? .now, schoolId: school.id)
+//            dialogProvider.present(
+//                .init(title: "등록하신 학교의 졸업 날짜를\n찾을 수 없습니다")
+//                .message("대신 졸업 날짜가 2월 1일로 설정 되었습니다!")
+//            )
+//        }
+//    }
     
     func fetchMeals() {
-        guard let school = appState.school else { return }
+        guard let school = appState.currentUser.data?.school else { return }
         mealViewModel.fetchMeals(schoolId: school.id)
     }
     
     func fetchGraduating() {
-        guard let grade = appState.grade,
-              let graduating = appState.graduating else {
-            return
-        }
-        let limit = appState.school?.type?.limit ?? 3
-        graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
+//        guard let grade = appState.grade,
+//              let graduating = appState.graduating else {
+//            return
+//        }
+//        let limit = appState.school?.type?.limit ?? 3
+//        graduatingViewModel.observe(grade: grade, graduating: graduating, limit: limit)
     }
 }

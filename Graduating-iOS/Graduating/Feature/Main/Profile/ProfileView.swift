@@ -41,32 +41,24 @@ extension ProfileView: View {
             VStack(spacing: 0) {
                 VStack(spacing: 8) {
                     MyAvatar(nil, type: .larger)
-                    if let user = appState.currentUser {
-                        if let nickname = user.nickname {
-                            HStack(spacing: 8) {
-                                Text(nickname)
-                                    .foreground(Colors.Label.alternative)
-                                    .myFont(.bodyR)
-                                Button {
-                                    router.push(EditProfilePath())
-                                } label: {
-                                    Image(icon: Icons.Feature.Pen)
-                                        .resizable()
-                                        .renderingMode(.template)
-                                        .foreground(Colors.Label.assistive)
-                                        .frame(size: 18)
-                                }
-                            }
-                        } else {
+                    appState.currentUser.makeView {
+                        ProgressView()
+                    } success: { user in
+                        HStack(spacing: 8) {
+                            Text(user.nickname)
+                                .foreground(Colors.Label.alternative)
+                                .myFont(.bodyR)
                             Button {
                                 router.push(EditProfilePath())
                             } label: {
-                                Text("닉네임 설정")
-                                    .foreground(Colors.Label.alternative)
-                                    .myFont(.bodyR)
+                                Image(icon: Icons.Feature.Pen)
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .foreground(Colors.Label.assistive)
+                                    .frame(size: 18)
                             }
                         }
-                    } else {
+                    } failure: { _ in
                         Button {
                             isSignInSheetPresent = true
                         } label: {

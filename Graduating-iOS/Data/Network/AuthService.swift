@@ -6,7 +6,7 @@ import Moya
 import MyMoya
 
 enum AuthEndpoint {
-    case oauth2SignIn(OAuth2SignInReq)
+    case signIn(SignInReq)
     case refresh(RefreshReq)
 }
 
@@ -14,7 +14,7 @@ extension AuthEndpoint: MyTarget {
     var host: String { "auth" }
     var route: Route {
         switch self {
-        case .oauth2SignIn(let req):
+        case .signIn(let req):
                 .post("sign-in/oauth2")
                 .task(req.toJSONParameters())
         case .refresh(let req):
@@ -25,7 +25,7 @@ extension AuthEndpoint: MyTarget {
     
     var authorization: Authorization {
         switch self {
-        case .oauth2SignIn:
+        case .signIn:
                 .none
         case .refresh:
                 .none
@@ -36,8 +36,8 @@ extension AuthEndpoint: MyTarget {
 public class AuthService {
     public static let shared = AuthService()
     
-    public func oauth2SignIn(_ req: OAuth2SignInReq) -> AnyPublisher<Token, MoyaError> {
-        runner.deepDive(AuthEndpoint.oauth2SignIn(req), res: Token.self)
+    public func oauth2SignIn(_ req: SignInReq) -> AnyPublisher<Token, MoyaError> {
+        runner.deepDive(AuthEndpoint.signIn(req), res: Token.self)
     }
     
     public func refresh(_ req: RefreshReq) -> AnyPublisher<Token, MoyaError> {

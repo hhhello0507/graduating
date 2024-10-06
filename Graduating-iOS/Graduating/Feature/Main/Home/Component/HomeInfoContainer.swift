@@ -1,16 +1,12 @@
 import SwiftUI
-
 import Model
-
 import MyDesignSystem
 
 public struct HomeInfoContainer {
-    private let school: School
-    private let grade: Int
+    private let user: User
     
-    init(school: School, grade: Int) {
-        self.school = school
-        self.grade = grade
+    init(for user: User) {
+        self.user = user
     }
 }
 
@@ -21,7 +17,7 @@ extension HomeInfoContainer: View {
                 Text("학교")
                     .myFont(.bodyB)
                     .foreground(Colors.Label.assistive)
-                Text(school.name)
+                Text(user.school.name)
                     .myFont(.bodyM)
                     .foreground(Colors.Label.alternative)
                 Spacer()
@@ -30,9 +26,9 @@ extension HomeInfoContainer: View {
                 Text("학년")
                     .myFont(.bodyB)
                     .foreground(Colors.Label.assistive)
-                Text("\(grade)학년")
-                    .myFont(.bodyM)
-                    .foreground(Colors.Label.alternative)
+//                Text("\(grade)학년")
+//                    .myFont(.bodyM)
+//                    .foreground(Colors.Label.alternative)
                 Spacer()
             }
         }
