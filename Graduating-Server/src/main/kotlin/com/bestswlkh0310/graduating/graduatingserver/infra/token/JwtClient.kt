@@ -16,7 +16,7 @@ class JwtClient(
     private val jwtProperties: JwtProperties,
 ) {
     fun payload(key: JwtPayloadKey, token: String): String =
-        parseToken(token).payload.get(key.key, String::class.java)?: throw CustomException(HttpStatus.FORBIDDEN, "invalid token")
+        parseToken(token).payload.get(key.key, String::class.java)?: throw CustomException(HttpStatus.UNAUTHORIZED, "invalid token")
 
     fun parseToken(token: String): Jws<Claims> =
         try {
