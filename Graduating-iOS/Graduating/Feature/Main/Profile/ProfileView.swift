@@ -90,7 +90,7 @@ extension ProfileView: View {
                     .frame(maxWidth: .infinity)
                 }
                 .padding(.top, 24)
-                Text("커스터 마이징 🎨")
+                Text("커스터 마이징")
                     .padding(.top, 32)
                     .padding(.leading, 6)
                     .myFont(.labelR)
@@ -100,16 +100,14 @@ extension ProfileView: View {
                     isColorPickerSheetPresent = true
                 } label: {
                     HStack(spacing: 12) {
-                        Text("테마 선택")
+                        Text("🎨 테마 선택")
                             .foreground(Colors.Label.normal)
                             .myFont(.bodyM)
                         Spacer()
                         CustomPalette.primary50.frame(size: 48)
-                            .cornerRadius(16, corners: .allCorners)
-                            .stroke(16, color: Colors.Line.normal, lineWidth: 1)
+                            .stroke(8, color: Colors.Label.normal, lineWidth: 1.5)
                     }
-                    .padding(.vertical, 12)
-                    .padding(.horizontal, 16)
+                    .padding(12)
                     .background(Colors.Background.normal)
                     .cornerRadius(8, corners: .allCorners)
                 }

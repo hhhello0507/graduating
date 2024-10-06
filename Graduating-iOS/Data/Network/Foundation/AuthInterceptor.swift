@@ -42,7 +42,12 @@ class AuthInterceptor: RequestInterceptor {
         print("❌ AuthInterceptor - statusCode: \(response.statusCode)")
         
         let tokenExpiredStatusCode = 403
-        guard response.statusCode == tokenExpiredStatusCode, let refreshToken = Sign.me.refreshToken else {
+        guard response.statusCode == tokenExpiredStatusCode else {
+            print("❌ AuthInterceptor - HTTP statusCode is not \(tokenExpiredStatusCode)")
+            completion(.doNotRetryWithError(error))
+            return
+        }
+        guard let refreshToken = Sign.me.refreshToken else {
             print("❌ AuthInterceptor - refreshToken is nil")
             completion(.doNotRetryWithError(error))
             return
