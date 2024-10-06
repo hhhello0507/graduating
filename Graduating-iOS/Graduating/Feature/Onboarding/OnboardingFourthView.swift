@@ -8,6 +8,7 @@ struct OnboardingFourthView {
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var dialogProvider: DialogProvider
     @EnvironmentObject private var viewModel: OnboardingViewModel
+    @EnvironmentObject private var appState: AppState
     
     private let path: Path
     
@@ -32,12 +33,23 @@ extension OnboardingFourthView: View {
             }
             .padding(insets)
         }
+        .onReceive(viewModel.$signUpFlow) { flow in
+            switch flow {
+            case .success(let token):
+                appState.signIn(token: token)
+            case .failure:
+                dialogProvider.present(
+                    .init(title: "회원가입 실패")
+                )
+            default:
+                break
+            }
+        }
     }
 }
 
 extension OnboardingFourthView {
     func handleSubmit() {
-        print("SINI")
         viewModel.signUp()
     }
 }

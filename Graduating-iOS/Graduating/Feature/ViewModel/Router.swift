@@ -15,7 +15,7 @@ extension Router {
     }
     
     public func toRoot() {
-        path.removeLast(path.count)
+        self.path = NavigationPath()
         if let rootView {
             path.append(rootView)
         }
@@ -30,7 +30,7 @@ extension Router {
     
     public func registerRootView(_ rootView: any Hashable) {
         self.rootView = rootView
-        path.removeLast(path.count)
-        self.push(rootView)
+        self.path = NavigationPath()
+        self.path.append(rootView)
     }
 }

@@ -28,9 +28,7 @@ final class OnboardingViewModel: ObservableObject {
 
 extension OnboardingViewModel {
     func signUp() {
-        guard let school, isValidInput else {
-            return
-        }
+        guard let school, isValidInput else { return }
         AuthService.shared.signUp(
             .init(
                 nickname: nickname,
@@ -44,10 +42,7 @@ extension OnboardingViewModel {
     }
     
     func signIn() {
-        guard let platformType,
-              let code else {
-            return
-        }
+        guard let platformType, let code else { return }
         AuthService.shared.signIn(
             .init(platformType: platformType, code: code)
         )

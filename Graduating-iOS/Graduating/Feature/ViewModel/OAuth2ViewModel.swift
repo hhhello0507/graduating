@@ -18,6 +18,10 @@ enum GoogleSignInError: Error {
 final class OAuth2ViewModel: NSObject, ObservableObject {
     @Published var appleSignInFlow: Resource<String> = .idle
     @Published var googleSignInFlow: Resource<String> = .idle
+    
+    var isFetching: Bool {
+        appleSignInFlow == .fetching || googleSignInFlow == .fetching
+    }
 }
 
 extension OAuth2ViewModel {

@@ -23,6 +23,7 @@ final class AppState: ObservableObject {
 extension AppState {
     func logout() {
         Sign.me.logout()
+        userState = .pending
         currentUser = .idle
     }
     
@@ -33,6 +34,7 @@ extension AppState {
     }
     
     private func fetchCurrentUser() {
+        guard case .idle  = currentUser else { return }
         UserService.shared.getMe()
             .resource(\.currentUser, on: self)
             .sink {

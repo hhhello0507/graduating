@@ -35,9 +35,11 @@ extension OnboardingFirstView: View {
                 AppleSignInButton {
                     oauth2ViewModel.appleSignIn()
                 }
+                .disabled(oauth2ViewModel.isFetching)
                 GoogleSignInButton {
                     oauth2ViewModel.googleSignIn()
                 }
+                .disabled(oauth2ViewModel.isFetching)
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 8)
@@ -51,6 +53,9 @@ extension OnboardingFirstView: View {
         .onReceive(viewModel.$signInFlow) {
             if case .success(let token) = $0 {
                 appState.signIn(token: token)
+                if case .pending = token.state {
+                    router.push(OnboardingSecondView.Path())
+                }
             }
         }
     }
@@ -63,7 +68,7 @@ extension OnboardingFirstView {
             viewModel.code = code
             viewModel.platformType = platformType
             viewModel.signIn()
-            router.push(OnboardingSecondView.Path())
+            
         case .failure:
             dialog.present(
                 .init(title: "로그인 실패")

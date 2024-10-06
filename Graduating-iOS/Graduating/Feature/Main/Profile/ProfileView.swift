@@ -126,24 +126,4 @@ extension ProfileView {
     }
 }
 
-extension ProfileView {
-//    func receiveSubject(flow: Flow) {
-//        isSignInSheetPresent = false
-//        switch flow {
-//        case .success:
-//            router.replace([MainPath()])
-//            Task {
-//                try? await Task.sleep(for: .seconds(1)) // 새 AccessToken을 넣어주는 코드보다 이 코드가 먼저 실행되서 로직이 꼬임
-//                appState.fetchCurrentUser()
-//            }
-//        case .failure:
-//            dialog.present(
-//                .init(title: "로그인 실패")
-//            )
-//        default:
-//            break
-//        }
-//    }
-}
-
 private let saturationPalletes = Palette.allCases.filter(\.hasSaturation)
