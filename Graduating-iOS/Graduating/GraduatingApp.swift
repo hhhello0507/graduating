@@ -38,7 +38,7 @@ extension GraduatingApp {
             .id(theme)
             .onAppear {
                 // Setting root view
-                router.push(MainPath())
+                router.registerRootView(MainPath())
 
                 // Setting theme
                 if let palette = Palette(rawValue: theme) {
