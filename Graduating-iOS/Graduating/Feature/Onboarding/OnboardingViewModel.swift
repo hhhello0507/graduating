@@ -29,7 +29,7 @@ extension OnboardingViewModel {
         guard let platformType, let code, let school, isValidInput else {
             return
         }
-        AuthService.shared.oauth2SignIn(
+        AuthService.shared.signIn(
             .init(
                 platformType: platformType,
                 code: code,

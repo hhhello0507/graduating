@@ -1,3 +1,16 @@
+public struct SignUpReq: ReqProtocol {
+    public let platformType: PlatformType
+    public let code: String
+    
+    public init(
+        platformType: PlatformType,
+        code: String
+    ) {
+        self.platformType = platformType
+        self.code = code
+    }
+}
+
 public struct SignInReq: ReqProtocol {
     public let platformType: PlatformType
     public let code: String
