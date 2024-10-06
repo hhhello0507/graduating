@@ -25,10 +25,10 @@ extension GraduatingApp {
                     timePickerProvider: timePickerProvider
                 ) {
                     NavigationStack(path: $router.path) {
-                        if appState.isLoggedIn {
-                            MainCoordinator()
-                        } else {
+                        if appState.shouldSignUp {
                             OnboardingCoordinator()
+                        } else {
+                            MainCoordinator()
                         }
                     }
                 }
@@ -44,14 +44,18 @@ extension GraduatingApp {
                 }
                 
                 UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+                
+                navigateRootView(shouldSignUp: appState.shouldSignUp)
             }
-            .onReceive(appState.$isLoggedIn) { isLoggedIn in
-                if isLoggedIn {
-                    router.registerRootView(MainPath())
-                } else {
-                    router.registerRootView(OnboardingFirstView.Path())
-                }
-            }
+            .onChange(of: appState.shouldSignUp, perform: navigateRootView)
+        }
+    }
+    
+    func navigateRootView(shouldSignUp: Bool) {
+        if shouldSignUp {
+            router.registerRootView(OnboardingFirstView.Path())
+        } else {
+            router.registerRootView(MainPath())
         }
     }
 }

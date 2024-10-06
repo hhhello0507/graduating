@@ -34,8 +34,14 @@ class AuthService(
             PlatformType.GOOGLE -> googleSignIn(req.code)
             PlatformType.APPLE -> appleSignIn(req.code)
         }
-        val user = userRepository.getByEmail(email)
-        
+        val user = userRepository.findByEmail(email).firstOrNull()
+            ?: userRepository.save(
+                UserEntity(
+                    email = email,
+                    platformType = req.platformType
+                )
+            )
+
         return TokenRes.of(
             token = jwtClient.generate(user),
             state = user.state
@@ -45,11 +51,11 @@ class AuthService(
     fun signUp(req: SignUpReq): TokenRes {
         val school = schoolRepository.getBy(req.schoolId)
         val user = sessionHolder.current()
-        
+
         if (user.isActive) {
             throw CustomException(HttpStatus.BAD_REQUEST, "User already sign in")
         }
-        
+
         user.active(
             nickname = req.nickname,
             graduatingYear = req.graduatingYear,

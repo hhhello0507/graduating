@@ -13,9 +13,9 @@ class UserEntity(
     role: UserRole = UserRole.USER,
     platformType: PlatformType,
     state: UserState = UserState.PENDING,
-    nickname: String?,
-    graduatingYear: Int?,
-    school: SchoolEntity?,
+    nickname: String? = null,
+    graduatingYear: Int? = null,
+    school: SchoolEntity? = null,
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

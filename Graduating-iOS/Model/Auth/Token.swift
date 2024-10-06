@@ -10,9 +10,11 @@ import Foundation
 public struct Token: ModelProtocol {
     public let accessToken: String
     public let refreshToken: String
+    public let state: UserState
     
-    public init(accessToken: String, refreshToken: String) {
+    public init(accessToken: String, refreshToken: String, state: UserState) {
         self.accessToken = accessToken
         self.refreshToken = refreshToken
+        self.state = state
     }
 }

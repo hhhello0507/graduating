@@ -10,6 +10,10 @@ import SignKit
 final class AppState: ObservableObject {
     @Published var currentUser: Resource<User> = .idle
     @Published var isLoggedIn: Bool = Sign.me.isLoggedIn
+    @Published var userState: UserState = .pending
+    var shouldSignUp: Bool {
+        !isLoggedIn && userState == .pending
+    }
     var subscriptions = Set<AnyCancellable>()
     
     init() {
@@ -28,6 +32,7 @@ extension AppState {
         Sign.me.login(id: "", password: "", accessToken: token.accessToken, refreshToken: token.refreshToken)
         fetchCurrentUser()
         isLoggedIn = Sign.me.isLoggedIn
+        self.userState = token.state
     }
     
     private func fetchCurrentUser() {

@@ -13,3 +13,8 @@ public struct EditUserReq: ReqProtocol {
         self.nickname = nickname
     }
 }
+
+public enum UserState: String, ModelProtocol {
+    case pending = "PENDING"
+    case none = "NONE"
+}

@@ -50,7 +50,7 @@ extension OnboardingFirstView: View {
         }
         .onReceive(viewModel.$signInFlow) {
             if case .success(let token) = $0 {
-                
+                appState.signIn(token: token)
             }
         }
     }
