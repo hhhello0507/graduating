@@ -5,8 +5,9 @@ struct OnboardingSecondView {
     struct Path: Hashable {}
     
     @EnvironmentObject private var router: Router
+    @EnvironmentObject private var viewModel: OnboardingViewModel
     
-    @StateObject private var viewModel = SearchSchoolViewModel()
+    @StateObject private var searchSchoolViewModel = SearchSchoolViewModel()
     
     private let path: Path
     
@@ -21,9 +22,10 @@ extension OnboardingSecondView: View {
             title: "학교를 알려주세요 🤔"
         ) { insets in
             SearchSchoolContainer(
-                for: viewModel.searchedSchools,
-                searchText: $viewModel.searchSchoolName
-            ) {
+                for: searchSchoolViewModel.searchedSchools,
+                searchText: $searchSchoolViewModel.searchSchoolName
+            ) { school in
+                viewModel.school = school
                 router.push(OnboardingThirdView.Path())
             }
             .padding(insets)

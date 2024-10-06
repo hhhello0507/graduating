@@ -28,7 +28,7 @@ final class OnboardingViewModel: ObservableObject {
 
 extension OnboardingViewModel {
     func signUp() {
-        guard let platformType, let code, let school, isValidInput else {
+        guard let school, isValidInput else {
             return
         }
         AuthService.shared.signUp(
@@ -38,7 +38,7 @@ extension OnboardingViewModel {
                 schoolId: school.id
             )
         )
-        .resource(\.signInFlow, on: self)
+        .resource(\.signUpFlow, on: self)
         .silentSink()
         .store(in: &subscriptions)
     }
@@ -51,7 +51,7 @@ extension OnboardingViewModel {
         AuthService.shared.signIn(
             .init(platformType: platformType, code: code)
         )
-        .resource(\.signUpFlow, on: self)
+        .resource(\.signInFlow, on: self)
         .silentSink()
         .store(in: &subscriptions)
     }

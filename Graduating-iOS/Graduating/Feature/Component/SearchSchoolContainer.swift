@@ -7,12 +7,12 @@ public struct SearchSchoolContainer {
     @Binding private var searchText: String
     
     private let schools: Resource<[School]>
-    private let selectAction: () -> Void
+    private let selectAction: (School) -> Void
     
     public init(
         for schools: Resource<[School]>,
         searchText: Binding<String>,
-        selectAction: @escaping () -> Void
+        selectAction: @escaping (School) -> Void
     ) {
         self.schools = schools
         self._searchText = searchText
@@ -41,7 +41,7 @@ extension SearchSchoolContainer: View {
                     LazyVStack(spacing: 4) {
                         ForEach(schools, id: \.id) { school in
                             SchoolCell(school: school) {
-                                selectAction()
+                                selectAction(school)
                             }
                         }
                     }

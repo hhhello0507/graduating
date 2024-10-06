@@ -20,7 +20,7 @@ extension EditSchoolView {
                     .myFont(.title1B)
                     .foreground(Colors.Label.normal)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                SearchSchoolContainer(for: viewModel.searchedSchools, searchText: $viewModel.searchSchoolName) {
+                SearchSchoolContainer(for: viewModel.searchedSchools, searchText: $viewModel.searchSchoolName) { _ in
                     router.toRoot()
                 }
             }

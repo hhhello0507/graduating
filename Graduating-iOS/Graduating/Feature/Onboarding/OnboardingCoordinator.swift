@@ -2,6 +2,7 @@ import SwiftUI
 
 public struct OnboardingCoordinator: View {
     @EnvironmentObject private var router: Router
+    @EnvironmentObject private var appState: AppState
     
     @StateObject private var viewModel = OnboardingViewModel()
 }

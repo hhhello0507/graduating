@@ -37,6 +37,7 @@ extension OnboardingFourthView: View {
 
 extension OnboardingFourthView {
     func handleSubmit() {
-        viewModel.signIn()
+        print("SINI")
+        viewModel.signUp()
     }
 }
