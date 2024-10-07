@@ -9,6 +9,7 @@ import GoogleSignIn
 import Shared
 
 struct OnboardingFirstView {
+    @Environment(\.openURL) private var openURL
     
     @EnvironmentObject private var viewModel: OnboardingViewModel
     @EnvironmentObject private var dialog: DialogProvider
@@ -22,18 +23,35 @@ struct OnboardingFirstView {
 
 extension OnboardingFirstView: View {
     var body: some View {
-        MyTopAppBar.default(title: "로그인") { insets in
+        MyTopAppBar.default(title: "") { insets in
             VStack(spacing: 8) {
-                Text("로그인 뷰 만들어라") // TODO: Just
                 Spacer()
+                Image(.appIconLogo)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 92)
+                Text("졸업이당")
+                    .foreground(Colors.Label.normal)
+                    .myFont(.bodyM)
                 AppleSignInButton {
                     oauth2ViewModel.appleSignIn()
                 }
                 .disabled(oauth2ViewModel.isFetching)
+                .padding(.top, 32)
                 GoogleSignInButton {
                     oauth2ViewModel.googleSignIn()
                 }
                 .disabled(oauth2ViewModel.isFetching)
+                Spacer()
+                Button {
+                    openURL.callAsFunction(
+                        URL(string: "https://github.com/hhhello0507/graduating/blob/main/privacy_policy.md")!
+                    )
+                } label: {
+                    Text("개인정보 처리 방침")
+                        .myFont(.labelR)
+                        .foreground(Colors.Label.alternative)
+                }
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 8)

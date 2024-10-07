@@ -10,27 +10,27 @@ struct MealView {
 extension MealView: View {
     var body: some View {
         MyTopAppBar.default(title: "급식") { insets in
-            viewModel.meals.makeView {
-                ProgressView()
-            } success: { meals in
-                if meals.isEmpty {
-                    Text("급식이 없어요 😰")
-                        .foreground(Colors.Label.assistive)
-                        .myFont(.bodyM)
-                        .padding(.bottom, 108)
-                } else {
-                    ScrollView {
+            ScrollView {
+                viewModel.meals.makeView {
+                    ProgressView()
+                } success: { meals in
+                    if meals.isEmpty {
+                        Text("급식이 없어요 😰")
+                            .foreground(Colors.Label.assistive)
+                            .myFont(.bodyM)
+                            .padding(.bottom, 108)
+                    } else {
                         HomeMealContainer(meals: meals)
                             .padding(.bottom, 72) // for ScrollView
                     }
+                } failure: { _ in
+                    Text("급식을 불러올 수 없어요 🫠")
+                        .foreground(Colors.Label.assistive)
+                        .myFont(.bodyM)
+                        .padding(.bottom, 108)
                 }
-            } failure: { _ in
-                Text("급식을 불러올 수 없어요 🫠")
-                    .foreground(Colors.Label.assistive)
-                    .myFont(.bodyM)
-                    .padding(.bottom, 108)
+                .padding(insets)
             }
-            .padding(insets)
             .refreshable {
                 viewModel.fetchMeals()
             }

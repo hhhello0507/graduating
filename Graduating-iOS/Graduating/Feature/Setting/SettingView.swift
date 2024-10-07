@@ -38,7 +38,6 @@ extension SettingView: View {
                     Text("개인정보 처리 방침")
                         .myFont(.labelR)
                         .foreground(Colors.Label.alternative)
-                        .opacity(0.5)
                 }
                 .padding(.bottom, 24)
             }
