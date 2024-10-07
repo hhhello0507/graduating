@@ -25,13 +25,17 @@ class AuthInterceptor: RequestInterceptor {
         completion: @escaping (RetryResult) -> Void
     ) {
         guard let response = request.task?.response as? HTTPURLResponse else {
-            completion(.doNotRetryWithError(error))
+            DispatchQueue.main.async {
+                completion(.doNotRetryWithError(error))
+            }
             return
         }
         
         guard request.retryCount <= 2 else {
             print("❌ AuthInterceptor - RetryCount가 2보다 큽니다")
-            completion(.doNotRetryWithError(APIError.refreshFailure))
+            DispatchQueue.main.async {
+                completion(.doNotRetryWithError(APIError.refreshFailure))
+            }
             return
         }
         
@@ -40,12 +44,16 @@ class AuthInterceptor: RequestInterceptor {
         let tokenExpiredStatusCode = 403
         guard response.statusCode == tokenExpiredStatusCode else {
             print("❌ AuthInterceptor - HTTP statusCode is not \(tokenExpiredStatusCode)")
-            completion(.doNotRetryWithError(error))
+            DispatchQueue.main.async {
+                completion(.doNotRetryWithError(error))
+            }
             return
         }
         guard let refreshToken = Sign.me.refreshToken else {
             print("❌ AuthInterceptor - refreshToken is nil")
-            completion(.doNotRetryWithError(APIError.refreshFailure))
+            DispatchQueue.main.async {
+                completion(.doNotRetryWithError(APIError.refreshFailure))
+            }
             return
         }
         
@@ -53,11 +61,15 @@ class AuthInterceptor: RequestInterceptor {
             .init(refreshToken: refreshToken)
         ).sink {
             if case .failure = $0 {
-                completion(.doNotRetryWithError(APIError.refreshFailure))
+                DispatchQueue.main.async {
+                    completion(.doNotRetryWithError(APIError.refreshFailure))
+                }
             }
         } receiveValue: { token in
-            Sign.me.reissue(token.accessToken)
-            completion(.retry)
+            DispatchQueue.main.async {
+                Sign.me.reissue(token.accessToken)
+                completion(.retry)
+            }
         }.store(in: &subscription)
     }
 }

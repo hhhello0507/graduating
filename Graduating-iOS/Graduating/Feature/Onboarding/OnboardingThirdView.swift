@@ -7,8 +7,10 @@ struct OnboardingThirdView {
     
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var viewModel: OnboardingViewModel
+    @EnvironmentObject private var appState: AppState
     
     private let path: Path
+    private let currentYear = Date.now[.year]!
     
     public init(path: Path) {
         self.path = path
@@ -23,13 +25,15 @@ extension OnboardingThirdView: View {
                     .myFont(.title1B)
                     .foreground(Colors.Label.normal)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Picker("Graduating Year", selection: $viewModel.graduatingYear) {
-                    ForEach(1900...2100, id: \.self) { number in
-                        Text(String(number))
-                            .myFont(.headling2M)
+                if let limit = appState.currentUser.data?.school.type?.limit {
+                    Picker("Graduating Year", selection: $viewModel.graduatingYear) {
+                        ForEach((currentYear + 1)...(currentYear + limit), id: \.self) { number in
+                            Text(String(number))
+                                .myFont(.headling2M)
+                        }
                     }
+                    .pickerStyle(.wheel)
                 }
-                .pickerStyle(.wheel)
                 Spacer()
                 MyButton("다음", expanded: true, action: handleSubmit)
                     .padding(.bottom, 10)

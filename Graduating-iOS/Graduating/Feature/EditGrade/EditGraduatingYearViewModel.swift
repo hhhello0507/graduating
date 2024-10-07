@@ -8,7 +8,7 @@ import Shared
 
 final class EditGraduatingYearViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
-    @Published var graduatingYear = Date.now[.year]!
+    @Published var graduatingYear = Date.now[.year]! + 1
     @Published var editGraduatingYearFlow = Flow.idle
     
     func editGraduatingYear() {
