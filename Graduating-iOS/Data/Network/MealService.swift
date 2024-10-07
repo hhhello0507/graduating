@@ -2,7 +2,6 @@ import Foundation
 import Combine
 import MyMoya
 import Moya
-import Model
 import Shared
 
 public enum MealEndpoint: MyTarget {

@@ -1,7 +1,5 @@
 import SwiftUI
-
-import Model
-
+import Shared
 import MyDesignSystem
 
 struct SchoolCell {

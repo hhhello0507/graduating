@@ -1,6 +1,6 @@
 import SwiftUI
-import Model
 import MyDesignSystem
+import Shared
 
 public struct HomeInfoContainer {
     private let user: User
@@ -23,12 +23,12 @@ extension HomeInfoContainer: View {
                 Spacer()
             }
             HStack(spacing: 8) {
-                Text("학년")
+                Text("졸업년도")
                     .myFont(.bodyB)
                     .foreground(Colors.Label.assistive)
-//                Text("\(grade)학년")
-//                    .myFont(.bodyM)
-//                    .foreground(Colors.Label.alternative)
+                Text(String(user.graduatingYear) + "년")
+                    .myFont(.bodyM)
+                    .foreground(Colors.Label.alternative)
                 Spacer()
             }
         }

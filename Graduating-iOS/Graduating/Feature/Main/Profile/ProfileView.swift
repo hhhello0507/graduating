@@ -2,7 +2,6 @@ import SwiftUI
 import Combine
 
 import Data
-import Model
 import Shared
 
 import GoogleSignIn
@@ -57,7 +56,7 @@ extension ProfileView: View {
                             }
                         }
                     } failure: { _ in
-                        Text("_") // TODO: handle this
+                        Text("_")
                     }
                 }
                 .padding(.top, 16)
@@ -67,8 +66,8 @@ extension ProfileView: View {
                     }
                     .size(.medium)
                     .frame(maxWidth: .infinity)
-                    MyButton("학년 수정", role: .assistive, expanded: true) {
-                        router.push(EditGradePath())
+                    MyButton("졸업년도 수정", role: .assistive, expanded: true) {
+                        router.push(EditGraduatingYearView.Path())
                     }
                     .size(.medium)
                     .frame(maxWidth: .infinity)

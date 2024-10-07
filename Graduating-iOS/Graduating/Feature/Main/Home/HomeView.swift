@@ -6,7 +6,6 @@ import Shared
 
 struct HomeView {
     @EnvironmentObject private var appState: AppState
-    @EnvironmentObject private var graduatingViewModel: GraduatingViewModel
 }
 
 extension HomeView: View {
@@ -19,14 +18,11 @@ extension HomeView: View {
                             HomeInfoContainer(for: user)
                                 .padding(6)
                         }
-                    }
-                    if let remainTime = graduatingViewModel.remainTime {
-                        MyCardView(title: "졸업까지") {
-                            HomeGraduatingContainer(
-                                remainTime: remainTime,
-                                remainTimePercent: graduatingViewModel.remainTimePercent
-                            )
-                            .padding(6)
+                        if let graduating = user.graduating {
+                            MyCardView(title: "졸업까지") {
+                                HomeGraduatingContainer(for: graduating)
+                                    .padding(6)
+                            }
                         }
                     }
                 }

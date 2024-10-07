@@ -21,3 +21,10 @@ public struct User: ModelProtocol {
         self.school = school
     }
 }
+
+public extension User {
+    var graduating: Graduating? {
+        guard let type = self.school.type else { return nil }
+        return Graduating(graduatingYear: self.graduatingYear, schoolType: type)
+    }
+}

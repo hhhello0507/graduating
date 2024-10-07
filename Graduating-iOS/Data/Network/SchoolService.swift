@@ -1,7 +1,7 @@
 import Combine
 import Moya
-import Model
 import MyMoya
+import Shared
 
 public enum SchoolEndpoint: MyTarget {
     case getSchools

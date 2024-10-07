@@ -8,7 +8,6 @@
 import WidgetKit
 import Shared
 import Data
-import Model
 import MyFoundationUtil
 
 struct GraduatingProvider: TimelineProvider {

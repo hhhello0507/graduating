@@ -7,7 +7,6 @@ import MyDesignSystem
 import MyUIKitExt
 import GoogleSignIn
 import Shared
-import Model
 
 struct OnboardingFirstView {
     

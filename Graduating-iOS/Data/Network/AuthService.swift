@@ -1,7 +1,7 @@
 import Combine
-import Model
 import Moya
 import MyMoya
+import Shared
 
 enum AuthEndpoint {
     case signIn(SignInReq)

@@ -5,7 +5,6 @@
 import Foundation
 import Combine
 import Shared
-import Model
 import Data
 import SignKit
 

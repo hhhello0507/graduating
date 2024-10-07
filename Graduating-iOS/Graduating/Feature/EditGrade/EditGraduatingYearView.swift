@@ -1,40 +1,43 @@
 import SwiftUI
 import MyDesignSystem
 
-struct EditSchoolView: View {
+struct EditGraduatingYearView: View {
     struct Path: Hashable {}
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var dialog: DialogProvider
     @EnvironmentObject private var appState: AppState
     
-    @StateObject private var searchSchoolViewModel = SearchSchoolViewModel()
-    @StateObject private var viewModel = EditSchoolViewModel()
+    @StateObject private var viewModel = EditGraduatingYearViewModel()
     
     private let path: Path
     
-    init(path: Path) {
+    public init(path: Path) {
         self.path = path
     }
 }
 
-extension EditSchoolView {
+extension EditGraduatingYearView {
     var body: some View {
         MyTopAppBar.small(title: "") { insets in
-            VStack(spacing: 12) {
-                Text("학교를 알려주세요 🤔")
+            VStack(spacing: 4) {
+                Text("졸업년도를 알려주세요")
                     .myFont(.title1B)
                     .foreground(Colors.Label.normal)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                SearchSchoolContainer(
-                    for: searchSchoolViewModel.searchedSchools,
-                    searchText: $searchSchoolViewModel.searchSchoolName
-                ) { school in
-                    viewModel.editSchool(schoolId: school.id)
+                Picker("Graduating Year", selection: $viewModel.graduatingYear) {
+                    ForEach(1900...2100, id: \.self) { number in
+                        Text(String(number))
+                            .myFont(.headling2M)
+                    }
                 }
+                .pickerStyle(.wheel)
+                Spacer()
+                MyButton("다음", expanded: true, action: handleSubmit)
+                    .padding(.bottom, 10)
             }
             .padding(insets)
         }
-        .onReceive(viewModel.$editSchoolFlow) { flow in
+        .onReceive(viewModel.$editGraduatingYearFlow) { flow in
             switch flow {
             case .success:
                 router.toRoot()
@@ -48,5 +51,12 @@ extension EditSchoolView {
                 break
             }
         }
+    }
+}
+
+
+extension EditGraduatingYearView {
+    func handleSubmit() {
+        viewModel.editGraduatingYear()
     }
 }

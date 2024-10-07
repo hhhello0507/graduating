@@ -6,7 +6,6 @@
 //
 
 import WidgetKit
-import Model
 
 struct GraduatingEntry: TimelineEntry {
     let date: Date

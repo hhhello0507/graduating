@@ -1,16 +1,7 @@
-//
-//  UserService.swift
-//  Data
-//
-//  Created by hhhello0507 on 10/4/24.
-//
-
 import Combine
-
-import Model
-
 import Moya
 import MyMoya
+import Shared
 
 enum UserEndpoint {
     case getMe
