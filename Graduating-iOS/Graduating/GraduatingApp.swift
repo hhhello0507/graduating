@@ -2,12 +2,12 @@ import SwiftUI
 import Shared
 import MyDesignSystem
 import SignKit
-
+import GoogleMobileAds
+import AdSupport
+import AppTrackingTransparency
 
 @main
-struct GraduatingApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
-    
+struct GraduatingApp: App {    
     @StateObject private var dialogProvider = DialogProvider()
     @StateObject private var datePickerProvider = DatePickerProvider()
     @StateObject private var timePickerProvider = TimePickerProvider()
@@ -16,6 +16,29 @@ struct GraduatingApp: App {
     @StateObject private var appState = AppState()
     
     @AppStorage("theme", store: .graduating) private var theme: Int = Palette.blue.rawValue
+    
+    init() {
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                print("App - ", terminator: "")
+                switch status {
+                case .authorized:           // 허용됨
+                    print("Authorized")
+                    print("IDFA = \(ASIdentifierManager.shared().advertisingIdentifier)")
+                case .denied:               // 거부됨
+                    print("Denied")
+                case .notDetermined:        // 결정되지 않음
+                    print("Not Determined")
+                case .restricted:           // 제한됨
+                    print("Restricted")
+                @unknown default:           // 알려지지 않음
+                    print("Unknow")
+                }
+            }
+        }
+    }
 }
 
 extension GraduatingApp {

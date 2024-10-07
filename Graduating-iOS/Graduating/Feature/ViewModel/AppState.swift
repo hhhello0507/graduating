@@ -14,7 +14,8 @@ final class AppState: ObservableObject {
     
     init() {
         fetchCurrentUser()
-        userState = UserDefaults.graduating.bool(forKey: "userStateIsPending") ? .pending : .none
+        let userStateIsPending = (UserDefaults.graduating.value(forKey: "userStateIsPending") as? Bool) ?? true
+        userState = userStateIsPending ? .pending : .none
         $userState.sink {
             UserDefaults.graduating.set($0 == .pending, forKey: "userStateIsPending")
         }
