@@ -38,6 +38,12 @@ extension ProfileView: View {
             VStack(spacing: 0) {
                 VStack(spacing: 8) {
                     MyAvatar(nil, type: .larger)
+                        .onTapGesture {
+                            dialog.present(
+                                .init(title: "아직 준비중이에요!")
+                                .message("곧 프로필 사진 기능이 출시됩니다")
+                            )
+                        }
                     appState.currentUser.makeView {
                         ProgressView()
                     } success: { user in
