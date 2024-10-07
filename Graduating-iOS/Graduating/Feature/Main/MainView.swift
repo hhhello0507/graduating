@@ -60,6 +60,7 @@ extension MainView: View {
         }
         .onAppear {
             mealViewModel.fetchMeals()
+            appState.fetchCurrentUser()
         }
 //        .onAppear {
 //            handleGraduating(appState.graduating)

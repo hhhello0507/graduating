@@ -38,7 +38,7 @@ extension AppState {
         self.userState = token.state
     }
     
-    private func fetchCurrentUser() {
+    func fetchCurrentUser() {
         guard currentUser.data == nil else { return }
         UserService.shared.getMe()
             .resource(\.currentUser, on: self)

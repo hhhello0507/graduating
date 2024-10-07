@@ -32,9 +32,6 @@ extension EditSchoolView {
             }
             .padding(insets)
         }
-        .onAppear {
-            searchSchoolViewModel.fetchSchools()
-        }
         .onReceive(viewModel.$editSchoolFlow) { flow in
             switch flow {
             case .success:
