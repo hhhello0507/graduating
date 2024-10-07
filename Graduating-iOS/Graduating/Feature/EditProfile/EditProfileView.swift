@@ -30,9 +30,24 @@ extension EditProfileView: View {
 }
 
 extension EditProfileView {
+    @ViewBuilder
+    func safeAreaContent() -> some View {
+        MyButton(
+            "수정 완료",
+            isEnabled: viewModel.isValidInput,
+            expanded: true
+        ) {
+            viewModel.editProfile()
+        }
+        .padding(.horizontal, 20)
+        .padding(.bottom, 8)
+    }
+}
+
+extension EditProfileView {
     func initNickname() {
         guard let user = appState.currentUser.data else { return }
-        viewModel.nickname = user.nickname
+        viewModel.initNickname(user.nickname)
     }
     
     func receiveEditProfileFlow(flow: Flow) {
@@ -41,8 +56,8 @@ extension EditProfileView {
             dialog.present(
                 .init(title: "프로필 수정 성공")
                 .primaryButton("닫기") {
+                    appState.fetchCurrentUser()
                     router.pop()
-//                    appState.fetchCurrentUser() // TODO: Handle
                 }
             )
         case .failure:
@@ -53,14 +68,5 @@ extension EditProfileView {
         default:
             break
         }
-    }
-    
-    @ViewBuilder
-    func safeAreaContent() -> some View {
-        MyButton("수정 완료", expanded: true) {
-            viewModel.editProfile()
-        }
-        .padding(.horizontal, 20)
-        .padding(.bottom, 8)
     }
 }

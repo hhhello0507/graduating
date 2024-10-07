@@ -37,8 +37,8 @@ extension EditSchoolView {
         .onReceive(viewModel.$editSchoolFlow) { flow in
             switch flow {
             case .success:
-                router.toRoot()
                 appState.fetchCurrentUser()
+                router.toRoot()
             case .failure:
                 dialog.present(
                     .init(title: "수정 실패")

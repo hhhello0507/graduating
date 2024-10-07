@@ -38,10 +38,12 @@ extension EditGraduatingYearView {
             .padding(insets)
         }
         .onReceive(viewModel.$editGraduatingYearFlow) { flow in
+            print("WOWOWOWOW")
+            print(flow)
             switch flow {
             case .success:
-                router.toRoot()
                 appState.fetchCurrentUser()
+                router.toRoot()
             case .failure:
                 dialog.present(
                     .init(title: "수정 실패")

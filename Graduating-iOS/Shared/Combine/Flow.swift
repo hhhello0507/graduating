@@ -7,7 +7,6 @@ public enum Flow {
     case fetching
     case success
     case failure(Error)
-    case finished
 }
 
 public extension Publisher {
@@ -27,7 +26,7 @@ public extension Publisher {
             receiveCompletion: { completion in
                 switch completion {
                 case .finished:
-                    object[keyPath: keyPath] = .finished
+                    break
                 case .failure(let error):
                     object[keyPath: keyPath] = .failure(error)
                 }
