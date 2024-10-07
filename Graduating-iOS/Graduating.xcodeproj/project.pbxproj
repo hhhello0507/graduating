@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2502587D2CB3C2FB00ADCF68 /* SignKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2502587C2CB3C2FB00ADCF68 /* SignKit */; };
 		25064D392CAEFEFF00181796 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 25064D382CAEFEFF00181796 /* GoogleSignIn */; };
 		25064D3B2CAEFEFF00181796 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 25064D3A2CAEFEFF00181796 /* GoogleSignInSwift */; };
 		25064DDB2CAF862D00181796 /* SignKit in Frameworks */ = {isa = PBXBuildFile; productRef = 25064DDA2CAF862D00181796 /* SignKit */; };
@@ -174,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2502587D2CB3C2FB00ADCF68 /* SignKit in Frameworks */,
 				258172AE2C7A10CF00D2691E /* SwiftUI.framework in Frameworks */,
 				250EAE262C7DE05500D9FF5E /* Moya in Frameworks */,
 				253DC2B82C7EBEB30047C401 /* MyDesignSystem in Frameworks */,
@@ -295,6 +297,7 @@
 				250EAE232C7DE05500D9FF5E /* CombineMoya */,
 				250EAE252C7DE05500D9FF5E /* Moya */,
 				253DC2B72C7EBEB30047C401 /* MyDesignSystem */,
+				2502587C2CB3C2FB00ADCF68 /* SignKit */,
 			);
 			productName = "Graduating-WidgetExtension";
 			productReference = 258172A92C7A10CF00D2691E /* Graduating-WidgetExtension.appex */;
@@ -938,6 +941,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2502587C2CB3C2FB00ADCF68 /* SignKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 25064DD92CAF862D00181796 /* XCRemoteSwiftPackageReference "SignKit" */;
+			productName = SignKit;
+		};
 		25064D382CAEFEFF00181796 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 25064D372CAEFEFF00181796 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
