@@ -63,7 +63,7 @@ extension ProfileView: View {
                 .padding(.top, 16)
                 HStack(spacing: 12) {
                     MyButton("학교 수정", role: .assistive, expanded: true) {
-                        router.push(EditSchoolPath())
+                        router.push(EditSchoolView.Path())
                     }
                     .size(.medium)
                     .frame(maxWidth: .infinity)

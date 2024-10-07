@@ -1,6 +1,5 @@
-package com.bestswlkh0310.graduating.graduatingserver.api.school
+package com.bestswlkh0310.graduating.graduatingserver.api.meal
 
-import com.bestswlkh0310.graduating.graduatingserver.api.meal.MealService
 import org.springframework.web.bind.annotation.*
 
 

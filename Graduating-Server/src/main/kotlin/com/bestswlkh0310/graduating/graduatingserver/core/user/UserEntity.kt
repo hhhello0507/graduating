@@ -62,7 +62,19 @@ class UserEntity(
         this.school = school
     }
 
-    fun update(nickname: String) {
-        this.nickname = nickname
+    fun update(
+        nickname: String?,
+        graduatingYear: Int?,
+        school: SchoolEntity?
+    ) {
+        if (nickname != null) {
+            this.nickname = nickname
+        }
+        if (graduatingYear != null) {
+            this.graduatingYear = graduatingYear
+        }
+        if (school != null) {
+            this.school = school
+        }
     }
 }

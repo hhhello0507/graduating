@@ -1,15 +1,16 @@
 import SwiftUI
-
 import MyDesignSystem
 
-struct EditSchoolPath: Hashable {}
-
 struct EditSchoolView: View {
+    struct Path: Hashable {}
     @EnvironmentObject private var router: Router
     
     @StateObject private var viewModel = SearchSchoolViewModel()
     
-    init(_ path: EditSchoolPath) {}
+    private let path: Path
+    init(path: Path) {
+        self.path = path
+    }
 }
 
 extension EditSchoolView {
@@ -20,7 +21,10 @@ extension EditSchoolView {
                     .myFont(.title1B)
                     .foreground(Colors.Label.normal)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                SearchSchoolContainer(for: viewModel.searchedSchools, searchText: $viewModel.searchSchoolName) { _ in
+                SearchSchoolContainer(
+                    for: viewModel.searchedSchools,
+                    searchText: $viewModel.searchSchoolName
+                ) { _ in
                     router.toRoot()
                 }
             }

@@ -30,7 +30,6 @@ extension OnboardingSecondView: View {
             }
             .padding(insets)
         }
-        .background(Colors.Background.neutral)
     }
 }
 

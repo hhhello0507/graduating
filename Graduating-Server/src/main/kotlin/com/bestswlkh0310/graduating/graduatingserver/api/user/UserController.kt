@@ -14,8 +14,10 @@ class UserController(
     private val userService: UserService
 ) {
     @GetMapping("me")
-    fun getMe() = userService.getMe()
-    
+    fun getMe() =
+        userService.getMe()
+
     @PatchMapping
-    fun editUser(@Valid @RequestBody req: EditUserReq) = userService.editUser(req)
+    fun editUser(@Valid @RequestBody req: EditUserReq) =
+        userService.editUser(req)
 }

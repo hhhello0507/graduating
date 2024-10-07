@@ -4,5 +4,7 @@ import jakarta.validation.constraints.Size
 
 data class EditUserReq(
     @Size(min = 1, max = 24)
-    val nickname: String,
+    val nickname: String?,
+    val graduatingYear: Int,
+    val schoolId: Long?,
 )
