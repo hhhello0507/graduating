@@ -5,22 +5,24 @@ import com.bestswlkh0310.graduating.graduatingserver.core.global.safeSaveAll
 import com.bestswlkh0310.graduating.graduatingserver.core.meal.MealRepository
 import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolRepository
 import com.bestswlkh0310.graduating.graduatingserver.core.school.getBy
+import com.bestswlkh0310.graduating.graduatingserver.core.user.UserAuthenticationHolder
+import com.bestswlkh0310.graduating.graduatingserver.global.exception.CustomException
 import com.bestswlkh0310.graduating.graduatingserver.infra.neis.meal.NeisMealClient
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import java.time.LocalDate
 
 @Service
 class MealService(
     private val mealRepository: MealRepository,
-    private val schoolRepository: SchoolRepository,
     private val neisMealClient: NeisMealClient,
+    private val sessionHolder: UserAuthenticationHolder
 ) {
-
-    fun getMeals(schoolId: Long): List<MealRes> {
-        val school = schoolRepository.getBy(schoolId)
+    fun getMeals(): List<MealRes> {
+        val school = sessionHolder.current().school ?: throw CustomException(HttpStatus.NOT_FOUND, "Not found school")
 
         val currentTime = LocalDate.now()
-        val schools = mealRepository.findBySchoolIdAndMealDate(schoolId, currentTime)
+        val schools = mealRepository.findBySchoolIdAndMealDate(school.id, currentTime)
         if (schools.isNotEmpty()) {
             return schools.map { MealRes.of(it) }
         }
@@ -28,7 +30,7 @@ class MealService(
         val meals = neisMealClient.getMeals(school = school)
         mealRepository.safeSaveAll(meals)
 
-        return mealRepository.findBySchoolIdAndMealDate(schoolId, currentTime)
+        return mealRepository.findBySchoolIdAndMealDate(school.id, currentTime)
             .map { MealRes.of(it) }
     }
 

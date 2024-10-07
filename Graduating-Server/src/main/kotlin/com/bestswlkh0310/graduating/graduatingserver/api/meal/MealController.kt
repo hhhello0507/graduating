@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*
 class MealController(
     private val mealService: MealService
 ) {
-    @GetMapping("/{schoolId}", "/{schoolId}/")
-    fun getMeals(@PathVariable("schoolId") schoolId: Long) = 
-        mealService.getMeals(schoolId)
+    @GetMapping
+    fun getMeals() = mealService.getMeals()
 }
