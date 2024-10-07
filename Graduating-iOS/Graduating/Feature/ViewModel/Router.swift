@@ -10,7 +10,9 @@ extension Router {
     }
     
     public func pop() {
-        self.path.removeLast()
+        if !self.path.isEmpty {
+            self.path.removeLast()
+        }
     }
     
     public func toRoot() {

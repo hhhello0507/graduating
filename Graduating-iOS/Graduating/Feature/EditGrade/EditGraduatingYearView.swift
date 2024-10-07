@@ -3,6 +3,7 @@ import MyDesignSystem
 
 struct EditGraduatingYearView: View {
     struct Path: Hashable {}
+    
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var dialog: DialogProvider
     @EnvironmentObject private var appState: AppState
@@ -25,7 +26,7 @@ extension EditGraduatingYearView {
                     .foreground(Colors.Label.normal)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Picker("Graduating Year", selection: $viewModel.graduatingYear) {
-                    ForEach(1900...2100, id: \.self) { number in
+                    ForEach(Date.now[.year]!...2100, id: \.self) { number in
                         Text(String(number))
                             .myFont(.headling2M)
                     }
@@ -38,8 +39,6 @@ extension EditGraduatingYearView {
             .padding(insets)
         }
         .onReceive(viewModel.$editGraduatingYearFlow) { flow in
-            print("WOWOWOWOW")
-            print(flow)
             switch flow {
             case .success:
                 appState.fetchCurrentUser()

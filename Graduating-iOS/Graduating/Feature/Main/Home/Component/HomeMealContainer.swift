@@ -40,9 +40,10 @@ extension HomeMealContainer: View {
                         }
                     }
                 }
-                .padding(12)
+                .padding(16)
                 .background(Colors.Background.normal)
                 .cornerRadius(18, corners: .allCorners)
+                .shadow(.evBlack1)
             }
         }
     }

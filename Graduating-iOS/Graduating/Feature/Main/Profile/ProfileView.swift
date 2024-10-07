@@ -93,6 +93,7 @@ extension ProfileView: View {
                     .padding(12)
                     .background(Colors.Background.normal)
                     .cornerRadius(8, corners: .allCorners)
+                    .shadow(.evBlack1)
                 }
                 .padding(.top, 8)
                 Spacer()
@@ -111,6 +112,7 @@ extension ProfileView {
                 Button {
                     customPalette.updateColor(pallete: pallete)
                     theme = pallete.rawValue
+                    self.isColorPickerSheetPresent = false
                 } label: {
                     pallete.allCases[6].color
                         .frame(height: 128)
