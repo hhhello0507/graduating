@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2502587D2CB3C2FB00ADCF68 /* SignKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2502587C2CB3C2FB00ADCF68 /* SignKit */; };
+		250258802CB3CF4700ADCF68 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 2502587F2CB3CF4700ADCF68 /* GoogleMobileAds */; };
 		25064D392CAEFEFF00181796 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 25064D382CAEFEFF00181796 /* GoogleSignIn */; };
 		25064D3B2CAEFEFF00181796 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 25064D3A2CAEFEFF00181796 /* GoogleSignInSwift */; };
 		25064DDB2CAF862D00181796 /* SignKit in Frameworks */ = {isa = PBXBuildFile; productRef = 25064DDA2CAF862D00181796 /* SignKit */; };
@@ -161,6 +162,7 @@
 			files = (
 				25064D3B2CAEFEFF00181796 /* GoogleSignInSwift in Frameworks */,
 				250FD0852C74AF100070503B /* CombineMoya in Frameworks */,
+				250258802CB3CF4700ADCF68 /* GoogleMobileAds in Frameworks */,
 				25A649902CB351410015AADB /* ScopeKit in Frameworks */,
 				25064D392CAEFEFF00181796 /* GoogleSignIn in Frameworks */,
 				25C962D42C7B07C500EB872E /* libData.a in Frameworks */,
@@ -269,6 +271,7 @@
 				25064D3A2CAEFEFF00181796 /* GoogleSignInSwift */,
 				25064DDA2CAF862D00181796 /* SignKit */,
 				25A6498F2CB351410015AADB /* ScopeKit */,
+				2502587F2CB3CF4700ADCF68 /* GoogleMobileAds */,
 			);
 			productName = Graduating;
 			productReference = 2560F1732C746C16007009E2 /* Graduating.app */;
@@ -393,6 +396,7 @@
 				25064D372CAEFEFF00181796 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				25064DD92CAF862D00181796 /* XCRemoteSwiftPackageReference "SignKit" */,
 				25A6498E2CB351400015AADB /* XCRemoteSwiftPackageReference "ScopeKit" */,
+				2502587E2CB3CF4700ADCF68 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 2560F1742C746C16007009E2 /* Products */;
 			projectDirPath = "";
@@ -890,6 +894,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2502587E2CB3CF4700ADCF68 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.10.0;
+			};
+		};
 		25064D372CAEFEFF00181796 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -945,6 +957,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 25064DD92CAF862D00181796 /* XCRemoteSwiftPackageReference "SignKit" */;
 			productName = SignKit;
+		};
+		2502587F2CB3CF4700ADCF68 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2502587E2CB3CF4700ADCF68 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 		25064D382CAEFEFF00181796 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;

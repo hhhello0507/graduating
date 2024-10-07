@@ -1,10 +1,13 @@
 import SwiftUI
+import Shared
 import MyDesignSystem
 import SignKit
-import Shared
+
 
 @main
 struct GraduatingApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+    
     @StateObject private var dialogProvider = DialogProvider()
     @StateObject private var datePickerProvider = DatePickerProvider()
     @StateObject private var timePickerProvider = TimePickerProvider()
