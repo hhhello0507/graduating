@@ -4,7 +4,8 @@ import MyDesignSystem
 
 struct MealView {
     @EnvironmentObject private var appState: AppState
-    @EnvironmentObject private var viewModel: MealViewModel
+    
+    @StateObject private var viewModel = MealViewModel()
 }
 
 extension MealView: View {
@@ -32,8 +33,11 @@ extension MealView: View {
                 .padding(insets)
             }
             .refreshable {
-                viewModel.fetchMeals()
+                viewModel.refresh()
             }
+        }
+        .onAppear {
+            viewModel.onAppear()
         }
     }
 }

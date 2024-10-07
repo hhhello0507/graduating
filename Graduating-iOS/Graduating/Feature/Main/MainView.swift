@@ -34,8 +34,6 @@ struct MainView {
     @EnvironmentObject private var appState: AppState
     @EnvironmentObject private var dialogProvider: DialogProvider
     
-    @StateObject private var mealViewModel = MealViewModel()
-    
     @State private var selectedTab = data[0]
     
     init() {}
@@ -49,12 +47,8 @@ extension MainView: View {
             switch selectedTab {
             case .home: HomeView()
             case .meal: MealView()
-                    .environmentObject(mealViewModel)
             case .profile: ProfileView()
             }
-        }
-        .onAppear {
-            mealViewModel.fetchMeals()
         }
     }
 }
