@@ -3,8 +3,6 @@ package com.bestswlkh0310.graduating.graduatingserver.api.meal
 import com.bestswlkh0310.graduating.graduatingserver.api.meal.res.MealRes
 import com.bestswlkh0310.graduating.graduatingserver.core.global.safeSaveAll
 import com.bestswlkh0310.graduating.graduatingserver.core.meal.MealRepository
-import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolRepository
-import com.bestswlkh0310.graduating.graduatingserver.core.school.getBy
 import com.bestswlkh0310.graduating.graduatingserver.core.user.UserAuthenticationHolder
 import com.bestswlkh0310.graduating.graduatingserver.global.exception.CustomException
 import com.bestswlkh0310.graduating.graduatingserver.infra.neis.meal.NeisMealClient
@@ -16,10 +14,10 @@ import java.time.LocalDate
 class MealService(
     private val mealRepository: MealRepository,
     private val neisMealClient: NeisMealClient,
-    private val sessionHolder: UserAuthenticationHolder
+    private val authenticationHolder: UserAuthenticationHolder
 ) {
     fun getMeals(): List<MealRes> {
-        val school = sessionHolder.current().school ?: throw CustomException(HttpStatus.NOT_FOUND, "Not found school")
+        val school = authenticationHolder.current().school ?: throw CustomException(HttpStatus.NOT_FOUND, "Not found school")
 
         val currentTime = LocalDate.now()
         val schools = mealRepository.findBySchoolIdAndMealDate(school.id, currentTime)

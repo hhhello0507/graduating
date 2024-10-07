@@ -23,11 +23,11 @@ class AuthService(
     private val userRepository: UserRepository,
     private val schoolRepository: SchoolRepository,
     private val googleOAuth2Client: GoogleOAuth2Client,
+    private val googleOAuth2Helper: GoogleOAuth2Helper,
     private val appleOAuth2Client: AppleOAuth2Client,
     private val appleOAuth2Helper: AppleOAuth2Helper,
-    private val googleOAuth2Helper: GoogleOAuth2Helper,
     private val jwtClient: JwtClient,
-    private val sessionHolder: UserAuthenticationHolder
+    private val authenticationHolder: UserAuthenticationHolder
 ) {
     fun signIn(req: SignInReq): TokenRes {
         val email = when (req.platformType) {
@@ -50,7 +50,7 @@ class AuthService(
 
     fun signUp(req: SignUpReq): TokenRes {
         val school = schoolRepository.getBy(req.schoolId)
-        val user = sessionHolder.current()
+        val user = authenticationHolder.current()
 
         if (user.isActive) {
             throw CustomException(HttpStatus.BAD_REQUEST, "User already sign in")
