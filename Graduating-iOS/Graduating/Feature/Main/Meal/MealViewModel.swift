@@ -11,7 +11,7 @@ public final class MealViewModel: ObservableObject {
 }
 
 extension MealViewModel {
-    func fetchMeals(schoolId: Int) {
+    func fetchMeals() {
         MealService.shared.fetchMeals()
             .resource(\.meals, on: self)
             .ignoreError()

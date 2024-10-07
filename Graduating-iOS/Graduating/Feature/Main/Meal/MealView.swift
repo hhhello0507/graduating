@@ -32,10 +32,7 @@ extension MealView: View {
             }
             .padding(insets)
             .refreshable {
-                guard let school = appState.currentUser.data?.school else {
-                    return
-                }
-                viewModel.fetchMeals(schoolId: school.id)
+                viewModel.fetchMeals()
             }
         }
     }

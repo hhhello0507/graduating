@@ -19,7 +19,10 @@ extension MealEndpoint {
     }
     
     public var authorization: Authorization {
-        .none
+        switch self {
+        case .fetchMeals:
+                .refresh
+        }
     }
 }
 

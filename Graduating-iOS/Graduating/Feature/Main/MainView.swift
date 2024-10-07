@@ -59,8 +59,7 @@ extension MainView: View {
             }
         }
         .onAppear {
-            print("MEAL")
-            fetchMeals()
+            mealViewModel.fetchMeals()
         }
 //        .onAppear {
 //            handleGraduating(appState.graduating)
@@ -85,11 +84,6 @@ extension MainView {
 //            )
 //        }
 //    }
-    
-    func fetchMeals() {
-        guard let school = appState.currentUser.data?.school else { return }
-        mealViewModel.fetchMeals(schoolId: school.id)
-    }
     
     func fetchGraduating() {
 //        guard let grade = appState.grade,

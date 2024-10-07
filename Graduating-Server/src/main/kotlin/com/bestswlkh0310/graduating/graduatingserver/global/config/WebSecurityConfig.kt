@@ -40,8 +40,6 @@ class WebSecurityConfig(
                 "/auth/sign-in",
                 
                 "/school/**",
-                
-                "/meals/**"
             ).permitAll()
                 .anyRequest().authenticated()
         }
