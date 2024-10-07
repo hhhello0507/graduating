@@ -12,12 +12,10 @@ public final class MealViewModel: ObservableObject {
 
 extension MealViewModel {
     func fetchMeals(schoolId: Int) {
-        MealService.shared.fetchMeals(
-            schoolId: schoolId
-        )
-        .resource(\.meals, on: self)
-        .ignoreError()
-        .silentSink()
-        .store(in: &subscriptions)
+        MealService.shared.fetchMeals()
+            .resource(\.meals, on: self)
+            .ignoreError()
+            .silentSink()
+            .store(in: &subscriptions)
     }
 }
