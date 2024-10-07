@@ -4,8 +4,10 @@ import MyDesignSystem
 struct EditSchoolView: View {
     struct Path: Hashable {}
     @EnvironmentObject private var router: Router
+    @EnvironmentObject private var dialog: DialogProvider
     
-    @StateObject private var viewModel = SearchSchoolViewModel()
+    @StateObject private var searchSchoolViewModel = SearchSchoolViewModel()
+    @StateObject private var viewModel = EditSchoolViewModel()
     
     private let path: Path
     init(path: Path) {
@@ -22,16 +24,29 @@ extension EditSchoolView {
                     .foreground(Colors.Label.normal)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 SearchSchoolContainer(
-                    for: viewModel.searchedSchools,
-                    searchText: $viewModel.searchSchoolName
-                ) { _ in
-                    router.toRoot()
+                    for: searchSchoolViewModel.searchedSchools,
+                    searchText: $searchSchoolViewModel.searchSchoolName
+                ) { school in
+                    viewModel.editSchool(schoolId: school.id)
                 }
             }
             .padding(insets)
         }
         .onAppear {
-            viewModel.fetchSchools()
+            searchSchoolViewModel.fetchSchools()
+        }
+        .onReceive(viewModel.$editSchoolFlow) { flow in
+            switch flow {
+            case .success:
+                router.toRoot()
+            case .failure:
+                dialog.present(
+                    .init(title: "수정 실패")
+                    .message("잠시 후 다시 시도해 주세요")
+                )
+            default:
+                break
+            }
         }
     }
 }

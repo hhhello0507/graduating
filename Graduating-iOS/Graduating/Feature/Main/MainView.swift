@@ -59,6 +59,7 @@ extension MainView: View {
             }
         }
         .onAppear {
+            print("MEAL")
             fetchMeals()
         }
 //        .onAppear {

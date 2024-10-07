@@ -13,7 +13,9 @@ final class EditProfileViewModel: ObservableObject {
 extension EditProfileViewModel {
     func editProfile() {
         UserService.shared.editUser(
-            .init(nickname: nickname)
+            .init(
+                nickname: nickname
+            )
         )
         .flow(\.editProfileFlow, on: self)
         .silentSink()
