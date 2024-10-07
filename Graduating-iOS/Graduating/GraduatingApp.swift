@@ -7,7 +7,9 @@ import AdSupport
 import AppTrackingTransparency
 
 @main
-struct GraduatingApp: App {    
+struct GraduatingApp: App {
+    @Environment(\.scenePhase) private var scenePhase
+    
     @StateObject private var dialogProvider = DialogProvider()
     @StateObject private var datePickerProvider = DatePickerProvider()
     @StateObject private var timePickerProvider = TimePickerProvider()
@@ -19,25 +21,6 @@ struct GraduatingApp: App {
     
     init() {
         GADMobileAds.sharedInstance().start(completionHandler: nil)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            ATTrackingManager.requestTrackingAuthorization { status in
-                print("App - ", terminator: "")
-                switch status {
-                case .authorized:           // 허용됨
-                    print("Authorized")
-                    print("IDFA = \(ASIdentifierManager.shared().advertisingIdentifier)")
-                case .denied:               // 거부됨
-                    print("Denied")
-                case .notDetermined:        // 결정되지 않음
-                    print("Not Determined")
-                case .restricted:           // 제한됨
-                    print("Restricted")
-                @unknown default:           // 알려지지 않음
-                    print("Unknow")
-                }
-            }
-        }
     }
 }
 
@@ -73,6 +56,26 @@ extension GraduatingApp {
             }
             .onChange(of: appState.shouldSignUp) { _ in
                 router.toRoot()
+            }
+            .onChange(of: scenePhase) { phase in
+                if case .active = phase {
+                    ATTrackingManager.requestTrackingAuthorization { status in
+                        print("App - ", terminator: "")
+                        switch status {
+                        case .authorized:           // 허용됨
+                            print("Authorized")
+                            print("IDFA = \(ASIdentifierManager.shared().advertisingIdentifier)")
+                        case .denied:               // 거부됨
+                            print("Denied")
+                        case .notDetermined:        // 결정되지 않음
+                            print("Not Determined")
+                        case .restricted:           // 제한됨
+                            print("Restricted")
+                        @unknown default:           // 알려지지 않음
+                            print("Unknow")
+                        }
+                    }
+                }
             }
         }
     }
