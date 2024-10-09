@@ -105,6 +105,7 @@ extension ProfileView: View {
                 Spacer()
             }
             .padding(insets)
+            .googleBannderAd(inset: .top, adUnitId: "ca-app-pub-2589637472995872/5321653679")
         }
         .sheet(isPresented: $isColorPickerSheetPresent, content: colorPickerSheetContent)
     }

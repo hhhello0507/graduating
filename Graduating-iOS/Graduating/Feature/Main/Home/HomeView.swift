@@ -30,6 +30,7 @@ extension HomeView: View {
                 .padding(insets)
                 .padding(.bottom, 80)
             }
+            .googleBannderAd(inset: .top, adUnitId: "ca-app-pub-2589637472995872/5071938902")
         }
     }
 }
