@@ -1,9 +1,11 @@
 package com.bestswlkh0310.graduating.graduatingserver.core.school
 
-enum class SchoolType {
-    HIGH,
-    MIDDLE,
-    ELEMENTARY;
+enum class SchoolType(
+    val limit: Int
+) {
+    HIGH(limit = 3),
+    MIDDLE(limit = 3),
+    ELEMENTARY(limit = 6);
 
     companion object {
         fun ofKorean(string: String) = entries.firstOrNull { it.korean() == string }

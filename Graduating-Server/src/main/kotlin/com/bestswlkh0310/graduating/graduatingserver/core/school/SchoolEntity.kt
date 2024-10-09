@@ -13,7 +13,7 @@ class SchoolEntity(
     @Column(nullable = false) 
     val name: String,
     
-    @Enumerated(value = EnumType.STRING) 
+    @Enumerated(value = EnumType.STRING)
     val type: SchoolType?,
     
     @Column(nullable = false)

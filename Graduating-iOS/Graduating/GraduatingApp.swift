@@ -33,16 +33,11 @@ extension GraduatingApp {
                     datePickerProvider: datePickerProvider,
                     timePickerProvider: timePickerProvider
                 ) {
-                    GoogleAdView.BottomBannerPresenter {
-                        GoogleAdView()
-                            .frame(width: UIScreen.main.bounds.width, height: GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width).size.height)
-                    } label: {
-                        NavigationStack(path: $router.path) {
-                            if appState.shouldSignUp {
-                                OnboardingCoordinator()
-                            } else {
-                                MainCoordinator()
-                            }
+                    NavigationStack(path: $router.path) {
+                        if appState.shouldSignUp {
+                            OnboardingCoordinator()
+                        } else {
+                            MainCoordinator()
                         }
                     }
                 }

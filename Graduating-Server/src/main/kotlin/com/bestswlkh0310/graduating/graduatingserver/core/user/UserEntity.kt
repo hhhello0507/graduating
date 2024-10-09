@@ -4,6 +4,7 @@ import com.bestswlkh0310.graduating.graduatingserver.core.school.SchoolEntity
 import com.bestswlkh0310.graduating.graduatingserver.global.exception.CustomException
 import jakarta.persistence.*
 import org.springframework.http.HttpStatus
+import java.time.LocalDateTime
 
 @Entity
 @Table(name = "tbl_user")
@@ -71,7 +72,10 @@ class UserEntity(
             this.nickname = nickname
         }
         if (graduatingYear != null) {
-            this.graduatingYear = graduatingYear
+            this.school?.type?.let { type ->
+                val currentYear = LocalDateTime.now().year
+                this.graduatingYear = graduatingYear.coerceIn(currentYear + 1, currentYear + type.limit)
+            }
         }
         if (school != null) {
             this.school = school

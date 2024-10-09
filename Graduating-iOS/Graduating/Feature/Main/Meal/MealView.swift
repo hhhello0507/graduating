@@ -30,11 +30,16 @@ extension MealView: View {
                         .myFont(.bodyM)
                         .padding(.bottom, 108)
                 }
+                .frame(maxWidth: .infinity)
                 .padding(insets)
             }
             .refreshable {
                 viewModel.refresh()
             }
+            .googleBannderAd(
+                inset: .top,
+                adUnitId: "ca-app-pub-2589637472995872/3554240467"
+            )
         }
         .onAppear {
             viewModel.onAppear()
