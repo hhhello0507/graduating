@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 import MyDesignSystem
 
 struct EditSchoolView: View {
@@ -38,6 +39,7 @@ extension EditSchoolView {
             switch flow {
             case .success:
                 appState.fetchCurrentUser()
+                WidgetCenter.shared.reloadAllTimelines()
                 router.toRoot()
             case .failure:
                 dialog.present(

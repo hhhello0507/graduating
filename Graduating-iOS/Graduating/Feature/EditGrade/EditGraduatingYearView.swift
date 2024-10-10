@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 import MyDesignSystem
 
 struct EditGraduatingYearView: View {
@@ -45,6 +46,7 @@ extension EditGraduatingYearView {
             switch flow {
             case .success:
                 appState.fetchCurrentUser()
+                WidgetCenter.shared.reloadAllTimelines()
                 router.toRoot()
             case .failure:
                 dialog.present(
