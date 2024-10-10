@@ -71,11 +71,9 @@ class UserEntity(
         if (nickname != null) {
             this.nickname = nickname
         }
-        if (graduatingYear != null) {
-            this.school?.type?.let { type ->
-                val currentYear = LocalDateTime.now().year
-                this.graduatingYear = graduatingYear.coerceIn(currentYear + 1, currentYear + type.limit)
-            }
+        if (graduatingYear != null && school?.type != null) {
+            val currentYear = LocalDateTime.now().year
+            this.graduatingYear = graduatingYear.coerceIn(currentYear + 1, currentYear + school.type.limit)
         }
         if (school != null) {
             this.school = school
