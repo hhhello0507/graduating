@@ -139,6 +139,7 @@
 				Meal/MealMenuText.swift,
 				Meal/MealProvider.swift,
 				Meal/MealWidget.swift,
+				Meal/MealWidgetEntryView.swift,
 				"Util/View+safeContainerBackground.swift",
 			);
 			target = 2560F1722C746C16007009E2 /* Graduating */;

@@ -18,6 +18,11 @@ extension MealViewModel {
 extension MealViewModel: OnAppearProtocol {
     func fetchAllData() {
         MealService.shared.fetchMeals()
+            .map {
+                $0.sorted {
+                    ($0.mealType?.priority ?? 0) > ($1.mealType?.priority ?? 0)
+                }
+            }
             .resource(\.meals, on: self)
             .ignoreError()
             .silentSink()

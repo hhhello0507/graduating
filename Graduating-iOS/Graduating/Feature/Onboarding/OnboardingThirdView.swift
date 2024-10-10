@@ -10,7 +10,7 @@ struct OnboardingThirdView {
     @EnvironmentObject private var appState: AppState
     
     private let path: Path
-    private let currentYear = Date.now[.year]!
+    private let currentYear = Date.now[.year]
     
     public init(path: Path) {
         self.path = path

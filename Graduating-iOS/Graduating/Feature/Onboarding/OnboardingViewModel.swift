@@ -12,7 +12,7 @@ final class OnboardingViewModel: ObservableObject {
     @Published var platformType: PlatformType?
     @Published var email: String?
     @Published var school: School?
-    @Published var graduatingYear = Date.now[.year]! + 1
+    @Published var graduatingYear = Date.now[.year] + 1
     @Published var nickname: String = ""
     @Published var signUpFlow: Resource<Token> = .idle
     @Published var signInFlow: Resource<Token> = .idle

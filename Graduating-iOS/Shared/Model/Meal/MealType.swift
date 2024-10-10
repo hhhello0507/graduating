@@ -20,6 +20,16 @@ public enum MealType: String, ModelProtocol {
         }
     }
     
+    public var priority: Int {
+        switch self {
+        case .breakfast:
+            0
+        case .lunch:
+            1
+        case .dinner:
+            1
+        }
+    }
     
     public static func from(_ date: Date) -> Self? {
         switch (date[.hour], date[.minute]) {
