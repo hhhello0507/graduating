@@ -31,8 +31,7 @@ extension HomeMealContainer: View {
                             .foreground(Colors.Label.alternative)
                     }
                     VStack(spacing: 2) {
-                        let menus = meal.menu.split(separator: "<br/>")
-                        ForEach(Array(menus.enumerated()), id: \.offset) { index, menu in
+                        ForEach(Array(meal.menu.enumerated()), id: \.offset) { index, menu in
                             Text(menu)
                                 .myFont(.labelR)
                                 .foreground(Colors.Label.normal)

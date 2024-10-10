@@ -132,6 +132,15 @@
 			);
 			target = 2560F1722C746C16007009E2 /* Graduating */;
 		};
+		253ADD1F2CB76B4500B1B021 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Meal/MealEntry.swift,
+				Meal/MealProvider.swift,
+				Meal/MealWidget.swift,
+			);
+			target = 2560F1722C746C16007009E2 /* Graduating */;
+		};
 		25B10E192CB28CE90035F908 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -150,7 +159,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		25064C6A2CAE8DA500181796 /* Data */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (25B10E192CB28CE90035F908 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 25B10E1A2CB28CE90035F908 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Data; sourceTree = "<group>"; };
-		25064C7A2CAE8DAA00181796 /* Graduating-Widget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (25064C812CAE8DAB00181796 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Graduating-Widget"; sourceTree = "<group>"; };
+		25064C7A2CAE8DAA00181796 /* Graduating-Widget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (253ADD1F2CB76B4500B1B021 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 25064C812CAE8DAB00181796 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Graduating-Widget"; sourceTree = "<group>"; };
 		25064C8B2CAE8DB400181796 /* Shared */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Shared; sourceTree = "<group>"; };
 		25064D122CAE8E1F00181796 /* Graduating */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (25064D2B2CAE8E1F00181796 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Graduating; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */

@@ -12,8 +12,8 @@ public struct Meal: ModelProtocol {
     public var id: Int
     public var mealType: MealType?
     public var calorie: Double
-    public var menu: String
-    public var mealInfo: String
+    public var menu: [String]
+    public var mealInfo: [String]
     public var mealDate: Date
     public var schoolId: Int
     
@@ -21,8 +21,8 @@ public struct Meal: ModelProtocol {
         id: Int, 
         mealType: MealType? = nil,
         calorie: Double,
-        menu: String,
-        mealInfo: String,
+        menu: [String],
+        mealInfo: [String],
         mealDate: Date,
         schoolId: Int
     ) {

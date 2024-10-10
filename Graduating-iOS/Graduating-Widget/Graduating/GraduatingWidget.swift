@@ -9,8 +9,7 @@ import WidgetKit
 import SwiftUI
 import MyDesignSystem
 
-struct Graduating_WidgetEntryView: View {
-    
+struct GraduatingWidgetEntryView: View {
     @Environment(\.widgetFamily) private var widgetFamily
     
     private let entry: GraduatingProvider.Entry
@@ -41,7 +40,7 @@ struct Graduating_WidgetEntryView: View {
     }
 }
 
-struct Graduating_Widget: Widget {
+struct GraduatingWidget: Widget {
 
     private let widgetFamilyList: [WidgetFamily] = if #available(iOSApplicationExtension 16.0, *) {
         [.systemSmall, .systemMedium, .accessoryRectangular, .accessoryCircular]
@@ -53,12 +52,12 @@ struct Graduating_Widget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: GraduatingProvider()) { entry in
             if #available(iOSApplicationExtension 17.0, *) {
-                Graduating_WidgetEntryView(entry: entry)
+                GraduatingWidgetEntryView(entry: entry)
                     .containerBackground(for: .widget) {
                         Colors.Background.neutral.box.color
                     }
             } else {
-                Graduating_WidgetEntryView(entry: entry)
+                GraduatingWidgetEntryView(entry: entry)
             }
         }
         .configurationDisplayName("졸업일")

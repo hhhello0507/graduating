@@ -16,7 +16,7 @@ class GraduatingProvider: TimelineProvider {
         completion(.empty)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
+    func getTimeline(in context: Context, completion: @escaping @Sendable (Timeline<Entry>) -> Void) {
         let currentTime = Date.now
         let afterDate = Calendar.current.date(byAdding: .hour, value: 1, to: currentTime)!
         

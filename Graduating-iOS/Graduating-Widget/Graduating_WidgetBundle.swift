@@ -11,6 +11,6 @@ import SwiftUI
 @main
 struct Graduating_WidgetBundle: WidgetBundle {
     var body: some Widget {
-        Graduating_Widget()
+        GraduatingWidget()
     }
 }
