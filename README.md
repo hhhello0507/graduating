@@ -5,9 +5,11 @@
 
 ## Preview
 <div>
-  <img width="25%" src="./image/large_1.png"/>
-  <img width="25%" src="./image/large_2.png"/>
-  <img width="25%" src="./image/large_3.png"/>
+  <img width="19.5%" src="./image/large_1.png"/>
+  <img width="19.5%" src="./image/large_2.png"/>
+  <img width="19.5%" src="./image/large_3.png"/>
+  <img width="19.5%" src="./image/large_4.png"/>
+  <img width="19.5%" src="./image/large_5.png"/>
 </div>
 
 ### Stack
