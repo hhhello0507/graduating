@@ -1,10 +1,3 @@
-//
-//  Graduating_WidgetBundle.swift
-//  Graduating-Widget
-//
-//  Created by hhhello0507 on 8/24/24.
-//
-
 import WidgetKit
 import SwiftUI
 
@@ -12,5 +5,6 @@ import SwiftUI
 struct Graduating_WidgetBundle: WidgetBundle {
     var body: some Widget {
         GraduatingWidget()
+        MealWidget()
     }
 }

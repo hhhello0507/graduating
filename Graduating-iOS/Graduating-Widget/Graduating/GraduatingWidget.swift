@@ -40,25 +40,20 @@ struct GraduatingWidgetEntryView: View {
     }
 }
 
-struct GraduatingWidget: Widget {
-
+public struct GraduatingWidget: Widget {
     private let widgetFamilyList: [WidgetFamily] = if #available(iOSApplicationExtension 16.0, *) {
         [.systemSmall, .systemMedium, .accessoryRectangular, .accessoryCircular]
     } else {
         [.systemSmall, .systemMedium]
     }
-    let kind: String = "Graduating_Widget"
+    public static let kind: String = "Graduating_Widget"
+    
+    public init() {}
 
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: GraduatingProvider()) { entry in
-            if #available(iOSApplicationExtension 17.0, *) {
-                GraduatingWidgetEntryView(entry: entry)
-                    .containerBackground(for: .widget) {
-                        Colors.Background.neutral.box.color
-                    }
-            } else {
-                GraduatingWidgetEntryView(entry: entry)
-            }
+    public var body: some WidgetConfiguration {
+        StaticConfiguration(kind: Self.kind, provider: GraduatingProvider()) { entry in
+            GraduatingWidgetEntryView(entry: entry)
+                .safeContainerBackground(color: Colors.Background.neutral)
         }
         .configurationDisplayName("졸업일")
         .description("졸업까지 얼마나 남았는지 알려줍니다")

@@ -2,7 +2,7 @@ package com.bestswlkh0310.graduating.graduatingserver.core.meal
 
 enum class MealType {
     BREAKFAST,
-    LAUNCH,
+    LUNCH,
     DINNER;
 
     companion object {
@@ -11,7 +11,7 @@ enum class MealType {
 
     fun korean() = when (this) {
         BREAKFAST -> "조식"
-        LAUNCH -> "중식"
+        LUNCH -> "중식"
         DINNER -> "석식"
     }
 }

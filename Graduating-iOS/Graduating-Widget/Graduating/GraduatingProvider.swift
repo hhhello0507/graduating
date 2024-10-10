@@ -9,7 +9,7 @@ class GraduatingProvider: TimelineProvider {
     typealias Entry = GraduatingEntry
     
     func placeholder(in context: Context) -> Entry {
-        .empty
+        return .empty
     }
 
     func getSnapshot(in context: Context, completion: @escaping (Entry) -> Void) {
