@@ -59,8 +59,8 @@ class UserEntity(
     fun active(nickname: String, graduatingYear: Int, school: SchoolEntity) {
         this.state = UserState.NONE
         this.nickname = nickname
-        this.graduatingYear = graduatingYear
         this.school = school
+        updateGraduatingYear(graduatingYear)
     }
 
     fun update(
@@ -72,14 +72,18 @@ class UserEntity(
             this.nickname = nickname
         }
         if (graduatingYear != null) {
-            val school = school ?: this.school
-            if (school?.type != null) {
-                val currentYear = LocalDateTime.now().year
-                this.graduatingYear = graduatingYear.coerceIn(currentYear + 1, currentYear + school.type.limit)
-            }
+            updateGraduatingYear(graduatingYear)
         }
         if (school != null) {
             this.school = school
+            this.graduatingYear?.let(this::updateGraduatingYear)
+        }
+    }
+    
+    private fun updateGraduatingYear(graduatingYear: Int) {
+        school?.type?.let { type ->
+            val currentYear = LocalDateTime.now().year
+            this.graduatingYear = graduatingYear.coerceIn(currentYear + 1, currentYear + type.limit)
         }
     }
 }

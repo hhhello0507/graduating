@@ -68,7 +68,9 @@ class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(
                     EditUserReq(
-                        nickname = editNickname
+                        nickname = editNickname,
+                        graduatingYear = null,
+                        schoolId = null
                     ).toJson()
                 )
                 .header("Authorization", "Bearer ${token.accessToken}")
