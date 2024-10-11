@@ -5,7 +5,7 @@ import com.bestswlkh0310.graduating.graduatingserver.infra.publicdata.kosaf.Kosa
 import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Component
 
-@Component
+//@Component
 class KosafScholarshipLoader(
     private val kasafClient: KosafClient,
     private val scholarshipRepository: ScholarshipRepository

@@ -40,7 +40,6 @@ data class KosafScholarshipRes(
                 return ScholarshipEntity(
                     recruitmentStartDate = this.recruitmentStartDate.toLocalDate("yyyy-MM-dd"),
                     recruitmentEndDate = this.recruitmentEndDate.toLocalDate("yyyy-MM-dd"),
-                    number = this.number,
                     productName = this.productName,
                     selectionMethodDetails = this.selectionMethodDetails.takeIf { it != "해당없음" },
                     selectionNumberDetails = this.selectionNumberDetails.takeIf { it != "해당없음" },
@@ -54,7 +53,7 @@ data class KosafScholarshipRes(
                     supportDetails = this.supportDetails.takeIf { it != "해당없음" },
                     recommendationRequiredDetails = this.recommendationRequiredDetails.takeIf { it != "해당없음" },
                     specificQualificationDetails = this.specificQualificationDetails.takeIf { it != "해당없음" },
-                    schoolCategory = schoolCategory,
+                    schoolCategory = schoolCategory.takeIf { it != "해당없음" },
                     gradeLevel = this.gradeLevel,
                     financialAidType = ScholarshipEntity.FinancialAidType.fromKorean(this.financialAidType)!!,
                     homepageUrl = this.homepageUrl

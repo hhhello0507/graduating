@@ -9,7 +9,6 @@ class ScholarshipEntity(
     id: Long = 0,
     recruitmentStartDate: LocalDate?,
     recruitmentEndDate: LocalDate?,
-    number: Int,
     productName: String,
     selectionMethodDetails: String?,
     selectionNumberDetails: String?,
@@ -23,7 +22,7 @@ class ScholarshipEntity(
     supportDetails: String?,
     recommendationRequiredDetails: String?,
     specificQualificationDetails: String?,
-    schoolCategory: String,
+    schoolCategory: String?,
     gradeLevel: String,
     financialAidType: FinancialAidType,
     homepageUrl: String,
@@ -37,10 +36,6 @@ class ScholarshipEntity(
         private set
 
     var recruitmentEndDate = recruitmentEndDate
-        private set
-
-    @Column(nullable = false)
-    var number = number
         private set
 
     @Column(nullable = false)
@@ -95,7 +90,6 @@ class ScholarshipEntity(
     var specificQualificationDetails = specificQualificationDetails
         private set
 
-    @Column(nullable = false)
     var schoolCategory = schoolCategory
         private set
 
