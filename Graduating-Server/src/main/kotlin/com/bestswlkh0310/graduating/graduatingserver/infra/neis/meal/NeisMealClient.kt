@@ -14,6 +14,7 @@ import org.springframework.web.client.RestClient
 import org.springframework.web.client.body
 import mu.KLogger
 import org.springframework.http.HttpStatus
+import java.time.LocalDate
 
 @Component
 class NeisMealClient(
@@ -22,9 +23,11 @@ class NeisMealClient(
     private val restClient: RestClient,
     private val logger: KLogger,
 ) {
-    fun getMeals(school: SchoolEntity): List<MealEntity> {
-        val currentDate = LocalDateTime.now()
-        val nextDate = currentDate.plusDays(6) // A week
+    fun getMeals(
+        school: SchoolEntity,
+        fromDate: LocalDate = LocalDate.now()
+    ): List<MealEntity> {
+        val nextDate = fromDate.plusDays(31) // A month
         return restClient.get()
             .uri { uriBuilder ->
                 uriBuilder
@@ -33,7 +36,7 @@ class NeisMealClient(
                     .queryParam("Type", "json")
                     .queryParam("ATPT_OFCDC_SC_CODE", school.officeCode)
                     .queryParam("SD_SCHUL_CODE", school.code)
-                    .queryParam("MLSV_FROM_YMD", currentDate.parse("yyyyMMdd"))
+                    .queryParam("MLSV_FROM_YMD", fromDate.parse("yyyyMMdd"))
                     .queryParam("MLSV_TO_YMD", nextDate.parse("yyyyMMdd"))
                     .build()
             }

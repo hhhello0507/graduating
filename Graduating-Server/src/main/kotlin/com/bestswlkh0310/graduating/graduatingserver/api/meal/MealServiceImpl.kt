@@ -25,7 +25,10 @@ class MealServiceImpl(
             return schools.map { MealRes.of(it) }
         }
         
-        val meals = neisMealClient.getMeals(school = school)
+        val meals = neisMealClient.getMeals(
+            school = school,
+            fromDate = time,
+        )
         mealRepository.safeSaveAll(meals)
 
         return mealRepository.findBySchoolIdAndMealDate(school.id, time)

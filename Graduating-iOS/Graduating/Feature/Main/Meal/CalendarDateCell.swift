@@ -2,12 +2,14 @@ import SwiftUI
 import Shared
 import MyDesignSystem
 
-struct CalendarDateCell: View {
-    
+struct CalendarDateCell {
     private let date: Date?
     private let selected: Bool
     
-    init(date: Date?, selected: Bool) {
+    init(
+        date: Date?,
+        selected: Bool
+    ) {
         self.date = date
         self.selected = selected
     }
@@ -19,7 +21,9 @@ struct CalendarDateCell: View {
             ""
         }
     }
-    
+}
+
+extension CalendarDateCell: View {
     var body: some View {
         Text(label)
             .myFont(.headlineM)

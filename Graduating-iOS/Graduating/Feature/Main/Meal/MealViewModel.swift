@@ -10,35 +10,28 @@ public final class MealViewModel: ObservableObject {
 
     var isFirstOnAppear: Bool = true
     
-    @Published var selectedDate: Date = .now
-    @Published var selectedCalendar: Date = .now
-    
-    init() {
-        self.observe()
-    }
-}
-
-extension MealViewModel {
-    func refresh() {
-        fetchAllData()
-    }
-    
-    func observe() {
-        self.$selectedDate.sink { _ in
-            self.fetchAllData()
+    @Published var selectedDate: Date = .now {
+        didSet {
+            self.fetchMeals(date: selectedDate)
         }
-        .store(in: &subscriptions)
     }
+    @Published var selectedCalendar: Date = .now
 }
 
 extension MealViewModel: OnAppearProtocol {
     func fetchAllData() {
+        fetchMeals(date: selectedDate)
+    }
+}
+
+extension MealViewModel {
+    func fetchMeals(date: Date) {
         MealService.shared.fetchMeals(
-            .init(date: selectedDate)
+            .init(date: date)
         )
         .map {
             $0.sorted {
-                ($0.mealType?.priority ?? 0) > ($1.mealType?.priority ?? 0)
+                ($0.mealType?.priority ?? 0) < ($1.mealType?.priority ?? 0)
             }
         }
         .resource(\.meals, on: self)
