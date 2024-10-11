@@ -1,5 +1,6 @@
 package com.bestswlkh0310.graduating.graduatingserver.infra.publicdata.kosaf
 
+import com.bestswlkh0310.graduating.graduatingserver.common.toLocalDate
 import com.bestswlkh0310.graduating.graduatingserver.core.scholarship.ScholarshipEntity
 import com.fasterxml.jackson.annotation.JsonProperty
 
@@ -34,28 +35,34 @@ data class KosafScholarshipRes(
         @JsonProperty("학자금유형구분") val financialAidType: String,
         @JsonProperty("홈페이지주소") val homepageUrl: String
     ) {
-        fun toEntity() = ScholarshipEntity(
-            recruitmentStartDate = this.recruitmentStartDate,
-            recruitmentEndDate = this.recruitmentEndDate,
-            number = this.number,
-            productCategory = this.productCategory,
-            productName = this.productName,
-            selectionMethodDetails = this.selectionMethodDetails,
-            selectionNumberDetails = this.selectionNumberDetails,
-            gradeCriteriaDetails = this.gradeCriteriaDetails,
-            incomeCriteriaDetails = this.incomeCriteriaDetails,
-            operatingInstitutionCategory = this.operatingInstitutionCategory,
-            operatingInstitutionName = this.operatingInstitutionName,
-            qualificationRestrictionsDetails = this.qualificationRestrictionsDetails,
-            requiredDocumentsDetails = this.requiredDocumentsDetails,
-            residencyDetails = this.residencyDetails,
-            supportDetails = this.supportDetails,
-            recommendationRequiredDetails = this.recommendationRequiredDetails,
-            specificQualificationDetails = this.specificQualificationDetails,
-            schoolCategory = schoolCategory,
-            gradeLevel = this.gradeLevel,
-            financialAidType = this.financialAidType,
-            homepageUrl = this.homepageUrl
-        )
+        fun toEntity(): ScholarshipEntity {
+            try {
+                return ScholarshipEntity(
+                    recruitmentStartDate = this.recruitmentStartDate.toLocalDate("yyyy-MM-dd"),
+                    recruitmentEndDate = this.recruitmentEndDate.toLocalDate("yyyy-MM-dd"),
+                    number = this.number,
+                    productName = this.productName,
+                    selectionMethodDetails = this.selectionMethodDetails.takeIf { it != "해당없음" },
+                    selectionNumberDetails = this.selectionNumberDetails.takeIf { it != "해당없음" },
+                    gradeCriteriaDetails = this.gradeCriteriaDetails.takeIf { it != "해당없음" },
+                    incomeCriteriaDetails = this.incomeCriteriaDetails.takeIf { it != "해당없음" },
+                    operatingInstitutionCategory = ScholarshipEntity.OperatingInstitutionCategory.fromKorean(this.operatingInstitutionCategory)!!,
+                    operatingInstitutionName = this.operatingInstitutionName,
+                    qualificationRestrictionsDetails = this.qualificationRestrictionsDetails.takeIf { it != "해당없음" },
+                    requiredDocumentsDetails = this.requiredDocumentsDetails.takeIf { it != "해당없음" },
+                    residencyDetails = this.residencyDetails.takeIf { it != "해당없음" },
+                    supportDetails = this.supportDetails.takeIf { it != "해당없음" },
+                    recommendationRequiredDetails = this.recommendationRequiredDetails.takeIf { it != "해당없음" },
+                    specificQualificationDetails = this.specificQualificationDetails.takeIf { it != "해당없음" },
+                    schoolCategory = schoolCategory,
+                    gradeLevel = this.gradeLevel,
+                    financialAidType = ScholarshipEntity.FinancialAidType.fromKorean(this.financialAidType)!!,
+                    homepageUrl = this.homepageUrl
+                )
+            } catch (e: Exception) {
+                println(this)
+                throw e
+            }
+        }
     }
 }
