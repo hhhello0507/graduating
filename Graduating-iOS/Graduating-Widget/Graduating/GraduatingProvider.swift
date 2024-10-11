@@ -23,13 +23,10 @@ class GraduatingProvider: TimelineProvider {
         UserService.shared.getMe()
             .ignoreError()
             .sink { user in
-                guard let graduating = user.graduating,
-                      let remainTime = graduating.remainTime,
-                      let remainTimePercent = graduating.remainTimePercent else { return }
+                guard let graduating = user.graduating else { return }
                 let entry = GraduatingEntry(
                     date: currentTime,
-                    remainTime: remainTime,
-                    remainTimePercent: remainTimePercent
+                    graduating: graduating
                 )
                 let timeline = Timeline(entries: [entry], policy: .after(afterDate))
                 completion(timeline)

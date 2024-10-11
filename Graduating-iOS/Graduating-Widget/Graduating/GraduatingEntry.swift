@@ -1,16 +1,9 @@
-//
-//  GraduatingEntry.swift
-//  Graduating
-//
-//  Created by hhhello0507 on 8/24/24.
-//
-
 import WidgetKit
+import Shared
 
 struct GraduatingEntry: TimelineEntry {
     let date: Date
-    let remainTime: DateComponents
-    let remainTimePercent: Double
+    let graduating: Graduating
 }
 
 extension GraduatingEntry {
@@ -21,8 +14,10 @@ extension GraduatingEntry {
         }
         return GraduatingEntry(
             date: .now,
-            remainTime: components,
-            remainTimePercent: 0.4
+            graduating: .init(
+                graduatingYear: 2026,
+                schoolType: .high
+            )
         )
     }
 }

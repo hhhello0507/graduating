@@ -23,20 +23,36 @@ struct GraduatingWidgetEntryView: View {
     }
     
     var body: some View {
-        VStack {
-            Text("졸업까지")
-                .font(.caption)
-                .foreground(Colors.Label.assistive)
-            Text(String(format: isSmall ? "%.3f%%" : "%.7f%%", entry.remainTimePercent * 100))
-                .font(.title)
-                .foreground(Colors.Label.normal)
-            Text(entry.remainTime.prettyText)
-                .font(isSmall ? .caption2 : .caption)
-                .foreground(Colors.Label.alternative)
-                .multilineTextAlignment(.center)
+        VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("졸업까지")
+                    .font(.caption)
+                    .foreground(Colors.Label.assistive)
+                Text(String(format: isSmall ? "%.3f%%" : "%.7f%%", entry.graduating.remainTimePercent * 100))
+                    .font(.system(size: isSmall ? 22 : 28, weight: .bold))
+                    .foreground(Colors.Label.normal)
+                Text(entry.graduating.remainTime.prettyText)
+                    .font(isSmall ? .caption2 : .caption)
+                    .foreground(Colors.Label.alternative)
+                    .multilineTextAlignment(.leading)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            Spacer()
+            VStack(spacing: 4) {
+                MyLinearProgressView(progress: entry.graduating.remainTimePercent)
+                HStack {
+                    Text(String(entry.graduating.admissionYear))
+                        .font(isSmall ? .caption : .footnote)
+                        .foreground(Colors.Primary.normal)
+                    Spacer()
+                    Text(String(entry.graduating.graduatingYear))
+                        .font(isSmall ? .caption : .footnote)
+                        .foreground(Colors.Label.normal)
+                }
+            }
         }
-        .background(Colors.Background.neutral)
-        .padding(15)
+        .background(Colors.Background.normal)
+        .padding(16)
     }
 }
 
