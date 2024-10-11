@@ -53,6 +53,7 @@ struct MealView: View {
                     Spacer().frame(height: headerSize.height + abs(posY))
                     viewModel.meals.makeView {
                         ProgressView()
+                            .padding(.top, 32)
                     } success: { meals in
                         LazyVStack(spacing: 12) {
                             ForEach(Array(meals.enumerated()), id: \.offset) { idx, meal in
@@ -63,8 +64,12 @@ struct MealView: View {
                         .padding(.horizontal, 16)
                         .padding(.bottom, 54)
                     } failure: { _ in
-                        Color.clear.frame(height: UIScreen.main.bounds.height)
+                        Text("급식을 불러올 수 없어요")
+                            .myFont(.labelM)
+                            .foreground(Colors.Label.alternative)
+                            .padding(.top, 32)
                     }
+                    .frame(height: UIScreen.main.bounds.height, alignment: .top)
                 }
                 .background(
                     GeometryReader { inner in
