@@ -25,4 +25,10 @@ class RestClientConfig {
     fun appleOAuth2RestClient() = RestClient.builder()
         .baseUrl("https://appleid.apple.com")
         .build()
+    
+    @Bean
+    @Qualifier("public-data")
+    fun publicDataRestClient() = RestClient.builder()
+        .baseUrl("https://api.odcloud.kr")
+        .build()
 }

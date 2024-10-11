@@ -15,8 +15,17 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
 server:
   port: 1234
+management:
+  endpoints:
+    web:
+      base-path: /management
+  endpoint:
+    health:
+      show-details: always
 neis:
   apikey: ${NEIS_APIKEY}
+public-data:
+  kosaf-service-key: ${KOSAF_SERVICE_KEY}
 jwt:
   expired:
     access: 3_600_000
@@ -39,10 +48,3 @@ oauth2:
     audience: https://appleid.apple.com
     private-key: ${APPLE_P8_KEY}
     grant-type: authorization_code
-management:
-  endpoints:
-    web:
-      base-path: /management
-  endpoint:
-    health:
-      show-details: always
