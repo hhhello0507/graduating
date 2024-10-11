@@ -4,6 +4,7 @@ import MyDesignSystem
 
 public struct SearchSchoolContainer {
     @Binding private var searchText: String
+    @FocusState private var focused
     
     private let schools: Resource<[School]>
     private let selectAction: (School) -> Void
@@ -24,6 +25,7 @@ extension SearchSchoolContainer: View {
         VStack(spacing: 12) {
             HStack(spacing: 2) {
                 MyTextField("학교 검색", text: $searchText)
+                    .focused($focused)
                 Image(icon: Icons.ETC.Search)
                     .resizable()
                     .renderingMode(.template)
@@ -48,6 +50,9 @@ extension SearchSchoolContainer: View {
             } failure: { _ in
                 Text("에러") // TODO: Handle this for ux
             }
+        }
+        .onAppear {
+            focused = true
         }
     }
 }

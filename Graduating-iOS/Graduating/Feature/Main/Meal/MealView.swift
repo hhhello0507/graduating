@@ -69,7 +69,7 @@ struct MealView: View {
                             .foreground(Colors.Label.alternative)
                             .padding(.top, 32)
                     }
-                    .frame(height: UIScreen.main.bounds.height, alignment: .top)
+                    .padding(.bottom, calendarSize.height)
                 }
                 .background(
                     GeometryReader { inner in
