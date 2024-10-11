@@ -11,6 +11,6 @@ class MealController(
     private val mealService: MealService
 ) {
     @GetMapping
-    fun getMeals(@Valid @RequestBody req: GetMealsReq = GetMealsReq.current()) =
+    fun getMeals(@Valid @ModelAttribute req: GetMealsReq = GetMealsReq.current()) =
         mealService.getMeals(req)
 }

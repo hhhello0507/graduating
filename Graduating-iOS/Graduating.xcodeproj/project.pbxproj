@@ -20,6 +20,7 @@
 		253DC2B42C7EBEAC0047C401 /* MyMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 253DC2B32C7EBEAC0047C401 /* MyMoya */; };
 		253DC2B62C7EBEAC0047C401 /* MyShared in Frameworks */ = {isa = PBXBuildFile; productRef = 253DC2B52C7EBEAC0047C401 /* MyShared */; };
 		253DC2B82C7EBEB30047C401 /* MyDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 253DC2B72C7EBEB30047C401 /* MyDesignSystem */; };
+		2569F4DB2CB8B1D3006B5D7F /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 2569F4DA2CB8B1D3006B5D7F /* SwiftUIIntrospect */; };
 		258172AC2C7A10CF00D2691E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258172AB2C7A10CF00D2691E /* WidgetKit.framework */; };
 		258172AE2C7A10CF00D2691E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258172AD2C7A10CF00D2691E /* SwiftUI.framework */; };
 		258172B92C7A10D100D2691E /* Graduating-WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 258172A92C7A10CF00D2691E /* Graduating-WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -177,6 +178,7 @@
 				250258802CB3CF4700ADCF68 /* GoogleMobileAds in Frameworks */,
 				25A649902CB351410015AADB /* ScopeKit in Frameworks */,
 				25064D392CAEFEFF00181796 /* GoogleSignIn in Frameworks */,
+				2569F4DB2CB8B1D3006B5D7F /* SwiftUIIntrospect in Frameworks */,
 				25C962D42C7B07C500EB872E /* libData.a in Frameworks */,
 				25064DDB2CAF862D00181796 /* SignKit in Frameworks */,
 				253DC2B22C7EBEAC0047C401 /* MyDesignSystem in Frameworks */,
@@ -284,6 +286,7 @@
 				25064DDA2CAF862D00181796 /* SignKit */,
 				25A6498F2CB351410015AADB /* ScopeKit */,
 				2502587F2CB3CF4700ADCF68 /* GoogleMobileAds */,
+				2569F4DA2CB8B1D3006B5D7F /* SwiftUIIntrospect */,
 			);
 			productName = Graduating;
 			productReference = 2560F1732C746C16007009E2 /* Graduating.app */;
@@ -409,6 +412,7 @@
 				25064DD92CAF862D00181796 /* XCRemoteSwiftPackageReference "SignKit" */,
 				25A6498E2CB351400015AADB /* XCRemoteSwiftPackageReference "ScopeKit" */,
 				2502587E2CB3CF4700ADCF68 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				2569F4D92CB8B1D3006B5D7F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 2560F1742C746C16007009E2 /* Products */;
 			projectDirPath = "";
@@ -956,6 +960,14 @@
 				kind = branch;
 			};
 		};
+		2569F4D92CB8B1D3006B5D7F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
+			};
+		};
 		25A6498E2CB351400015AADB /* XCRemoteSwiftPackageReference "ScopeKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hhhello0507/ScopeKit";
@@ -1041,6 +1053,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 253DC2B02C7EBEAC0047C401 /* XCRemoteSwiftPackageReference "my-ios-kit" */;
 			productName = MyDesignSystem;
+		};
+		2569F4DA2CB8B1D3006B5D7F /* SwiftUIIntrospect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2569F4D92CB8B1D3006B5D7F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = SwiftUIIntrospect;
 		};
 		25A6498F2CB351410015AADB /* ScopeKit */ = {
 			isa = XCSwiftPackageProductDependency;

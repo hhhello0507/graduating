@@ -36,10 +36,6 @@ extension MealView: View {
             .refreshable {
                 viewModel.refresh()
             }
-            .googleBannderAd(
-                inset: .top,
-                adUnitId: "ca-app-pub-2589637472995872/3554240467"
-            )
         }
         .onAppear {
             viewModel.onAppear()

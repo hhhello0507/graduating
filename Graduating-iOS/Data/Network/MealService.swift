@@ -5,15 +5,16 @@ import Moya
 import Shared
 
 public enum MealEndpoint: MyTarget {
-    case fetchMeals
+    case fetchMeals(_ req: GetMealReq)
 }
 
 extension MealEndpoint {
     public var host: String { "meals" }
     public var route: Route {
         switch self {
-        case .fetchMeals:
+        case .fetchMeals(let req):
                 .get()
+                .task(req.toURLParameters())
         }
     }
     
@@ -28,7 +29,7 @@ extension MealEndpoint {
 public struct MealService {
     public static let shared = Self()
 
-    public func fetchMeals() -> AnyPublisher<[Meal], APIError> {
-        runner.deepDive(MealEndpoint.fetchMeals, res: [Meal].self)
+    public func fetchMeals(_ req: GetMealReq) -> AnyPublisher<[Meal], APIError> {
+        runner.deepDive(MealEndpoint.fetchMeals(req), res: [Meal].self)
     }
 }

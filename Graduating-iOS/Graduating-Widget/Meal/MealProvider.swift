@@ -19,18 +19,20 @@ class MealProvider: TimelineProvider {
         let nextUpdate = Calendar.current.date(byAdding: .hour, value: 1, to: .now)!
         let currentDate = Date()
         
-        MealService.shared.fetchMeals()
-            .ignoreError()
-            .sink { meal in
-                let type = MealType.from(.now)
-                let entry = MealEntry(
-                    date: currentDate,
-                    meal: meal.filter { $0.mealType == type }.first
-                )
-                let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
-                completion(timeline)
-            }
-            .store(in: &subscription)
+        MealService.shared.fetchMeals(
+            .init()
+        )
+        .ignoreError()
+        .sink { meal in
+            let type = MealType.from(.now)
+            let entry = MealEntry(
+                date: currentDate,
+                meal: meal.filter { $0.mealType == type }.first
+            )
+            let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
+            completion(timeline)
+        }
+        .store(in: &subscription)
         
     }
 }

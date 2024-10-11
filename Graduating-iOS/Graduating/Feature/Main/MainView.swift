@@ -17,7 +17,7 @@ extension MainView: View {
         MyBottomAppBar(selection: $selection) {
             HomeView()
                 .page(icon: Icons.Feature.Home, text: "홈")
-            MealView()
+            MealViewa()
                 .page(icon: Icons.Feature.Utensils, text: "급식")
             ProfileView()
                 .page(icon: Icons.Feature.Person, text: "프로필")

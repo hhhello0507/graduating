@@ -1,16 +1,23 @@
-//
-//  FetchMealReq.swift
-//  Model
-//
-//  Created by hhhello0507 on 8/28/24.
-//
-
 import Foundation
 
-public struct FetchMealReq: ReqProtocol {
-    public let schoolId: Int
+public struct GetMealReq: ReqProtocol {
+    public let year: Int
+    public let month: Int
+    public let day: Int
     
-    public init(schoolId: Int) {
-        self.schoolId = schoolId
+    public init(
+        year: Int,
+        month: Int,
+        day: Int
+    ) {
+        self.year = year
+        self.month = month
+        self.day = day
+    }
+    
+    public init(date: Date = .now) {
+        self.year = date[.year]
+        self.month = date[.month]
+        self.day = date[.day]
     }
 }
