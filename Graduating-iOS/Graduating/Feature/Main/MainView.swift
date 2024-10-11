@@ -19,6 +19,8 @@ extension MainView: View {
                 .page(icon: Icons.Feature.Home, text: "홈")
             MealView()
                 .page(icon: Icons.Feature.Utensils, text: "급식")
+            ExploreView()
+                .page(icon: Icons.ETC.Search, text: "탐색")
             ProfileView()
                 .page(icon: Icons.Feature.Person, text: "프로필")
         }

@@ -8,7 +8,6 @@
 import Foundation
 
 public struct Meal: ModelProtocol {
-    
     public var id: Int
     public var mealType: MealType?
     public var calorie: Double
