@@ -39,7 +39,7 @@ public struct MealWidgetEntryView: View {
             VStack(alignment: .leading, spacing: 0) {
                 if let meal {
                     if meal.menu.isEmpty {
-                        MealMenuText(text: "오늘은\n급식이 없어요", isMealEmpty: false)
+                        MealMenuText(text: "오늘은\n급식이 없어요", isMealEmpty: true)
                     } else {
                         HStack {
                             if widgetFamily == .systemSmall {
@@ -60,7 +60,7 @@ public struct MealWidgetEntryView: View {
                         }
                     }
                 } else {
-                    MealMenuText(text: "급식을\n불러올 수 없어요", isMealEmpty: false)
+                    MealMenuText(text: "급식을\n불러올 수 없어요", isMealEmpty: true)
                 }
             }
             .padding(8)
