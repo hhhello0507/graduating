@@ -1,6 +1,7 @@
 import SwiftUI
 import Shared
 import MyDesignSystem
+import ScopeKit
 
 struct CalendarDateCell {
     private let date: Date?
@@ -15,11 +16,9 @@ struct CalendarDateCell {
     }
     
     private var label: String {
-        if let date {
+        date?.let { date in
             "\(date[.day])"
-        } else {
-            ""
-        }
+        } ?? ""
     }
 }
 

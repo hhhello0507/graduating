@@ -2,6 +2,7 @@ import SwiftUI
 import Shared
 import SwiftUIIntrospect
 import MyDesignSystem
+import ScopeKit
 
 struct MealView: View {
     @StateObject private var viewModel = MealViewModel()
@@ -126,11 +127,9 @@ struct MealView: View {
                 ForEach(weeks, id: \.hashValue) { week in
                     HStack(spacing: 0) {
                         ForEach(Array(week.enumerated()), id: \.offset) { _, date in
-                            let selected: Bool = if let date {
-                                date.equals(viewModel.selectedDate, components: [.year, .month, .day])
-                            } else {
-                                false
-                            }
+                            let selected = date?.let {
+                                $0.equals(viewModel.selectedDate, components: [.year, .month, .day])
+                            } ?? false
                             Button {
                                 if !selected, let date {
                                     viewModel.selectedDate = date

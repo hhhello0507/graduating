@@ -9,26 +9,10 @@ import Data
 final class ExploreViewModel: ObservableObject {
     var subscriptions = Set<AnyCancellable>()
     
-    @Published var scholarships: Resource<[Scholarship]> = .idle
-    
     var isFirstOnAppear: Bool = true
 }
 
 extension ExploreViewModel: OnAppearProtocol {
     func fetchAllData() {
-        fetchScholarships()
-    }
-}
-
-extension ExploreViewModel {
-    func refresh() {
-        fetchAllData()
-    }
-    
-    func fetchScholarships() {
-        ScholarshipService.shared.getScholarships()
-            .resource(\.scholarships, on: self)
-            .silentSink()
-            .store(in: &subscriptions)
     }
 }

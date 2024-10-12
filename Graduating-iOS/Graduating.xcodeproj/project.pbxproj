@@ -21,6 +21,7 @@
 		253DC2B62C7EBEAC0047C401 /* MyShared in Frameworks */ = {isa = PBXBuildFile; productRef = 253DC2B52C7EBEAC0047C401 /* MyShared */; };
 		253DC2B82C7EBEB30047C401 /* MyDesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 253DC2B72C7EBEB30047C401 /* MyDesignSystem */; };
 		2569F4DB2CB8B1D3006B5D7F /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 2569F4DA2CB8B1D3006B5D7F /* SwiftUIIntrospect */; };
+		2569F4FC2CB92DA8006B5D7F /* Flow in Frameworks */ = {isa = PBXBuildFile; productRef = 2569F4FB2CB92DA8006B5D7F /* Flow */; };
 		258172AC2C7A10CF00D2691E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258172AB2C7A10CF00D2691E /* WidgetKit.framework */; };
 		258172AE2C7A10CF00D2691E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258172AD2C7A10CF00D2691E /* SwiftUI.framework */; };
 		258172B92C7A10D100D2691E /* Graduating-WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 258172A92C7A10CF00D2691E /* Graduating-WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -181,6 +182,7 @@
 				2569F4DB2CB8B1D3006B5D7F /* SwiftUIIntrospect in Frameworks */,
 				25C962D42C7B07C500EB872E /* libData.a in Frameworks */,
 				25064DDB2CAF862D00181796 /* SignKit in Frameworks */,
+				2569F4FC2CB92DA8006B5D7F /* Flow in Frameworks */,
 				253DC2B22C7EBEAC0047C401 /* MyDesignSystem in Frameworks */,
 				250FD0872C74AF100070503B /* Moya in Frameworks */,
 				258172D02C7A12CC00D2691E /* libShared.a in Frameworks */,
@@ -287,6 +289,7 @@
 				25A6498F2CB351410015AADB /* ScopeKit */,
 				2502587F2CB3CF4700ADCF68 /* GoogleMobileAds */,
 				2569F4DA2CB8B1D3006B5D7F /* SwiftUIIntrospect */,
+				2569F4FB2CB92DA8006B5D7F /* Flow */,
 			);
 			productName = Graduating;
 			productReference = 2560F1732C746C16007009E2 /* Graduating.app */;
@@ -413,6 +416,7 @@
 				25A6498E2CB351400015AADB /* XCRemoteSwiftPackageReference "ScopeKit" */,
 				2502587E2CB3CF4700ADCF68 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				2569F4D92CB8B1D3006B5D7F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				2569F4FA2CB92DA8006B5D7F /* XCRemoteSwiftPackageReference "SwiftUI-Flow" */,
 			);
 			productRefGroup = 2560F1742C746C16007009E2 /* Products */;
 			projectDirPath = "";
@@ -968,6 +972,14 @@
 				minimumVersion = 1.3.0;
 			};
 		};
+		2569F4FA2CB92DA8006B5D7F /* XCRemoteSwiftPackageReference "SwiftUI-Flow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tevelee/SwiftUI-Flow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.0;
+			};
+		};
 		25A6498E2CB351400015AADB /* XCRemoteSwiftPackageReference "ScopeKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hhhello0507/ScopeKit";
@@ -1058,6 +1070,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2569F4D92CB8B1D3006B5D7F /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = SwiftUIIntrospect;
+		};
+		2569F4FB2CB92DA8006B5D7F /* Flow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2569F4FA2CB92DA8006B5D7F /* XCRemoteSwiftPackageReference "SwiftUI-Flow" */;
+			productName = Flow;
 		};
 		25A6498F2CB351410015AADB /* ScopeKit */ = {
 			isa = XCSwiftPackageProductDependency;

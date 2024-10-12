@@ -21,4 +21,10 @@ public extension Date {
         components.year = admissionYear
         return calendar.date(from: components)
     }
+    
+    func dayDiff(endAt: Date) -> Int {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day], from: self, to: endAt)
+        return components.day!
+    }
 }

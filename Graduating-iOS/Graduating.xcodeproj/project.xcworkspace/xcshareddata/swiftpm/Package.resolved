@@ -1,5 +1,5 @@
 {
-  "originHash" : "0c9910f1ba24405814dab8bcf7fb230c658c4830992f047ecc3139924edfee87",
+  "originHash" : "8c7b1e81e4005cd3711475b48a22cadb25ed8223f2254744e8787e431ee5b029",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -79,7 +79,7 @@
       "location" : "https://github.com/hhhello0507/my-ios-kit",
       "state" : {
         "branch" : "main",
-        "revision" : "93dd2156ba9123a2e74ae49cf5c80e540cd86285"
+        "revision" : "2412caf576dd70bfe2f15305d833e6d3b29f365b"
       }
     },
     {
@@ -152,6 +152,15 @@
       "state" : {
         "revision" : "74f2ec169551c3b924947b473716142a0b983e10",
         "version" : "2.6.0"
+      }
+    },
+    {
+      "identity" : "swiftui-flow",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tevelee/SwiftUI-Flow",
+      "state" : {
+        "revision" : "b528bd06ae70fbd2936d9561a456fb6ea65bc7ff",
+        "version" : "2.5.0"
       }
     },
     {

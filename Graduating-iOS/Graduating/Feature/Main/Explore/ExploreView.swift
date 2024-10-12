@@ -6,35 +6,15 @@ import SwiftUI
 import MyDesignSystem
 import Shared
 
-struct ExploreView: View {
+struct ExploreView {
     @StateObject private var viewModel = ExploreViewModel()
-    
+}
+
+extension ExploreView: View {
     var body: some View {
         MyTopAppBar.default(
             title: "탐색"
         ) { insets in
-            viewModel.scholarships.makeView {
-                ProgressView()
-            } success: { scholarships in
-                ScrollView {
-                    LazyVStack {
-                        ForEach(scholarships, id: \.id) { scholarship in
-                            Text("짜잔")
-                        }
-                    }
-                    .padding(insets)
-                }
-            } failure: { _ in
-                Text("정보를 불러올 수 없어요")
-                    .myFont(.labelM)
-                    .foreground(Colors.Label.alternative)
-            }
-        }
-        .onAppear {
-            viewModel.onAppear()
-        }
-        .refreshable {
-            viewModel.refresh()
         }
     }
 }

@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct MainCoordinator: View {
-    
     var body: some View {
         MainView()
             .navigationDestination(for: EditSchoolView.Path.self) { EditSchoolView(path: $0) }
