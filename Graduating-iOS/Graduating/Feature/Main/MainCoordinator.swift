@@ -7,5 +7,6 @@ struct MainCoordinator: View {
             .navigationDestination(for: EditGraduatingYearView.Path.self) { EditGraduatingYearView(path: $0) }
             .navigationDestination(for: SettingPath.self) { _ in SettingView() }
             .navigationDestination(for: EditProfilePath.self) { _ in EditProfileView() }
+            .navigationDestination(for: ScholarshipDetailView.Path.self) { ScholarshipDetailView(path: $0) }
     }
 }

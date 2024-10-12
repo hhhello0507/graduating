@@ -5,14 +5,16 @@
 import SwiftUI
 import MyDesignSystem
 
-struct BenefitView {
-    @StateObject private var viewModel = BenefitViewModel()
+struct ScholarshipView {
+    @EnvironmentObject private var router: Router
+    
+    @StateObject private var viewModel = ScholarshipViewModel()
 }
 
-extension BenefitView: View {
+extension ScholarshipView: View {
     var body: some View {
         MyTopAppBar.default(
-            title: "혜택"
+            title: "장학금"
         ) { insets in
             viewModel.scholarships.makeView {
                 ProgressView()
@@ -20,7 +22,10 @@ extension BenefitView: View {
                 ScrollView {
                     LazyVStack(spacing: 0) {
                         ForEach(scholarships.indices, id: \.self) { index in
-                            ScholarshipCell(for: scholarships[index])
+                            let scholarship = scholarships[index]
+                            ScholarshipCell(for: scholarship) {
+                                router.push(ScholarshipDetailView.Path(scholarship: scholarship))
+                            }
                             if index != scholarships.count - 1 {
                                 MyDivider()
                                     .padding(.horizontal, 4)
@@ -42,8 +47,4 @@ extension BenefitView: View {
             viewModel.refresh()
         }
     }
-}
-
-#Preview {
-    BenefitView()
 }

@@ -19,8 +19,8 @@ extension MainView: View {
                 .page(icon: Icons.Feature.Home, text: "홈")
             MealView()
                 .page(icon: Icons.Feature.Utensils, text: "급식")
-            BenefitView()
-                .page(icon: Icons.Feature.Star, text: "혜택")
+            ScholarshipView()
+                .page(icon: Icons.Feature.Star, text: "장학금")
 //            ExploreView() // TODO: 탐색탭? 다음 업데이트 때 고려해볼 것
 //                .page(icon: Icons.ETC.Search, text: "탐색")
             ProfileView()

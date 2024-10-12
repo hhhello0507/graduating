@@ -6,7 +6,7 @@ import Foundation
 import Shared
 import Data
 
-final class BenefitViewModel: ObservableObject {
+final class ScholarshipViewModel: ObservableObject {
     var subscriptions = Set<AnyCancellable>()
     
     @Published var scholarships: Resource<[Scholarship]> = .idle
@@ -14,13 +14,13 @@ final class BenefitViewModel: ObservableObject {
     var isFirstOnAppear: Bool = true
 }
 
-extension BenefitViewModel: OnAppearProtocol {
+extension ScholarshipViewModel: OnAppearProtocol {
     func fetchAllData() {
         fetchScholarships()
     }
 }
 
-extension BenefitViewModel {
+extension ScholarshipViewModel {
     func refresh() {
         fetchAllData()
     }
