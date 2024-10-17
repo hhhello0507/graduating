@@ -5,11 +5,11 @@
 
 ## Preview
 <div>
-  <img width="19.5%" src="./image/large_1.png"/>
-  <img width="19.5%" src="./image/large_2.png"/>
-  <img width="19.5%" src="./image/large_3.png"/>
-  <img width="19.5%" src="./image/large_4.png"/>
-  <img width="19.5%" src="./image/large_5.png"/>
+  <img width="19.5%" src="./image/preview-1.png"/>
+  <img width="19.5%" src="./image/preview-2.png"/>
+  <img width="19.5%" src="./image/preview-3.png"/>
+  <img width="19.5%" src="./image/preview-4.png"/>
+  <img width="19.5%" src="./image/preview-5.png"/>
 </div>
 
 ### Stack
